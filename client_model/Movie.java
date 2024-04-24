@@ -1,3 +1,5 @@
+package client_model;
+
 import java.util.ArrayList;
 
 public class Movie {
@@ -28,7 +30,7 @@ public class Movie {
 		}
 		else if (isRoomInUse(day))
 		{
-			throw new IllegalArgumentException("Room is already booked for this day");
+			throw new IllegalArgumentException("client_model.Room is already booked for this day");
 		}
 		else
 		{

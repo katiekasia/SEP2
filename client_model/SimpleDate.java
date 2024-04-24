@@ -1,3 +1,5 @@
+package client_model;
+
 import java.time.LocalDate;
 
 /**
@@ -13,7 +15,7 @@ public class SimpleDate implements Comparable<SimpleDate>
   private int index;
 
   /**
-   * A four-argument constructor creating the new SimpleDate object for the date.
+   * A four-argument constructor creating the new client_model.SimpleDate object for the date.
    * @param day the day of the month of the screening as int
    * @param month the month of the screening as int
    * @param year the year of the screening as int
@@ -27,7 +29,7 @@ public class SimpleDate implements Comparable<SimpleDate>
   }
 
   /**
-   * A one-argument constructor creating a new SimpleDate object.
+   * A one-argument constructor creating a new client_model.SimpleDate object.
    * @param date the date of the screening as LocalDate
    */
   public SimpleDate(LocalDate date){
@@ -37,7 +39,7 @@ public class SimpleDate implements Comparable<SimpleDate>
   }
 
   /**
-   * A no argument constructor creating the new SimpleDate object based on today's date.
+   * A no argument constructor creating the new client_model.SimpleDate object based on today's date.
    */
   public SimpleDate()
   {
@@ -72,7 +74,7 @@ public class SimpleDate implements Comparable<SimpleDate>
   }
 
 /**
- * A method returning the LocalDate object with same values as the SimpleDate.
+ * A method returning the LocalDate object with same values as the client_model.SimpleDate.
  * @return an integer representing day.
  */
 public LocalDate getDate()
@@ -127,10 +129,10 @@ public LocalDate getDate()
   }
 
   /**
-   * A method used to compare this SimpleDate class to another Object and return if they are the same.
+   * A method used to compare this client_model.SimpleDate class to another Object and return if they are the same.
    * @param obj
    *        object we are comparing
-   * @return a boolean representing if this SimpleDate and the parameter are the same.
+   * @return a boolean representing if this client_model.SimpleDate and the parameter are the same.
    */
   public boolean equals(Object obj)
   {
@@ -141,7 +143,7 @@ public LocalDate getDate()
   }
 
   /**
-   * A to String method that returns SimpleDate as String, without the minutes and hours if they are set to -1.
+   * A to String method that returns client_model.SimpleDate as String, without the minutes and hours if they are set to -1.
    * @return returns this object formated to a string
    */
   public String toString()
@@ -151,7 +153,7 @@ public LocalDate getDate()
   }
   /**
    * A method use to create a copy of the date.
-   * @return a copy of date as new SimpleDate class.
+   * @return a copy of date as new client_model.SimpleDate class.
    */
   public SimpleDate copy()  { return new SimpleDate(getDay(),getMonth(),getYear());}
 

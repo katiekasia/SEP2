@@ -1,3 +1,5 @@
+package client_model;
+
 public class Screening {
 	private int hour;
 	private int minute;

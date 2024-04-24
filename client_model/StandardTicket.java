@@ -1,3 +1,7 @@
+package client_model;
+
+import client_model.*;
+
 public class StandardTicket extends Ticket
 {
   public StandardTicket(int ticketID, double ticketPrice, Seat seat,

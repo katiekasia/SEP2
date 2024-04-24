@@ -1,3 +1,5 @@
+package client_model;
+
 public abstract class Snack
 {
   private double price;

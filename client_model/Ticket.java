@@ -1,3 +1,9 @@
+package client_model;
+
+import client_model.Screening;
+import client_model.ScreeningDay;
+import client_model.Seat;
+
 public abstract class Ticket {
 	private int ticketID;
 	private double ticketPrice;

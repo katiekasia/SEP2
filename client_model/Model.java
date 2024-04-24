@@ -1,8 +1,10 @@
+package client_model;
+
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 public interface Model extends UnnamedPropertyChangeSubject
 {
-  public void bookTicket(Ticket ticket, Customer customer);
-  public void logIn(Customer customer);
+  public void bookTicket(Ticket ticket, User user);
+  public void logIn(User user);
   public void cancelTicket(Ticket ticket);
 }

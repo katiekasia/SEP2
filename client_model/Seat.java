@@ -1,3 +1,5 @@
+package client_model;
+
 public class Seat
 {
 	private int ID;

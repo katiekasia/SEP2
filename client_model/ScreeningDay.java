@@ -1,3 +1,8 @@
+package client_model;
+
+import client_model.Room;
+import client_model.Screening;
+
 public class ScreeningDay {
 	private SimpleDate date;
 	private Screening[] screenings;

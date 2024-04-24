@@ -1,3 +1,5 @@
+package client_model;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -45,7 +47,7 @@ public class Order
       ticket.cancelTicket();
       calculateOrderPrice();
     }else {
-      throw new IllegalStateException("Order cannot have 0 tickets");
+      throw new IllegalStateException("client_model.Order cannot have 0 tickets");
     }
   }
   public void addTicket(Ticket ticket){

@@ -1,3 +1,7 @@
+package client_model;
+
+import client_model.Order;
+
 import java.util.ArrayList;
 
 public class User
@@ -20,11 +24,11 @@ public class User
   public void addOrder(Order order){
     orders.add(order);
   }
-//  public void cancelOrder(Order order){
+//  public void cancelOrder(client_model.Order order){
 //    orders.remove(order);
 //  }
 //  public void createOrder(){
-//    Order order = new Order(orders.size() + 1);
+//    client_model.Order order = new client_model.Order(orders.size() + 1);
 //    orders.add(order);
 //  }
 
