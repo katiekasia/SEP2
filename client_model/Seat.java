@@ -1,5 +1,7 @@
 package client_model;
 
+import client_model.Ticket;
+
 public class Seat
 {
 	private int ID;

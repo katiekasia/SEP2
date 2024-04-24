@@ -1,6 +1,7 @@
 package client_model;
 
-import java.time.LocalDate;
+import client_model.Ticket;
+
 import java.util.ArrayList;
 
 public class Order
@@ -52,7 +53,7 @@ public class Order
   }
   public void addTicket(Ticket ticket){
     tickets.add(ticket);
-    this.orderDate = tickets.get(0).getScreeningDay().getDate();
+    this.orderDate = tickets.get(0).getScreening().getDate();
     calculateOrderPrice();
   }
 

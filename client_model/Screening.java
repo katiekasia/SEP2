@@ -1,45 +1,68 @@
 package client_model;
 
+import client_model.Movie;
+import client_model.Room;
+
+import java.time.LocalDate;
+
 public class Screening {
 	private int hour;
 	private int minute;
-	private Seat[] seats;
-	public Screening(int nbSeats, int hour, int minute){
-	seats = new Seat[nbSeats];
+	private SimpleDate date;
+	private Movie movie;
+	private Room room;
+
+	public Screening(int hour, int minute, LocalDate date, Movie movie, Room room){
+		this.date = new SimpleDate(date);
 	this.hour = hour;
 	this.minute = minute;
-	setSeats();
+	this.movie = movie;
+	this.room = new Room(room.getRoomID(), room.getNbSeats());
 	}
-	//Returns the amount of available seats
-	public int availableSeats(){
-		int count = 0;
-		for (Seat seat: seats){
-			if (seat.isAvailable()){
-				count++;
-			}
-		}
-		return count;
-	}
+
+
 	//**********************************************Getters and setters*******************************
 
 
-//generate new array of free seats for new screaning
-	public void setSeats() {
-		for (int i = 0; i < seats.length; i++)
-		{
-			Seat temp = new Seat(i+1,false);
-			seats[i] = temp;
-		}
-	}
-	public void setSeats(Seat[] seats){
-		this.seats = seats;
-	}
 	public String getTime(){
 		return hour + ":" + minute;
 	}
 
-	public Seat[] getSeats() {
-		return seats;
+	public void setRoom(Room room)
+	{
+		this.room = room;
+	}
+
+	public Room getRoom()
+	{
+		return room;
+	}
+
+	public SimpleDate getDate(){return date;}
+
+	public void setDate(SimpleDate date)
+	{
+		this.date = date;
+	}
+
+	public Movie getMovie()
+	{
+		return movie;
+	}
+
+	public void setMovie(Movie movie)
+	{
+		this.movie = movie;
+	}
+
+	public void setMinute(int minute)
+	{
+		this.minute = minute;
+	}
+
+	public void setHour(int hour)
+	{
+		this.hour = hour;
 	}
 
 	public int getHour()
@@ -52,9 +75,7 @@ public class Screening {
 		return minute;
 	}
 
-	public Seat getSeat(int index) {
-		return seats[index];
-	}
+
 
 
 }
