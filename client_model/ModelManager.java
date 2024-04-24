@@ -2,6 +2,8 @@ package client_model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -14,6 +16,14 @@ public class ModelManager implements Model
   //not sure if the user variable is the one connected here
   private User user;
   private PropertyChangeSupport propertyChangeSupport;
+
+  public ModelManager()
+  {
+    this.running=false;
+    this.PORT=5678;
+    this.HOST ="localhost";
+    this.user = null;
+  }
 
   @Override public void addListener(PropertyChangeListener listener)
   {
@@ -33,12 +43,12 @@ public class ModelManager implements Model
 
   @Override public void connect()
   {
-    //
+    //not for this sprint
   }
 
   @Override public void disconnect()
   {
-    //
+    //not for this sprint
   }
 
   @Override public int getPort()
@@ -80,29 +90,49 @@ public class ModelManager implements Model
 
   @Override public Seat[] getAvailableSeats(Screening screening)
   {
-    return new Seat[0];
+    ArrayList<Seat> seats= new ArrayList<>();
+    for(int i=0; i<screening.getRoom().getNbSeats(); i++)
+    {
+      if(screening.getRoom().getSeat(i).isAvailable())
+      {
+        seats.add(screening.getRoom().getSeat(i));
+      }
+    }
+    return seats.toArray(new Seat[screening.getRoom().getNbSeats()]);
   }
 
-  @Override public boolean holdSeat(Seat seat, User customer,
-      Screening screening)
+  @Override public Seat[] getEmptySeats(Screening screening)
   {
-    return false;
+    ArrayList<Seat> emptySeats= new ArrayList<>();
+    for(int i=0; i<screening.getRoom().getNbSeats(); i++)
+    {
+      if(!screening.getRoom().getSeat(i).isAvailable())
+      {
+        emptySeats.add(screening.getRoom().getSeat(i));
+      }
+    }
+    return emptySeats.toArray(new Seat[screening.getRoom().getNbSeats()]);
   }
 
-  @Override public void releaseHoldSeat(Seat seat, User customer,
-      Screening screening)
-  {
 
+  @Override public double calculateTotalPrice()
+  {
+    double price =0;
+    for(int i=0; i<user.getOrders().size(); i++)
+    {
+      price +=user.getOrders().get(0).getOrderPrice();
+    }
+    return price;
   }
 
-  @Override public double calculateTotalPrice(Seat[] seats, Screening screening)
+  @Override public void updateSeatToBooked(Seat seat, Ticket ticket)
   {
-    return 0;
+    seat.book(ticket);
   }
 
-  @Override public void updateSeatStatus(Seat seat)
+  @Override public void addOrder(Order order)
   {
-
+    user.addOrder(order);
   }
 
   @Override public void reserveSeats(Seat[] seats, User customer,
