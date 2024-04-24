@@ -12,6 +12,7 @@ public interface Model extends UnnamedPropertyChangeSubject
   public int getPort();
   public void setPort(int port);
   public String getHost();
+  
   public void reserveSeats(Seat[] seats,User customer,ScreeningDay day, Screening screening );
 
   public void reserveSeat(Seat seat, User customer,Screening screening);
