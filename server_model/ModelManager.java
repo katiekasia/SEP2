@@ -1,10 +1,9 @@
-package client_model;
+package server_model;
 
 import client_mediator.BookTicketClient;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
