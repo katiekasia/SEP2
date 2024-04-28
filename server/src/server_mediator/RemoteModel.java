@@ -1,8 +1,6 @@
-package client_mediator;
+package server_mediator;
 
-import server_model.Screening;
-import server_model.Seat;
-import server_model.User;
+import server_model.*;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -17,4 +15,6 @@ public interface RemoteModel extends Remote
       Screening screening) throws RemoteException;
   public Seat[] getAvailableSeats(Screening screening) throws RemoteException;
   public Seat[] getEmptySeats(Screening screening) throws RemoteException;
+  public void updateSeatToBooked(Seat seat, Ticket ticket) throws RemoteException;
+  public void addOrder(Order order) throws RemoteException;
 }

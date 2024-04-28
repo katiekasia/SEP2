@@ -1,6 +1,6 @@
 package server_model;
 
-import client_mediator.BookTicketClient;
+
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -13,7 +13,7 @@ public class ModelManager implements Model
   private String HOST;
   private int PORT;
   private boolean running;
-  private BookTicketClient client;
+
 
   //not sure if the user variable is the one connected here
   private User user;
