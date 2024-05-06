@@ -30,7 +30,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "jdk.selected.JAVA_MODULE": "java_jdk",
-    "last_opened_file_path": "C:/A_Java_Projects/Classes/SEP2/client/postgresql-42.7.3.jar",
+    "last_opened_file_path": "C:/A_Java_Projects/Classes/SEP2/server/src",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
@@ -38,16 +38,17 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\A_Java_Projects\Classes\SEP2\server\src" />
       <recent name="C:\A_Java_Projects\Classes\SEP2\client" />
       <recent name="C:\A_Java_Projects\Classes\SEP2\client\src\client_view" />
       <recent name="C:\A_Java_Projects\Classes\SEP2\client\src" />
       <recent name="C:\A_Java_Projects\Classes\SEP2\server\src\server_view" />
-      <recent name="C:\A_Java_Projects\Classes\SEP2\server\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\A_Java_Projects\Classes\SEP2" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="server_viewmodel" />
       <recent name="client_model" />
     </key>
   </component>

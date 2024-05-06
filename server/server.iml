@@ -19,5 +19,6 @@
     </orderEntry>
     <orderEntry type="library" exported="" name="gson-2.8.51" level="application" />
     <orderEntry type="library" exported="" name="postgresql-42.7.3" level="project" />
+    <orderEntry type="module" module-name="client" />
   </component>
 </module>
