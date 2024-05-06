@@ -32,7 +32,7 @@ public class TestMain
     }
     customer.addOrder(temp);
   }
-
+//
   //*************************Test area for the model**************************
   public static void main(String[] args)
   {
