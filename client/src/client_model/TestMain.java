@@ -1,10 +1,13 @@
 package client_model;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.time.LocalDate;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class TestMain
 {
-  //********Just my ideas for possible interface methods, subject for discussion
+  //********Just my ideas for po  ssible interface methods, subject for discussion
   public void reserveSeat(Seat seat, User customer,Screening screening){
     if (screening.getRoom().availableSeats() <= 0){
       throw new RuntimeException("No available seats left for this screening");
@@ -44,6 +47,23 @@ public class TestMain
     Interface.reserveSeat(morning.getRoom().getSeat(1), test,morning);
     Snack snack = new Popcorn(21,"Medium");
     System.out.println(snack.getPrice());
+
+    // DATABASE CONNECTIVITY TEST
+    try {
+      Connection connection = DataBaseHandler.getConnection();
+      if (connection != null) {
+        System.out.println("Database connection successful!");
+
+        // Close the connection to release resources
+        DataBaseHandler.closeConnection();
+      } else {
+        System.out.println("Failed to establish database connection.");
+      }
+    } catch (SQLException e) {
+      // Handle any SQL exceptions
+      System.out.println("Database connection error: " + e.getMessage());
+    }
+    // DATABASE CONNECTIVITY TEST
 
   }
 }

@@ -19,6 +19,7 @@ public class ModelManager implements Model
   {
 
     this.user = null;
+// comment see if it works
   }
 
   @Override public void addListener(PropertyChangeListener listener)
