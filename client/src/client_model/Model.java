@@ -22,5 +22,6 @@ public interface Model extends UnnamedPropertyChangeSubject
 
   public void addOrder(Order order);
 
-
-  }
+  void logIn(String username, String password);
+  void register(String username, String password, String email, String firstName, String lastName, String phone);
+}

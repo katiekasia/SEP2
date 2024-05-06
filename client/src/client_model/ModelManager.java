@@ -1,13 +1,9 @@
 package client_model;
 
-import client_mediator.BookTicketClient;
 import client_mediator.RmiClient;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.lang.reflect.Array;
-import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
