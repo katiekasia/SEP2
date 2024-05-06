@@ -1,7 +1,8 @@
 package server_view;
 
-import client_view.ViewHandler;
-import client_viewmodel.RegisterPageViewModel;
+import javafx.scene.layout.Region;
+import server_view.ViewHandler;
+import server_viewmodel.RegisterPageViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
@@ -9,9 +10,10 @@ import javafx.scene.control.Button;
 
 public class RegisterViewController
 {
-  private client_viewmodel.RegisterPageViewModel viewModel;
-  private client_view.ViewHandler viewHandler;
+  private RegisterPageViewModel viewModel;
+  private ViewHandler viewHandler;
 
+  private Region root;
   @FXML private TextField usernameField;
   @FXML private PasswordField passwordField;
   @FXML private TextField emailField;
@@ -20,10 +22,11 @@ public class RegisterViewController
   @FXML private TextField phoneField;
   @FXML private Button registerButton;
 
-  public void init(ViewHandler viewHandler, RegisterPageViewModel viewModel)
+  public void init(ViewHandler viewHandler, RegisterPageViewModel viewModel, Region root)
   {
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;
+    this.root = root;
     registerButton.setOnAction(
         event -> viewModel.register(usernameField.getText(),
             passwordField.getText(), emailField.getText(),

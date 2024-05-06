@@ -37,6 +37,10 @@ public class ModelManager implements Model
   {
     propertyChangeSupport.removePropertyChangeListener(listener);
   }
+  @Override public String getUsername()
+  {
+    return user.getUsername();
+  }
 
   @Override public void logIn(User customer)
   {
@@ -135,6 +139,17 @@ public class ModelManager implements Model
   @Override public void addOrder(Order order)
   {
     user.addOrder(order);
+  }
+
+  @Override public void logIn(String username, String password)
+  {
+
+  }
+
+  @Override public void register(String username, String password, String email,
+      String firstName, String lastName, String phone)
+  {
+
   }
 
   @Override public void reserveSeats(Seat[] seats, User customer,

@@ -9,6 +9,7 @@ public interface Model extends UnnamedPropertyChangeSubject
   public void disconnect();
   public int getPort();
   public void setPort(int port);
+  public String getUsername();
   public String getHost();
   public void reserveSeats(Seat[] seats, User customer,
        Screening screening );
