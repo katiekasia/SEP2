@@ -152,6 +152,17 @@ public class ModelManager implements Model
     }
   }
 
+  @Override public void logIn(String username, String password)
+  {
+    //LATER
+  }
+
+  @Override public void register(String username, String password, String email,
+      String firstName, String lastName, String phone)
+  {
+//LATER
+  }
+
   @Override public void reserveSeats(Seat[] seats, User customer,
       Screening screening)
   {
