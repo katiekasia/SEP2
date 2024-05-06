@@ -10,6 +10,7 @@ public class DataBaseHandler
   private static final String USERNAME = "postgres";
   private static final String PASSWORD = "sukablyat";
 //something here for checkup//
+  //secondchgeck//
   private static Connection connection;
 
   private DataBaseHandler() {}
