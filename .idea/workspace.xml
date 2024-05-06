@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a4d4e2f-e734-45bf-9582-309fdabca307" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client_model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client_model/DataBaseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client_model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client_model/ModelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client_view/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client_view/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client_viewmodel/SeatMappingViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client_viewmodel/SeatMappingViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client_viewmodel/ViewModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client_viewmodel/ViewModelFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/client_model/DataBaseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/client_model/DataBaseHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/client_model/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/client_model/Model.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/client_model/ModelManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/client_model/ModelManager.class" afterDir="false" />
-    </list>
+    <list default="true" id="8a4d4e2f-e734-45bf-9582-309fdabca307" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
