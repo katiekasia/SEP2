@@ -8,13 +8,8 @@ public class DataBaseHandler
 {
   private static final String URL ="jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-<<<<<<< Updated upstream
   private static final String PASSWORD = "sukablyat";
 //something here for checkup//
-=======
-  private static final String PASSWORD = "papiezpolak";
-
->>>>>>> Stashed changes
   private static Connection connection;
 
   private DataBaseHandler() {}
