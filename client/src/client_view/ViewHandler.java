@@ -1,48 +1,50 @@
 package client_view;
 
-import client_viewmodel.ViewModelFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import client_viewmodel.ViewModelFactory;
 
-public class ViewHandler {
-  private ViewModelFactory factory;
+public class ViewHandler
+{
+  private ViewModelFactory modelFactory;
+  private RegisterViewController registerViewController;
+  private MainViewController mainViewController;
+  private LoginViewController loginViewController;
+  private SeatMappingViewController seatMappingViewController;
+  private TicketBookingViewController ticketBookingViewController;
+  private BookingConfirmedViewController bookingConfirmedViewController;
+
   private Stage primaryStage;
   private Scene currentScene;
 
-  private MainPageViewController mainPageViewController;
-  private LoginViewController loginViewController;
-  private RegisterPageViewController registerPageViewController;
-  private SeatMappingViewController seatMappingViewController;
-
-  public ViewHandler(ViewModelFactory factory) {
-    this.factory = factory;
+  public ViewHandler(ViewModelFactory modelFactory)
+  {
+    this.modelFactory = modelFactory;
     currentScene = new Scene(new Region());
   }
-
-  public void start(Stage primaryStage) {
+  public void start(Stage primaryStage)
+  {
     this.primaryStage = primaryStage;
-    openView("login");
+    //!!!!!!
+    /*
+    later change to Login page after the correct SPRINT
+     */
+    openView("mainPage");
   }
-
-  public void openView(String id) {
+  public void openView(String id)
+  {
     Region root = null;
-    switch (id) {
-      case "MainPage":
-        root = loadMainPageView("Main Page.fxml");
-        break;
-      case "login":
-        root = loadLoginView("Login Page.fxml");
-        break;
-      case "register":
-        root = loadRegisterView("Register Page.fxml");
-        break;
-      case "seatMapping":
-        root = loadSeatMappingView("Seat Mapping.fxml");
-        break;
+    switch (id)
+    {
+      case "mainPage" -> root = loadMainView("Main Page.fxml");
+      case "ticketBooking" -> root = loadTicketBookingView("TicketBooking.fxml");
+      case "bookingConfirmed"->root=loadBookingConfirmedView("Booking Confirmed.fxml");
+      //ALL THE OTHERS PAGES
     }
-    if (primaryStage.isShowing()) {
+    if (primaryStage.isShowing())
+    {
       primaryStage.close();
     }
     currentScene.setRoot(root);
@@ -52,66 +54,128 @@ public class ViewHandler {
     primaryStage.setResizable(false);
     primaryStage.show();
   }
-
-  public Region loadLoginView(String fxmlFile) {
+  private Region loadLoginView(String fxmlFile)
+  {
     Region root = null;
-    try {
+    try
+    {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(getClass().getResource(fxmlFile));
       root = loader.load();
       loginViewController = loader.getController();
-      loginViewController.init(this, factory.getLoginViewModel());
-    } catch (Exception e) {
+      loginViewController.init(this, modelFactory.getLoginViewModel(), root);
+    }
+    catch (Exception e)
+    {
+      System.out.println(
+          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
       e.printStackTrace();
     }
+
     return root;
   }
-
-  public Region loadMainPageView(String fxmlFile) {
+  private Region loadMainView(String fxmlFile)
+  {
     Region root = null;
-    try {
+    try
+    {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(getClass().getResource(fxmlFile));
       root = loader.load();
-      mainPageViewController = loader.getController();
-      mainPageViewController.init(this, factory.getMainPageViewModel());
-    } catch (Exception e) {
+      mainViewController = loader.getController();
+      mainViewController.init(this, root, modelFactory.getPageViewModel());
+    }
+    catch (Exception e)
+    {
+      System.out.println(
+          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
       e.printStackTrace();
     }
+
     return root;
   }
-
-  public Region loadRegisterView(String fxmlFile) {
+  private Region loadBookingConfirmedView(String fxmlFile)
+  {
     Region root = null;
-    try {
+    try
+    {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(getClass().getResource(fxmlFile));
       root = loader.load();
-      registerPageViewController = loader.getController();
-      registerPageViewController.init(this, factory.getRegisterPageViewModel());
-    } catch (Exception e) {
-      e.printStackTrace();
-      System.out.println("Exception occurred while loading RegisterPageView: " + e.getMessage());
+      bookingConfirmedViewController = loader.getController();
+      bookingConfirmedViewController.init(this, root, modelFactory.getBookingConfirmedViewModel());
     }
+    catch (Exception e)
+    {
+      System.out.println(
+          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
+      e.printStackTrace();
+    }
+
     return root;
   }
-
-  public Region loadSeatMappingView(String fxmlFile) {
+  private Region loadSeatMappingView(String fxmlFile)
+  {
     Region root = null;
-    try {
+    try
+    {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(getClass().getResource(fxmlFile));
       root = loader.load();
       seatMappingViewController = loader.getController();
-      seatMappingViewController.init(this, factory.getSeatMappingViewModel());
-    } catch (Exception e) {
+      seatMappingViewController.init(this, modelFactory.getSeatMappingViewModel(), root);
+    }
+    catch (Exception e)
+    {
+      System.out.println(
+          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
       e.printStackTrace();
     }
+
+    return root;
+  }
+  private Region loadRegisterView(String fxmlFile)
+  {
+    Region root = null;
+    try
+    {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(fxmlFile));
+      root = loader.load();
+      registerViewController = loader.getController();
+      registerViewController.init(this, modelFactory.getRegisterViewModel(), root);
+    }
+    catch (Exception e)
+    {
+      System.out.println(
+          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
+      e.printStackTrace();
+    }
+
     return root;
   }
 
-  public void closeView() {
-    primaryStage.close();
-  }
-}
+  private Region loadTicketBookingView(String fxmlFile)
+  {
+    Region root = null;
+    try
+    {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(fxmlFile));
+      root = loader.load();
+      ticketBookingViewController = loader.getController();
+      ticketBookingViewController.init(this, modelFactory.getTicketBookingViewModel(), root);
+    }
+    catch (Exception e)
+    {
+      System.out.println(
+          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
+      e.printStackTrace();
+    }
 
+    return root;
+  }
+
+
+
+}

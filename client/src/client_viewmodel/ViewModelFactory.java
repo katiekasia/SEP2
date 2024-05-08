@@ -1,33 +1,52 @@
 package client_viewmodel;
 
+import client_mediator.RemoteModel;
 import client_model.Model;
 
-public class ViewModelFactory {
-  private LoginViewModel loginViewModel;
-  private MainPageViewModel mainPageViewModel;
-  private SeatMappingViewModel seatMappingViewModel;
-  private RegisterPageViewModel registerPageViewModel;
+public class ViewModelFactory
+{
 
-  public ViewModelFactory(Model model) {
-    this.mainPageViewModel = new MainPageViewModel(model);
+  private MainPageViewModel pageViewModel;
+  private LoginViewModel loginViewModel;
+  private RegisterPageViewModel registerViewModel;
+  private SeatMappingViewModel seatMappingViewModel;
+  private TicketBookingViewModel ticketBookingViewModel;
+  private BookingConfirmedViewModel bookingConfirmedViewModel;
+
+  public ViewModelFactory(Model model)
+  {
+    this.pageViewModel = new MainPageViewModel(model);
+    this.registerViewModel = new RegisterPageViewModel(model);
     this.loginViewModel = new LoginViewModel(model);
-    this.registerPageViewModel = new RegisterPageViewModel(model);
     this.seatMappingViewModel = new SeatMappingViewModel(model);
+
   }
 
-  public LoginViewModel getLoginViewModel() {
+  public MainPageViewModel getPageViewModel()
+  {
+    return pageViewModel;
+  }
+
+  public LoginViewModel getLoginViewModel()
+  {
     return loginViewModel;
   }
 
-  public MainPageViewModel getMainPageViewModel() {
-    return mainPageViewModel;
+  public RegisterPageViewModel getRegisterViewModel()
+  {
+    return registerViewModel;
   }
-
-  public RegisterPageViewModel getRegisterPageViewModel() {
-    return registerPageViewModel;
+  public TicketBookingViewModel getTicketBookingViewModel()
+  {
+    return ticketBookingViewModel;
   }
-
-  public SeatMappingViewModel getSeatMappingViewModel() { // Added opening curly brace
+  public BookingConfirmedViewModel getBookingConfirmedViewModel()
+  {
+    return bookingConfirmedViewModel;
+  }
+  public SeatMappingViewModel getSeatMappingViewModel()
+  {
     return seatMappingViewModel;
-  } // Added closing curly brace
+  }
+
 }

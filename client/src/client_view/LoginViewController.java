@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Region;
 
 public class LoginViewController
 {
@@ -15,7 +16,8 @@ public class LoginViewController
   @FXML private PasswordField passwordField;
   @FXML private Button loginButton;
 
-  public void init(ViewHandler viewHandler, LoginViewModel viewModel)
+  public void init(ViewHandler viewHandler, LoginViewModel viewModel,
+      Region root)
   {
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;

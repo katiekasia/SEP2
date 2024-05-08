@@ -5,8 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Region;
 
-public class RegisterPageViewController {
+public class RegisterViewController
+{
   private RegisterPageViewModel viewModel;
   private ViewHandler viewHandler;
 
@@ -18,7 +20,8 @@ public class RegisterPageViewController {
   @FXML private TextField phoneField;
   @FXML private Button registerButton;
 
-  public void init(ViewHandler viewHandler, RegisterPageViewModel viewModel) {
+  public void init(ViewHandler viewHandler, RegisterPageViewModel viewModel,
+      Region root) {
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;
     registerButton.setOnAction(event -> viewModel.register(usernameField.getText(), passwordField.getText(), emailField.getText(),

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client_view.MainViewController">
    <children>
       <AnchorPane prefHeight="794.0" prefWidth="199.0">
          <children>
@@ -33,12 +33,12 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <Label layoutX="56.0" layoutY="230.0" text="User name">
+            <Label fx:id="username" layoutX="56.0" layoutY="230.0" text="User name">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button layoutX="17.0" layoutY="743.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="55.0" />
+            <Button fx:id="signOut" layoutX="17.0" layoutY="743.0" mnemonicParsing="false" onAction="#onSignOut" prefHeight="47.0" prefWidth="55.0" />
             <ImageView fitHeight="30.0" fitWidth="36.0" layoutX="30.0" layoutY="752.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/logout.png" />
@@ -49,7 +49,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button layoutX="14.0" layoutY="297.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="183.0" text="Fidelity points">
+            <Button fx:id="fidelityPoints" layoutX="14.0" layoutY="297.0" mnemonicParsing="false" onAction="#onFidelityPoints" prefHeight="56.0" prefWidth="183.0" text="Fidelity points">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -58,7 +58,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="16.0" layoutY="382.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="183.0" text="Ticket confimations">
+            <Button fx:id="ticketConfirmation" layoutX="16.0" layoutY="382.0" mnemonicParsing="false" onAction="#onTicketConfirmation" prefHeight="56.0" prefWidth="183.0" text="Ticket confimations">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -67,7 +67,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="15.0" layoutY="473.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="183.0" text="Manage account">
+            <Button fx:id="manage" layoutX="15.0" layoutY="473.0" mnemonicParsing="false" onAction="#onManage" prefHeight="56.0" prefWidth="183.0" text="Manage account">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -76,6 +76,7 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button fx:id="seatPreview1" layoutX="62.0" layoutY="156.0" mnemonicParsing="false" onAction="#seatPreview1Pressed" text="Book ticket" />
          </children>
       </AnchorPane>
       <Label layoutX="226.0" layoutY="47.0" prefHeight="86.0" prefWidth="474.0" text="Movie time">
@@ -119,20 +120,19 @@
                </image>
             </ImageView>
             <Label layoutX="182.0" layoutY="508.0" />
-            <ChoiceBox layoutX="121.0" layoutY="471.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="choiceBox1" layoutX="121.0" layoutY="471.0" prefWidth="150.0" />
             <RadioButton layoutX="79.0" layoutY="517.0" mnemonicParsing="false" text="10:00 AM" />
             <RadioButton layoutX="164.0" layoutY="517.0" mnemonicParsing="false" text="3:00 PM" />
             <RadioButton layoutX="256.0" layoutY="517.0" mnemonicParsing="false" text="20:00 PM" />
             <Label layoutX="94.0" layoutY="548.0" prefHeight="18.0" prefWidth="94.0" text="Room ID:" />
             <Label layoutX="196.0" layoutY="548.0" prefHeight="18.0" prefWidth="94.0" text="115 ( depending )" />
-            <ChoiceBox layoutX="496.0" layoutY="469.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="choiceBox2" layoutX="496.0" layoutY="469.0" prefWidth="150.0" />
             <RadioButton layoutX="454.0" layoutY="515.0" mnemonicParsing="false" text="10:00 AM" />
             <RadioButton layoutX="539.0" layoutY="515.0" mnemonicParsing="false" text="3:00 PM" />
             <RadioButton layoutX="631.0" layoutY="515.0" mnemonicParsing="false" text="20:00 PM" />
             <Label layoutX="469.0" layoutY="546.0" prefHeight="18.0" prefWidth="94.0" text="Room ID:" />
             <Label layoutX="571.0" layoutY="546.0" prefHeight="18.0" prefWidth="94.0" text="451 ( depending )" />
-            <Button layoutX="146.0" layoutY="579.0" mnemonicParsing="false" text="Seat Preview" />
-            <Button layoutX="536.0" layoutY="579.0" mnemonicParsing="false" text="Seat Preview" />
+            <Button fx:id="seatPreview2" layoutX="536.0" layoutY="579.0" mnemonicParsing="false" onAction="#seatPreview2Pressed" text="Book ticket" />
          </children>
       </AnchorPane>
    </children>

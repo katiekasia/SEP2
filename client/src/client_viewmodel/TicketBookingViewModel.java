@@ -1,10 +1,12 @@
-package server_viewmodel;
+package client_viewmodel;
 
-import server_mediator.RemoteModel;
-import server_model.Model;
-import server_model.Screening;
-import server_model.Seat;
-import server_model.User;
+import client_mediator.RemoteModel;
+import client_model.Model;
+import client_model.Screening;
+import client_model.Seat;
+import client_model.User;
+
+import java.rmi.Remote;
 
 public class TicketBookingViewModel
 {
@@ -22,3 +24,4 @@ public class TicketBookingViewModel
     }
   }
 }
+

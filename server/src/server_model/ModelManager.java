@@ -4,6 +4,8 @@ package server_model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -25,11 +27,12 @@ public class ModelManager implements Model
     this.PORT=5678;
     this.HOST ="localhost";
     this.user = null;
+    this.propertyChangeSupport = new PropertyChangeSupport(this);
   }
 
   @Override public void addListener(PropertyChangeListener listener)
   {
-    propertyChangeSupport.removePropertyChangeListener(listener);
+    propertyChangeSupport.addPropertyChangeListener(listener);
 
   }
 
@@ -87,6 +90,16 @@ public class ModelManager implements Model
     customer.addOrder(temp);
     System.out.println("booking complete");
     System.out.println(temp + "\n" + temp.getTickets().size());
+
+    updateDatabaseWithBooking(customer, tempT);
+  }
+  private void updateDatabaseWithBooking(User customer, Ticket ticket) {
+    // Example method to illustrate saving to DB (requires actual implementation)
+    try (Connection conn = DataBaseHandler.getConnection()) {
+      // SQL queries to insert ticket and update seat status
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override public boolean checkSeatAvailability(int index, Screening screening)
@@ -170,4 +183,5 @@ public class ModelManager implements Model
     }
     customer.addOrder(temp);
   }
+
 }
