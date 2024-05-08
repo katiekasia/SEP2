@@ -1,5 +1,6 @@
 package server_view;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -15,16 +16,15 @@ public class MainViewController
   private ViewHandler viewHandler;
 
   @FXML private Label username;
-
-
   @FXML private Button fidelityPoints;
   @FXML private Button manage;
   @FXML private Button signOut;
   @FXML private Button ticketConfirmation;
-  @FXML private Button seatPreview1;
-  @FXML private Button seatPreview2;
+  @FXML private Button bookTicket2;
+  @FXML private Button bookTicket1;
   @FXML private ChoiceBox choiceBox1;
   @FXML private ChoiceBox choiceBox2;
+
 
   public void init(ViewHandler viewHandler, Region root, MainPageViewModel viewModel)
   {
@@ -36,8 +36,8 @@ public class MainViewController
     this.manage.setVisible(true);
     this.signOut.setVisible(true);
     this.ticketConfirmation.setVisible(true);
-    this.seatPreview1.setVisible(true);
-    this.seatPreview2.setVisible(true);
+    this.bookTicket1.setVisible(true);
+    this.bookTicket2.setVisible(true);
     this.choiceBox1.setVisible(true);
     this.choiceBox2.setVisible(true);
    // this.username.textProperty().bind(viewModel.getUsername());
@@ -61,13 +61,13 @@ public class MainViewController
   {
 
   }
-  @FXML public void seatPreview1Pressed()
+  @FXML public void bookTicket1()
   {
-
+   viewHandler.openView("transitionPage");
   }
-  @FXML public void seatPreview2Pressed()
+  @FXML public void bookTicket2()
   {
-
+    viewHandler.openView("transitionPage");
   }
 
 }
