@@ -37,9 +37,7 @@ public class MainViewController
     this.signOut.setVisible(true);
     this.ticketConfirmation.setVisible(true);
     this.bookTicket1.setVisible(true);
-    this.bookTicket2.setVisible(true);
-    this.choiceBox1.setVisible(true);
-    this.choiceBox2.setVisible(true);
+
    // this.username.textProperty().bind(viewModel.getUsername());
   }
 
@@ -65,9 +63,6 @@ public class MainViewController
   {
    viewHandler.openView("transitionPage");
   }
-  @FXML public void bookTicket2()
-  {
-    viewHandler.openView("transitionPage");
-  }
+
 
 }
