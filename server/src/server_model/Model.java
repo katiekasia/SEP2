@@ -33,6 +33,7 @@ void removeScreening(Screening screening);
 void removeByDate(SimpleDate date);
 ArrayList<Screening> getAllScreenings();
 int getNbOfScreenings();
+Screening getScreening(Screening screening);
 
 
   }

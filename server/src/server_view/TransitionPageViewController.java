@@ -6,6 +6,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import server_viewmodel.TransitionPageViewModel;
+import server_viewmodel.ViewState;
 
 public class TransitionPageViewController
 {
@@ -13,6 +14,7 @@ public class TransitionPageViewController
     private Region root;
     private TransitionPageViewModel viewModel;
     private ViewHandler viewHandler;
+    private ViewState viewState;
 
   @FXML private Label username;
   @FXML private Label movieTitle;
@@ -33,6 +35,14 @@ public class TransitionPageViewController
       this.viewHandler = viewHandler;
       this.viewModel = viewModel;
       this.root = root;
+      this.viewState = viewModel.getViewState();
+movieTitle.setText(viewState.getSelectedScreening().movieProperty().get());
+length.setText(String.valueOf(viewState.getSelectedScreening().lengthProperty().get()));
+movieGenre.setText(viewState.getSelectedScreening().genreProperty().get());
+movieDate.setText(viewState.getSelectedScreening().dateProperty().get());
+movieTime.setText(viewState.getSelectedScreening().timeProperty().get());
+roomID.setText(String.valueOf(viewState.getSelectedScreening().roomProperty().get()));
+
     }
 
   @FXML public void onManage()
@@ -45,6 +55,7 @@ public class TransitionPageViewController
   }
   @FXML public void onTicketConfirmation()
   {
+
     viewHandler.openView("ticketConfirmation");
   }
   @FXML public void onSignOut()

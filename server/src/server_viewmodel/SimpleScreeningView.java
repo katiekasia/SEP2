@@ -5,6 +5,7 @@
   import javafx.beans.property.SimpleStringProperty;
   import javafx.beans.property.StringProperty;
   import server_model.Screening;
+  import server_model.SimpleDate;
 
   public class SimpleScreeningView
   {
@@ -13,10 +14,14 @@
     private StringProperty movie;
     private IntegerProperty room;
     private IntegerProperty length;
+    private StringProperty genre;
+    private Screening screening;
 
 
     public SimpleScreeningView(Screening screening){
+      this.screening = screening;
   time = new SimpleStringProperty(screening.getTime());
+  genre = new SimpleStringProperty(screening.getMovie().getGenre());
   date = new SimpleStringProperty(screening.getDate().toString());
   movie = new SimpleStringProperty(screening.getMovie().getName());
   room = new SimpleIntegerProperty(screening.getRoom().getRoomID());
@@ -33,9 +38,29 @@
       this.length.set(length);
     }
 
+    public void setScreening(Screening screening)
+    {
+      this.screening = screening;
+    }
+
+    public Screening getScreening()
+    {
+      return screening;
+    }
+
     public IntegerProperty lengthProperty()
     {
       return length;
+    }
+
+    public void setGenre(String genre)
+    {
+      this.genre.set(genre);
+    }
+
+    public StringProperty genreProperty()
+    {
+      return genre;
     }
 
     public void setMovie(String movie)

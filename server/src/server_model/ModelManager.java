@@ -200,6 +200,11 @@ screenings.removeByDate(date);
     return screenings.getSize();
   }
 
+  @Override public Screening getScreening(Screening screening)
+  {
+  return screenings.getScreening(screening);
+  }
+
   @Override public void reserveSeats(Seat[] seats, User customer,
        Screening screening)
   {

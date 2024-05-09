@@ -84,7 +84,11 @@ viewModel.setSelected();
   }
   @FXML public void bookTicket1()
   {
-   viewHandler.openView("transitionPage");
+    if (selected != null)
+    {
+      viewHandler.openView("transitionPage");
+    }else
+      System.out.println("no selection");
   }
   @FXML public void onDatePicked()
   {

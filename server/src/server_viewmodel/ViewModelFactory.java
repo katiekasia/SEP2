@@ -22,6 +22,7 @@ public class ViewModelFactory
     this.registerViewModel = new RegisterPageViewModel(model);
     this.loginViewModel = new LoginViewModel(model);
     this.seatMappingViewModel = new SeatMappingViewModel(model);
+    this.transitionPageViewModel = new TransitionPageViewModel(model, viewState);
   }
 
   public MainPageViewModel getPageViewModel()
