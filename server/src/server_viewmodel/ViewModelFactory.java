@@ -13,10 +13,12 @@ public class ViewModelFactory
   private TransitionPageViewModel transitionPageViewModel;
   private SnackSelectionViewModel snackSelectionViewModel;
   private TicketConfirmationViewModel ticketConfirmationViewModel;
+  private ViewState viewState;
 
   public ViewModelFactory(Model model)
   {
-    this.pageViewModel = new MainPageViewModel(model);
+    this.viewState = new ViewState();
+    this.pageViewModel = new MainPageViewModel(model,viewState);
     this.registerViewModel = new RegisterPageViewModel(model);
     this.loginViewModel = new LoginViewModel(model);
     this.seatMappingViewModel = new SeatMappingViewModel(model);

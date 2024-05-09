@@ -6,6 +6,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -30,8 +31,15 @@ public class ModelManager implements Model
     this.user = null;
     this.propertyChangeSupport = new PropertyChangeSupport(this);
     screenings = new ScreeningsList();
+    DummyData();
   }
 
+  public void DummyData(){
+    Movie n = new Movie(123,"ssdawd","movie","adsss");
+    Room r = new Room(12,35);
+    Screening screening = new Screening(10,30, LocalDate.now(),n,r);
+    screenings.addScreening(screening);
+  }
   @Override public void addListener(PropertyChangeListener listener)
   {
     propertyChangeSupport.addPropertyChangeListener(listener);

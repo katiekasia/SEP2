@@ -3,15 +3,20 @@ package server_view;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import server_view.ViewHandler;
 import server_viewmodel.MainPageViewModel;
+import server_viewmodel.SimpleScreeningView;
+import server_viewmodel.ViewState;
 
 public class MainViewController
 {
   private Region root;
   private MainPageViewModel viewModel;
   private ViewHandler viewHandler;
+  private ViewState viewState;
+  private SimpleScreeningView selected;
 
   @FXML private Label username;
   @FXML private Button fidelityPoints;
@@ -21,6 +26,7 @@ public class MainViewController
   @FXML private Button bookTicket1;
   @FXML private Button search;
   @FXML private TextField searchBar;
+  @FXML private TableView screeningsTable;
   @FXML private TableColumn title;
   @FXML private TableColumn date;
   @FXML private TableColumn screeningTime;
@@ -34,12 +40,26 @@ public class MainViewController
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;
     this.root = root;
-
+    this.viewState = viewModel.getViewState();
     this.fidelityPoints.setVisible(true);
     this.manage.setVisible(true);
     this.signOut.setVisible(true);
     this.ticketConfirmation.setVisible(true);
     this.bookTicket1.setVisible(true);
+
+    viewModel.setScreenings(screeningsTable.getItems());
+    viewModel.bindScreenings(screeningsTable.getItems());
+    this.title.setCellValueFactory(new PropertyValueFactory<>("movie"));
+    this.screeningTime.setCellValueFactory(new PropertyValueFactory<>("length"));
+    this.date.setCellValueFactory(new PropertyValueFactory<>("date"));
+    this.time.setCellValueFactory(new PropertyValueFactory<>("time"));
+    this.room.setCellValueFactory(new PropertyValueFactory<>("room"));
+
+screeningsTable.getSelectionModel().selectedItemProperty().addListener((obs,oldVal, newVal) -> {
+selected = (SimpleScreeningView) newVal;
+viewState.setSelectedScreening((SimpleScreeningView) newVal);
+viewModel.setSelected();
+});
 
    // this.username.textProperty().bind(viewModel.getUsername());
   }

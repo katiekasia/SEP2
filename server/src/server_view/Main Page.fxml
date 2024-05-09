@@ -98,7 +98,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="399.0" prefWidth="602.0">
                      <children>
-                        <TableView layoutX="1.0" prefHeight="400.0" prefWidth="589.0">
+                        <TableView fx:id="screeningsTable" layoutX="1.0" prefHeight="400.0" prefWidth="589.0">
                           <columns>
                             <TableColumn fx:id="title" prefWidth="120.79998469352722" text="Title" />
                             <TableColumn fx:id="date" prefWidth="105.5999755859375" text="Date" />

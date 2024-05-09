@@ -21,6 +21,7 @@ public class MyApplication extends Application
     }
     RemoteModel server = new RmiServer();
 */
+
     ViewModelFactory viewModelFactory = new ViewModelFactory(model);
     ViewHandler view = new ViewHandler(viewModelFactory);
     view.start(primaryStage);
