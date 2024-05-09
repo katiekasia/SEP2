@@ -111,7 +111,7 @@
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <Button layoutX="240.0" layoutY="36.0" mnemonicParsing="false" onAction="#onSearch" text="search" />
+            <Button fx:id="search" layoutX="240.0" layoutY="36.0" mnemonicParsing="false" onAction="#onSearch" text="search" />
             <TextField fx:id="searchBar" layoutX="59.0" layoutY="36.0" onAction="#onSearchBar" prefHeight="26.0" prefWidth="159.0" />
             <DatePicker fx:id="datePicker" layoutX="400.0" layoutY="35.0" onAction="#onDatePicked" />
          </children>
