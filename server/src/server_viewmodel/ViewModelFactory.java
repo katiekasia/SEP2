@@ -1,7 +1,7 @@
 package server_viewmodel;
 
 import server_model.Model;
-import server_view.RegisterViewController;
+import server_view.TicketConfirmationViewController;
 
 public class ViewModelFactory
 {
@@ -10,7 +10,9 @@ public class ViewModelFactory
   private LoginViewModel loginViewModel;
   private RegisterPageViewModel registerViewModel;
   private SeatMappingViewModel seatMappingViewModel;
-  private TicketBookingViewModel ticketBookingViewModel;
+  private TransitionPageViewModel transitionPageViewModel;
+  private SnackSelectionViewModel snackSelectionViewModel;
+  private TicketConfirmationViewModel ticketConfirmationViewModel;
 
   public ViewModelFactory(Model model)
   {
@@ -34,13 +36,21 @@ public class ViewModelFactory
   {
     return registerViewModel;
   }
-  public TicketBookingViewModel getTicketBookingViewModel()
+  public TransitionPageViewModel getTransitionPageViewModel()
   {
-    return ticketBookingViewModel;
+    return transitionPageViewModel;
   }
   public SeatMappingViewModel getSeatMappingViewModel()
   {
     return seatMappingViewModel;
+  }
+  public SnackSelectionViewModel getSnackSelectionViewModel()
+  {
+    return snackSelectionViewModel;
+  }
+  public TicketConfirmationViewModel getTicketConfirmationViewModel()
+  {
+    return ticketConfirmationViewModel;
   }
 
 }

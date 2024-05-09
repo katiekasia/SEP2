@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import server_viewmodel.SnackSelectionViewModel;
 import server_viewmodel.ViewModelFactory;
 
 public class ViewHandler
@@ -13,7 +14,9 @@ public class ViewHandler
   private MainViewController mainViewController;
   private LoginViewController loginViewController;
   private SeatMappingViewController seatMappingViewController;
-  private TicketBookingViewController ticketBookingViewController;
+  private TransitionPageViewController transitionPageViewController;
+  private SnackSelectionViewModel snackSlectionViewController;
+  private TicketConfirmationViewController ticketConfirmationViewController;
 
   private Stage primaryStage;
   private Scene currentScene;
@@ -38,7 +41,12 @@ public class ViewHandler
     switch (id)
     {
       case "mainPage" -> root = loadMainView("Main Page.fxml");
-      case "ticketBooking" -> root = loadTicketBookingView("TicketBooking.fxml");
+      case "transitionPage" -> root = loadTransitionPageView("TransitionPage.fxml");
+      case "seatMapping" -> root = loadSeatMappingView("Seat mapping.fxml");
+      case "ticketConfirmation" -> root = loadTicketConfirmationView("TicketConfirmation.fxml");
+      case "snackSelection" -> root = loadSnackSelectionView("SnackSelection.fxml");
+      case "login" -> root = loadLoginView("Login page.fxml");
+      case "registerPage" -> root = loadRegisterView("Register page.fxml");
       //ALL THE OTHERS PAGES
     }
     if (primaryStage.isShowing())
@@ -133,7 +141,7 @@ public class ViewHandler
     return root;
   }
 
-  private Region loadTicketBookingView(String fxmlFile)
+  private Region loadTransitionPageView(String fxmlFile)
   {
     Region root = null;
     try
@@ -141,8 +149,8 @@ public class ViewHandler
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(getClass().getResource(fxmlFile));
       root = loader.load();
-      ticketBookingViewController = loader.getController();
-      ticketBookingViewController.init(this, modelFactory.getTicketBookingViewModel(), root);
+      transitionPageViewController = loader.getController();
+      transitionPageViewController.init(this, modelFactory.getTransitionPageViewModel(), root);
     }
     catch (Exception e)
     {
@@ -153,7 +161,45 @@ public class ViewHandler
 
     return root;
   }
+  private Region loadSnackSelectionView(String fxmlFile)
+  {
+    Region root = null;
+    try
+    {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(fxmlFile));
+      root = loader.load();
+      snackSlectionViewController = loader.getController();
+      snackSlectionViewController.init(this, modelFactory.getSnackSelectionViewModel(), root);
+    }
+    catch (Exception e)
+    {
+      System.out.println(
+          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
+      e.printStackTrace();
+    }
 
+    return root;
+  }
+  private Region loadTicketConfirmationView(String fxmlFile)
+  {
+    Region root = null;
+    try
+    {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(fxmlFile));
+      root = loader.load();
+      ticketConfirmationViewController = loader.getController();
+      ticketConfirmationViewController.init(this, modelFactory.getTicketConfirmationViewModel(), root);
+    }
+    catch (Exception e)
+    {
+      System.out.println(
+          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
+      e.printStackTrace();
+    }
 
+    return root;
+  }
 
 }
