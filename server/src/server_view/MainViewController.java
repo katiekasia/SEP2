@@ -2,9 +2,7 @@ package server_view;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import server_view.ViewHandler;
 import server_viewmodel.MainPageViewModel;
@@ -20,10 +18,15 @@ public class MainViewController
   @FXML private Button manage;
   @FXML private Button signOut;
   @FXML private Button ticketConfirmation;
-  @FXML private Button bookTicket2;
   @FXML private Button bookTicket1;
-  @FXML private ChoiceBox choiceBox1;
-  @FXML private ChoiceBox choiceBox2;
+  @FXML private Button search;
+  @FXML private TextField searchBar;
+  @FXML private TableColumn title;
+  @FXML private TableColumn date;
+  @FXML private TableColumn screeningTime;
+  @FXML private TableColumn time;
+  @FXML private TableColumn room;
+  @FXML private DatePicker datePicker;
 
 
   public void init(ViewHandler viewHandler, Region root, MainPageViewModel viewModel)
@@ -37,9 +40,7 @@ public class MainViewController
     this.signOut.setVisible(true);
     this.ticketConfirmation.setVisible(true);
     this.bookTicket1.setVisible(true);
-    this.bookTicket2.setVisible(true);
-    this.choiceBox1.setVisible(true);
-    this.choiceBox2.setVisible(true);
+
    // this.username.textProperty().bind(viewModel.getUsername());
   }
 
@@ -65,9 +66,16 @@ public class MainViewController
   {
    viewHandler.openView("transitionPage");
   }
-  @FXML public void bookTicket2()
+  @FXML public void onDatePicked()
   {
-    viewHandler.openView("transitionPage");
-  }
 
+  }
+  @FXML public void onSearch()
+  {
+
+  }
+  @FXML public void onSearchBar()
+  {
+
+  }
 }

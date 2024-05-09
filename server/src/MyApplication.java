@@ -14,12 +14,13 @@ public class MyApplication extends Application
   public void start(Stage primaryStage) throws IOException
   {
     Model model = new ModelManager();
+   /*
     if (System.getSecurityManager() == null)
     {
       System.setSecurityManager(new SecurityManager());
     }
     RemoteModel server = new RmiServer();
-
+*/
     ViewModelFactory viewModelFactory = new ViewModelFactory(model);
     ViewHandler view = new ViewHandler(viewModelFactory);
     view.start(primaryStage);
