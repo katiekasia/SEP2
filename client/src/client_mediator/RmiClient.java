@@ -1,7 +1,5 @@
 package client_mediator;
 
-
-
 import client_model.*;
 
 import java.rmi.Naming;
@@ -26,17 +24,20 @@ public class RmiClient implements RemoteModel
       e.printStackTrace();
     }
   }
-public void start() throws RemoteException{
-  Scanner input = new Scanner(System.in);
-while (true){
-//
-}
-}
+
+  public void start() throws RemoteException
+  {
+    Scanner input = new Scanner(System.in);
+    while (true)
+    {
+      //
+    }
+  }
 
   @Override public void reserveSeats(Seat[] seats, User customer,
       Screening screening) throws RemoteException
   {
-    server.reserveSeats(seats,customer,screening);
+    server.reserveSeats(seats, customer, screening);
   }
 
   @Override public boolean checkSeatAvailability(int index, Screening screening)
@@ -48,7 +49,7 @@ while (true){
   @Override public void reserveSeat(Seat seat, User customer,
       Screening screening) throws RemoteException
   {
-server.reserveSeat(seat, customer, screening);
+    server.reserveSeat(seat, customer, screening);
   }
 
   @Override public Seat[] getAvailableSeats(Screening screening)
@@ -66,11 +67,26 @@ server.reserveSeat(seat, customer, screening);
   @Override public void updateSeatToBooked(Seat seat, Ticket ticket)
       throws RemoteException
   {
-    server.updateSeatToBooked(seat,ticket);
+    server.updateSeatToBooked(seat, ticket);
   }
 
   @Override public void addOrder(Order order) throws RemoteException
   {
     server.addOrder(order);
+  }
+
+  public static void main(String[] args) throws RemoteException
+  {
+    if (System.getSecurityManager() == null)
+    {
+      System.setSecurityManager(new SecurityManager());
+    }
+    String host = "localhost";
+    if (args.length > 0)
+    {
+      host = args[0];
+    }
+    RmiClient client = new RmiClient(host);
+    client.start();
   }
 }

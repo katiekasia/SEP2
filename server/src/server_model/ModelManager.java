@@ -15,6 +15,7 @@ public class ModelManager implements Model
   private String HOST;
   private int PORT;
   private boolean running;
+  private ScreeningsList screenings;
 
 
   //not sure if the user variable is the one connected here
@@ -28,6 +29,7 @@ public class ModelManager implements Model
     this.HOST ="localhost";
     this.user = null;
     this.propertyChangeSupport = new PropertyChangeSupport(this);
+    screenings = new ScreeningsList();
   }
 
   @Override public void addListener(PropertyChangeListener listener)
@@ -163,6 +165,31 @@ public class ModelManager implements Model
       String firstName, String lastName, String phone)
   {
 
+  }
+
+  @Override public void addScreening(Screening screening)
+  {
+    screenings.addScreening(screening);
+  }
+
+  @Override public void removeScreening(Screening screening)
+  {
+    screenings.removeScreening(screening);
+  }
+
+  @Override public void removeByDate(SimpleDate date)
+  {
+screenings.removeByDate(date);
+  }
+
+  @Override public ArrayList<Screening> getAllScreenings()
+  {
+    return screenings.getScreenings();
+  }
+
+  @Override public int getNbOfScreenings()
+  {
+    return screenings.getSize();
   }
 
   @Override public void reserveSeats(Seat[] seats, User customer,

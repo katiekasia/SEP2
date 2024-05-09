@@ -1,3 +1,4 @@
+import client_mediator.RmiClient;
 import client_model.Model;
 import client_model.ModelManager;
 import client_view.ViewHandler;
@@ -10,7 +11,8 @@ import java.io.IOException;
 public class MyApplication extends Application
 {public void start(Stage primaryStage) throws IOException
 {
-  Model model = new ModelManager();
+  RmiClient client = new RmiClient("localhost");
+  Model model = new ModelManager(client);
 
   ViewModelFactory viewModelFactory = new ViewModelFactory(model);
   ViewHandler view = new ViewHandler(viewModelFactory);
