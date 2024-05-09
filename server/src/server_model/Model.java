@@ -2,6 +2,8 @@ package server_model;
 
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
+import java.util.ArrayList;
+
 public interface Model extends UnnamedPropertyChangeSubject
 {
   public void logIn(User user);
@@ -26,6 +28,11 @@ public interface Model extends UnnamedPropertyChangeSubject
   public void addOrder(Order order);
   void logIn(String username, String password);
   void register(String username, String password, String email, String firstName, String lastName, String phone);
+void addScreening(Screening screening);
+void removeScreening(Screening screening);
+void removeByDate(SimpleDate date);
+ArrayList<Screening> getAllScreenings();
+int getNbOfScreenings();
 
 
   }

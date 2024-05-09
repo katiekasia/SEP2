@@ -15,6 +15,7 @@ public class RmiServer implements RemoteModel
 {
 private Model cinema;
 public RmiServer(){
+  cinema = new ModelManager();
 try
 {
 startRegistry();
@@ -35,7 +36,7 @@ try
 }
 private void start() throws RemoteException, MalformedURLException
 {
-  cinema = new ModelManager();
+
   UnicastRemoteObject.exportObject(this,0);
   Naming.rebind("Case", this);
 }
@@ -80,4 +81,8 @@ private void start() throws RemoteException, MalformedURLException
     cinema.addOrder(order);
   }
   //Overrides for methods
+  public static void main(String[] args)
+  {
+    RemoteModel server = new RmiServer();
+  }
 }

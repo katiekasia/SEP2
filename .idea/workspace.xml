@@ -5,48 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a4d4e2f-e734-45bf-9582-309fdabca307" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/client_view/Booking Confirmed.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/client_view/BookingConfirmedViewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/client_view/MainViewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/client_view/RegisterViewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/client_view/TicketBooking.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/client_view/TicketBookingViewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/client_viewmodel/BookingConfirmedViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/client_viewmodel/TicketBookingViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/client/client_view/MainViewController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/client/client_view/RegisterViewController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/client/client_view/TicketBooking.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/client/client_view/TicketBookingViewController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/client/client_viewmodel/TicketBookingViewModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/server/server_model/DataBaseHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/server_model/DataBaseHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/server_model/TestMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEP2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SEP2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/client_model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client_model/DataBaseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client_model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client_model/ModelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client_view/LoginViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client_view/LoginViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client_view/Main Page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client_view/Main Page.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client_view/MainPageViewController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client_view/RegisterPageViewController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client_view/SeatMappingViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client_view/SeatMappingViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client_view/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client_view/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client_viewmodel/MainPageViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client_viewmodel/MainPageViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client_viewmodel/ViewModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client_viewmodel/ViewModelFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/MyApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/MyApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/client_model/ModelManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/client_model/ModelManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/client_view/LoginViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/client_view/LoginViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/client_view/Main Page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/client_view/Main Page.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/client_view/MainPageViewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/client_view/RegisterPageViewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/client_view/SeatMappingViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/client_view/SeatMappingViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/client_view/ViewHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/client_view/ViewHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/client_viewmodel/MainPageViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/client_viewmodel/MainPageViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/client_viewmodel/ViewModelFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/client_viewmodel/ViewModelFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/server_model/ModelManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server_model/ModelManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/server_view/Main Page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server_view/Main Page.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/server_viewmodel/TicketBookingViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server_viewmodel/TicketBookingViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server_model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server_model/ModelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server_view/Main Page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server_view/Main Page.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server_viewmodel/TicketBookingViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server_viewmodel/TicketBookingViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/server_model/DataBaseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server_model/DataBaseHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/server_model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server_model/DataBaseHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,26 +30,31 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2g5dtXkH2Wj4XryA5AAOIRjIBtC" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/A_Java_Projects/Classes/SEP2/server/src/server_view&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.16949153&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MyApplication (1).executor": "Run",
+    "Application.TestMain.executor": "Run",
+    "Application.server_model.TestMain.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/A_Java_Projects/Classes/SEP2/server/src/server_view",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.16949153"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\A_Java_Projects\Classes\SEP2\server\src\server_view" />
@@ -130,9 +101,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="server_model.TestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server_model.TestMain" />
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server_model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.TestMain" />
+        <item itemvalue="Application.server_model.TestMain" />
         <item itemvalue="Application.MyApplication (1)" />
         <item itemvalue="Application.MyApplication" />
         <item itemvalue="Application.Main" />
@@ -157,17 +142,6 @@
           <url>file://$PROJECT_DIR$/client/src/client_model/TestMain.java</url>
           <line>7</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/MyApplication.java</url>
-          <line>14</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/server/src/server_viewmodel/TicketBookingViewModel.java</url>
-          <line>23</line>
-          <properties field="model" class="server_viewmodel.TicketBookingViewModel" />
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/client/src/client_view/TicketBookingViewController.java</url>
