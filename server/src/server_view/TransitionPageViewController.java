@@ -64,11 +64,11 @@ roomID.setText(String.valueOf(viewState.getSelectedScreening().roomProperty().ge
   }
   @FXML public void onBackToMovieSelection()
   {
-    viewHandler.openView("movieSelection");
+    viewHandler.openView("mainPage");
   }
   @FXML public void onBackToSeatSelection()
   {
-
+    viewHandler.openView("seatMapping");
   }
 
 

@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a4d4e2f-e734-45bf-9582-309fdabca307" name="Changes" comment="table">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/server_model/TestMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server_model/TestMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/server_view/MainViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server_view/MainViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/server_viewmodel/MainPageViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server_viewmodel/MainPageViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/server_viewmodel/SimpleScreeningView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server_viewmodel/SimpleScreeningView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/server_viewmodel/ViewModelFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server_viewmodel/ViewModelFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server_model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server_model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server_model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server_model/ModelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server_view/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server_view/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server_view/TransitionPageViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server_view/TransitionPageViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server_viewmodel/SimpleScreeningView.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server_viewmodel/SimpleScreeningView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server_viewmodel/TransitionPageViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server_viewmodel/TransitionPageViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server_viewmodel/ViewModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server_viewmodel/ViewModelFactory.java" afterDir="false" />
-    </list>
+    <list default="true" id="8a4d4e2f-e734-45bf-9582-309fdabca307" name="Changes" comment="table" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +57,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MyApplication">
+  <component name="RunManager" selected="Application.server_model.TestMain">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="server" />
@@ -121,10 +107,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MyApplication" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.TestMain" />
         <item itemvalue="Application.server_model.TestMain" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MyApplication" />
+        <item itemvalue="Application.TestMain" />
         <item itemvalue="Application.MyApplication (1)" />
       </list>
     </recent_temporary>

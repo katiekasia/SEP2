@@ -1,5 +1,21 @@
 package server_viewmodel;
 
-public class TicketConfirmationViewModel
-{
+import javafx.beans.property.SimpleStringProperty;
+import server_model.Model;
+
+  public class TicketConfirmationViewModel
+  {
+    private Model model;
+    private ViewState viewState;
+
+    public TicketConfirmationViewModel(Model model)
+    {
+      this.model = model;
+
+    }
+    public ViewState getViewState()
+    {
+      return viewState;
+    }
 }
+
