@@ -4,8 +4,7 @@
   import javafx.beans.property.SimpleIntegerProperty;
   import javafx.beans.property.SimpleStringProperty;
   import javafx.beans.property.StringProperty;
-  import server_model.Screening;
-  import server_model.SimpleDate;
+  import server_model.*;
 
   public class SimpleScreeningView
   {
@@ -15,7 +14,13 @@
     private IntegerProperty room;
     private IntegerProperty length;
     private StringProperty genre;
+    //for Ticket Confirmation table
+    private StringProperty seatID;
+    private Seat seat;
     private Screening screening;
+    private Ticket ticket;
+    private StringProperty ticketType;
+    private StringProperty snacks;
 
 
     public SimpleScreeningView(Screening screening){
@@ -26,8 +31,19 @@
   movie = new SimpleStringProperty(screening.getMovie().getName());
   room = new SimpleIntegerProperty(screening.getRoom().getRoomID());
   length = new SimpleIntegerProperty(screening.getMovie().getLenghth());
-    }
 
+    }
+  public SimpleScreeningView(Screening screening, Seat seat, Ticket ticket)
+  {
+    this.seat= seat;
+    this.ticket= ticket;
+    seatID = new SimpleStringProperty(seat.getID());
+    this.screening = screening;
+    time = new SimpleStringProperty(screening.getTime());
+    date = new SimpleStringProperty(screening.getDate().toString());
+    movie = new SimpleStringProperty(screening.getMovie().getName());
+    ticketType= new SimpleStringProperty(ticket.getTicketID());
+  }
     public void setRoom(int room)
     {
       this.room.set(room);
@@ -42,6 +58,9 @@
     {
       this.screening = screening;
     }
+    public StringProperty ticketTypeProperty() {
+      return ticketType;
+    }
 
     public Screening getScreening()
     {
@@ -53,6 +72,14 @@
       return length;
     }
 
+    public Seat getSeat()
+    {
+      return seat;
+    }
+    public StringProperty getSeatID()
+    {
+      return seatID;
+    }
     public void setGenre(String genre)
     {
       this.genre.set(genre);

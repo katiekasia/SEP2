@@ -38,6 +38,8 @@ public class ModelManager implements Model
     Movie n = new Movie(123,"ssdawd","movie","adsss");
     Room r = new Room(12,35);
     Screening screening = new Screening(10,30, LocalDate.now(),n,r);
+    screening.setRoom(r);
+
     screenings.addScreening(screening);
   }
   @Override public void addListener(PropertyChangeListener listener)
@@ -84,7 +86,18 @@ public class ModelManager implements Model
   {
     return HOST;
   }
+  /*
+    @Override public Ticket getTicketBySeat(Seat seat)
 
+   {
+      return seat.getTicket();
+    }
+    @Override public Seat getSeatByScreening(Screening screening)
+    {
+      return screening.getRoom().getSeat(0);
+    }
+
+   */
   @Override public void reserveSeat(Seat seat, User customer,
       Screening screening)
   {

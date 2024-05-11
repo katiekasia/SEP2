@@ -11,9 +11,9 @@ public class Room
     this.roomID = roomID;
     this.nbSeats = nbSeats;
     seats = new Seat[nbSeats];
-    setSeats();
+    //setSeats();
   }
-
+/*
   public void setSeats() {
     for (int i = 0; i < seats.length; i++)
     {
@@ -21,6 +21,8 @@ public class Room
       seats[i] = temp;
     }
   }
+
+ */
   //Returns the amount of available seats
   public int availableSeats(){
     int count = 0;

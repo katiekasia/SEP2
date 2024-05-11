@@ -1,7 +1,12 @@
 package server_viewmodel;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import server_model.Model;
 import server_model.Screening;
 import server_model.Seat;
@@ -13,6 +18,7 @@ public class TransitionPageViewModel
 {
   private Model model;
   private ViewState viewState;
+
 //  private StringProperty movieTitle;
 //  private IntegerProperty length;
 //  private StringProperty movieGenre;
@@ -24,6 +30,7 @@ public class TransitionPageViewModel
   public TransitionPageViewModel(Model model, ViewState viewState) {
     this.model = model;
     this.viewState = viewState;
+
 
 //    movieTitle = viewState.getSelectedScreening().movieProperty();
 //    length = viewState.getSelectedScreening().lengthProperty();
@@ -41,7 +48,6 @@ public class TransitionPageViewModel
 
     }
   }
-
   public ViewState getViewState()
   {
     return viewState;

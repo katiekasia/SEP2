@@ -1,12 +1,12 @@
 package server_view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import server_model.Ticket;
 import server_viewmodel.SeatMappingViewModel;
+import server_viewmodel.SimpleScreeningView;
 import server_viewmodel.TicketConfirmationViewModel;
 import server_viewmodel.ViewState;
 
@@ -16,18 +16,22 @@ public class TicketConfirmationViewController
   private TicketConfirmationViewModel viewModel;
   private ViewHandler viewHandler;
   private ViewState viewState;
+  private SimpleScreeningView selected;
 
   @FXML private Button fidelityPoints;
   @FXML private Button manage;
   @FXML private Button signOut;
   @FXML private Button ticketConfirmation;
 
-  @FXML private Label movieTitle;
-  @FXML private Label date;
-  @FXML private Label seat;
-  @FXML private Label ticketType;
-  @FXML private Label movieTime;
-  @FXML private Label snacks;
+
+  @FXML private TableView screeningsTable;
+  @FXML private TableColumn seat;
+  @FXML private TableColumn date;
+  @FXML private TableColumn movie;
+  @FXML private TableColumn time;
+  @FXML private TableColumn ticketType;
+
+  @FXML private TableColumn snacks;
 
   @FXML private Button cancel;
   @FXML private Button confirmOrder;
@@ -41,13 +45,29 @@ public class TicketConfirmationViewController
     this.root = root;
     this.viewState= viewModel.getViewState();
 
-    movieTitle.setText(viewState.getSelectedScreening().movieProperty().get());
-   // length.setText(String.valueOf(viewState.getSelectedScreening().lengthProperty().get()));
-   // movieGenre.setText(viewState.getSelectedScreening().genreProperty().get());
-    date.setText(viewState.getSelectedScreening().dateProperty().get());
-    movieTime.setText(viewState.getSelectedScreening().timeProperty().get());
-    //roomID.setText(String.valueOf(viewState.getSelectedScreening().roomProperty().get()));
+    viewModel.setScreenings(screeningsTable.getItems());
+    viewModel.bindScreenings(screeningsTable.getItems());
 
+    /*
+    movie.setText(viewState.getSelectedScreening().movieProperty().get());
+    seat.setText(String.valueOf(viewState.getSelectedScreening().getSeatID().get()));
+    //ticketType.setText(viewState.getSelectedScreening().);
+    date.setText(viewState.getSelectedScreening().dateProperty().get());
+    time.setText(viewState.getSelectedScreening().timeProperty().get());
+    //roomID.setText(String.valueOf(viewState.getSelectedScreening().roomProperty().get()));
+     */
+    this.movie.setCellValueFactory(new PropertyValueFactory<>("movie"));
+    this.seat.setCellValueFactory(new PropertyValueFactory<>("seat"));
+    this.date.setCellValueFactory(new PropertyValueFactory<>("date"));
+    this.time.setCellValueFactory(new PropertyValueFactory<>("time"));
+    this.ticketType.setCellValueFactory(new PropertyValueFactory<>("ticketType"));
+
+
+    screeningsTable.getSelectionModel().selectedItemProperty().addListener((obs,oldVal, newVal) -> {
+      selected = (SimpleScreeningView) newVal;
+      viewState.setSelectedScreening((SimpleScreeningView) newVal);
+      viewModel.setSelected();
+    });
   }
   @FXML public void onSignOut()
   {

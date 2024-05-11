@@ -1,13 +1,13 @@
 package server_model;
 
 public abstract class Ticket {
-	private int ticketID;
+	private String ticketID;
 	private double ticketPrice;
 	private Seat seat;
 	private Screening screening;
 	private User customer;
 
-	public Ticket(int ticketID, double ticketPrice, Seat seat, Screening screening, User customer) {
+	public Ticket(String ticketID, double ticketPrice, Seat seat, Screening screening, User customer) {
 		this.ticketID = ticketID;
 		this.ticketPrice = ticketPrice;
 		this.seat = seat;
@@ -15,7 +15,7 @@ public abstract class Ticket {
 		this.customer = customer;
 	}
 
-	public int getTicketID() {
+	public String getTicketID() {
 		return ticketID;
 	}
 
@@ -44,7 +44,7 @@ public abstract class Ticket {
 		return ticketPrice;
 	}
 
-	public void setTicketID(int ticketID) {
+	public void setTicketID(String ticketID) {
 		this.ticketID = ticketID;
 	}
 

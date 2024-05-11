@@ -41,6 +41,7 @@ public class MainViewController
     this.viewModel = viewModel;
     this.root = root;
     this.viewState = viewModel.getViewState();
+
     this.fidelityPoints.setVisible(true);
     this.manage.setVisible(true);
     this.signOut.setVisible(true);

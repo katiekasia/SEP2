@@ -22,6 +22,8 @@ public class ViewModelFactory
     this.registerViewModel = new RegisterPageViewModel(model);
     this.loginViewModel = new LoginViewModel(model);
     this.seatMappingViewModel = new SeatMappingViewModel(model);
+    this.snackSelectionViewModel = new SnackSelectionViewModel(model);
+    this.ticketConfirmationViewModel = new TicketConfirmationViewModel(model, viewState);
     this.transitionPageViewModel = new TransitionPageViewModel(model, viewState);
   }
 

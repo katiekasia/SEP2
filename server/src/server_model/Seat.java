@@ -2,11 +2,11 @@ package server_model;
 
 public class Seat
 {
-	private int ID;
+	private String ID;
 	private boolean isBooked;
 	private Ticket ticket;
 
-	public Seat(int ID, boolean isBooked)
+	public Seat(String ID, boolean isBooked)
 	{
 		this.ID = ID;
 		this.isBooked = isBooked;
@@ -26,7 +26,7 @@ public class Seat
 	}
 
 	//*********************************Getters and setters***********************************************
-	public int getID()
+	public String getID()
 	{
 		return ID;
 	}
@@ -41,7 +41,7 @@ public class Seat
 	{
 		return !isBooked;
 	}
-	public void setID(int ID)
+	public void setID(String ID)
 	{
 		this.ID = ID;
 	}

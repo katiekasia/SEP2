@@ -42,7 +42,7 @@ public class ViewHandler
     {
       case "mainPage" -> root = loadMainView("Main Page.fxml");
       case "transitionPage" -> root = loadTransitionPageView("TransitionPage.fxml");
-      case "seatMapping" -> root = loadSeatMappingView("Seat mapping.fxml");
+      case "seatMapping" -> root = loadSeatMappingView("SeatMapping.fxml");
       case "ticketConfirmation" -> root = loadTicketConfirmationView("TicketConfirmation.fxml");
       case "snackSelection" -> root = loadSnackSelectionView("SnackSelection.fxml");
       case "login" -> root = loadLoginView("Login page.fxml");

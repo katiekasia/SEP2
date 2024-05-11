@@ -39,20 +39,29 @@ public class MainPageViewModel
       screenings.add(simpleScreeningView);
     }
   }
-  public void setScreenings(ObservableList<SimpleScreeningView> property){
-property.setAll(screenings);
+
+  public void setScreenings(ObservableList<SimpleScreeningView> property)
+  {
+    property.setAll(screenings);
   }
-public void bindScreenings(ObservableList<SimpleScreeningView> propery){
-screenings.addListener((ListChangeListener<? super SimpleScreeningView>) c -> {
-propery.setAll(screenings);
-});
-}
-public void setSelected(){
-selectedObject.set(viewState.getSelectedScreening());
-}
-public ViewState getViewState(){
+
+  public void bindScreenings(ObservableList<SimpleScreeningView> propery)
+  {
+    screenings.addListener(
+        (ListChangeListener<? super SimpleScreeningView>) c -> {
+          propery.setAll(screenings);
+        });
+  }
+
+  public void setSelected()
+  {
+    selectedObject.set(viewState.getSelectedScreening());
+  }
+
+  public ViewState getViewState()
+  {
     return viewState;
-}
+  }
 
   public StringProperty getUsername()
   {

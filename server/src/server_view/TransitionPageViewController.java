@@ -76,6 +76,7 @@ roomID.setText(String.valueOf(viewState.getSelectedScreening().roomProperty().ge
 
     viewHandler.openView("ticketConfirmation");
   }
+
   @FXML public void onSignOut()
   {
 
