@@ -14,307 +14,307 @@
       <VBox alignment="TOP_CENTER" layoutX="46.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="A1" textAlignment="RIGHT" />
-            <CheckBox  mnemonicParsing="false" />
+            <CheckBox fx:id="a1" mnemonicParsing="false" />
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="106.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="A2" textAlignment="RIGHT" />
-            <CheckBox  mnemonicParsing="false" />
+            <CheckBox fx:id="a2" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="166.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="A3" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="a3" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="226.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="A4" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="a4" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="286.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="A5" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="a5" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="346.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="A6" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="a6" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="406.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="A7" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="a7" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="466.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="A8" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="a8" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="526.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="A9" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="a9" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="586.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="A10" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="a10" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="646.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="A11" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="a11" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="46.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="B1" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="b1" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="106.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="B2" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="b2" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="166.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="B3" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="b3" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="226.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="B4" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="b4" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="286.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="B5" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="b5" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="346.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="B6" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="b6" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="406.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="B7" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="b7" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="466.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="B8" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="b8" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="526.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="B9" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="b9" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="586.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="B10" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="b10" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="646.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="B11" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="b11" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="46.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="C1" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="c1" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="106.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="C2" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="c2" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="166.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="C3" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="c3" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="226.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="C4" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="c4" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="286.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="C5" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="c5" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="346.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="C6" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="c6" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="406.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="C7" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="c7" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="466.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="C8" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="c8" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="526.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="C9" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="c9" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="586.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="C10" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="c10" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="646.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="C11" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="c11" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="46.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="D1" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="d1" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="106.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="D2" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="d2" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="166.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="D3" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="d3" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="226.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="D4" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="d4" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="286.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="D5" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="d5" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="346.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="D6" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="d6" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="406.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="D7" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="d7" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="466.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="D8" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="d8" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="526.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="D9" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="d9" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="586.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="D10" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="d10" mnemonicParsing="false" />
 
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="646.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
          <children>
             <Label text="D11" textAlignment="RIGHT" />
-            <CheckBox mnemonicParsing="false" />
+            <CheckBox fx:id="d11" mnemonicParsing="false" />
 
          </children>
       </VBox>

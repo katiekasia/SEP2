@@ -6,10 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import server_model.Model;
-import server_model.Screening;
-import server_model.Seat;
-import server_model.Ticket;
+import server_model.*;
 
 public class TicketConfirmationViewModel
   {
@@ -34,14 +31,26 @@ public class TicketConfirmationViewModel
           .toArray(new Screening[0]);
       for (Screening screening : allScreenings)
       {
-        //Seat seat = model.getSeatByScreening(screening);
-        //Ticket ticket = model.getTicketBySeat(seat);
+        User user = model.getUser();
         SimpleScreeningView simpleScreeningView = new SimpleScreeningView(
-            screening);
+            screening, user);
         screenings.add(simpleScreeningView);
 
       }
     }
+    public void updateScreeningsWithSelectedSeats(ObservableList<String> selectedSeats) {
+      ObservableList<SimpleScreeningView> updatedViews = FXCollections.observableArrayList();
+      selectedSeats.forEach(seatId -> {
+        Screening screening = model.findScreeningBySeatId(seatId);  // Assuming there's a method to find screenings by seat ID
+        User user = model.getUser();
+        SimpleScreeningView view = new SimpleScreeningView(screening, user);
+        view.setSeatID(seatId); // Make sure SimpleScreeningView has this method
+        updatedViews.add(view);
+      });
+      screenings.setAll(updatedViews);
+    }
+
+
     public void bindScreenings(ObservableList<SimpleScreeningView> propery)
     {
       screenings.addListener(

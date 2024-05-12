@@ -16,9 +16,8 @@
     private StringProperty genre;
     //for Ticket Confirmation table
     private StringProperty seatID;
-    private Seat seat;
     private Screening screening;
-    private Ticket ticket;
+    private User user;
     private StringProperty ticketType;
     private StringProperty snacks;
 
@@ -33,22 +32,30 @@
   length = new SimpleIntegerProperty(screening.getMovie().getLenghth());
 
     }
-  public SimpleScreeningView(Screening screening, Seat seat, Ticket ticket)
+  public SimpleScreeningView(Screening screening, User user)
   {
-    this.seat= seat;
-    this.ticket= ticket;
-    seatID = new SimpleStringProperty(seat.getID());
+    this.user = user;
     this.screening = screening;
     time = new SimpleStringProperty(screening.getTime());
     date = new SimpleStringProperty(screening.getDate().toString());
     movie = new SimpleStringProperty(screening.getMovie().getName());
-    ticketType= new SimpleStringProperty(ticket.getTicketID());
+    seatID = new SimpleStringProperty(user.getOrders().get(0).getTickets().get(0).getSeat().getID());
+    ticketType= new SimpleStringProperty(user.getOrders().get(0).getTickets().get(0).getTicketType());
   }
     public void setRoom(int room)
     {
       this.room.set(room);
     }
 
+    public void setSeatID(String seatID) {
+      this.seatID.set(seatID);
+    }
+    public StringProperty seatIDProperty() {
+      return seatID;
+    }
+    public String getSeatID() {
+      return seatID.get();
+    }
     public void setLength(int length)
     {
       this.length.set(length);
@@ -57,6 +64,10 @@
     public void setScreening(Screening screening)
     {
       this.screening = screening;
+    }
+    public User getUser()
+    {
+      return user;
     }
     public StringProperty ticketTypeProperty() {
       return ticketType;
@@ -72,14 +83,6 @@
       return length;
     }
 
-    public Seat getSeat()
-    {
-      return seat;
-    }
-    public StringProperty getSeatID()
-    {
-      return seatID;
-    }
     public void setGenre(String genre)
     {
       this.genre.set(genre);
@@ -123,6 +126,10 @@
     public StringProperty dateProperty()
     {
       return date;
+    }
+
+    public void setTicketType(String type) {
+      this.ticketType.set(type);
     }
 
   }

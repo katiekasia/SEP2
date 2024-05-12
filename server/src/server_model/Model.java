@@ -34,6 +34,9 @@ void removeByDate(SimpleDate date);
 ArrayList<Screening> getAllScreenings();
 int getNbOfScreenings();
 Screening getScreening(Screening screening);
+  public ArrayList<Ticket> getAllTickets();
+  public User getUser();
+  Screening findScreeningBySeatId(String seatId);
 /*
  public Ticket getTicketBySeat(Seat seat);
   public Seat getSeatByScreening(Screening screening);

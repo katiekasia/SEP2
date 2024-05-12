@@ -38,8 +38,14 @@ public class ModelManager implements Model
     Movie n = new Movie(123,"ssdawd","movie","adsss");
     Room r = new Room(12,35);
     Screening screening = new Screening(10,30, LocalDate.now(),n,r);
-    screening.setRoom(r);
+    Seat seat = new Seat("A1", false);
+    User customer= new User("Kasia", "kasia", "Olej", "7915355423", "emailsjdhh");
+    Ticket ticket = new StandardTicket(seat.getID(), 124.0,seat, screening, customer,"Standard");
+    Order order = new Order(0);
+    order.addTicket(ticket);
+    customer.addOrder(order);
 
+    user=customer;
     screenings.addScreening(screening);
   }
   @Override public void addListener(PropertyChangeListener listener)
@@ -86,18 +92,32 @@ public class ModelManager implements Model
   {
     return HOST;
   }
-  /*
-    @Override public Ticket getTicketBySeat(Seat seat)
+
+    @Override public ArrayList<Ticket> getAllTickets()
 
    {
-      return seat.getTicket();
-    }
+      return user.getOrders().get(0).getTickets();
+   }
+    /*
     @Override public Seat getSeatByScreening(Screening screening)
     {
       return screening.getRoom().getSeat(0);
     }
 
    */
+  @Override public Screening findScreeningBySeatId(String seatId)
+  {
+    for(int i=0; i<screenings.getSize(); i++)
+    {
+      if (screenings.getScreenings().get(i).getRoom().getSeat(i).getID().equals(seatId));
+      return screenings.getScreenings().get(i);
+    }
+    return null;
+  }
+  @Override public User getUser()
+  {
+    return user;
+  }
   @Override public void reserveSeat(Seat seat, User customer,
       Screening screening)
   {
@@ -107,7 +127,7 @@ public class ModelManager implements Model
     }
     Order temp = new Order(customer.getOrders().size() + 1);
     Ticket tempT = new StandardTicket(seat.getID(), 13, seat, screening,
-        customer);
+        customer, "Standard");
     seat.book(tempT);
     temp.addTicket(tempT);
     customer.addOrder(temp);
@@ -230,7 +250,7 @@ screenings.removeByDate(date);
     for (Seat seat : seats)
     {
       Ticket tempT = new StandardTicket(seat.getID(), 13, seat, screening,
-          customer);
+          customer, "Standard");
       seat.book(tempT);
       temp.addTicket(tempT);
     }

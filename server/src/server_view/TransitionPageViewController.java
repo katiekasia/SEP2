@@ -60,6 +60,9 @@ roomID.setText(String.valueOf(viewState.getSelectedScreening().roomProperty().ge
     int standardTickets = numberOfStandartTickets.getValue() != null ? numberOfStandartTickets.getValue() : 0;
     int vipTickets = numberOfVIPTickets.getValue() != null ? numberOfVIPTickets.getValue() : 0;
 
+    viewState.setNumberOfStandardTickets(standardTickets);
+    viewState.setNumberOfVIPTickets(vipTickets);
+
     int total = standardTickets * 120 + vipTickets * 170;
     totalPrice.setText(String.valueOf(total) + " DKK");
   }
