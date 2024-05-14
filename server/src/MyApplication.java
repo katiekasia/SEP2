@@ -1,6 +1,6 @@
 import javafx.application.Application;
-import server_mediator.RemoteModel;
-import server_mediator.RmiServer;
+import mediator.RemoteModel;
+import mediator.RmiServer;
 import server_model.Model;
 import server_model.ModelManager;
 import server_view.ViewHandler;

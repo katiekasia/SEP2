@@ -1,4 +1,4 @@
-package server_mediator;
+package mediator;
 
 import server_model.*;
 

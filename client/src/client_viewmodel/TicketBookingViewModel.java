@@ -1,12 +1,9 @@
 package client_viewmodel;
 
-import client_mediator.RemoteModel;
 import client_model.Model;
 import client_model.Screening;
 import client_model.Seat;
 import client_model.User;
-
-import java.rmi.Remote;
 
 public class TicketBookingViewModel
 {

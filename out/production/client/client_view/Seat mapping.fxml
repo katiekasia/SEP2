@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="46.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="A1" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="106.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="A2" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="166.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="A3" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="226.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="A4" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="286.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="A5" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="346.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="A6" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="406.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="A7" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="466.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="A8" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="526.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="A9" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="586.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="A10" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="646.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="A11" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="46.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="B1" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="106.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="B2" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="166.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="B3" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="226.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="B4" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="286.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="B5" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="346.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="B6" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="406.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="B7" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="466.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="B8" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="526.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="B9" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="586.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="B10" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="646.0" layoutY="119.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="B11" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="46.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="C1" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="106.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="C2" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="166.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="C3" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="226.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="C4" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="286.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="C5" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="346.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="C6" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="406.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="C7" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="466.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="C8" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="526.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="C9" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="586.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="C10" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="646.0" layoutY="231.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="C11" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="46.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="D1" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="106.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="D2" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="166.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="D3" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="226.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="D4" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="286.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="D5" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="346.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="D6" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="406.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="D7" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="466.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="D8" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="526.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="D9" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="586.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="D10" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="646.0" layoutY="326.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label text="A11" textAlignment="RIGHT" />
+            <CheckBox mnemonicParsing="false" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/grey%20movie%20seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <Label alignment="CENTER" layoutX="57.0" layoutY="452.0" prefHeight="39.0" prefWidth="640.0" text="Screen" />
+   </children>
+</AnchorPane>

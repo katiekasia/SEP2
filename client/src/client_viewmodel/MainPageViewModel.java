@@ -1,6 +1,5 @@
 package client_viewmodel;
 
-import client_mediator.RemoteModel;
 import client_model.Model;
 import javafx.beans.property.StringProperty;
 

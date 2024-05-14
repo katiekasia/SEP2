@@ -1,6 +1,5 @@
 package client_viewmodel;
 
-import client_mediator.RemoteModel;
 import client_model.Model;
 
 public class ViewModelFactory

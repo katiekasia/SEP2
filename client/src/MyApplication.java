@@ -1,4 +1,4 @@
-import client_mediator.RmiClient;
+import mediator.RmiClient;
 import client_model.Model;
 import client_model.ModelManager;
 import client_view.ViewHandler;

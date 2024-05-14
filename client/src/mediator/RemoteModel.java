@@ -1,4 +1,4 @@
-package client_mediator;
+package mediator;
 
 
 import client_model.*;

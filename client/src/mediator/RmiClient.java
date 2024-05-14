@@ -1,10 +1,9 @@
-package client_mediator;
+package mediator;
 
 import client_model.*;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 public class RmiClient implements RemoteModel
