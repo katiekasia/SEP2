@@ -10,13 +10,15 @@ public class Movie {
 
 	private String genre;
 
+	private String releaseDate;
 
 
-	public Movie(int length, String description, String name, String genre) {
+	public Movie(int length, String description, String name, String genre, String releaseDate) {
 		this.length = length;
 		this.description = description;
 		this.name = name;
 		this.genre = genre;
+		this.releaseDate = releaseDate;
 
 	}
 
