@@ -1,6 +1,6 @@
-package client_model;
+package model;
 
-import client_model.Order;
+import model.Order;
 
 import java.util.ArrayList;
 

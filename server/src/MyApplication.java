@@ -1,10 +1,10 @@
 import javafx.application.Application;
 import mediator.RemoteModel;
 import mediator.RmiServer;
-import server_model.Model;
-import server_model.ModelManager;
-import server_view.ViewHandler;
-import server_viewmodel.ViewModelFactory;
+import model.Model;
+import model.ModelManager;
+import view.ViewHandler;
+import viewmodel.ViewModelFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;

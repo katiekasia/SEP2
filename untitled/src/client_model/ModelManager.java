@@ -1,6 +1,6 @@
-package client_model;
+package model;
 
-import client_model.Model;
+import model.Model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

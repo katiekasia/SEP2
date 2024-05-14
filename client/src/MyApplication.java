@@ -1,8 +1,8 @@
 import mediator.RmiClient;
-import client_model.Model;
-import client_model.ModelManager;
-import client_view.ViewHandler;
-import client_viewmodel.ViewModelFactory;
+import model.Model;
+import model.ModelManager;
+import view.ViewHandler;
+import viewmodel.ViewModelFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

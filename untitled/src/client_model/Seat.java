@@ -1,4 +1,4 @@
-package client_model;
+package model;
 
 public class Seat
 {

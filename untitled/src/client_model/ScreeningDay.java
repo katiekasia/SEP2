@@ -1,7 +1,7 @@
-package client_model;
+package model;
 
-import client_model.Room;
-import client_model.Screening;
+import model.Room;
+import model.Screening;
 
 public class ScreeningDay {
 	private SimpleDate date;

@@ -1,6 +1,6 @@
-package client_model;
+package model;
 
-import client_model.*;
+import model.*;
 
 public class StandardTicket extends Ticket
 {

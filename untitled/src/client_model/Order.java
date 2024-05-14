@@ -1,4 +1,4 @@
-package client_model;
+package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

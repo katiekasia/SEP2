@@ -1,8 +1,8 @@
-package client_model;
+package model;
 
-import client_model.Screening;
-import client_model.ScreeningDay;
-import client_model.Seat;
+import model.Screening;
+import model.ScreeningDay;
+import model.Seat;
 
 public abstract class Ticket {
 	private int ticketID;
