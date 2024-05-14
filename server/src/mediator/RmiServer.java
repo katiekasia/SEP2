@@ -1,7 +1,8 @@
 package mediator;
 
 
-import server_model.*;
+import model.*;
+import utility.observer.listener.GeneralListener;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -10,6 +11,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class RmiServer implements RemoteModel
 {
@@ -80,9 +83,96 @@ private void start() throws RemoteException, MalformedURLException
   {
     cinema.addOrder(order);
   }
+
+  @Override public void logIn(String username, String password)
+      throws RemoteException
+  {
+
+  }
+
+  @Override public void register(String username, String password, String email,
+      String firstName, String lastName, String phone) throws RemoteException
+  {
+
+  }
+
+  @Override public void addScreening(Screening screening) throws RemoteException
+  {
+
+  }
+
+  @Override public void removeScreening(Screening screening)
+      throws RemoteException
+  {
+
+  }
+
+  @Override public void removeByDate(SimpleDate date) throws RemoteException
+  {
+
+  }
+
+  @Override public ArrayList<Screening> getAllScreenings()
+      throws RemoteException
+  {
+    return null;
+  }
+
+  @Override public int getNbOfScreenings() throws RemoteException
+  {
+    return 0;
+  }
+
+  @Override public Screening getScreening(Screening screening)
+      throws RemoteException
+  {
+    return null;
+  }
+
+  @Override public ArrayList<Ticket> getAllTickets() throws RemoteException
+  {
+    return null;
+  }
+
+  @Override public User getUser() throws RemoteException
+  {
+    return null;
+  }
+
+  @Override public Screening findScreeningBySeatId(String seatId)
+      throws RemoteException
+  {
+    return null;
+  }
+
+  @Override public ArrayList<Screening> getScreaningsByMovieTitle(String title)
+      throws RemoteException
+  {
+    return null;
+  }
+
+  @Override public ArrayList<Screening> getScreeningsByDate(LocalDate date)
+      throws RemoteException
+  {
+    return null;
+  }
+
   //Overrides for methods
   public static void main(String[] args)
   {
     RemoteModel server = new RmiServer();
+  }
+
+  @Override public boolean addListener(GeneralListener<String, String> listener,
+      String... propertyNames) throws RemoteException
+  {
+    return false;
+  }
+
+  @Override public boolean removeListener(
+      GeneralListener<String, String> listener, String... propertyNames)
+      throws RemoteException
+  {
+    return false;
   }
 }

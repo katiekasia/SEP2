@@ -10,6 +10,7 @@ import java.beans.PropertyChangeSupport;
 import java.rmi.Naming;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -24,9 +25,10 @@ public class RmiClient implements Model, RemoteListener<String,String>
     property = new PropertyChangeSupport(this);
     try
     {
-      //UnicastRemoteObject.exportObject(this,0); for listener
+
       server = (RemoteModel) Naming.lookup("rmi://" + host + ":1099/Case");
       //server.addListener(this); for listener
+      UnicastRemoteObject.exportObject(this,0);
       server.addListener(this);
     }
     catch (Exception e)

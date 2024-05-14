@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import model.Model;
 import model.Screening;
 
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -37,13 +38,15 @@ public class MainPageViewModel
   {
 try
 {
-  Screening[] allScreenings = model.getAllScreenings()
-      .toArray(new Screening[0]);
-  for (Screening screening : allScreenings)
+  if (model.getAllScreenings() != null)
   {
-    SimpleScreeningView simpleScreeningView = new SimpleScreeningView(
-        screening);
-    screenings.add(simpleScreeningView);
+    Screening[] allScreenings = model.getAllScreenings().toArray(new Screening[0]);
+    for (Screening screening : allScreenings)
+    {
+      SimpleScreeningView simpleScreeningView = new SimpleScreeningView(
+          screening);
+      screenings.add(simpleScreeningView);
+    }
   }
 }catch (Exception e){
   e.printStackTrace();
@@ -97,14 +100,25 @@ try
 public void filterByTitle(){
 if (input != null){
   screenings.clear();
-  loadScreenings(model.getScreaningsByMovieTitle(input.get()));
+  try
+  {
+    loadScreenings(model.getScreaningsByMovieTitle(input.get()));
+  }catch (RemoteException e){
+    e.printStackTrace();
+  }
+
 }else {
   loadFromModel();
 }
 }
 public void filterByDate(LocalDate date){
     screenings.clear();
-    loadScreenings(model.getScreeningsByDate(date));
+    try
+    {
+      loadScreenings(model.getScreeningsByDate(date));
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
 }
 
 }

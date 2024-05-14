@@ -1,4 +1,4 @@
-package server_model;
+package model;
 
 
 
@@ -30,7 +30,12 @@ public class ModelManager implements Model
     this.HOST ="localhost";
     this.user = null;
     this.propertyChangeSupport = new PropertyChangeSupport(this);
-    screenings = new ScreeningsList();
+    try
+    {
+      screenings = new ScreeningsList();
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
     DummyData();
   }
 
