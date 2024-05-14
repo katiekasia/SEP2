@@ -4,17 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< Updated upstream
-    <list default="true" id="8a4d4e2f-e734-45bf-9582-309fdabca307" name="Changes" comment="table" />
-=======
-    <list default="true" id="8a4d4e2f-e734-45bf-9582-309fdabca307" name="Changes" comment="">
+    <list default="true" id="8a4d4e2f-e734-45bf-9582-309fdabca307" name="Changes" comment="table">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/server/server_model/DataBaseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server_model/DataBaseHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/server_viewmodel/MainPageViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server_viewmodel/MainPageViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/server_viewmodel/ViewModelFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server_viewmodel/ViewModelFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/server_model/ModelManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server_model/ModelManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/server_view/Main Page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server_view/Main Page.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/server_model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server_model/DataBaseHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/server_model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server_model/ModelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/server_view/Main Page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server_view/Main Page.fxml" afterDir="false" />
     </list>
->>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,6 +40,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.DataBaseHandler.executor": "Run",
+    "Application.Main.executor": "Run",
     "Application.MyApplication (1).executor": "Run",
     "Application.MyApplication.executor": "Run",
     "Application.TestMain.executor": "Run",
@@ -69,17 +69,23 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+  <component name="RunManager" selected="Application.MyApplication">
+    <configuration name="DataBaseHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server_model.DataBaseHandler" />
       <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server_model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyApplication (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MyApplication" />
-      <module name="client" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="server" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -119,15 +125,11 @@
     </configuration>
     <recent_temporary>
       <list>
-<<<<<<< Updated upstream
-=======
         <item itemvalue="Application.MyApplication" />
+        <item itemvalue="Application.DataBaseHandler" />
         <item itemvalue="Application.server_model.TestMain" />
->>>>>>> Stashed changes
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.MyApplication" />
-        <item itemvalue="Application.TestMain" />
-        <item itemvalue="Application.MyApplication (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -171,17 +173,6 @@
           <url>file://$PROJECT_DIR$/client/src/client_model/TestMain.java</url>
           <line>7</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-<<<<<<< Updated upstream
-          <url>file://$PROJECT_DIR$/server/src/Main.java</url>
-          <line>4</line>
-          <option name="timeStamp" value="7" />
-=======
-          <url>file://$PROJECT_DIR$/server/src/MyApplication.java</url>
-          <line>11</line>
-          <option name="timeStamp" value="8" />
->>>>>>> Stashed changes
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/client/src/client_view/TicketBookingViewController.java</url>

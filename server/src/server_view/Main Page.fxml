@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="793.0" prefWidth="949.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="server_view.MainViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="793.0" prefWidth="949.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="server_view.MainViewController">
    <children>
       <AnchorPane layoutX="6.0" layoutY="-1.0" prefHeight="794.0" prefWidth="199.0">
          <children>
@@ -103,7 +102,7 @@
                           <columns>
                             <TableColumn fx:id="title" prefWidth="120.79998469352722" text="Title" />
                             <TableColumn fx:id="date" prefWidth="105.5999755859375" text="Date" />
-                              <TableColumn fx:id="screeningTime" prefWidth="109.59999084472656" text="Screening time" />
+                              <TableColumn fx:id="screeningTime" prefWidth="109.59999084472656" text="Length" />
                               <TableColumn fx:id="time" prefWidth="93.5999755859375" text="Time" />
                               <TableColumn fx:id="room" prefWidth="148.0" text="Room" />
                           </columns>
