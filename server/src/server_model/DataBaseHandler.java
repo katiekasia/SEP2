@@ -11,7 +11,7 @@ public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "papiezpolak";
+  private static final String PASSWORD = "7890";
 
   private static Connection connection;
 
@@ -68,52 +68,50 @@ public class DataBaseHandler
   // METHOD TO GET ALL THE CUSTOMERS ( USERS ) FROM DATABASE
 
   // TEST CLASS TO RETRIEVE CUSTOMERS //
-  public static void main(String[] args)
-  {
-    try
-    {
-      // Establishing a connection to the database
-      Connection connection = getConnection();
-
-      if (connection != null)
-      {
-        System.out.println("Database connection successful!");
-
-        try (Statement statement = connection.createStatement())
-        {
-          statement.execute("SET SEARCH_PATH TO SEP2_Cinema");
-        }
-
-        ArrayList<User> customers = getAllCustomers();
-        ArrayList<Screening> screenings= getAllScreenings();
-        ArrayList<Room> rooms = getAllRooms();
-        ArrayList<Movie> movies = getAllMovies();
-
-        // Printing details of each customer
-        for (User customer : customers)
-        {
-          System.out.println("Username: " + customer.getUsername());
-          System.out.println("First Name: " + customer.getFstName());
-          System.out.println("Last Name: " + customer.getLstName());
-          System.out.println("Phone Number: " + customer.getPhoneNumber());
-          System.out.println("Email: " + customer.getEmail());
-          System.out.println("---------------------------");
-        }
-
-        // Closing the database connection
-        closeConnection();
-      }
-      else
-      {
-        System.out.println("Failed to establish database connection.");
-      }
-    }
-    catch (SQLException e)
-    {
-      // Handling any SQL exceptions
-      e.printStackTrace();
-    }
-  }
+  //  public static void main(String[] args)
+  //  {
+  //    try
+  //    {
+  //      // Establishing a connection to the database
+  //      Connection connection = getConnection();
+  //
+  //      if (connection != null)
+  //      {
+  //        System.out.println("Database connection successful!");
+  //
+  //        try (Statement statement = connection.createStatement())
+  //        {
+  //          statement.execute("SET SEARCH_PATH TO SEP2_Cinema");
+  //        }
+  //
+  //        ArrayList<User> customers = getAllCustomers();
+  //
+  //
+  //        // Printing details of each customer
+  //        for (User customer : customers)
+  //        {
+  //          System.out.println("Username: " + customer.getUsername());
+  //          System.out.println("First Name: " + customer.getFstName());
+  //          System.out.println("Last Name: " + customer.getLstName());
+  //          System.out.println("Phone Number: " + customer.getPhoneNumber());
+  //          System.out.println("Email: " + customer.getEmail());
+  //          System.out.println("---------------------------");
+  //        }
+  //
+  //        // Closing the database connection
+  //        closeConnection();
+  //      }
+  //      else
+  //      {
+  //        System.out.println("Failed to establish database connection.");
+  //      }
+  //    }
+  //    catch (SQLException e)
+  //    {
+  //      // Handling any SQL exceptions
+  //      e.printStackTrace();
+  //    }
+  //  }
   // TEST CLASS TO RETRIEVE CUSTOMERS //
 
   // METHOD TO GET ALL THE ROOMS FROM DATABASE
@@ -138,6 +136,7 @@ public class DataBaseHandler
     return rooms;
   }
 
+  // method to get all the movies //
   public static ArrayList<Movie> getAllMovies() throws SQLException
   {
     ArrayList<Movie> movies = new ArrayList<>();
@@ -155,13 +154,16 @@ public class DataBaseHandler
           String genre = resultSet.getString("genre");
           LocalDate releaseDate = resultSet.getDate("releasedate")
               .toLocalDate();
-          Movie movie = new Movie(name, length, description, genre, releaseDate);
+          Movie movie = new Movie(name, length, description, genre,
+              releaseDate);
           movies.add(movie);
         }
       }
     }
     return movies;
   }
+
+  // method to get all the movies //
 
   // METHOD TO GET ALL THE SCREENINGS FROM DATABASE
   public static ArrayList<Screening> getAllScreenings() throws SQLException
@@ -179,8 +181,8 @@ public class DataBaseHandler
           int minute = resultSet.getTime("screeningHour").toLocalTime()
               .getMinute();
           LocalDate date = resultSet.getDate("screeningDate").toLocalDate();
-          int roomID = resultSet.getInt("roomid");
-          int nbSeats = resultSet.getInt("nunberofseats");
+          int roomID = resultSet.getInt("roomID");
+          int nbSeats = resultSet.getInt("numberOfSeats");
           // You may need to fetch movie details and room details from their respective tables
           String title = resultSet.getString("name");
           String length = resultSet.getString("length");
@@ -200,49 +202,88 @@ public class DataBaseHandler
     return screenings;
   }
   // METHOD TO GET ALL THE SCREENINGS FROM DATABASE
+  public static void main(String[] args) {
+    try {
+      // Establishing a connection to the database
+      Connection connection = getConnection();
 
-  // TEST CLASS TO RETRIEVE ROOMS //
-  //  public static void main(String[] args)
-  //  {
-  //    try
-  //    {
-  //      // Establishing a connection to the database
-  //      Connection connection = getConnection();
-  //
-  //      if (connection != null)
-  //      {
-  //        System.out.println("Database connection successful!");
-  //
-  //        try (Statement statement = connection.createStatement())
-  //        {
-  //          statement.execute("SET SEARCH_PATH TO SEP2_Cinema");
-  //        }
-  //
-  //        ArrayList<Room> rooms = getAllRooms();
-  //
-  //        // Printing details of each customer
-  //        for (Room room : rooms) {
-  //          System.out.println("Room id: " + room.getRoomID());
-  //          System.out.println("Number of seats: " + room.getNbSeats());
-  //          System.out.println("---------------------------");
-  //        }
-  //
-  //        // Closing the database connection
-  //        closeConnection();
-  //      }
-  //      else
-  //      {
-  //        System.out.println("Failed to establish database connection.");
-  //      }
-  //    }
-  //    catch (SQLException e)
-  //    {
-  //      // Handling any SQL exceptions
-  //      e.printStackTrace();
-  //    }
-  // TEST CLASS TO RETRIEVE ROOMS //
+      if (connection != null) {
+        System.out.println("Database connection successful!");
 
+        try (Statement statement = connection.createStatement()) {
+          statement.execute("SET SEARCH_PATH TO SEP2_Cinema");
+        }
+
+        ArrayList<Screening> screenings = getAllScreenings();
+
+        // Printing details of each screening
+        for (Screening screening : screenings) {
+          System.out.println("Screening Date: " + screening.getDate());
+          System.out.println("Screening Time: " + screening.getTime());
+          System.out.println("Room ID: " + screening.getRoom().getRoomID());
+          System.out.println("Movie Title: " + screening.getMovie().getName());
+          System.out.println("Movie Length: " + screening.getMovie().getLenghth());
+          System.out.println("Movie Description: " + screening.getMovie().getDescription());
+          System.out.println("Movie Genre: " + screening.getMovie().getGenre());
+          System.out.println("---------------------------");
+        }
+
+        // Closing the database connection
+        closeConnection();
+      } else {
+        System.out.println("Failed to establish database connection.");
+      }
+    } catch (SQLException e) {
+      // Handling any SQL exceptions
+      e.printStackTrace();
+    }
+  }
 }
+
+
+// TEST CLASS TO RETRIEVE ROOMS
+//  public static void main(String[] args)
+//  {
+//    try
+//    {
+//      // Establishing a connection to the database
+//      Connection connection = getConnection();
+//
+//      if (connection != null)
+//      {
+//        System.out.println("Database connection successful!");
+//
+//        try (Statement statement = connection.createStatement())
+//        {
+//          statement.execute("SET SEARCH_PATH TO SEP2_Cinema");
+//        }
+//
+//        ArrayList<Room> rooms = getAllRooms();
+//
+//        // Printing details of each customer
+//        for (Room room : rooms)
+//        {
+//          System.out.println("Room id: " + room.getRoomID());
+//          System.out.println("Number of seats: " + room.getNbSeats());
+//          System.out.println("---------------------------");
+//        }
+//
+//        // Closing the database connection
+//        closeConnection();
+//      }
+//      else
+//      {
+//        System.out.println("Failed to establish database connection.");
+//      }
+//    }
+//    catch (SQLException e)
+//    {
+//      // Handling any SQL exceptions
+//      e.printStackTrace();
+//    }
+    // TEST CLASS TO RETRIEVE ROOMS //
+
+
 
 
 
