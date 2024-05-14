@@ -1,4 +1,4 @@
-package model;
+package server_model;
 
 
 
@@ -159,7 +159,7 @@ public class ModelManager implements Model
     customer.addOrder(temp);
     System.out.println("booking complete");
     System.out.println(temp + "\n" + temp.getTickets().size());
-    propertyChangeSupport.firePropertyChange("reserve seat", null, screening);
+
     updateDatabaseWithBooking(customer, tempT);
   }
   private void updateDatabaseWithBooking(User customer, Ticket ticket) {
@@ -215,17 +215,12 @@ public class ModelManager implements Model
 
   @Override public void updateSeatToBooked(Seat seat, Ticket ticket)
   {
-    if (seat.isAvailable()){
-      throw new IllegalStateException("Seat alread booked");
-    }else {
-      seat.book(ticket);
-    propertyChangeSupport.firePropertyChange("update seat to booked", null, seat);
-  }}
+    seat.book(ticket);
+  }
 
   @Override public void addOrder(Order order)
   {
     user.addOrder(order);
-    propertyChangeSupport.firePropertyChange("add order", null,order);
   }
 
   @Override public void logIn(String username, String password)
@@ -241,21 +236,17 @@ public class ModelManager implements Model
 
   @Override public void addScreening(Screening screening)
   {
-
     screenings.addScreening(screening);
-    propertyChangeSupport.firePropertyChange("add screening", null,screening);
   }
 
   @Override public void removeScreening(Screening screening)
   {
     screenings.removeScreening(screening);
-    propertyChangeSupport.firePropertyChange("remove screening", null,screening);
   }
 
   @Override public void removeByDate(SimpleDate date)
   {
 screenings.removeByDate(date);
-propertyChangeSupport.firePropertyChange("remove by date",null, date);
   }
 
   @Override public ArrayList<Screening> getAllScreenings()
@@ -290,7 +281,6 @@ propertyChangeSupport.firePropertyChange("remove by date",null, date);
       temp.addTicket(tempT);
     }
     customer.addOrder(temp);
-    propertyChangeSupport.firePropertyChange("reserve seats",null,temp);
   }
 
 

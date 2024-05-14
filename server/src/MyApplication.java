@@ -8,10 +8,11 @@ import viewmodel.ViewModelFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class MyApplication extends Application
 {
-  public void start(Stage primaryStage) throws IOException
+  public void start(Stage primaryStage) throws IOException, SQLException
   {
     Model model = new ModelManager();
    /*
