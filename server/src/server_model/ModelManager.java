@@ -35,7 +35,7 @@ public class ModelManager implements Model
   }
 
   public void DummyData(){
-    Movie n = new Movie(123,"ssdawd","movie","adsss");
+    Movie n = new Movie(420,"ssdawd","movie","adsss");
     Room r = new Room(12,35);
     Screening screening = new Screening(10,30, LocalDate.now(),n,r);
     Seat seat = new Seat("A1", false);
