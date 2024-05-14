@@ -129,30 +129,6 @@ public class DataBaseHandler
     return rooms;
   }
 
-<<<<<<< Updated upstream
-  // METHOD TO GET ALL THE screenings FROM DATABASE
-//  public static ArrayList<Screening> getAllScreenings() throws SQLException {
-//    ArrayList<Screening> screenings = new ArrayList<>();
-//    try (Connection connection = getConnection()) {
-//      String query = "SELECT * FROM Screening";
-//      try (Statement statement = connection.createStatement();
-//          ResultSet resultSet = statement.executeQuery(query)) {
-//        while (resultSet.next()) {
-//          int hour = resultSet.getTime("screeningHour").toLocalTime().getHour();
-//          int minute = resultSet.getTime("screeningHour").toLocalTime().getMinute();
-//          LocalDate date = resultSet.getDate("screeningDate").toLocalDate();
-//          String roomID = resultSet.getString("roomID");
-//          // You may need to fetch movie details and room details from their respective tables
-//          Movie movie = null; // Fetch movie details
-//          Room room = null;   // Fetch room details
-//          Screening screening = new Screening(hour, minute, date, movie, room);
-//          screenings.add(screening);
-//        }
-//      }
-//    }
-//    return screenings;
-//  }
-=======
   // METHOD TO GET ALL THE SCREENINGS FROM DATABASE
   public static ArrayList<Screening> getAllScreenings() throws SQLException {
     ArrayList<Screening> screenings = new ArrayList<>();
@@ -164,10 +140,17 @@ public class DataBaseHandler
           int hour = resultSet.getTime("screeningHour").toLocalTime().getHour();
           int minute = resultSet.getTime("screeningHour").toLocalTime().getMinute();
           LocalDate date = resultSet.getDate("screeningDate").toLocalDate();
-          String roomID = resultSet.getString("roomID");
+          int roomID = resultSet.getInt("roomid");
+          int nbSeats = resultSet.getInt("nunberofseats");
           // You may need to fetch movie details and room details from their respective tables
-          Movie movie = null; // Fetch movie details
-          Room room = null;   // Fetch room details
+          String title = resultSet.getString("name");
+          String length = resultSet.getString("length");
+          String description = resultSet.getString("description");
+          String genre = resultSet.getString("genre");
+          LocalDate releaseDate = resultSet.getDate("releasedate").toLocalDate();
+
+          Movie movie = new Movie(length, description, title, genre, releaseDate);
+          Room room = new Room(roomID, nbSeats);
           Screening screening = new Screening(hour, minute, date, movie, room);
           screenings.add(screening);
         }
@@ -176,7 +159,7 @@ public class DataBaseHandler
     return screenings;
   }
   // METHOD TO GET ALL THE SCREENINGS FROM DATABASE
->>>>>>> Stashed changes
+
 
   // TEST CLASS TO RETRIEVE ROOMS //
 //  public static void main(String[] args)

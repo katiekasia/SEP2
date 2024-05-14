@@ -35,18 +35,18 @@ public class ModelManager implements Model
   }
 
   public void DummyData(){
-    Movie n = new Movie(420,"ssdawd","movie","adsss");
-    Room r = new Room(12,35);
-    Screening screening = new Screening(10,30, LocalDate.now(),n,r);
-    Seat seat = new Seat("A1", false);
-    User customer= new User("Kasia", "kasia", "Olej", "7915355423", "emailsjdhh");
-    Ticket ticket = new StandardTicket(seat.getID(), 124.0,seat, screening, customer,"Standard");
-    Order order = new Order(0);
-    order.addTicket(ticket);
-    customer.addOrder(order);
-
-    user=customer;
-    screenings.addScreening(screening);
+  //  Movie n = new Movie("420","ssdawd","movie","adsss", '2022-02-01');
+//    Room r = new Room(12,35);
+//    Screening screening = new Screening(10,30, LocalDate.now(),n,r);
+//    Seat seat = new Seat("A1", false);
+//    User customer= new User("Kasia", "kasia", "Olej", "7915355423", "emailsjdhh");
+//    Ticket ticket = new StandardTicket(seat.getID(), 124.0,seat, screening, customer,"Standard");
+//    Order order = new Order(0);
+//    order.addTicket(ticket);
+//    customer.addOrder(order);
+//
+//    user=customer;
+//    screenings.addScreening(screening);
   }
   @Override public void addListener(PropertyChangeListener listener)
   {

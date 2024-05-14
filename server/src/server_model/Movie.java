@@ -1,8 +1,10 @@
 package server_model;
 
+import java.time.LocalDate;
+
 public class Movie {
 
-	private int length;
+	private String length;
 
 	private String description;
 
@@ -10,10 +12,10 @@ public class Movie {
 
 	private String genre;
 
-	private String releaseDate;
+	private LocalDate releaseDate;
 
 
-	public Movie(int length, String description, String name, String genre, String releaseDate) {
+	public Movie(String length, String description, String name, String genre, LocalDate releaseDate) {
 		this.length = length;
 		this.description = description;
 		this.name = name;
@@ -48,7 +50,7 @@ public class Movie {
 //	{
 //		this.days = screeningDays;
 //	} TODO useful for later
-	public int getLenghth() {
+	public String getLenghth() {
 		return length;
 	}
 
@@ -64,7 +66,7 @@ public class Movie {
 		return genre;
 	}
 
-	public void setLength(int length) {
+	public void setLength(String length) {
 this.length = length;
 	}
 
