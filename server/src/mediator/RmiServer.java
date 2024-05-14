@@ -10,11 +10,13 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 
 public class RmiServer implements RemoteModel
 {
 private Model cinema;
-public RmiServer(){
+public RmiServer() throws SQLException
+{
   cinema = new ModelManager();
 try
 {
@@ -81,7 +83,7 @@ private void start() throws RemoteException, MalformedURLException
     cinema.addOrder(order);
   }
   //Overrides for methods
-  public static void main(String[] args)
+  public static void main(String[] args) throws SQLException
   {
     RemoteModel server = new RmiServer();
   }

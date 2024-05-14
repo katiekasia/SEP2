@@ -1,7 +1,5 @@
 package server_model;
 
-
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.Connection;
@@ -18,36 +16,44 @@ public class ModelManager implements Model
   private boolean running;
   private ScreeningsList screenings;
 
-
   //not sure if the user variable is the one connected here
   private User user;
   private PropertyChangeSupport propertyChangeSupport;
 
-  public ModelManager()
+  public ModelManager() throws SQLException
   {
-    this.running=false;
-    this.PORT=5678;
-    this.HOST ="localhost";
+    this.running = false;
+    this.PORT = 5678;
+    this.HOST = "localhost";
     this.user = null;
     this.propertyChangeSupport = new PropertyChangeSupport(this);
     screenings = new ScreeningsList();
-    DummyData();
+    Data();
   }
 
-  public void DummyData(){
-  //  Movie n = new Movie("420","ssdawd","movie","adsss", '2022-02-01');
-//    Room r = new Room(12,35);
-//    Screening screening = new Screening(10,30, LocalDate.now(),n,r);
-//    Seat seat = new Seat("A1", false);
-//    User customer= new User("Kasia", "kasia", "Olej", "7915355423", "emailsjdhh");
-//    Ticket ticket = new StandardTicket(seat.getID(), 124.0,seat, screening, customer,"Standard");
-//    Order order = new Order(0);
-//    order.addTicket(ticket);
-//    customer.addOrder(order);
-//
-//    user=customer;
-//    screenings.addScreening(screening);
+  public void Data()
+  {
+    try
+    {
+      ArrayList<User> customers = DataBaseHandler.getAllCustomers();
+      ArrayList<Screening> screenings = DataBaseHandler.getAllScreenings();
+      this.user= customers.get(0);
+      //      ArrayList<Room> rooms = DataBaseHandler.getAllRooms();
+      //      ArrayList<Movie> movies = DataBaseHandler.getAllMovies();
+
+      // Notify listeners about the data changes
+      propertyChangeSupport.firePropertyChange("customers", null, customers);
+      propertyChangeSupport.firePropertyChange("screenings", null, screenings);
+      //      propertyChangeSupport.firePropertyChange("rooms", null, rooms);
+      //      propertyChangeSupport.firePropertyChange("movies", null, movies);
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+
   }
+
   @Override public void addListener(PropertyChangeListener listener)
   {
     propertyChangeSupport.addPropertyChangeListener(listener);
@@ -58,6 +64,7 @@ public class ModelManager implements Model
   {
     propertyChangeSupport.removePropertyChangeListener(listener);
   }
+
   @Override public String getUsername()
   {
     return user.getUsername();
@@ -93,23 +100,26 @@ public class ModelManager implements Model
     return HOST;
   }
 
-    @Override public ArrayList<Ticket> getAllTickets()
+  @Override public ArrayList<Ticket> getAllTickets()
 
-   {
-      return user.getOrders().get(0).getTickets();
-   }
-    /*
-    @Override public Seat getSeatByScreening(Screening screening)
-    {
-      return screening.getRoom().getSeat(0);
-    }
+  {
+    return user.getOrders().get(0).getTickets();
+  }
 
-   */
+  /*
+  @Override public Seat getSeatByScreening(Screening screening)
+  {
+    return screening.getRoom().getSeat(0);
+  }
+
+ */
   @Override public Screening findScreeningBySeatId(String seatId)
   {
-    for(int i=0; i<screenings.getSize(); i++)
+    for (int i = 0; i < screenings.getSize(); i++)
     {
-      if (screenings.getScreenings().get(i).getRoom().getSeat(i).getID().equals(seatId));
+      if (screenings.getScreenings().get(i).getRoom().getSeat(i).getID()
+          .equals(seatId))
+        ;
       return screenings.getScreenings().get(i);
     }
     return null;
@@ -120,7 +130,9 @@ public class ModelManager implements Model
     ArrayList<Screening> result = new ArrayList<>();
     for (int i = 0; i < screenings.getSize(); i++)
     {
-      if (screenings.getScreeningById(i).getMovie().getName().toUpperCase().equals(title.toUpperCase())){
+      if (screenings.getScreeningById(i).getMovie().getName().toUpperCase()
+          .equals(title.toUpperCase()))
+      {
         result.add(screenings.getScreeningById(i));
       }
     }
@@ -133,7 +145,9 @@ public class ModelManager implements Model
     ArrayList<Screening> result = new ArrayList<>();
     for (int i = 0; i < screenings.getSize(); i++)
     {
-      if (screenings.getScreeningById(i).getDate().equals(temp) || screenings.getScreeningById(i).getDate().isAfter(temp)){
+      if (screenings.getScreeningById(i).getDate().equals(temp)
+          || screenings.getScreeningById(i).getDate().isAfter(temp))
+      {
         result.add(screenings.getScreeningById(i));
       }
     }
@@ -144,6 +158,7 @@ public class ModelManager implements Model
   {
     return user;
   }
+
   @Override public void reserveSeat(Seat seat, User customer,
       Screening screening)
   {
@@ -162,11 +177,16 @@ public class ModelManager implements Model
 
     updateDatabaseWithBooking(customer, tempT);
   }
-  private void updateDatabaseWithBooking(User customer, Ticket ticket) {
+
+  private void updateDatabaseWithBooking(User customer, Ticket ticket)
+  {
     // Example method to illustrate saving to DB (requires actual implementation)
-    try (Connection conn = DataBaseHandler.getConnection()) {
+    try (Connection conn = DataBaseHandler.getConnection())
+    {
       // SQL queries to insert ticket and update seat status
-    } catch (SQLException e) {
+    }
+    catch (SQLException e)
+    {
       e.printStackTrace();
     }
   }
@@ -178,10 +198,10 @@ public class ModelManager implements Model
 
   @Override public Seat[] getAvailableSeats(Screening screening)
   {
-    ArrayList<Seat> seats= new ArrayList<>();
-    for(int i=0; i<screening.getRoom().getNbSeats(); i++)
+    ArrayList<Seat> seats = new ArrayList<>();
+    for (int i = 0; i < screening.getRoom().getNbSeats(); i++)
     {
-      if(screening.getRoom().getSeat(i).isAvailable())
+      if (screening.getRoom().getSeat(i).isAvailable())
       {
         seats.add(screening.getRoom().getSeat(i));
       }
@@ -191,10 +211,10 @@ public class ModelManager implements Model
 
   @Override public Seat[] getEmptySeats(Screening screening)
   {
-    ArrayList<Seat> emptySeats= new ArrayList<>();
-    for(int i=0; i<screening.getRoom().getNbSeats(); i++)
+    ArrayList<Seat> emptySeats = new ArrayList<>();
+    for (int i = 0; i < screening.getRoom().getNbSeats(); i++)
     {
-      if(!screening.getRoom().getSeat(i).isAvailable())
+      if (!screening.getRoom().getSeat(i).isAvailable())
       {
         emptySeats.add(screening.getRoom().getSeat(i));
       }
@@ -202,13 +222,12 @@ public class ModelManager implements Model
     return emptySeats.toArray(new Seat[screening.getRoom().getNbSeats()]);
   }
 
-
   @Override public double calculateTotalPrice()
   {
-    double price =0;
-    for(int i=0; i<user.getOrders().size(); i++)
+    double price = 0;
+    for (int i = 0; i < user.getOrders().size(); i++)
     {
-      price +=user.getOrders().get(0).getOrderPrice();
+      price += user.getOrders().get(0).getOrderPrice();
     }
     return price;
   }
@@ -246,7 +265,7 @@ public class ModelManager implements Model
 
   @Override public void removeByDate(SimpleDate date)
   {
-screenings.removeByDate(date);
+    screenings.removeByDate(date);
   }
 
   @Override public ArrayList<Screening> getAllScreenings()
@@ -261,11 +280,11 @@ screenings.removeByDate(date);
 
   @Override public Screening getScreening(Screening screening)
   {
-  return screenings.getScreening(screening);
+    return screenings.getScreening(screening);
   }
 
   @Override public void reserveSeats(Seat[] seats, User customer,
-       Screening screening)
+      Screening screening)
   {
     if (screening.getRoom().availableSeats() < seats.length)
     {
@@ -282,6 +301,5 @@ screenings.removeByDate(date);
     }
     customer.addOrder(temp);
   }
-
 
 }

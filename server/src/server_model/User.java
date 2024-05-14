@@ -1,5 +1,6 @@
 package server_model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class User
@@ -10,7 +11,11 @@ public class User
   private String phoneNumber;
   private String email;
   private ArrayList<Order> orders;
-  public User(String username, String fstName, String lstName, String phone, String email){
+
+
+  public User(String username, String fstName, String lstName, String phone, String email)
+  {
+
     this.username = username;
     this.email = email;
     this.fstName = fstName;

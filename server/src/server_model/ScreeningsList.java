@@ -1,11 +1,17 @@
 package server_model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ScreeningsList
 {
   private ArrayList<Screening> screenings;
-public ScreeningsList(){screenings = new ArrayList<>();}
+
+
+  public ScreeningsList() throws SQLException
+  {
+    screenings = DataBaseHandler.getAllScreenings();
+  }
 public void addScreening(Screening screening){
   screenings.add(screening);
 }

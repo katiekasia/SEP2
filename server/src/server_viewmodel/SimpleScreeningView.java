@@ -39,8 +39,8 @@
     time = new SimpleStringProperty(screening.getTime());
     date = new SimpleStringProperty(screening.getDate().toString());
     movie = new SimpleStringProperty(screening.getMovie().getName());
-    seatID = new SimpleStringProperty(user.getOrders().get(0).getTickets().get(0).getSeat().getID());
-    ticketType= new SimpleStringProperty(user.getOrders().get(0).getTickets().get(0).getTicketType());
+    //seatID = new SimpleStringProperty(user.getOrders().get(0).getTickets().get(0).getSeat().getID());
+    //ticketType= new SimpleStringProperty(user.getOrders().get(0).getTickets().get(0).getTicketType());
   }
     public void setRoom(int room)
     {
