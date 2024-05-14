@@ -2,6 +2,7 @@ package server_model;
 
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public interface Model extends UnnamedPropertyChangeSubject
@@ -37,6 +38,9 @@ Screening getScreening(Screening screening);
   public ArrayList<Ticket> getAllTickets();
   public User getUser();
   Screening findScreeningBySeatId(String seatId);
+  ArrayList<Screening> getScreaningsByMovieTitle(String title);
+  ArrayList<Screening> getScreeningsByDate(LocalDate date);
+
 /*
  public Ticket getTicketBySeat(Seat seat);
   public Seat getSeatByScreening(Screening screening);

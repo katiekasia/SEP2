@@ -19,9 +19,9 @@ public class MyApplication extends Application
     {
       System.setSecurityManager(new SecurityManager());
     }
-    RemoteModel server = new RmiServer();
-*/
 
+*/
+    RemoteModel server = new RmiServer();
     ViewModelFactory viewModelFactory = new ViewModelFactory(model);
     ViewHandler view = new ViewHandler(viewModelFactory);
     view.start(primaryStage);

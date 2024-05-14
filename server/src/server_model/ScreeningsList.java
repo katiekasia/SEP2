@@ -25,6 +25,9 @@ public void removeByDate(SimpleDate date){
   {
     return new ArrayList<>(screenings);
   }
+  public Screening getScreeningById(int id){
+  return screenings.get(id);
+  }
 
   public int getSize(){
   return screenings.size();

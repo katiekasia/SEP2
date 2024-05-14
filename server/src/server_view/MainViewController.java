@@ -47,9 +47,9 @@ public class MainViewController
     this.signOut.setVisible(true);
     this.ticketConfirmation.setVisible(true);
     this.bookTicket1.setVisible(true);
-
     viewModel.setScreenings(screeningsTable.getItems());
     viewModel.bindScreenings(screeningsTable.getItems());
+    searchBar.textProperty().bindBidirectional(viewModel.inputProperty());
     this.title.setCellValueFactory(new PropertyValueFactory<>("movie"));
     this.screeningTime.setCellValueFactory(new PropertyValueFactory<>("length"));
     this.date.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -93,14 +93,14 @@ viewModel.setSelected();
   }
   @FXML public void onDatePicked()
   {
-
+    viewModel.filterByDate(datePicker.getValue());
   }
   @FXML public void onSearch()
   {
-
+    viewModel.filterByTitle();
   }
   @FXML public void onSearchBar()
   {
-
+    viewModel.filterByTitle();
   }
 }

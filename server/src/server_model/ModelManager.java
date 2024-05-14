@@ -114,6 +114,32 @@ public class ModelManager implements Model
     }
     return null;
   }
+
+  @Override public ArrayList<Screening> getScreaningsByMovieTitle(String title)
+  {
+    ArrayList<Screening> result = new ArrayList<>();
+    for (int i = 0; i < screenings.getSize(); i++)
+    {
+      if (screenings.getScreeningById(i).getMovie().getName().toUpperCase().equals(title.toUpperCase())){
+        result.add(screenings.getScreeningById(i));
+      }
+    }
+    return result;
+  }
+
+  @Override public ArrayList<Screening> getScreeningsByDate(LocalDate date)
+  {
+    SimpleDate temp = new SimpleDate(date);
+    ArrayList<Screening> result = new ArrayList<>();
+    for (int i = 0; i < screenings.getSize(); i++)
+    {
+      if (screenings.getScreeningById(i).getDate().equals(temp) || screenings.getScreeningById(i).getDate().isAfter(temp)){
+        result.add(screenings.getScreeningById(i));
+      }
+    }
+    return result;
+  }
+
   @Override public User getUser()
   {
     return user;
@@ -256,5 +282,6 @@ screenings.removeByDate(date);
     }
     customer.addOrder(temp);
   }
+
 
 }
