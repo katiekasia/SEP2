@@ -46,6 +46,9 @@ Screening getScreening(Screening screening) throws RemoteException;
   ArrayList<Screening> getScreaningsByMovieTitle(String title) throws RemoteException;
   ArrayList<Screening> getScreeningsByDate(LocalDate date) throws RemoteException;
 
+  public ArrayList<Order> getOrdersForUser(String username);
+
+
 /*
  public Ticket getTicketBySeat(Seat seat);
   public Seat getSeatByScreening(Screening screening);

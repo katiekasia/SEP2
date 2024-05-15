@@ -1,7 +1,13 @@
 package viewmodel;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import model.Order;
 import model.Screening;
+import model.User;
+
+import java.util.List;
 
 public class ViewState
 {
@@ -11,10 +17,50 @@ public class ViewState
   private SimpleIntegerProperty numberOfVIPTickets = new SimpleIntegerProperty(
       0);
 
+  private ObjectProperty<User> user;
+  private ObjectProperty<List<Order>> orders;
+
+  public ViewState()
+  {
+    this.user = new SimpleObjectProperty<>();
+    this.orders = new SimpleObjectProperty<>();
+  }
+
+  public ObjectProperty<User> userProperty()
+  {
+    return user;
+  }
+
+  public void setUser(User user)
+  {
+    this.user.set(user);
+  }
+
+  public User getUser()
+  {
+    return user.get();
+  }
+
+  public ObjectProperty<List<Order>> ordersProperty()
+  {
+    return orders;
+  }
+
+  public void setOrders(List<Order> orders)
+  {
+    this.orders.set(orders);
+  }
+
+  public List<Order> getOrders()
+  {
+    return orders.get();
+  }
+
   public SimpleScreeningView getSelectedScreening()
   {
     return selectedScreening;
   }
+
   public Screening getScreeningFromView()
   {
     SimpleScreeningView view = getSelectedScreening(); // Assumes this returns SimpleScreeningView

@@ -5,27 +5,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="view.LoginViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginViewController">
    <children>
-      <ImageView fitHeight="104.0" fitWidth="114.0" layoutX="280.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/user%20-%20log%20in.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="287.0" layoutY="156.0" text="Sign In">
+      <Label layoutX="287.0" layoutY="156.0" text="Log in">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="223.0" layoutY="210.0" prefHeight="30.0" prefWidth="220.0" promptText="Username" />
-      <PasswordField layoutX="223.0" layoutY="255.0" prefHeight="30.0" prefWidth="220.0" promptText="Password" />
-      <Button layoutX="286.0" layoutY="299.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="91.0" text="Login" />
-      <Hyperlink layoutX="275.0" layoutY="395.0" text="Create new account" />
+      <TextField fx:id="usernameField" layoutX="223.0" layoutY="210.0" prefHeight="30.0" prefWidth="220.0" promptText="Username" />
+      <PasswordField fx:id="passwordField" layoutX="223.0" layoutY="255.0" prefHeight="30.0" prefWidth="220.0" promptText="Password" />
+      <Button fx:id="loginButton" layoutX="286.0" layoutY="299.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="46.0" prefWidth="91.0" text="Login" />
+      <Hyperlink fx:id="newAccount" layoutX="275.0" layoutY="395.0" onAction="#onNewAccount" text="Create new account" />
    </children>
 </AnchorPane>

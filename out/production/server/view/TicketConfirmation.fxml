@@ -7,20 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TicketConfirmationViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="959.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TicketConfirmationViewController">
    <children>
-      <AnchorPane prefHeight="794.0" prefWidth="199.0">
+      <AnchorPane prefHeight="743.0" prefWidth="199.0">
          <children>
-            <Label layoutX="57.0" layoutY="574.0" text="17/4/2024">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label layoutX="67.0" layoutY="628.0" text="8:09 PM">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
 
             <Label layoutX="36.0" layoutY="182.0" prefHeight="47.0" prefWidth="142.0" text="Welcome">
                <font>
@@ -32,9 +22,9 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="signOut" layoutX="20.0" layoutY="689.0" mnemonicParsing="false" onAction="#onSignOut" prefHeight="47.0" prefWidth="55.0" />
+            <Button fx:id="signOut" layoutX="16.0" layoutY="673.0" mnemonicParsing="false" onAction="#onSignOut" prefHeight="47.0" prefWidth="55.0" />
 
-            <Label layoutX="96.0" layoutY="697.0" text="Sign out">
+            <Label layoutX="100.0" layoutY="681.0" text="Sign out">
                <font>
                   <Font size="20.0" />
                </font>
@@ -44,7 +34,7 @@
 
                </graphic>
             </Button>
-            <Button fx:id="ticketConfirmation" layoutX="16.0" layoutY="382.0" mnemonicParsing="false" onAction="#onTicketConfirmation" prefHeight="56.0" prefWidth="183.0" text="Ticket confimations">
+            <Button fx:id="ticketConfirmation" layoutX="16.0" layoutY="382.0" mnemonicParsing="false" onAction="#onTicketConfirmation" prefHeight="56.0" prefWidth="183.0" text="Order confimations">
                <graphic>
 
                </graphic>
@@ -58,38 +48,49 @@
       </AnchorPane>
       <Label layoutX="226.0" layoutY="47.0" prefHeight="86.0" prefWidth="474.0" text="Movie time">
          <font>
-            <Font size="84.0" />
+            <Font size="75.0" />
          </font>
       </Label>
      
-      <AnchorPane layoutX="226.0" layoutY="170.0" prefHeight="627.0" prefWidth="750.0">
+      <AnchorPane layoutX="206.0" layoutY="154.0" prefHeight="574.0" prefWidth="750.0">
          <children>
-            <Label layoutX="14.0" layoutY="477.0" prefHeight="18.0" prefWidth="527.0" text="* By upgrading specific ticket to VIP, you get a free snack +  soda and 35 fidelity points" />
-            <TableView fx:id="screeningsTable" layoutX="1.0" layoutY="35.0" prefHeight="434.0" prefWidth="584.0">
+            <Label layoutX="14.0" layoutY="240.0" prefHeight="18.0" prefWidth="571.0" text="* By upgrading specific ticket to VIP, you get a free snack +  soda and 35 fidelity points" />
+            <TableView fx:id="screeningsTable" layoutX="1.0" layoutY="35.0" prefHeight="198.0" prefWidth="584.0">
               <columns>
                 <TableColumn fx:id="seat" prefWidth="89.60003662109375" text="Seat" />
                 <TableColumn fx:id="movie" prefWidth="119.199951171875" text="Movie" />
                   <TableColumn fx:id="date" prefWidth="107.20001220703125" text="Date " />
-                  <TableColumn fx:id="time" prefWidth="89.5999755859375" text="Time" />
-                  <TableColumn fx:id="ticketType" prefWidth="104.0" text="Ticket Type" />
-                  <TableColumn fx:id="snacks" prefWidth="71.99993896484375" text="Snacks" />
+                  <TableColumn fx:id="time" prefWidth="120.7999267578125" text="Time" />
+                  <TableColumn fx:id="ticketType" prefWidth="144.800048828125" text="Ticket Type" />
               </columns>
             </TableView>
-            <Button fx:id="upgradeToVIP" layoutX="602.0" layoutY="210.0" mnemonicParsing="false" onAction="#onUpgradeToVIP" text="Upgrade to VIP" />
-            <Button fx:id="cancel" layoutX="70.0" layoutY="526.0" mnemonicParsing="false" onAction="#onCancelOrder" text="Cancel order" />
-            <Button fx:id="snackSelection" layoutX="599.0" layoutY="288.0" mnemonicParsing="false" onAction="#onSnackSelection" text="Snack selection " />
-            <Label layoutX="623.0" layoutY="179.0" prefHeight="18.0" prefWidth="55.0" text="+50 DKK" />
-            <Button fx:id="confirmOrder" layoutX="603.0" layoutY="513.0" mnemonicParsing="false" onAction="#onConfirmOrder" text="Confirm order" />
-            <Label layoutX="623.0" layoutY="35.0" text="Total:" textFill="#ff4d00">
+            <Button fx:id="upgradeToVIP" layoutX="603.0" layoutY="94.0" mnemonicParsing="false" onAction="#onUpgradeToVIP" text="Upgrade to VIP ticket" />
+            <Button fx:id="cancel" layoutX="29.0" layoutY="526.0" mnemonicParsing="false" onAction="#onCancelOrder" text="Cancel order" />
+            <Button fx:id="snackSelection" layoutX="618.0" layoutY="298.0" mnemonicParsing="false" onAction="#onSnackSelection" text="Snack selection " />
+            <Label layoutX="632.0" layoutY="57.0" prefHeight="27.0" prefWidth="72.0" text="+50 DKK">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Button fx:id="confirmOrder" layoutX="622.0" layoutY="526.0" mnemonicParsing="false" onAction="#onConfirmOrder" text="Confirm order" />
+            <Label layoutX="639.0" layoutY="446.0" text="Total:" textFill="#ff4d00">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="620.0" layoutY="70.0" text="0 DKK" textFill="#ff4d00">
+            <Label layoutX="635.0" layoutY="481.0" text="0 DKK" textFill="#ff4d00">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
+            <TableView fx:id="screeningsTable1" layoutX="3.0" layoutY="266.0" prefHeight="198.0" prefWidth="584.0">
+               <columns>
+                  <TableColumn fx:id="movie1" prefWidth="163.199951171875" text="Snack name" />
+                  <TableColumn fx:id="date1" prefWidth="203.19998168945312" text="Size" />
+                  <TableColumn fx:id="time1" prefWidth="219.20001220703125" text="Price" />
+               </columns>
+            </TableView>
+            <Button fx:id="snackSelection1" layoutX="617.0" layoutY="365.0" mnemonicParsing="false" onAction="#onSnackSelection" prefHeight="26.0" prefWidth="101.0" text="Delete snack" />
+            <Button fx:id="upgradeToVIP1" layoutX="603.0" layoutY="171.0" mnemonicParsing="false" onAction="#onUpgradeToVIP" prefHeight="26.0" prefWidth="130.0" text="Cancel ticket" />
          </children>
       </AnchorPane>
    </children>

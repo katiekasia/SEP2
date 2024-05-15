@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="29.0" layoutY="26.0" text="Order ID:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="72.0" text="Movie:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="317.0" layoutY="26.0" text="Date:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="316.0" layoutY="72.0" text="Time:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="132.0" layoutY="26.0" text="1">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="110.0" layoutY="72.0" text="Bullet Train">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="374.0" layoutY="26.0" text="26/4/2024">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="372.0" layoutY="72.0" text="18:00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="147.0" layoutY="134.0" text="Total price:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="256.0" layoutY="134.0" text="420 DKK">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TableView layoutX="10.0" layoutY="196.0" prefHeight="118.0" prefWidth="454.0">
+        <columns>
+          <TableColumn prefWidth="219.99999713897705" text="Seat" />
+          <TableColumn prefWidth="234.40003967285156" text="TicketType" />
+        </columns>
+      </TableView>
+      <TableView layoutX="10.0" layoutY="350.0" prefHeight="118.0" prefWidth="454.0">
+         <columns>
+            <TableColumn prefWidth="147.99999713897705" text="Snack Name" />
+            <TableColumn prefWidth="136.0000762939453" text="Size" />
+            <TableColumn prefWidth="171.99993896484375" text="Price" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

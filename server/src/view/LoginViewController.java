@@ -2,6 +2,7 @@ package view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
@@ -15,6 +16,7 @@ public class LoginViewController
   @FXML private TextField usernameField;
   @FXML private PasswordField passwordField;
   @FXML private Button loginButton;
+  @FXML private Hyperlink newAccount;
 
   public void init(ViewHandler viewHandler, LoginViewModel viewModel,
       Region root)
@@ -33,6 +35,14 @@ public class LoginViewController
         passwordField.getText()));
   }
 
+  @FXML public void onLogin()
+  {
+
+  }
+  @FXML public void onNewAccount()
+  {
+
+  }
   public Region getRoot()
   {
     return root;

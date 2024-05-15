@@ -1,20 +1,22 @@
 package view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import viewmodel.TransitionPageViewModel;
 import viewmodel.ViewState;
 
+import java.util.function.UnaryOperator;
+
 public class TransitionPageViewController
 {
 
-    private Region root;
-    private TransitionPageViewModel viewModel;
-    private ViewHandler viewHandler;
-    private ViewState viewState;
+  private Region root;
+  private TransitionPageViewModel viewModel;
+  private ViewHandler viewHandler;
+  private ViewState viewState;
+  @FXML private TextField numberOfStandartTickets;
+  @FXML private TextField numberOfVIPTickets;
 
   @FXML private Label username;
   @FXML private Label movieTitle;
@@ -23,8 +25,6 @@ public class TransitionPageViewController
   @FXML private Label movieDate;
   @FXML private Label movieTime;
   @FXML private Label roomID;
-  @FXML private ChoiceBox<Integer> numberOfStandartTickets;
-  @FXML private ChoiceBox<Integer> numberOfVIPTickets;
   @FXML private Button fidelityPoints;
   @FXML private Button manage;
   @FXML private Button signOut;
@@ -32,40 +32,53 @@ public class TransitionPageViewController
   @FXML private Button backToMovieSelection;
   @FXML private Button goToSeatSelection;
   @FXML private Label totalPrice;
-    public void init(ViewHandler viewHandler, TransitionPageViewModel viewModel, Region root)
-    {
-      this.viewHandler = viewHandler;
-      this.viewModel = viewModel;
-      this.root = root;
-      this.viewState = viewModel.getViewState();
-movieTitle.setText(viewState.getSelectedScreening().movieProperty().get());
-length.setText(String.valueOf(viewState.getSelectedScreening().lengthProperty().get()));
-movieGenre.setText(viewState.getSelectedScreening().genreProperty().get());
-movieDate.setText(viewState.getSelectedScreening().dateProperty().get());
-movieTime.setText(viewState.getSelectedScreening().timeProperty().get());
-roomID.setText(String.valueOf(viewState.getSelectedScreening().roomProperty().get()));
+  public void init(ViewHandler viewHandler, TransitionPageViewModel viewModel, Region root)
+  {
+    this.viewHandler = viewHandler;
+    this.viewModel = viewModel;
+    this.root = root;
+    this.viewState = viewModel.getViewState();
+    movieTitle.setText(viewState.getSelectedScreening().movieProperty().get());
+    length.setText(String.valueOf(viewState.getSelectedScreening().lengthProperty().get()));
+    movieGenre.setText(viewState.getSelectedScreening().genreProperty().get());
+    movieDate.setText(viewState.getSelectedScreening().dateProperty().get());
+    movieTime.setText(viewState.getSelectedScreening().timeProperty().get());
+    roomID.setText(String.valueOf(viewState.getSelectedScreening().roomProperty().get()));
 
-      initializeTicketChoiceBoxes();
-    }
-  private void initializeTicketChoiceBoxes() {
-    numberOfStandartTickets.getItems().addAll(0, 1, 2, 3, 4, 5); // or any other logic
-    numberOfVIPTickets.getItems().addAll(0, 1, 2, 3, 4, 5); // or any other logic
+    initializeTicketInputFields();
+  }
+  private void initializeTicketInputFields() {
+    UnaryOperator<TextFormatter.Change> integerFilter = change -> {
+      String newText = change.getControlNewText();
+      if (newText.matches("([1-9]|[1-3][0-9]|4[0-4]|0)?")) {
+        return change;
+      }
+      return null;
+    };
 
-    // Add listeners to update the total price
-    numberOfStandartTickets.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateTotal());
-    numberOfVIPTickets.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateTotal());
+    numberOfStandartTickets.setTextFormatter(new TextFormatter<>(integerFilter));
+    numberOfVIPTickets.setTextFormatter(new TextFormatter<>(integerFilter));
+
+    numberOfStandartTickets.textProperty().addListener((obs, oldVal, newVal) -> updateTotal());
+    numberOfVIPTickets.textProperty().addListener((obs, oldVal, newVal) -> updateTotal());
   }
 
   private void updateTotal() {
-    int standardTickets = numberOfStandartTickets.getValue() != null ? numberOfStandartTickets.getValue() : 0;
-    int vipTickets = numberOfVIPTickets.getValue() != null ? numberOfVIPTickets.getValue() : 0;
+    int standardTickets = parseTicketNumber(numberOfStandartTickets.getText());
+    int vipTickets = parseTicketNumber(numberOfVIPTickets.getText());
+    int total = standardTickets + vipTickets;
 
-    viewState.setNumberOfStandardTickets(standardTickets);
-    viewState.setNumberOfVIPTickets(vipTickets);
-
-    int total = standardTickets * 120 + vipTickets * 170;
-    totalPrice.setText(String.valueOf(total) + " DKK");
+    if (total <= 44) {
+      viewState.setNumberOfStandardTickets(standardTickets);
+      viewState.setNumberOfVIPTickets(vipTickets);
+      int totalPriceAmount = standardTickets * 120 + vipTickets * 170;
+      totalPrice.setText(String.valueOf(totalPriceAmount) + " DKK");
+    } else {
+      System.out.println("Total tickets cannot exceed 44. Please adjust your quantities.");
+      totalPrice.setText("Limit exceeded!");
+    }
   }
+
   @FXML public void onManage()
   {
 
@@ -74,25 +87,39 @@ roomID.setText(String.valueOf(viewState.getSelectedScreening().roomProperty().ge
   {
     //
   }
-  @FXML public void onTicketConfirmation()
-  {
 
-    viewHandler.openView("ticketConfirmation");
-  }
 
   @FXML public void onSignOut()
   {
 
   }
-  @FXML public void onBackToMovieSelection()
+
+  private int parseTicketNumber(String text) {
+    try {
+      return Integer.parseInt(text);
+    } catch (NumberFormatException e) {
+      return 0;
+    }
+  }
+  @FXML private void onBackToMovieSelection()
   {
     viewHandler.openView("mainPage");
   }
-  @FXML public void onBackToSeatSelection()
-  {
-    viewHandler.openView("seatMapping");
+
+  private boolean isValidTicketEntry() {
+    int standardTickets = parseTicketNumber(numberOfStandartTickets.getText());
+    int vipTickets = parseTicketNumber(numberOfVIPTickets.getText());
+    int totalTickets = standardTickets + vipTickets;
+
+    return totalTickets > 0 && totalTickets <= 44;
   }
 
-
+  @FXML public void onBackToSeatSelection() {
+    if (isValidTicketEntry()) {
+      viewHandler.openView("seatMapping");
+    } else {
+      System.out.println("Please enter valid ticket numbers before proceeding.");
+    }
+  }
 
 }
