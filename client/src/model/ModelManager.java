@@ -252,9 +252,13 @@ try
 
   @Override public ArrayList<Ticket> getAllTickets()
   {
+    System.out.println("error here");
     try
     {
       return client.getAllTickets();
+    }catch (NullPointerException e){
+      System.out.println("MAYBE FIX LATER");
+      //TODO
     }catch (Exception e){
       e.printStackTrace();
     }
