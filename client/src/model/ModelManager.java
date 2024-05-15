@@ -5,6 +5,7 @@ import mediator.RmiClient;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -48,22 +49,22 @@ public class ModelManager implements Model, PropertyChangeListener
 
   @Override public void logIn(User customer)
   {
-    //not for this sprint
+    client.logIn(customer);
   }
 
   @Override public void connect()
   {
-    //not for this sprint
+    client.connect();
   }
 
   @Override public void disconnect()
   {
-    //not for this sprint
+    client.disconnect();
   }
 
   @Override public int getPort()
   {
-    return PORT;
+    return client.getPort();
   }
 
   @Override public void setPort(int port)
@@ -73,12 +74,12 @@ public class ModelManager implements Model, PropertyChangeListener
 
   @Override public String getUsername()
   {
-    return null;
+    return client.getUsername();
   }
 
   @Override public String getHost()
   {
-    return HOST;
+    return client.getHost();
   }
 
   @Override public void reserveSeat(Seat seat, User customer,
@@ -167,13 +168,23 @@ try
 
   @Override public void logIn(String username, String password)
   {
-
+    try
+    {
+      client.logIn(username, password);
+    }catch (Exception e){
+      e.printStackTrace();
+    }
   }
 
   @Override public void register(String username, String password, String email,
       String firstName, String lastName, String phone)
   {
-
+    try
+    {
+      client.register(username, password, email, firstName, lastName, phone);
+    }catch (Exception e){
+      e.printStackTrace();
+    }
   }
 
   @Override public void addScreening(Screening screening)
@@ -307,6 +318,28 @@ try
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
-
+    switch (evt.getPropertyName()){
+      case "reserve seats":
+        propertyChangeSupport.firePropertyChange("reserveSeats", null, evt.getNewValue());
+        break;
+      case "reserve seat":
+        propertyChangeSupport.firePropertyChange("reserveSeat", null, evt.getNewValue());
+        break;
+      case "update seat to booked":
+        propertyChangeSupport.firePropertyChange("updateSeatToBooked", null, evt.getNewValue());
+        break;
+      case "add order":
+        propertyChangeSupport.firePropertyChange("addOrder", null, evt.getNewValue());
+        break;
+      case "add screening":
+        propertyChangeSupport.firePropertyChange("addScreening",null,evt.getNewValue());
+        break;
+      case "remove screening":
+        propertyChangeSupport.firePropertyChange("removeScreening", null, evt.getNewValue());
+        break;
+      case "remove by date":
+        propertyChangeSupport.firePropertyChange("removeByDate", null, evt.getNewValue());
+        break;
+    }
   }
 }

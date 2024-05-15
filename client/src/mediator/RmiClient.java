@@ -228,6 +228,28 @@ property.removePropertyChangeListener(listener);
   @Override public void propertyChange(ObserverEvent<String, String> event)
       throws RemoteException
   {
-
+    switch (event.getPropertyName()){
+      case "RESERVE SEATS":
+        property.firePropertyChange("reserve seats",null, event.getValue2());
+        break;
+      case "RESERVE SEAT":
+        property.firePropertyChange("reserve seat", null, event.getValue2());
+        break;
+      case "UPDATE SEAT TO BOOKED":
+        property.firePropertyChange("update seat to booked", null, event.getValue2());
+        break;
+      case "ADD ORDER":
+        property.firePropertyChange("add order", null, event.getValue2());
+        break;
+      case "ADD SCREENING":
+        property.firePropertyChange("add screening",null,event.getValue2());
+        break;
+      case "REMOVE SCREENING":
+        property.firePropertyChange("remove screening", null, event.getValue2());
+        break;
+      case "REMOVE BY DATE":
+        property.firePropertyChange("remove by date", null, event.getValue2());
+        break;
+    }
   }
 }

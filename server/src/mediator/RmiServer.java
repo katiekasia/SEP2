@@ -3,6 +3,7 @@ package mediator;
 
 import model.*;
 import utility.observer.listener.GeneralListener;
+import utility.observer.subject.PropertyChangeHandler;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -17,8 +18,10 @@ import java.util.ArrayList;
 public class RmiServer implements RemoteModel
 {
 private Model cinema;
+private PropertyChangeHandler<String ,String > property;
 public RmiServer(){
   cinema = new ModelManager();
+  property = new PropertyChangeHandler<>(this);
 try
 {
 startRegistry();
@@ -48,6 +51,7 @@ private void start() throws RemoteException, MalformedURLException
        Screening screening) throws RemoteException
   {
     cinema.reserveSeats(seats,customer, screening);
+    property.firePropertyChange("RESERVE SEATS", null, screening.getTime());
   }
 
   @Override public boolean checkSeatAvailability(int index, Screening screening)
@@ -60,6 +64,7 @@ private void start() throws RemoteException, MalformedURLException
       Screening screening) throws RemoteException
   {
     cinema.reserveSeat(seat,customer,screening);
+    property.firePropertyChange("RESERVE SEAT", null, screening.getTime());
   }
 
   @Override public Seat[] getAvailableSeats(Screening screening)
@@ -77,84 +82,89 @@ private void start() throws RemoteException, MalformedURLException
   @Override public void updateSeatToBooked(Seat seat, Ticket ticket)
   {
     cinema.updateSeatToBooked(seat, ticket);
+    property.firePropertyChange("UPDATE SEAT TO BOOKED", null, ticket.toString());
   }
 
   @Override public void addOrder(Order order) throws RemoteException
   {
     cinema.addOrder(order);
+    property.firePropertyChange("ADD ORDER", null, order.toString());
   }
 
   @Override public void logIn(String username, String password)
       throws RemoteException
   {
-
+    cinema.logIn(username,password);
   }
 
   @Override public void register(String username, String password, String email,
       String firstName, String lastName, String phone) throws RemoteException
   {
-
+    cinema.register(username, password, email, firstName, lastName, phone);
   }
 
   @Override public void addScreening(Screening screening) throws RemoteException
   {
-
+    cinema.addScreening(screening);
+    property.firePropertyChange("ADD SCREENING",null, screening.getTime());
   }
 
   @Override public void removeScreening(Screening screening)
       throws RemoteException
   {
-
+    cinema.removeScreening(screening);
+    property.firePropertyChange("REMOVE SCREENING", null, screening.getTime());
   }
 
   @Override public void removeByDate(SimpleDate date) throws RemoteException
   {
-
+    cinema.removeByDate(date);
+    property.firePropertyChange("REMOVE BY DATE", null, date.toString());
   }
 
   @Override public ArrayList<Screening> getAllScreenings()
       throws RemoteException
   {
-    return null;
+    return cinema.getAllScreenings();
   }
 
   @Override public int getNbOfScreenings() throws RemoteException
   {
-    return 0;
+    return cinema.getNbOfScreenings();
   }
 
   @Override public Screening getScreening(Screening screening)
       throws RemoteException
   {
-    return null;
+    return cinema.getScreening(screening);
   }
 
   @Override public ArrayList<Ticket> getAllTickets() throws RemoteException
   {
-    return null;
+    return cinema.getAllTickets();
   }
 
   @Override public User getUser() throws RemoteException
   {
-    return null;
+    return cinema.getUser();
   }
 
   @Override public Screening findScreeningBySeatId(String seatId)
       throws RemoteException
   {
-    return null;
+    return cinema.findScreeningBySeatId(seatId);
   }
 
   @Override public ArrayList<Screening> getScreaningsByMovieTitle(String title)
       throws RemoteException
   {
-    return null;
+    return cinema.getScreaningsByMovieTitle(title);
   }
 
   @Override public ArrayList<Screening> getScreeningsByDate(LocalDate date)
       throws RemoteException
   {
-    return null;
+    return cinema.getScreeningsByDate(date);
   }
 
   //Overrides for methods
@@ -166,13 +176,13 @@ private void start() throws RemoteException, MalformedURLException
   @Override public boolean addListener(GeneralListener<String, String> listener,
       String... propertyNames) throws RemoteException
   {
-    return false;
+    return property.addListener(listener, propertyNames);
   }
 
   @Override public boolean removeListener(
       GeneralListener<String, String> listener, String... propertyNames)
       throws RemoteException
   {
-    return false;
+    return property.removeListener(listener, propertyNames);
   }
 }
