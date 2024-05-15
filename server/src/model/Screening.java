@@ -1,8 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Screening {
+public class Screening implements Serializable
+{
 	private int hour;
 	private int minute;
 	private SimpleDate date;
