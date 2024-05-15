@@ -5,20 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00c2f093-610e-40a2-9078-53173a0f1b52" name="Changes" comment="listeners done">
-      <change afterPath="$PROJECT_DIR$/client/src/viewmodel/SimpleTicketView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/model/CancelledOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/model/ExpiredOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/model/OrderState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/model/PendingOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/viewmodel/SimpleOrderView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/viewmodel/SimpleSnackView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/model/CancelledOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/model/ExpiredOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/model/OrderState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/model/PendingOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/view/TicketConfirmationViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/view/TicketConfirmationViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/mediator/RemoteModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/mediator/RemoteModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/mediator/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/mediator/RmiClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/ModelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/viewmodel/SimpleScreeningView.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/viewmodel/SimpleScreeningView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/viewmodel/TicketConfirmationViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/viewmodel/TicketConfirmationViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/viewmodel/ViewState.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/viewmodel/ViewState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/view/TicketConfirmationViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/view/TicketConfirmationViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/viewmodel/SimpleScreeningView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/viewmodel/SimpleScreeningView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/viewmodel/TicketConfirmationViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/viewmodel/TicketConfirmationViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/viewmodel/ViewState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/viewmodel/ViewState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/model/ModelManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/ModelManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/mediator/RemoteModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/mediator/RemoteModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/mediator/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/mediator/RmiServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Model.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/ModelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Order.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,18 +53,20 @@
     "Application.DataBaseHandler.executor": "Run",
     "Application.MyApplication.executor": "Run",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/user/Documents/GitHub/SEP2/client/src/model"
+    "last_opened_file_path": "C:/Users/user/Documents/GitHub/SEP2/server/src/model"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\user\Documents\GitHub\SEP2\server\src\model" />
       <recent name="C:\Users\user\Documents\GitHub\SEP2\client\src\model" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="model" />
+      <recent name="mediator" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MyApplication (1)">
+  <component name="RunManager" selected="Application.ModelManager">
     <configuration name="DataBaseHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server_model.DataBaseHandler" />
       <module name="server" />
@@ -77,6 +87,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ModelManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="model.ModelManager" />
+      <module name="client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MyApplication (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MyApplication" />
       <module name="client" />
@@ -93,6 +116,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ModelManager" />
         <item itemvalue="Application.MyApplication (1)" />
         <item itemvalue="Application.MyApplication" />
         <item itemvalue="Application.DataBaseHandler" />
@@ -149,7 +173,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715761132709</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="listeners done">
+      <option name="closed" value="true" />
+      <created>1715764299089</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715764299089</updated>
+    </task>
+    <task id="LOCAL-00007" summary="listeners done">
+      <option name="closed" value="true" />
+      <created>1715764319886</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1715764319886</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

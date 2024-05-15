@@ -47,6 +47,11 @@ public class ModelManager implements Model, PropertyChangeListener
     propertyChangeSupport.removePropertyChangeListener(listener);
   }
 
+  @Override public void cancelOrder(Order order)
+  {
+    client.cancelOrder(order);
+  }
+
   @Override public void logIn(User customer)
   {
     client.logIn(customer);
@@ -71,6 +76,25 @@ public class ModelManager implements Model, PropertyChangeListener
   {
     this.PORT = port;
   }
+
+  @Override public Order[] getAllOrders(User user) throws RemoteException
+  {
+   return client.getAllOrders(user);
+  }
+
+  @Override public Snack[] getSnacksFromOrder(Order order)
+      throws RemoteException
+  {
+   return client.getSnacksFromOrder(order);
+  }
+
+  @Override public Ticket[] getTicketsFromOrder(Order order)
+      throws RemoteException
+  {
+    return client.getTicketsFromOrder(order);
+  }
+
+
 
   @Override public String getUsername()
   {

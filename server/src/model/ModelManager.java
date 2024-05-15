@@ -68,6 +68,11 @@ public class ModelManager implements Model
     return user.getUsername();
   }
 
+  @Override public void cancelOrder(Order order)
+  {
+    order.cancelOrder();
+  }
+
   @Override public void logIn(User customer)
   {
     //not for this sprint
@@ -238,10 +243,39 @@ public class ModelManager implements Model
     user.addOrder(order);
   }
 
+  @Override public Order[] getAllOrders(User user)
+  {
+    if (user.getOrders() != null){
+      Order[] result = user.getOrders().toArray(new Order[0]);
+      return result;
+    }
+    return null;
+  }
+
+  @Override public Snack[] getSnacksFromOrder(Order order)
+  {
+
+    if (order.getSnacks() != null){
+      Snack[] result = order.getSnacks().toArray(new Snack[0]);
+      return result;
+    }
+    return null;
+  }
+
+  @Override public Ticket[] getTicketsFromOrder(Order order)
+  {
+    if (order.getTickets() != null){
+      Ticket[] result = order.getTickets().toArray(new Ticket[0]);
+      return result;
+    }
+    return null;
+  }
+
   @Override public void logIn(String username, String password)
   {
 
   }
+
 
   @Override public void register(String username, String password, String email,
       String firstName, String lastName, String phone)

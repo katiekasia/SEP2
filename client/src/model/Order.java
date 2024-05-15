@@ -10,6 +10,7 @@ public class Order implements Serializable
   private SimpleDate orderDate;
   private ArrayList<Ticket> tickets;
   private ArrayList<Snack> snacks;
+  private OrderState orderState;
 
   public Order(int orderID){
     this.orderID = orderID;
@@ -17,9 +18,18 @@ public class Order implements Serializable
     this.orderPrice = 0;
     this.tickets = new ArrayList<>();
     this.snacks = new ArrayList<>();
+    this.orderState = new PendingOrder(this);
   }
 
+  public void setOrderState(OrderState orderState)
+  {
+    this.orderState = orderState;
+  }
 
+  public OrderState getOrderState()
+  {
+    return orderState;
+  }
 
   public void calculateOrderPrice()
   {
@@ -33,29 +43,42 @@ public class Order implements Serializable
     this.orderPrice = price;
   }
   public void addSnack(Snack snack){
-    snacks.add(snack);
-    calculateOrderPrice();
+    if (orderState instanceof PendingOrder){
+      snacks.add(snack);
+      calculateOrderPrice();
+    }else throw new IllegalStateException("Order has expired and cannot be cancelled or modified.");
   }
   public void removeSnack(Snack snack){
-    snacks.remove(snack);
-    calculateOrderPrice();
+if (orderState instanceof PendingOrder){
+  snacks.remove(snack);
+  calculateOrderPrice();
+}else throw new IllegalStateException("Order has expired and cannot be cancelled or modified.");
   }
   public void removeTicket(Ticket ticket){
-    if (tickets.size() > 1)
+    if (orderState instanceof PendingOrder)
     {
-      tickets.remove(ticket);
-      ticket.cancelTicket();
-      calculateOrderPrice();
-    }else {
-      throw new IllegalStateException("client_model.Order cannot have 0 tickets");
-    }
+      if (tickets.size() > 1)
+      {
+        tickets.remove(ticket);
+        ticket.cancelTicket();
+        calculateOrderPrice();
+      }
+      else
+      {
+        throw new IllegalStateException("Order cannot have 0 tickets");
+      }
+    }else throw new IllegalStateException("Order has expired and cannot be cancelled or modified.");
   }
   public void addTicket(Ticket ticket){
-    tickets.add(ticket);
-    this.orderDate = tickets.get(0).getScreening().getDate();
-    calculateOrderPrice();
+    if (orderState instanceof PendingOrder){
+      tickets.add(ticket);
+      this.orderDate = tickets.get(0).getScreening().getDate();
+      calculateOrderPrice();
+    }else throw new IllegalStateException("Order has expired and cannot be cancelled or modified.");
   }
-
+public void cancelOrder(){
+    orderState.cancel(this);
+}
 
 //*******************************************************Getters and setters*********************************8
   public ArrayList<Ticket> getTickets()

@@ -12,6 +12,10 @@ public interface RemoteModel extends Remote, RemoteSubject<String ,String >
 {
   public void reserveSeats(Seat[] seats, User customer,
       Screening screening ) throws RemoteException;
+  Order[] getAllOrders(User user) throws RemoteException;
+  Snack[] getSnacksFromOrder(Order order) throws RemoteException;
+  Ticket[] getTicketsFromOrder(Order order) throws RemoteException;
+  public void cancelOrder(Order order) throws RemoteException;
   public boolean checkSeatAvailability(int index, Screening screening) throws RemoteException;
 
   public void reserveSeat(Seat seat, User customer ,

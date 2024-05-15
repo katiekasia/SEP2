@@ -46,6 +46,16 @@ public class RmiClient implements Model, RemoteListener<String,String>
     }
   }
 
+  @Override public void cancelOrder(Order order)
+  {
+    try
+    {
+      server.cancelOrder(order);
+    }catch (Exception e){
+      e.printStackTrace();
+    }
+  }
+
   @Override public void logIn(User user)
   {
 
@@ -69,6 +79,23 @@ public class RmiClient implements Model, RemoteListener<String,String>
   @Override public void setPort(int port)
   {
 
+  }
+
+  @Override public Order[] getAllOrders(User user) throws RemoteException
+  {
+    return server.getAllOrders(user);
+  }
+
+  @Override public Snack[] getSnacksFromOrder(Order order)
+      throws RemoteException
+  {
+    return server.getSnacksFromOrder(order);
+  }
+
+  @Override public Ticket[] getTicketsFromOrder(Order order)
+      throws RemoteException
+  {
+    return server.getTicketsFromOrder(order);
   }
 
   @Override public String getUsername()

@@ -8,11 +8,15 @@ import java.util.ArrayList;
 
 public interface Model extends UnnamedPropertyChangeSubject
 {
+  void cancelOrder(Order order);
   public void logIn(User user) throws RemoteException;
   public void connect();
   public void disconnect();
   public int getPort();
   public void setPort(int port);
+  Order[] getAllOrders(User user) throws RemoteException;
+  Snack[] getSnacksFromOrder(Order order) throws RemoteException;
+  Ticket[] getTicketsFromOrder(Order order) throws RemoteException;
   public String getUsername();
   public String getHost();
   public void reserveSeats(Seat[] seats, User customer,
