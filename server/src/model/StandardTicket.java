@@ -1,6 +1,8 @@
 package model;
 
-public class StandardTicket extends Ticket
+import java.io.Serializable;
+
+public class StandardTicket extends Ticket implements Serializable
 {
   public StandardTicket(String ticketID, double ticketPrice, Seat seat,
        Screening screening, User customer, String ticketType)

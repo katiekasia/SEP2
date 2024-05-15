@@ -1,6 +1,8 @@
 package model;
 
-public class Popcorn extends Snack
+import java.io.Serializable;
+
+public class Popcorn extends Snack implements Serializable
 {
   public Popcorn(double price, String size)
   {

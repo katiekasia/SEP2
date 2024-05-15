@@ -37,9 +37,9 @@ try
     Screening[] allScreenings = model.getAllScreenings().toArray(new Screening[0]);
     for (Screening screening : allScreenings)
     {
-      User user = model.getUser();
+      User user = viewState.getUser();
       SimpleScreeningView simpleScreeningView = new SimpleScreeningView(
-          screening, user);
+          screening);
       screenings.add(simpleScreeningView);
 
     }
@@ -58,8 +58,8 @@ try
         try
         {
           Screening screening = model.findScreeningBySeatId(seatId);  // Assuming there's a method to find screenings by seat ID
-          User user = model.getUser();
-          SimpleScreeningView view = new SimpleScreeningView(screening, user);
+          User user = viewState.getUser();
+          SimpleScreeningView view = new SimpleScreeningView(screening);
           view.setSeatID(seatId); // Make sure SimpleScreeningView has this method
           updatedViews.add(view);
         }catch (Exception e){

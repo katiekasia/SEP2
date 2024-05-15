@@ -1,6 +1,8 @@
 package model;
 
-public abstract class Ticket
+import java.io.Serializable;
+
+public abstract class Ticket implements Serializable
 {
 	private String ticketID;
 	private double ticketPrice;

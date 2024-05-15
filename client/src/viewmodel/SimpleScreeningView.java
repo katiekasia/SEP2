@@ -13,7 +13,7 @@
     private StringProperty date;
     private StringProperty movie;
     private IntegerProperty room;
-    private IntegerProperty length;
+    private StringProperty length;
     private StringProperty genre;
     //for Ticket Confirmation table
     private StringProperty seatID;
@@ -30,19 +30,19 @@
   date = new SimpleStringProperty(screening.getDate().toString());
   movie = new SimpleStringProperty(screening.getMovie().getName());
   room = new SimpleIntegerProperty(screening.getRoom().getRoomID());
-  length = new SimpleIntegerProperty(screening.getMovie().getLenghth());
+  length = new SimpleStringProperty(screening.getMovie().getLenghth());
 
     }
-  public SimpleScreeningView(Screening screening, User user)
-  {
-    this.user = user;
-    this.screening = screening;
-    time = new SimpleStringProperty(screening.getTime());
-    date = new SimpleStringProperty(screening.getDate().toString());
-    movie = new SimpleStringProperty(screening.getMovie().getName());
-    seatID = new SimpleStringProperty(user.getOrders().get(0).getTickets().get(0).getSeat().getID());
-    ticketType= new SimpleStringProperty(user.getOrders().get(0).getTickets().get(0).getTicketType());
-  }
+//  public SimpleScreeningView(Screening screening, User user)
+//  {
+//    this.user = user;
+//    this.screening = screening;
+//    time = new SimpleStringProperty(screening.getTime());
+//    date = new SimpleStringProperty(screening.getDate().toString());
+//    movie = new SimpleStringProperty(screening.getMovie().getName());
+//    seatID = new SimpleStringProperty(user.getOrders().get(0).getTickets().get(0).getSeat().getID());
+//    ticketType= new SimpleStringProperty(user.getOrders().get(0).getTickets().get(0).getTicketType());
+//  }
     public void setRoom(int room)
     {
       this.room.set(room);
@@ -57,7 +57,7 @@
     public String getSeatID() {
       return seatID.get();
     }
-    public void setLength(int length)
+    public void setLength(String length)
     {
       this.length.set(length);
     }
@@ -79,7 +79,7 @@
       return screening;
     }
 
-    public IntegerProperty lengthProperty()
+    public StringProperty lengthProperty()
     {
       return length;
     }

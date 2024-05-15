@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -8,7 +9,7 @@ import java.time.LocalDate;
  * @author Michael Barczuk
  */
 
-public class SimpleDate implements Comparable<SimpleDate>
+public class SimpleDate implements Comparable<SimpleDate>, Serializable
 {
   private int day, month, year;
   private LocalDate date;

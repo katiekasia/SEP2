@@ -1,8 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Movie {
+public class Movie implements Serializable
+{
 
 	private String length;
 

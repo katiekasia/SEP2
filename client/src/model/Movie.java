@@ -1,8 +1,12 @@
 package model;
 
-public class Movie {
+import java.io.Serializable;
+import java.time.LocalDate;
 
-	private int length;
+public class Movie implements Serializable
+{
+
+	private String length;
 
 	private String description;
 
@@ -10,13 +14,15 @@ public class Movie {
 
 	private String genre;
 
+	private LocalDate releaseDate;
 
 
-	public Movie(int length, String description, String name, String genre) {
+	public Movie(String length, String description, String name, String genre, LocalDate releaseDate) {
 		this.length = length;
 		this.description = description;
 		this.name = name;
 		this.genre = genre;
+		this.releaseDate = releaseDate;
 
 	}
 
@@ -46,7 +52,7 @@ public class Movie {
 //	{
 //		this.days = screeningDays;
 //	} TODO useful for later
-	public int getLenghth() {
+	public String getLenghth() {
 		return length;
 	}
 
@@ -62,7 +68,7 @@ public class Movie {
 		return genre;
 	}
 
-	public void setLength(int length) {
+	public void setLength(String length) {
 this.length = length;
 	}
 

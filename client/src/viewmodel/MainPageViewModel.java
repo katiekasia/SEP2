@@ -9,6 +9,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import model.Model;
 import model.Screening;
+import model.User;
 
 import java.rmi.RemoteException;
 import java.time.LocalDate;
@@ -22,9 +23,11 @@ public class MainPageViewModel
   private ViewState viewState;
   private StringProperty input;
   private StringProperty username;
+  private User user;
 
   public MainPageViewModel(Model model, ViewState viewState)
   {
+    this.user = viewState.getUser();
     this.model = model;
     this.viewState = viewState;
     this.screenings = FXCollections.observableArrayList();

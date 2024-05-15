@@ -1,6 +1,8 @@
 package model;
 
-public class Room
+import java.io.Serializable;
+
+public class Room implements Serializable
 {
   private int roomID;
   private int nbSeats;
@@ -13,14 +15,16 @@ public class Room
     seats = new Seat[nbSeats];
     //setSeats();
   }
+/*
+  public void setSeats() {
+    for (int i = 0; i < seats.length; i++)
+    {
+      Seat temp = new Seat(i+1,false);
+      seats[i] = temp;
+    }
+  }
 
-//  public void setSeats() {
-//    for (int i = 0; i < seats.length; i++)
-//    {
-//      Seat temp = new Seat(i+1,false);
-//      seats[i] = temp;
-//    }
-//  }
+ */
   //Returns the amount of available seats
   public int availableSeats(){
     int count = 0;
