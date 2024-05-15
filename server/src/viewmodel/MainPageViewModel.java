@@ -29,6 +29,7 @@ public class MainPageViewModel
     this.screenings = FXCollections.observableArrayList();
     this.selectedObject = new SimpleObjectProperty<>();
     this.input = new SimpleStringProperty();
+    updateUsername();
 
     loadFromModel();
   }
@@ -43,6 +44,19 @@ public class MainPageViewModel
           screening);
       screenings.add(simpleScreeningView);
     }
+  }
+
+  public void updateUsername()
+  {
+    if (viewState.getUser() != null)
+    {
+      username.set(viewState.getUser().getUsername());
+    }
+  }
+
+  public StringProperty usernameProperty()
+  {
+    return username;
   }
 
   public void setUsername(String username)

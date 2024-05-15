@@ -41,6 +41,9 @@ Screening getScreening(Screening screening);
   ArrayList<Screening> getScreaningsByMovieTitle(String title);
   ArrayList<Screening> getScreeningsByDate(LocalDate date);
 
+  public ArrayList<Order> getOrdersForUser(String username);
+
+
 /*
  public Ticket getTicketBySeat(Seat seat);
   public Seat getSeatByScreening(Screening screening);

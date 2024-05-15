@@ -14,9 +14,11 @@ public class ViewState
   private SimpleIntegerProperty numberOfVIPTickets = new SimpleIntegerProperty(
       0);
 
-  public ViewState(){
-    user = new User("Lorem", "John", "Doe", "333","mail@sw.sw");
+  public ViewState()
+  {
+    user = new User("Lorem", "John", "Doe", "333", "mail@sw.sw");
   }
+
   public SimpleScreeningView getSelectedScreening()
   {
     return selectedScreening;
@@ -32,7 +34,8 @@ public class ViewState
     this.selectedTicket = selectedTicket;
   }
 
-  public User getUser(){
+  public User getUser()
+  {
     return user;
   }
 
