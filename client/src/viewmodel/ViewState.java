@@ -8,6 +8,7 @@ public class ViewState
 {
   private SimpleScreeningView selectedScreening;
   private User user;
+  private SimpleTicketView selectedTicket;
   private SimpleIntegerProperty numberOfStandardTickets = new SimpleIntegerProperty(
       0);
   private SimpleIntegerProperty numberOfVIPTickets = new SimpleIntegerProperty(
@@ -20,6 +21,17 @@ public class ViewState
   {
     return selectedScreening;
   }
+
+  public SimpleTicketView getSelectedTicket()
+  {
+    return selectedTicket;
+  }
+
+  public void setSelectedTicket(SimpleTicketView selectedTicket)
+  {
+    this.selectedTicket = selectedTicket;
+  }
+
   public User getUser(){
     return user;
   }

@@ -16,11 +16,9 @@
     private StringProperty length;
     private StringProperty genre;
     //for Ticket Confirmation table
-    private StringProperty seatID;
+
     private Screening screening;
-    private User user;
-    private StringProperty ticketType;
-    private StringProperty snacks;
+
 
 
     public SimpleScreeningView(Screening screening){
@@ -48,15 +46,9 @@
       this.room.set(room);
     }
 
-    public void setSeatID(String  seatID) {
-      this.seatID.set(seatID);
-    }
-    public StringProperty seatIDProperty() {
-      return seatID;
-    }
-    public String getSeatID() {
-      return seatID.get();
-    }
+
+
+
     public void setLength(String length)
     {
       this.length.set(length);
@@ -66,13 +58,8 @@
     {
       this.screening = screening;
     }
-    public User getUser()
-    {
-      return user;
-    }
-    public StringProperty ticketTypeProperty() {
-      return ticketType;
-    }
+
+
 
     public Screening getScreening()
     {
@@ -129,8 +116,6 @@
       return date;
     }
 
-    public void setTicketType(String type) {
-      this.ticketType.set(type);
-    }
+
 
   }

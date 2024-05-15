@@ -101,7 +101,17 @@ public class ModelManager implements Model
     @Override public ArrayList<Ticket> getAllTickets()
 
    {
-      return user.getOrders().get(0).getTickets();
+     ArrayList<Ticket> tickets = new ArrayList<>();
+     for (int i = 0; i < user.getOrders().size(); i++)
+     {
+       for (Ticket ticket : user.getOrders().get(i).getTickets()){
+         if (ticket != null)
+         {
+           tickets.add(ticket);
+         }
+       }
+     }
+      return tickets;
    }
     /*
     @Override public Seat getSeatByScreening(Screening screening)

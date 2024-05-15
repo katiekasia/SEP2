@@ -8,10 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import model.Order;
-import viewmodel.SeatMappingViewModel;
-import viewmodel.SimpleScreeningView;
-import viewmodel.TicketConfirmationViewModel;
-import viewmodel.ViewState;
+import viewmodel.*;
 
 public class TicketConfirmationViewController
 {
@@ -19,7 +16,7 @@ public class TicketConfirmationViewController
   private TicketConfirmationViewModel viewModel;
   private ViewHandler viewHandler;
   private ViewState viewState;
-  private SimpleScreeningView selected;
+  private SimpleTicketView selected;
 
   @FXML private Button fidelityPoints;
   @FXML private Button manage;
@@ -70,13 +67,12 @@ public class TicketConfirmationViewController
 
 
     screeningsTable.getSelectionModel().selectedItemProperty().addListener((obs,oldVal, newVal) -> {
-      selected = (SimpleScreeningView) newVal;
-      viewState.setSelectedScreening((SimpleScreeningView) newVal);
+      selected = (SimpleTicketView) newVal;
+      viewState.setSelectedTicket((SimpleTicketView) newVal);
       viewModel.setSelected();
 
 
-      ObservableList<String> selectedSeats = seatMappingViewModel.getSelectedSeats();
-      viewModel.updateScreeningsWithSelectedSeats(selectedSeats);
+
 
       // Bind the updated screenings list to the table view
       screeningsTable.setItems(screeningsTable.getItems());
