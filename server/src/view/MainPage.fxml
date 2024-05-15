@@ -42,7 +42,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="fidelityPoints" layoutX="14.0" layoutY="297.0" mnemonicParsing="false" onAction="#onFidelityPoints" prefHeight="56.0" prefWidth="183.0" text="Fidelity points">
+            <Button fx:id="fidelityPoints" layoutX="11.0" layoutY="308.0" mnemonicParsing="false" onAction="#onFidelityPoints" prefHeight="56.0" prefWidth="183.0" text="Fidelity points">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -51,7 +51,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="ticketConfirmation" layoutX="16.0" layoutY="382.0" mnemonicParsing="false" onAction="#onTicketConfirmation" prefHeight="56.0" prefWidth="183.0" text="Order confimations">
+            <Button fx:id="ticketConfirmation" layoutX="14.0" layoutY="409.0" mnemonicParsing="false" onAction="#onTicketConfirmation" prefHeight="56.0" prefWidth="183.0" text="Order confimations">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -60,7 +60,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="manage" layoutX="15.0" layoutY="473.0" mnemonicParsing="false" onAction="#onManage" prefHeight="56.0" prefWidth="183.0" text="Manage account">
+            <Button fx:id="manage" layoutX="15.0" layoutY="526.0" mnemonicParsing="false" onAction="#onManage" prefHeight="56.0" prefWidth="183.0" text="Manage account">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>

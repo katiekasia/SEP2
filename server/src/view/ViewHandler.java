@@ -33,7 +33,7 @@ public class ViewHandler
     /*
     later change to Login page after the correct SPRINT
      */
-    openView("login");
+    openView("mainPage");
   }
   public void openView(String id)
   {

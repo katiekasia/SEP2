@@ -56,15 +56,15 @@
          <children>
             <TableView fx:id="screeningsTable" layoutX="67.0" layoutY="110.0" prefHeight="264.0" prefWidth="586.0">
               <columns>
-                <TableColumn fx:id="seat" prefWidth="285.60003662109375" text="Order ID" />
-                <TableColumn fx:id="movie" prefWidth="300.0" text="Total Price" />
+                <TableColumn prefWidth="285.60003662109375" text="Order ID" />
+                <TableColumn prefWidth="300.0" text="Total Price" />
               </columns>
             </TableView>
-            <Button fx:id="upgradeToVIP" layoutX="156.0" layoutY="425.0" mnemonicParsing="false" onAction="#onUpgradeToVIP" prefHeight="47.0" prefWidth="142.0" text="Cancel order">
+            <Button layoutX="156.0" layoutY="425.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="142.0" text="Cancel order">
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <Button fx:id="upgradeToVIP1" layoutX="410.0" layoutY="425.0" mnemonicParsing="false" onAction="#onUpgradeToVIP" prefHeight="47.0" prefWidth="158.0" text="Order Details">
+            <Button layoutX="410.0" layoutY="425.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="158.0" text="Order Details">
                <font>
                   <Font size="20.0" />
                </font>

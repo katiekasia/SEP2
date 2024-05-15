@@ -49,7 +49,7 @@ public class MainViewController
     viewModel.bindScreenings(screeningsTable.getItems());
     searchBar.textProperty().bindBidirectional(viewModel.inputProperty());
 
-    username.textProperty().bind(viewModel.usernameProperty());
+    //username.textProperty().bind(viewModel.usernameProperty());
     this.title.setCellValueFactory(new PropertyValueFactory<>("movie"));
     this.screeningTime.setCellValueFactory(new PropertyValueFactory<>("length"));
     this.date.setCellValueFactory(new PropertyValueFactory<>("date"));

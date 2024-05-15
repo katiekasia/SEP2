@@ -65,13 +65,13 @@
               </columns>
             </TableView>
             <Button fx:id="upgradeToVIP" layoutX="603.0" layoutY="94.0" mnemonicParsing="false" onAction="#onUpgradeToVIP" text="Upgrade to VIP ticket" />
-            <Button fx:id="cancel" layoutX="29.0" layoutY="526.0" mnemonicParsing="false" onAction="#onCancelOrder" text="Cancel order" />
+            <Button fx:id="cancel" layoutX="14.0" layoutY="526.0" mnemonicParsing="false" onAction="#onCancelOrder" prefHeight="47.0" prefWidth="94.0" text="Cancel order" />
             <Button fx:id="snackSelection" layoutX="618.0" layoutY="298.0" mnemonicParsing="false" onAction="#onSnackSelection" text="Snack selection " />
             <Label layoutX="632.0" layoutY="57.0" prefHeight="27.0" prefWidth="72.0" text="+50 DKK">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Button fx:id="confirmOrder" layoutX="622.0" layoutY="526.0" mnemonicParsing="false" onAction="#onConfirmOrder" text="Confirm order" />
+            <Button fx:id="confirmOrder" layoutX="621.0" layoutY="526.0" mnemonicParsing="false" onAction="#onConfirmOrder" prefHeight="47.0" prefWidth="94.0" text="Confirm order" />
             <Label layoutX="639.0" layoutY="446.0" text="Total:" textFill="#ff4d00">
                <font>
                   <Font size="24.0" />
