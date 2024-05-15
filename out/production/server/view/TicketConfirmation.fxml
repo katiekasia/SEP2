@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="743.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TicketConfirmationViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="959.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TicketConfirmationViewController">
    <children>
       <AnchorPane prefHeight="743.0" prefWidth="199.0">
          <children>
@@ -22,9 +22,9 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="signOut" layoutX="20.0" layoutY="689.0" mnemonicParsing="false" onAction="#onSignOut" prefHeight="47.0" prefWidth="55.0" />
+            <Button fx:id="signOut" layoutX="16.0" layoutY="673.0" mnemonicParsing="false" onAction="#onSignOut" prefHeight="47.0" prefWidth="55.0" />
 
-            <Label layoutX="96.0" layoutY="697.0" text="Sign out">
+            <Label layoutX="100.0" layoutY="681.0" text="Sign out">
                <font>
                   <Font size="20.0" />
                </font>
@@ -52,7 +52,7 @@
          </font>
       </Label>
      
-      <AnchorPane layoutX="226.0" layoutY="170.0" prefHeight="574.0" prefWidth="720.0">
+      <AnchorPane layoutX="206.0" layoutY="154.0" prefHeight="574.0" prefWidth="750.0">
          <children>
             <Label layoutX="14.0" layoutY="240.0" prefHeight="18.0" prefWidth="527.0" text="* By upgrading specific ticket to VIP, you get a free snack +  soda and 35 fidelity points" />
             <TableView fx:id="screeningsTable" layoutX="1.0" layoutY="35.0" prefHeight="198.0" prefWidth="584.0">
