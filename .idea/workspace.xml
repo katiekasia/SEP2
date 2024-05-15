@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="00c2f093-610e-40a2-9078-53173a0f1b52" name="Changes" comment="listeners done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/model/DataBaseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/DataBaseHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/view/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/view/MainPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/view/TicketConfirmation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/view/TicketConfirmation.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/ScreeningDay.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/MainPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/SeatMapping.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/SeatMapping.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/TicketConfirmation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/TicketConfirmation.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
