@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00c2f093-610e-40a2-9078-53173a0f1b52" name="Changes" comment="listeners done" />
+    <list default="true" id="00c2f093-610e-40a2-9078-53173a0f1b52" name="Changes" comment="listeners done">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/TicketConfirmation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/TicketConfirmation.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +24,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< Updated upstream
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.DataBaseHandler.executor&quot;: &quot;Run&quot;,
@@ -31,6 +35,18 @@
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.16949153&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DataBaseHandler.executor": "Run",
+    "Application.MyApplication (1).executor": "Run",
+    "Application.MyApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/user/Documents/GitHub/SEP2/client/src/model",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.16949153"
+>>>>>>> Stashed changes
   }
 }</component>
   <component name="RecentsManager">
