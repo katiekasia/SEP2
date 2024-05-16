@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="00c2f093-610e-40a2-9078-53173a0f1b52" name="Changes" comment="listeners done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/DataBaseHandler.java" afterDir="false" />
@@ -13,12 +14,19 @@
       <change beforePath="$PROJECT_DIR$/out/production/client/model/OrderState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/model/OrderState.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/client/model/PendingOrder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/model/PendingOrder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" afterDir="false" />
+=======
+    <list default="true" id="1f1a0f87-e887-4a3f-81c6-fc9ef83f0fe1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/OrderConfirmation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/OrderConfirmation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/OrderDetails.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/OrderDetails.fxml" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< Updated upstream
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -86,6 +94,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MyApplication.executor": "Run",
+    "git-widget-placeholder": "main"
+  }
+}]]></component>
+  <component name="RunManager">
+>>>>>>> Stashed changes
     <configuration name="MyApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MyApplication" />
       <module name="server" />
@@ -93,6 +110,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< Updated upstream
     <configuration name="Room" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="model.Room" />
       <module name="client" />
@@ -113,11 +131,16 @@
         <item itemvalue="Application.MyApplication" />
         <item itemvalue="Application.ModelManager" />
         <item itemvalue="Application.DataBaseHandler" />
+=======
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MyApplication" />
+>>>>>>> Stashed changes
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+<<<<<<< Updated upstream
     <task id="LOCAL-00001" summary="s">
       <option name="closed" value="true" />
       <created>1715724335832</created>
@@ -198,33 +221,8 @@
       <updated>1715846052143</updated>
     </task>
     <option name="localTasksCounter" value="10" />
+=======
+>>>>>>> Stashed changes
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="s" />
-    <MESSAGE value="listeners done" />
-    <option name="LAST_COMMIT_MESSAGE" value="listeners done" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/mediator/RmiServer.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
