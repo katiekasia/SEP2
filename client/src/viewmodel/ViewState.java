@@ -16,7 +16,7 @@ public class ViewState
 
   public ViewState()
   {
-    user = new User("Lorem", "John", "Doe", "333", "mail@sw.sw");
+    user = new User("Lorem", "John", "Doe", "333", "mail@sw.sw", "password");
   }
 
   public SimpleScreeningView getSelectedScreening()

@@ -113,10 +113,10 @@ private void start() throws RemoteException, MalformedURLException
     property.firePropertyChange("ADD ORDER", null, order.toString());
   }
 
-  @Override public void logIn(String username, String password)
+  @Override public User logIn(String username, String password)
       throws RemoteException
   {
-    cinema.logIn(username,password);
+   return cinema.logIn(username,password);
   }
 
   @Override public void register(String username, String password, String email,

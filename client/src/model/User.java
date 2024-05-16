@@ -10,14 +10,20 @@ public class User implements Serializable
   private String lstName;
   private String phoneNumber;
   private String email;
+  private String password;
   private ArrayList<Order> orders;
-  public User(String username, String fstName, String lstName, String phone, String email){
+  public User(String username, String fstName, String lstName, String phone, String email, String password){
     this.username = username;
     this.email = email;
     this.fstName = fstName;
     this.lstName = lstName;
     this.phoneNumber = phone;
+    this.password= password;
     orders = new ArrayList<>();
+  }
+  public String getPassword()
+  {
+    return password;
   }
   //Adds an order to the list
   public void addOrder(Order order){
@@ -35,6 +41,9 @@ public class User implements Serializable
 
   public ArrayList<Order> getOrders()
   {
+    if (orders.isEmpty()){
+      return null;
+    }
     return orders;
   }
 

@@ -31,12 +31,13 @@ public class LoginViewController
         .bindBidirectional(viewModel.getPasswordField());
     this.loginButton.setVisible(true);
 
-    loginButton.setOnAction(event -> viewModel.login(usernameField.getText(),
-        passwordField.getText()));
+    loginButton.setOnAction(event -> viewModel.login());
   }
 
   @FXML public void onLogin()
   {
+    viewModel.login();
+    viewHandler.openView("mainPage");
 
   }
   @FXML public void onNewAccount()
