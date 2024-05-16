@@ -12,7 +12,7 @@ public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "7890";
+  private static final String PASSWORD = "VIAVIAVIA";
 
   private static Connection connection;
 
@@ -61,10 +61,11 @@ public class DataBaseHandler
         {
           String username = resultSet.getString("username");
           String fstName = resultSet.getString("name");
-          String lstName = resultSet.getString("surname");
+          String  lstName = resultSet.getString("surname");
           String phoneNumber = resultSet.getString("phone_number");
           String email = resultSet.getString("email");
-          User user = new User(username, fstName, lstName, phoneNumber, email);
+          String password = resultSet.getString("password");
+          User user = new User(username,fstName,lstName,phoneNumber,email, password);
           customers.add(user);
         }
       }

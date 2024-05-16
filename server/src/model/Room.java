@@ -13,18 +13,39 @@ public class Room implements Serializable
     this.roomID = roomID;
     this.nbSeats = nbSeats;
     seats = new Seat[nbSeats];
-    //setSeats();
+    setSeats();
   }
-/*
+
+
   public void setSeats() {
-    for (int i = 0; i < seats.length; i++)
+    for (int i = 0; i < 4; i++)
     {
-      Seat temp = new Seat(i+1,false);
-      seats[i] = temp;
+      String id = "";
+      switch (i){
+        case 0:
+          id ="A";
+          break;
+        case 1:
+          id = "B";
+          break;
+        case 2:
+          id = "C";
+          break;
+        case 3:
+          id = "D";
+          break;
+      }
+      for (int j = 0; j < 11; j++)
+      {
+        Seat seat = new Seat(id + (j+1),false);
+        for (int k = 0; k < seats.length; k++)
+        {
+          seats[k] = seat;
+        }
+      }
     }
   }
 
- */
   //Returns the amount of available seats
   public int availableSeats(){
     int count = 0;
