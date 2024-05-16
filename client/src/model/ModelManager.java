@@ -52,9 +52,17 @@ public class ModelManager implements Model, PropertyChangeListener
     client.cancelOrder(order);
   }
 
-  @Override public void logIn(User customer)
+  @Override public User logIn(String username, String password)
+      throws RemoteException
   {
-    client.logIn(customer);
+    try
+    {
+      return client.logIn(username, password);
+    }
+  catch(Exception e)
+  {
+    throw e;
+  }
   }
 
   @Override public void connect()
@@ -190,17 +198,8 @@ try
     }
   }
 
-  @Override public void logIn(String username, String password)
-  {
-    try
-    {
-      client.logIn(username, password);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
-  }
 
-  @Override public void register(String username, String password, String email,
+    @Override public void register(String username, String password, String email,
       String firstName, String lastName, String phone)
   {
     try

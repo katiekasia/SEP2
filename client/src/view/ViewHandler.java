@@ -33,7 +33,7 @@ public class ViewHandler
     /*
     later change to Login page after the correct SPRINT
      */
-    openView("mainPage");
+    openView("login");
   }
   public void openView(String id)
   {
@@ -45,7 +45,7 @@ public class ViewHandler
       case "seatMapping" -> root = loadSeatMappingView("SeatMapping.fxml");
       case "ticketConfirmation" -> root = loadTicketConfirmationView("TicketConfirmation.fxml");
       case "snackSelection" -> root = loadSnackSelectionView("SnackSelection.fxml");
-      case "login" -> root = loadLoginView("Loginpage.fxml");
+      case "login" -> root = loadLoginView("Login page.fxml");
       case "registerPage" -> root = loadRegisterView("Registerpage.fxml");
       //ALL THE OTHERS PAGES
     }

@@ -12,6 +12,7 @@ public interface RemoteModel extends Remote, RemoteSubject<String ,String >
 {
   public void reserveSeats(Seat[] seats, User customer,
       Screening screening ) throws RemoteException;
+  public User logIn(String username, String password) throws RemoteException;
   Order[] getAllOrders(User user) throws RemoteException;
   Snack[] getSnacksFromOrder(Order order) throws RemoteException;
   Ticket[] getTicketsFromOrder(Order order) throws RemoteException;
@@ -27,7 +28,6 @@ public interface RemoteModel extends Remote, RemoteSubject<String ,String >
   public void updateSeatToBooked(Seat seat, Ticket ticket) throws RemoteException;
 
   public void addOrder(Order order) throws RemoteException;
-  void logIn(String username, String password) throws RemoteException;
   void register(String username, String password, String email, String firstName, String lastName, String phone) throws RemoteException;
   void addScreening(Screening screening) throws RemoteException;
   void removeScreening(Screening screening) throws RemoteException;

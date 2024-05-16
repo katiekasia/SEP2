@@ -56,10 +56,6 @@ public class RmiClient implements Model, RemoteListener<String,String>
     }
   }
 
-  @Override public void logIn(User user)
-  {
-
-  }
 
   @Override public void connect()
   {
@@ -154,9 +150,9 @@ public class RmiClient implements Model, RemoteListener<String,String>
     server.addOrder(order);
   }
 
-  @Override public void logIn(String username, String password) throws RemoteException
+  @Override public User logIn(String username, String password) throws RemoteException
   {
-    server.logIn(username, password);
+    return server.logIn(username, password);
   }
 
   @Override public void register(String username, String password, String email,

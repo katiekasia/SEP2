@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -36,24 +37,33 @@ public class ModelManager implements Model
     {
       e.printStackTrace();
     }
-    DummyData();
+
+  }
+  @Override public User logIn(String username, String password)
+  {
+    try
+    {
+
+
+      ArrayList<User> users = DataBaseHandler.getAllCustomers();
+      for (User user : users)
+      {
+        //checking if they have the same username and password
+        if (user.getUsername().equals(username) && user.getPassword()
+            .equals(password))
+        {
+          return user;
+        }
+      }
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    propertyChangeSupport.firePropertyChange("user", null, user);
+    throw new IllegalStateException("No such user found.");
   }
 
-  public void DummyData()
-  {
-    //  Movie n = new Movie("420","ssdawd","movie","adsss", '2022-02-01');
-    //    Room r = new Room(12,35);
-    //    Screening screening = new Screening(10,30, LocalDate.now(),n,r);
-    //    Seat seat = new Seat("A1", false);
-    //    User customer= new User("Kasia", "kasia", "Olej", "7915355423", "emailsjdhh");
-    //    Ticket ticket = new StandardTicket(seat.getID(), 124.0,seat, screening, customer,"Standard");
-    //    Order order = new Order(0);
-    //    order.addTicket(ticket);
-    //    customer.addOrder(order);
-    //
-    //    user=customer;
-    //    screenings.addScreening(screening);
-  }
 
   @Override public void addListener(PropertyChangeListener listener)
   {
@@ -76,10 +86,7 @@ public class ModelManager implements Model
     order.cancelOrder();
   }
 
-  @Override public void logIn(User customer)
-  {
-    //not for this sprint
-  }
+
 
   @Override public void connect()
   {
@@ -285,11 +292,6 @@ public class ModelManager implements Model
       return result;
     }
     return null;
-  }
-
-  @Override public void logIn(String username, String password)
-  {
-
   }
 
 
