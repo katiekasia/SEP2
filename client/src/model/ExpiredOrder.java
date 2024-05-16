@@ -14,4 +14,9 @@ public class ExpiredOrder extends OrderState
   {
     throw new IllegalStateException("Order has expired and cannot be cancelled or modified.");
   }
+
+  @Override public String status()
+  {
+    return "Expired";
+  }
 }

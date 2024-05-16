@@ -11,4 +11,9 @@ public class CancelledOrder extends OrderState
   {
     throw new IllegalStateException("Order already cancelled.");
   }
+
+  @Override public String status()
+  {
+    return "Cancelled";
+  }
 }

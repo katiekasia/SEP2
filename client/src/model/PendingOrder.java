@@ -24,4 +24,9 @@ public class PendingOrder extends OrderState
   {
     order.setOrderState(new CancelledOrder(order));
   }
+
+  @Override public String status()
+  {
+    return "Pending";
+  }
 }
