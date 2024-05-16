@@ -71,52 +71,84 @@ public class DataBaseHandler
     }
     return customers;
   }
-  // METHOD TO GET ALL THE CUSTOMERS ( USERS ) FROM DATABASE
 
-  //TEST CLASS TO RETRIEVE CUSTOMERS //
-  public static void main(String[] args)
-  {
-    try
-    {
+  // METHOD TO GET ALL THE CUSTOMERS ( USERS ) FROM DATABASE
+  public static void main(String[] args) {
+    try {
       // Establishing a connection to the database
       Connection connection = getConnection();
 
-      if (connection != null)
-      {
+      if (connection != null) {
         System.out.println("Database connection successful!");
 
-        try (Statement statement = connection.createStatement())
-        {
-          statement.execute("SET SEARCH_PATH TO SEP2_Cinema");
-        }
+        ArrayList<Screening> screenings = getAllScreenings();
 
-        ArrayList<User> customers = getAllCustomers();
-
-        // Printing details of each customer
-        for (User customer : customers)
-        {
-          System.out.println("Username: " + customer.getUsername());
-          System.out.println("First Name: " + customer.getFstName());
-          System.out.println("Last Name: " + customer.getLstName());
-          System.out.println("Phone Number: " + customer.getPhoneNumber());
-          System.out.println("Email: " + customer.getEmail());
+        // Printing details of each screening
+        for (Screening screening : screenings) {
+          System.out.println("Screening Date: " + screening.getDate());
+          System.out.println("Screening Time: " + screening.getTime());
+          System.out.println("Room ID: " + screening.getRoom().getRoomID());
+          System.out.println("Movie Title: " + screening.getMovie().getName());
+          System.out.println("Movie Length: " + screening.getMovie().getLenghth());
+          System.out.println("Movie Description: " + screening.getMovie().getDescription());
+          System.out.println("Movie Genre: " + screening.getMovie().getGenre());
           System.out.println("---------------------------");
         }
 
         // Closing the database connection
         closeConnection();
-      }
-      else
-      {
+      } else {
         System.out.println("Failed to establish database connection.");
       }
-    }
-    catch (SQLException e)
-    {
+    } catch (SQLException e) {
       // Handling any SQL exceptions
       e.printStackTrace();
     }
   }
+  //TEST CLASS TO RETRIEVE CUSTOMERS //
+  //  public static void main(String[] args)
+  //  {
+  //    try
+  //    {
+  //      // Establishing a connection to the database
+  //      Connection connection = getConnection();
+  //
+  //      if (connection != null)
+  //      {
+  //        System.out.println("Database connection successful!");
+  //
+  //        try (Statement statement = connection.createStatement())
+  //        {
+  //          statement.execute("SET SEARCH_PATH TO SEP2_Cinema");
+  //        }
+  //
+  //        ArrayList<User> customers = getAllCustomers();
+  //
+  //        // Printing details of each customer
+  //        for (User customer : customers)
+  //        {
+  //          System.out.println("Username: " + customer.getUsername());
+  //          System.out.println("First Name: " + customer.getFstName());
+  //          System.out.println("Last Name: " + customer.getLstName());
+  //          System.out.println("Phone Number: " + customer.getPhoneNumber());
+  //          System.out.println("Email: " + customer.getEmail());
+  //          System.out.println("---------------------------");
+  //        }
+  //
+  //        // Closing the database connection
+  //        closeConnection();
+  //      }
+  //      else
+  //      {
+  //        System.out.println("Failed to establish database connection.");
+  //      }
+  //    }
+  //    catch (SQLException e)
+  //    {
+  //      // Handling any SQL exceptions
+  //      e.printStackTrace();
+  //    }
+  //  }
   // TEST CLASS TO RETRIEVE CUSTOMERS //
 
   // METHOD TO GET ALL THE ROOMS FROM DATABASE
@@ -171,54 +203,42 @@ public class DataBaseHandler
   // method to get all the movies //
 
   // METHOD TO GET ALL THE SCREENINGS FROM DATABASE
-  public static ArrayList<Screening> getAllScreenings() throws SQLException
-  {
+  public static ArrayList<Screening> getAllScreenings() throws SQLException {
     ArrayList<Screening> screenings = new ArrayList<>();
-    try (Connection connection = getConnection())
-    {
-      // Include schema name in the query if needed
-      String query =
-          "SELECT s.screeningHour, s.screeningDate, m.name, m.length, m.description, m.genre, m.releaseDate, r.roomID, r.numberOfSeats "
-              + "FROM SEP2_Cinema.Screening s " + "JOIN SEP2_Cinema.Movie m ON s.name = m.name "
-              + "JOIN SEP2_Cinema.Room r ON s.roomID = r.roomID";
+    String query =
+        "SELECT s.screeningHour, s.screeningDate, m.name AS movieName, m.length AS movieLength, " +
+            "m.description AS movieDescription, m.genre AS movieGenre, m.releaseDate AS movieReleaseDate, " +
+            "r.roomID, r.numberOfSeats " +
+            "FROM SEP2_Cinema.Screening s " +
+            "JOIN SEP2_Cinema.Movie m ON s.name = m.name " +
+            "JOIN SEP2_Cinema.Room r ON s.roomID = r.roomID";
 
-      try (Statement statement = connection.createStatement();
-          ResultSet resultSet = statement.executeQuery(query))
-      {
-        while (resultSet.next())
-        {
-          Time screeningHour = resultSet.getTime("screeningHour");
-          LocalDate screeningDate = resultSet.getDate("screeningDate")
-              .toLocalDate();
-          String movieName = resultSet.getString("name");
-          String length = resultSet.getString("length");
-          String description = resultSet.getString("description");
-          String genre = resultSet.getString("genre");
-          LocalDate releaseDate = resultSet.getDate("releasedate")
-              .toLocalDate();
+    try (Connection connection = getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query)) {
 
-          Movie movie = new Movie(movieName, length, description, genre,
-              releaseDate);
-          int roomID = resultSet.getInt("roomID");
-          int numberOfSeats = resultSet.getInt("numberOfSeats");
+      while (resultSet.next()) {
+        Time screeningHour = resultSet.getTime("screeningHour");
+        LocalDate screeningDate = resultSet.getDate("screeningDate").toLocalDate();
+        String movieName = resultSet.getString("movieName");
+        String movieLength = resultSet.getString("movieLength");
+        String movieDescription = resultSet.getString("movieDescription");
+        String movieGenre = resultSet.getString("movieGenre");
+        LocalDate movieReleaseDate = resultSet.getDate("movieReleaseDate").toLocalDate();
+        int roomID = resultSet.getInt("roomID");
+        int numberOfSeats = resultSet.getInt("numberOfSeats");
 
-          Room room = new Room(roomID, numberOfSeats);
-          Screening screening = new Screening(
-              screeningHour.toLocalTime().getHour(),
-              screeningHour.toLocalTime().getMinute(), screeningDate, movie,
-              room);
-          screenings.add(screening);
-        }
+        Movie movie = new Movie(movieLength,movieDescription,movieName,movieGenre,movieReleaseDate);
+        Room room = new Room(roomID, numberOfSeats);
+        Screening screening = new Screening(
+            screeningHour.toLocalTime().getHour(),
+            screeningHour.toLocalTime().getMinute(), screeningDate, movie, room);
+        screenings.add(screening);
       }
-    }
-    catch (SQLException e)
-    {
-      e.printStackTrace();
-      throw e; // Re-throw to handle higher up
     }
     return screenings;
   }
-}
+  }
 
   // METHOD TO GET ALL THE SCREENINGS FROM DATABASE
 //  public static void main(String[] args)

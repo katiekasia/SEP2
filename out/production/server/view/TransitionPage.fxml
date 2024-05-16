@@ -8,20 +8,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="949.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TransitionPageViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="949.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TransitionPageViewController">
    <children>
-      <AnchorPane prefHeight="794.0" prefWidth="199.0">
+      <AnchorPane layoutY="-2.0" prefHeight="634.0" prefWidth="199.0">
          <children>
-            <Label layoutX="62.0" layoutY="397.0" text="17/4/2024">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label layoutX="75.0" layoutY="427.0" text="8:09 PM">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
             <ImageView fitHeight="121.0" fitWidth="126.0" layoutX="45.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/user%20-%20profile.png" />
@@ -48,7 +38,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="fidelityPoints" layoutX="16.0" layoutY="189.0" mnemonicParsing="false" onAction="#onFidelityPoints" prefHeight="56.0" prefWidth="183.0" text="Fidelity points">
+            <Button fx:id="fidelityPoints" layoutX="15.0" layoutY="188.0" mnemonicParsing="false" onAction="#onFidelityPoints" prefHeight="56.0" prefWidth="183.0" text="Fidelity points">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -57,7 +47,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="ticketConfirmation" layoutX="15.0" layoutY="253.0" mnemonicParsing="false" onAction="#onTicketConfirmation" prefHeight="56.0" prefWidth="183.0" text="Ticket confimations">
+            <Button fx:id="ticketConfirmation" layoutX="13.0" layoutY="276.0" mnemonicParsing="false" onAction="#onTicketConfirmation" prefHeight="56.0" prefWidth="183.0" text="Ticket confimations">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -66,7 +56,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="manage" layoutX="11.0" layoutY="322.0" mnemonicParsing="false" onAction="#onManage" prefHeight="56.0" prefWidth="183.0" text="Manage account">
+            <Button fx:id="manage" layoutX="16.0" layoutY="371.0" mnemonicParsing="false" onAction="#onManage" prefHeight="56.0" prefWidth="183.0" text="Manage account">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -87,7 +77,7 @@
             <Image url="@images/cinema.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="215.0" layoutY="115.0" prefHeight="615.0" prefWidth="722.0">
+      <AnchorPane layoutX="215.0" layoutY="115.0" prefHeight="593.0" prefWidth="722.0">
          <children>
             <ImageView fitHeight="254.0" fitWidth="242.0" layoutX="438.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -187,6 +177,11 @@
                </font>
             </Label>
             <Label layoutX="28.0" layoutY="293.0" prefHeight="28.0" prefWidth="132.0" text="Release date:">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="293.0" prefHeight="28.0" prefWidth="132.0" text="DATE ( FIX it)">
                <font>
                   <Font size="19.0" />
                </font>
