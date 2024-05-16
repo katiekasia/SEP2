@@ -12,7 +12,7 @@ public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "VIAVIAVIA";
+  private static final String PASSWORD = "7890";
 
   private static Connection connection;
 
@@ -73,83 +73,83 @@ public class DataBaseHandler
     return customers;
   }
 
-  // METHOD TO GET ALL THE CUSTOMERS ( USERS ) FROM DATABASE
-  public static void main(String[] args) {
-    try {
-      // Establishing a connection to the database
-      Connection connection = getConnection();
-
-      if (connection != null) {
-        System.out.println("Database connection successful!");
-
-        ArrayList<Screening> screenings = getAllScreenings();
-
-        // Printing details of each screening
-        for (Screening screening : screenings) {
-          System.out.println("Screening Date: " + screening.getDate());
-          System.out.println("Screening Time: " + screening.getTime());
-          System.out.println("Room ID: " + screening.getRoom().getRoomID());
-          System.out.println("Movie Title: " + screening.getMovie().getName());
-          System.out.println("Movie Length: " + screening.getMovie().getLenghth());
-          System.out.println("Movie Description: " + screening.getMovie().getDescription());
-          System.out.println("Movie Genre: " + screening.getMovie().getGenre());
-          System.out.println("---------------------------");
-        }
-
-        // Closing the database connection
-        closeConnection();
-      } else {
-        System.out.println("Failed to establish database connection.");
-      }
-    } catch (SQLException e) {
-      // Handling any SQL exceptions
-      e.printStackTrace();
-    }
-  }
+  // METHOD TO GET ALL THE screenings  FROM DATABASE
+//  public static void main(String[] args) {
+//    try {
+//      // Establishing a connection to the database
+//      Connection connection = getConnection();
+//
+//      if (connection != null) {
+//        System.out.println("Database connection successful!");
+//
+//        ArrayList<Screening> screenings = getAllScreenings();
+//
+//        // Printing details of each screening
+//        for (Screening screening : screenings) {
+//          System.out.println("Screening Date: " + screening.getDate());
+//          System.out.println("Screening Time: " + screening.getTime());
+//          System.out.println("Room ID: " + screening.getRoom().getRoomID());
+//          System.out.println("Movie Title: " + screening.getMovie().getName());
+//          System.out.println("Movie Length: " + screening.getMovie().getLenghth());
+//          System.out.println("Movie Description: " + screening.getMovie().getDescription());
+//          System.out.println("Movie Genre: " + screening.getMovie().getGenre());
+//          System.out.println("---------------------------");
+//        }
+//
+//        // Closing the database connection
+//        closeConnection();
+//      } else {
+//        System.out.println("Failed to establish database connection.");
+//      }
+//    } catch (SQLException e) {
+//      // Handling any SQL exceptions
+//      e.printStackTrace();
+//    }
+//  }
   //TEST CLASS TO RETRIEVE CUSTOMERS //
-  //  public static void main(String[] args)
-  //  {
-  //    try
-  //    {
-  //      // Establishing a connection to the database
-  //      Connection connection = getConnection();
-  //
-  //      if (connection != null)
-  //      {
-  //        System.out.println("Database connection successful!");
-  //
-  //        try (Statement statement = connection.createStatement())
-  //        {
-  //          statement.execute("SET SEARCH_PATH TO SEP2_Cinema");
-  //        }
-  //
-  //        ArrayList<User> customers = getAllCustomers();
-  //
-  //        // Printing details of each customer
-  //        for (User customer : customers)
-  //        {
-  //          System.out.println("Username: " + customer.getUsername());
-  //          System.out.println("First Name: " + customer.getFstName());
-  //          System.out.println("Last Name: " + customer.getLstName());
-  //          System.out.println("Phone Number: " + customer.getPhoneNumber());
-  //          System.out.println("Email: " + customer.getEmail());
-  //          System.out.println("---------------------------");
-  //        }
-  //
-  //        // Closing the database connection
-  //        closeConnection();
-  //      }
-  //      else
-  //      {
-  //        System.out.println("Failed to establish database connection.");
-  //      }
-  //    }
-  //    catch (SQLException e)
-  //    {
-  //      // Handling any SQL exceptions
-  //      e.printStackTrace();
-  //    }
-  //  }
+    public static void main(String[] args)
+    {
+      try
+      {
+        // Establishing a connection to the database
+        Connection connection = getConnection();
+
+        if (connection != null)
+        {
+          System.out.println("Database connection successful!");
+
+          try (Statement statement = connection.createStatement())
+          {
+            statement.execute("SET SEARCH_PATH TO SEP2_Cinema");
+          }
+
+          ArrayList<User> customers = getAllCustomers();
+
+          // Printing details of each customer
+          for (User customer : customers)
+          {
+            System.out.println("Username: " + customer.getUsername());
+            System.out.println("First Name: " + customer.getFstName());
+            System.out.println("Last Name: " + customer.getLstName());
+            System.out.println("Phone Number: " + customer.getPhoneNumber());
+            System.out.println("Email: " + customer.getEmail());
+            System.out.println("---------------------------");
+          }
+
+          // Closing the database connection
+          closeConnection();
+        }
+        else
+        {
+          System.out.println("Failed to establish database connection.");
+        }
+      }
+      catch (SQLException e)
+      {
+        // Handling any SQL exceptions
+        e.printStackTrace();
+      }
+    }
   // TEST CLASS TO RETRIEVE CUSTOMERS //
 
   // METHOD TO GET ALL THE ROOMS FROM DATABASE

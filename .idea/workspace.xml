@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="723c4a8f-fde4-47fd-a45c-a3d225645339" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/DataBaseHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,13 +22,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DataBaseHandler.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.MyApplication (1).executor": "Run",
+    "Application.MyApplication.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main"
   }
-}</component>
-  <component name="RunManager" selected="Application.MyApplication (1)">
+}]]></component>
+  <component name="RunManager" selected="Application.DataBaseHandler">
+    <configuration name="DataBaseHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="model.DataBaseHandler" />
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="client" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MyApplication (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MyApplication" />
       <module name="client" />
@@ -45,8 +70,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DataBaseHandler" />
         <item itemvalue="Application.MyApplication (1)" />
         <item itemvalue="Application.MyApplication" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
