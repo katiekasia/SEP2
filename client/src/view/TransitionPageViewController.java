@@ -81,7 +81,7 @@ public class TransitionPageViewController
 
   @FXML public void onManage()
   {
-
+    viewHandler.openView("managePage");
   }
   @FXML public void onFidelityPoints()
   {

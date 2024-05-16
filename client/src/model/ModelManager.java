@@ -57,14 +57,26 @@ public class ModelManager implements Model, PropertyChangeListener
   {
     try
     {
-      return client.logIn(username, password);
+      User loggedInUser = client.logIn(username, password);
+      this.user = loggedInUser;
+      return loggedInUser;
     }
   catch(Exception e)
   {
     throw e;
   }
   }
-
+  @Override  public void updateUser(User user) throws RemoteException
+  {
+    try
+    {
+      client.updateUser(user);
+    }
+    catch(Exception e)
+    {
+      e.printStackTrace();
+    }
+  }
   @Override public void connect()
   {
     client.connect();
@@ -125,6 +137,7 @@ public class ModelManager implements Model, PropertyChangeListener
       e.printStackTrace();
     }
   }
+
   private void updateDatabaseWithBooking(User customer, Ticket ticket) {
     // Example method to illustrate saving to DB (requires actual implementation)
     try (Connection conn = DataBaseHandler.getConnection()) {

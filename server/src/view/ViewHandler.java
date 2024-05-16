@@ -18,6 +18,7 @@ public class ViewHandler
   private SnackSelectionViewModel snackSlectionViewController;
   private TicketConfirmationViewController ticketConfirmationViewController;
 
+  private ManageViewController manageViewController;
   private Stage primaryStage;
   private Scene currentScene;
 
@@ -46,7 +47,8 @@ public class ViewHandler
       case "ticketConfirmation" -> root = loadTicketConfirmationView("TicketConfirmation.fxml");
       case "snackSelection" -> root = loadSnackSelectionView("SnackSelection.fxml");
       case "login" -> root = loadLoginView("Login page.fxml");
-      case "registerPage" -> root = loadRegisterView("Register page.fxml");
+      case "registerPage" -> root = loadRegisterView("Registerpage.fxml");
+      case "managePage" -> root= loadManageView("ManagePage.fxml");
       //ALL THE OTHERS PAGES
     }
     if (primaryStage.isShowing())
@@ -191,6 +193,26 @@ public class ViewHandler
       root = loader.load();
       ticketConfirmationViewController = loader.getController();
       ticketConfirmationViewController.init(this, modelFactory.getTicketConfirmationViewModel(), root);
+    }
+    catch (Exception e)
+    {
+      System.out.println(
+          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
+      e.printStackTrace();
+    }
+
+    return root;
+  }
+  private Region loadManageView(String fxmlFile)
+  {
+    Region root = null;
+    try
+    {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(fxmlFile));
+      root = loader.load();
+      manageViewController = loader.getController();
+      manageViewController.init(this, root, modelFactory.getManageViewModel());
     }
     catch (Exception e)
     {

@@ -46,6 +46,11 @@ public class RmiClient implements Model, RemoteListener<String,String>
     }
   }
 
+  @Override public void updateUser(User user) throws RemoteException
+  {
+    server.updateUser(user);
+  }
+
   @Override public void cancelOrder(Order order)
   {
     try

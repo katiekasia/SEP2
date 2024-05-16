@@ -12,7 +12,7 @@ public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "7890";
+  private static final String PASSWORD = "papiezpolak";
 
   private static Connection connection;
 
@@ -45,8 +45,22 @@ public class DataBaseHandler
       connection.close();
     }
   }
+
   // Method to close the database connection
 
+  public static void updateUser(User user) throws SQLException {
+    String query = "UPDATE Customer SET name = ?, surname = ?, phone_number = ?, email = ?, password = ? WHERE username = ?";
+    try (Connection connection = getConnection();
+        PreparedStatement statement = connection.prepareStatement(query)) {
+      statement.setString(1, user.getFstName());
+      statement.setString(2, user.getLstName());
+      statement.setString(3, user.getPhoneNumber());
+      statement.setString(4, user.getEmail());
+      statement.setString(5, user.getPassword());
+      statement.setString(6, user.getUsername());
+      statement.executeUpdate();
+    }
+  }
   // METHOD TO GET ALL THE CUSTOMERS ( USERS ) FROM DATABASE
   public static ArrayList<User> getAllCustomers() throws SQLException
   {

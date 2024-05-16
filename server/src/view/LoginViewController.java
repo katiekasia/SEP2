@@ -31,7 +31,7 @@ public class LoginViewController
         .bindBidirectional(viewModel.getPasswordField());
     this.loginButton.setVisible(true);
 
-    loginButton.setOnAction(event -> viewModel.login());
+    //loginButton.setOnAction(event -> viewModel.login());
   }
 
   @FXML public void onLogin()

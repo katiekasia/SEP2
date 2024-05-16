@@ -65,7 +65,7 @@ viewModel.setSelected();
 
   @FXML public void onManage()
   {
-
+    viewHandler.openView("managePage");
   }
 
   @FXML public void onSignOut()

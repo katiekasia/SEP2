@@ -2,6 +2,7 @@ package model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -39,11 +40,21 @@ public class ModelManager implements Model
     }
 
   }
+  @Override  public void updateUser(User user) throws RemoteException
+  {
+    try
+    {
+      DataBaseHandler.updateUser(user);
+    }
+    catch(Exception e)
+    {
+      e.printStackTrace();
+    }
+  }
   @Override public User logIn(String username, String password)
   {
     try
     {
-
 
       ArrayList<User> users = DataBaseHandler.getAllCustomers();
       for (User user : users)

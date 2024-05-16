@@ -1,64 +1,47 @@
 package viewmodel;
 
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import model.Order;
 import model.Screening;
 import model.User;
-
-import java.util.List;
 
 public class ViewState
 {
   private SimpleScreeningView selectedScreening;
+  private User user;
+  private SimpleTicketView selectedTicket;
   private SimpleIntegerProperty numberOfStandardTickets = new SimpleIntegerProperty(
       0);
   private SimpleIntegerProperty numberOfVIPTickets = new SimpleIntegerProperty(
       0);
 
-  private ObjectProperty<User> user;
-  private ObjectProperty<List<Order>> orders;
-
   public ViewState()
   {
-    this.user = new SimpleObjectProperty<>();
-    this.orders = new SimpleObjectProperty<>();
+
   }
 
-  public ObjectProperty<User> userProperty()
+  public SimpleScreeningView getSelectedScreening()
+  {
+    return selectedScreening;
+  }
+
+  public SimpleTicketView getSelectedTicket()
+  {
+    return selectedTicket;
+  }
+
+  public void setSelectedTicket(SimpleTicketView selectedTicket)
+  {
+    this.selectedTicket = selectedTicket;
+  }
+
+  public User getUser()
   {
     return user;
   }
 
   public void setUser(User user)
   {
-    this.user.set(user);
-  }
-
-  public User getUser()
-  {
-    return user.get();
-  }
-
-  public ObjectProperty<List<Order>> ordersProperty()
-  {
-    return orders;
-  }
-
-  public void setOrders(List<Order> orders)
-  {
-    this.orders.set(orders);
-  }
-
-  public List<Order> getOrders()
-  {
-    return orders.get();
-  }
-
-  public SimpleScreeningView getSelectedScreening()
-  {
-    return selectedScreening;
+    this.user = user;
   }
 
   public Screening getScreeningFromView()

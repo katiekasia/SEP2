@@ -14,6 +14,7 @@ public class ViewModelFactory
   private TransitionPageViewModel transitionPageViewModel;
   private SnackSelectionViewModel snackSelectionViewModel;
   private TicketConfirmationViewModel ticketConfirmationViewModel;
+  private ManageViewModel manageViewModel;
   private ViewState viewState;
 
   public ViewModelFactory(Model model) throws RemoteException
@@ -26,6 +27,7 @@ public class ViewModelFactory
     this.snackSelectionViewModel = new SnackSelectionViewModel(model);
     this.ticketConfirmationViewModel = new TicketConfirmationViewModel(model, viewState);
     this.transitionPageViewModel = new TransitionPageViewModel(model, viewState);
+    this.manageViewModel= new ManageViewModel(model, viewState);
   }
 
   public MainPageViewModel getPageViewModel()
@@ -38,6 +40,10 @@ public class ViewModelFactory
     return loginViewModel;
   }
 
+  public ManageViewModel getManageViewModel()
+  {
+    return manageViewModel;
+  }
   public RegisterPageViewModel getRegisterViewModel()
   {
     return registerViewModel;

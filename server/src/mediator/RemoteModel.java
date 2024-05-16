@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public interface RemoteModel extends Remote, RemoteSubject<String ,String >
 {
+  public void updateUser(User user) throws RemoteException;
   public void reserveSeats(Seat[] seats, User customer,
       Screening screening ) throws RemoteException;
   public User logIn(String username, String password) throws RemoteException;

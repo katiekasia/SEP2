@@ -47,6 +47,11 @@ private void start() throws RemoteException, MalformedURLException
   Naming.rebind("Case", this);
 }
 
+  @Override public void updateUser(User user) throws RemoteException
+  {
+    cinema.updateUser(user);
+  }
+
   @Override public void reserveSeats(Seat[] seats, User customer,
        Screening screening) throws RemoteException
   {

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public interface Model extends UnnamedPropertyChangeSubject
 {
+  public void updateUser(User user) throws RemoteException;
   void cancelOrder(Order order);
   public User logIn(String username, String password) throws RemoteException;
   public void connect();
