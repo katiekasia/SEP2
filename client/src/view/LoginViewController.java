@@ -36,7 +36,10 @@ public class LoginViewController
   @FXML public void onLogin()
   {
     viewModel.login();
-    viewHandler.openView("mainPage");
+    if (viewModel.isLogged())
+    {
+      viewHandler.openView("mainPage");
+    }
 
   }
   @FXML public void onNewAccount()
