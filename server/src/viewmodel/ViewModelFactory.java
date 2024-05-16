@@ -2,6 +2,8 @@ package viewmodel;
 
 import model.Model;
 
+import java.rmi.RemoteException;
+
 public class ViewModelFactory
 {
 
@@ -14,7 +16,7 @@ public class ViewModelFactory
   private TicketConfirmationViewModel ticketConfirmationViewModel;
   private ViewState viewState;
 
-  public ViewModelFactory(Model model)
+  public ViewModelFactory(Model model) throws RemoteException
   {
     this.viewState = new ViewState();
     this.pageViewModel = new MainPageViewModel(model,viewState);

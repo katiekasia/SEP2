@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import model.Model;
 import model.Screening;
 
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ public class MainPageViewModel
   private StringProperty username;
 
   public MainPageViewModel(Model model, ViewState viewState)
+      throws RemoteException
   {
     this.model = model;
     this.viewState = viewState;
@@ -34,7 +36,7 @@ public class MainPageViewModel
     loadFromModel();
   }
 
-  private void loadFromModel()
+  private void loadFromModel() throws RemoteException
   {
     Screening[] allScreenings = model.getAllScreenings()
         .toArray(new Screening[0]);
@@ -103,7 +105,8 @@ public class MainPageViewModel
       this.screenings.add(screeningView);
     }
   }
-public void filterByTitle(){
+public void filterByTitle() throws RemoteException
+{
 if (input != null){
   screenings.clear();
   loadScreenings(model.getScreaningsByMovieTitle(input.get()));
@@ -111,7 +114,8 @@ if (input != null){
   loadFromModel();
 }
 }
-public void filterByDate(LocalDate date){
+public void filterByDate(LocalDate date) throws RemoteException
+{
     screenings.clear();
     loadScreenings(model.getScreeningsByDate(date));
 }

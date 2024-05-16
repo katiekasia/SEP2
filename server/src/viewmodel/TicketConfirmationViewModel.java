@@ -7,6 +7,8 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import model.*;
 
+import java.rmi.RemoteException;
+
 public class TicketConfirmationViewModel
   {
     private Model model;
@@ -16,6 +18,7 @@ public class TicketConfirmationViewModel
 
 
     public TicketConfirmationViewModel(Model model, ViewState viewState)
+        throws RemoteException
     {
       this.model = model;
       this.viewState = viewState;
@@ -24,7 +27,7 @@ public class TicketConfirmationViewModel
 
       loadFromModel();
     }
-    private void loadFromModel()
+    private void loadFromModel() throws RemoteException
     {
       Screening[] allScreenings = model.getAllScreenings()
           .toArray(new Screening[0]);
@@ -40,8 +43,24 @@ public class TicketConfirmationViewModel
     public void updateScreeningsWithSelectedSeats(ObservableList<String> selectedSeats) {
       ObservableList<SimpleScreeningView> updatedViews = FXCollections.observableArrayList();
       selectedSeats.forEach(seatId -> {
-        Screening screening = model.findScreeningBySeatId(seatId);  // Assuming there's a method to find screenings by seat ID
-        User user = model.getUser();
+        Screening screening = null;  // Assuming there's a method to find screenings by seat ID
+        try
+        {
+          screening = model.findScreeningBySeatId(seatId);
+        }
+        catch (RemoteException e)
+        {
+          throw new RuntimeException(e);
+        }
+        User user = null;
+        try
+        {
+          user = model.getUser();
+        }
+        catch (RemoteException e)
+        {
+          throw new RuntimeException(e);
+        }
         SimpleScreeningView view = new SimpleScreeningView(screening, user);
         view.setSeatID(seatId); // Make sure SimpleScreeningView has this method
         updatedViews.add(view);

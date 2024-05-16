@@ -8,6 +8,8 @@ import viewmodel.MainPageViewModel;
 import viewmodel.SimpleScreeningView;
 import viewmodel.ViewState;
 
+import java.rmi.RemoteException;
+
 public class MainViewController
 {
   private Region root;
@@ -91,15 +93,15 @@ viewModel.setSelected();
     }else
       System.out.println("no selection");
   }
-  @FXML public void onDatePicked()
+  @FXML public void onDatePicked() throws RemoteException
   {
     viewModel.filterByDate(datePicker.getValue());
   }
-  @FXML public void onSearch()
+  @FXML public void onSearch() throws RemoteException
   {
     viewModel.filterByTitle();
   }
-  @FXML public void onSearchBar()
+  @FXML public void onSearchBar() throws RemoteException
   {
     viewModel.filterByTitle();
   }

@@ -7,6 +7,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
 
+import java.rmi.RemoteException;
+
 public class RegisterViewController
 {
   private RegisterPageViewModel viewModel;
@@ -27,9 +29,18 @@ public class RegisterViewController
     this.viewModel = viewModel;
     this.root = root;
     registerButton.setOnAction(
-        event -> viewModel.register(usernameField.getText(),
-            passwordField.getText(), emailField.getText(),
-            firstNameField.getText(), lastNameField.getText(),
-            phoneField.getText()));
+        event -> {
+          try
+          {
+            viewModel.register(usernameField.getText(),
+                passwordField.getText(), emailField.getText(),
+                firstNameField.getText(), lastNameField.getText(),
+                phoneField.getText());
+          }
+          catch (RemoteException e)
+          {
+            throw new RuntimeException(e);
+          }
+        });
   }
 }

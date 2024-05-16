@@ -48,14 +48,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.DataBaseHandler.executor": "Run",
-    "Application.MyApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/user/Documents/GitHub/SEP2/server/src/model"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DataBaseHandler.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MyApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Documents/GitHub/SEP2/server/src/model&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\user\Documents\GitHub\SEP2\server\src\model" />
@@ -66,7 +66,7 @@
       <recent name="mediator" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ModelManager">
+  <component name="RunManager" selected="Application.MyApplication">
     <configuration name="DataBaseHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server_model.DataBaseHandler" />
       <module name="server" />
@@ -116,9 +116,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MyApplication" />
         <item itemvalue="Application.ModelManager" />
         <item itemvalue="Application.MyApplication (1)" />
-        <item itemvalue="Application.MyApplication" />
         <item itemvalue="Application.DataBaseHandler" />
         <item itemvalue="Application.Main" />
       </list>
