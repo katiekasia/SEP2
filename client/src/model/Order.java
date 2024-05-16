@@ -78,6 +78,7 @@ if (orderState instanceof PendingOrder){
   }
 public void cancelOrder(){
     orderState.cancel(this);
+
 }
 
 //*******************************************************Getters and setters*********************************8

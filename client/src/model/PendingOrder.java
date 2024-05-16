@@ -23,6 +23,12 @@ public class PendingOrder extends OrderState
   @Override public void cancel(Order order)
   {
     order.setOrderState(new CancelledOrder(order));
+    for (Ticket ticket:order.getTickets()){
+      ticket.cancelTicket();
+    }
+//    for (Snack snack : order.getSnacks()){
+//      order.removeSnack();
+//    }
   }
 
   @Override public String status()
