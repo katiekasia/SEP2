@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00c2f093-610e-40a2-9078-53173a0f1b52" name="Changes" comment="listeners done">
-      <change beforePath="$PROJECT_DIR$/out/production/client/mediator/RemoteModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/mediator/RmiClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/model/Model.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/model/ModelManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/model/Order.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/viewmodel/SimpleScreeningView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/DataBaseHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/model/CancelledOrder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/model/CancelledOrder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/model/ExpiredOrder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/model/ExpiredOrder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/model/OrderState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/model/OrderState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/model/PendingOrder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/model/PendingOrder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +52,7 @@
       <recent name="mediator" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ModelManager">
+  <component name="RunManager" selected="Application.Room">
     <configuration name="DataBaseHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server_model.DataBaseHandler" />
       <module name="server" />
@@ -60,13 +62,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="server" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -98,13 +93,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Room" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="model.Room" />
+      <module name="client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ModelManager" />
+        <item itemvalue="Application.Room" />
         <item itemvalue="Application.MyApplication (1)" />
         <item itemvalue="Application.MyApplication" />
+        <item itemvalue="Application.ModelManager" />
         <item itemvalue="Application.DataBaseHandler" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -173,7 +181,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715764319886</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="listeners done">
+      <option name="closed" value="true" />
+      <created>1715845870010</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1715845870010</updated>
+    </task>
+    <task id="LOCAL-00009" summary="listeners done">
+      <option name="closed" value="true" />
+      <created>1715846052143</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1715846052143</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
