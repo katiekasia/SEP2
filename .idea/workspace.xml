@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="00c2f093-610e-40a2-9078-53173a0f1b52" name="Changes" comment="listeners done">
       <change afterPath="$PROJECT_DIR$/client/src/model/CancelledOrder.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/client/src/model/ExpiredOrder.java" afterDir="false" />
@@ -27,6 +28,12 @@
       <change beforePath="$PROJECT_DIR$/server/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Model.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/ModelManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Order.java" afterDir="false" />
+=======
+    <list default="true" id="ce235a30-c2b7-4201-86b8-4f6bef37fde9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,12 +55,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< Updated upstream
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.DataBaseHandler.executor&quot;: &quot;Run&quot;,
     &quot;Application.MyApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Documents/GitHub/SEP2/server/src/model&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DataBaseHandler.executor": "Run",
+    "Application.Main (1).executor": "Run",
+    "Application.MyApplication (1).executor": "Run",
+    "Application.MyApplication.executor": "Run",
+    "Application.TestMain.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+>>>>>>> Stashed changes
   }
 }</component>
   <component name="RecentsManager">
@@ -66,7 +90,7 @@
       <recent name="mediator" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MyApplication">
+  <component name="RunManager" selected="Application.DataBaseHandler">
     <configuration name="DataBaseHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server_model.DataBaseHandler" />
       <module name="server" />
@@ -87,6 +111,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< Updated upstream
     <configuration name="ModelManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="model.ModelManager" />
       <module name="client" />
@@ -100,6 +125,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+=======
+>>>>>>> Stashed changes
     <configuration name="MyApplication (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MyApplication" />
       <module name="client" />
@@ -114,13 +141,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="model.TestMain" />
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+<<<<<<< Updated upstream
         <item itemvalue="Application.MyApplication" />
         <item itemvalue="Application.ModelManager" />
         <item itemvalue="Application.MyApplication (1)" />
         <item itemvalue="Application.DataBaseHandler" />
         <item itemvalue="Application.Main" />
+=======
+        <item itemvalue="Application.DataBaseHandler" />
+        <item itemvalue="Application.MyApplication" />
+        <item itemvalue="Application.TestMain" />
+        <item itemvalue="Application.MyApplication (1)" />
+        <item itemvalue="Application.Main (1)" />
+>>>>>>> Stashed changes
       </list>
     </recent_temporary>
   </component>
