@@ -38,7 +38,7 @@ public class Room implements Serializable
           id = "D";
           break;
       }
-
+///////
       for (int j = 0; j < 11; j++) {
         Seat seat = new Seat(id + (j + 1), false);
         seats[index++] = seat;  // Assign the seat to the next position in the array
