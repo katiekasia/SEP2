@@ -1,6 +1,8 @@
 package model;
 
-public class ExpiredOrder extends OrderState
+import java.io.Serializable;
+
+public class ExpiredOrder extends OrderState implements Serializable
 {
   private boolean expired;
   public ExpiredOrder(Order order){
@@ -13,5 +15,10 @@ public class ExpiredOrder extends OrderState
   @Override public void cancel(Order order)
   {
     throw new IllegalStateException("Order has expired and cannot be cancelled or modified.");
+  }
+
+  @Override public String status()
+  {
+    return "Expired";
   }
 }

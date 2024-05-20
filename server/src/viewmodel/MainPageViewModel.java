@@ -21,7 +21,7 @@ public class MainPageViewModel
   private ObjectProperty<SimpleScreeningView> selectedObject;
   private ViewState viewState;
   private StringProperty input;
-  private StringProperty username;
+
 
   public MainPageViewModel(Model model, ViewState viewState)
       throws RemoteException
@@ -29,9 +29,10 @@ public class MainPageViewModel
     this.model = model;
     this.viewState = viewState;
     this.screenings = FXCollections.observableArrayList();
+
     this.selectedObject = new SimpleObjectProperty<>();
     this.input = new SimpleStringProperty();
-    updateUsername();
+
 
     loadFromModel();
   }
@@ -48,23 +49,8 @@ public class MainPageViewModel
     }
   }
 
-  public void updateUsername()
-  {
-    if (viewState.getUser() != null)
-    {
-      username.set(viewState.getUser().getUsername());
-    }
-  }
 
-  public StringProperty usernameProperty()
-  {
-    return username;
-  }
 
-  public void setUsername(String username)
-  {
-    this.username.set(username);
-  }
 
   public StringProperty inputProperty()
   {
@@ -95,10 +81,7 @@ public class MainPageViewModel
     return viewState;
   }
 
-  public StringProperty getUsername()
-  {
-    return username;
-  }
+
   public void loadScreenings(ArrayList<Screening> screenings){
     for (Screening screening :screenings){
       SimpleScreeningView screeningView = new SimpleScreeningView(screening);

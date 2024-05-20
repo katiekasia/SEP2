@@ -9,6 +9,8 @@
   public class SimpleScreeningView
   {
   private StringProperty time;
+  private IntegerProperty hour;
+  private IntegerProperty minute;
     private StringProperty date;
     private StringProperty movie;
     private IntegerProperty room;
@@ -16,14 +18,16 @@
     private StringProperty genre;
     //for Ticket Confirmation table
     private StringProperty seatID;
-    private Screening screening;
-    private User user;
-    private StringProperty ticketType;
-    private StringProperty snacks;
+
+
+
+
 
 
     public SimpleScreeningView(Screening screening){
-      this.screening = screening;
+
+      minute = new SimpleIntegerProperty(screening.getMinute());
+      hour = new SimpleIntegerProperty(screening.getHour());
   time = new SimpleStringProperty(screening.getTime());
   genre = new SimpleStringProperty(screening.getMovie().getGenre());
   date = new SimpleStringProperty(screening.getDate().toString());
@@ -32,16 +36,7 @@
   length = new SimpleStringProperty(screening.getMovie().getLenghth());
 
     }
-  public SimpleScreeningView(Screening screening, User user)
-  {
-    this.user = user;
-    this.screening = screening;
-    time = new SimpleStringProperty(screening.getTime());
-    date = new SimpleStringProperty(screening.getDate().toString());
-    movie = new SimpleStringProperty(screening.getMovie().getName());
-    //seatID = new SimpleStringProperty(user.getOrders().get(0).getTickets().get(0).getSeat().getID());
-    //ticketType= new SimpleStringProperty(user.getOrders().get(0).getTickets().get(0).getTicketType());
-  }
+
     public void setRoom(int room)
     {
       this.room.set(room);
@@ -61,21 +56,24 @@
       this.length.set(length);
     }
 
-    public void setScreening(Screening screening)
+    public String getTime()
     {
-      this.screening = screening;
-    }
-    public User getUser()
-    {
-      return user;
-    }
-    public StringProperty ticketTypeProperty() {
-      return ticketType;
+      return time.get();
     }
 
-    public Screening getScreening()
+    public String getMovie()
     {
-      return screening;
+      return movie.get();
+    }
+
+    public String getDate()
+    {
+      return date.get();
+    }
+
+    public int getRoom()
+    {
+      return room.get();
     }
 
     public StringProperty lengthProperty()
@@ -128,8 +126,6 @@
       return date;
     }
 
-    public void setTicketType(String type) {
-      this.ticketType.set(type);
-    }
+
 
   }

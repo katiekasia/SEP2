@@ -4,65 +4,86 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.Region;
+import model.Screening;
 import viewmodel.SeatMappingViewModel;
 
-public class SeatMappingViewController
-{
-  private Region root;
-  private SeatMappingViewModel viewModel;
-  private ViewHandler viewHandler;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 
-  @FXML private Button back;
-  @FXML private Button confirm;
-  @FXML private CheckBox a1;
-  @FXML private CheckBox a2;
-  @FXML private CheckBox a3;
-  @FXML private CheckBox a4;
-  @FXML private CheckBox a5;
-  @FXML private CheckBox a6;
-  @FXML private CheckBox a7;
-  @FXML private CheckBox a8;
-  @FXML private CheckBox a9;
-  @FXML private CheckBox a10;
-  @FXML private CheckBox a11;
-  @FXML private CheckBox b1;
-  @FXML private CheckBox b2;
-  @FXML private CheckBox b3;
-  @FXML private CheckBox b4;
-  @FXML private CheckBox b5;
-  @FXML private CheckBox b6;
-  @FXML private CheckBox b7;
-  @FXML private CheckBox b8;
-  @FXML private CheckBox b9;
-  @FXML private CheckBox b10;
-  @FXML private CheckBox b11;
-  @FXML private CheckBox c1;
-  @FXML private CheckBox c2;
-  @FXML private CheckBox c3;
-  @FXML private CheckBox c4;
-  @FXML private CheckBox c5;
-  @FXML private CheckBox c6;
-  @FXML private CheckBox c7;
-  @FXML private CheckBox c8;
-  @FXML private CheckBox c9;
-  @FXML private CheckBox c10;
-  @FXML private CheckBox c11;
-  @FXML private CheckBox d1;
-  @FXML private CheckBox d2;
-  @FXML private CheckBox d3;
-  @FXML private CheckBox d4;
-  @FXML private CheckBox d5;
-  @FXML private CheckBox d6;
-  @FXML private CheckBox d7;
-  @FXML private CheckBox d8;
-  @FXML private CheckBox d9;
-  @FXML private CheckBox d10;
-  @FXML private CheckBox d11;
-  public void init(ViewHandler viewHandler, SeatMappingViewModel viewModel, Region root)
-  {
-    this.viewHandler = viewHandler;
-    this.viewModel = viewModel;
-    this.root = root;
+public class SeatMappingViewController
+    {
+      private Region root;
+      private SeatMappingViewModel viewModel;
+      private ViewHandler viewHandler;
+
+      @FXML private Button back;
+      @FXML private Button confirm;
+      @FXML private CheckBox a1;
+      @FXML private CheckBox a2;
+      @FXML private CheckBox a3;
+      @FXML private CheckBox a4;
+      @FXML private CheckBox a5;
+      @FXML private CheckBox a6;
+      @FXML private CheckBox a7;
+      @FXML private CheckBox a8;
+      @FXML private CheckBox a9;
+      @FXML private CheckBox a10;
+      @FXML private CheckBox a11;
+      @FXML private CheckBox b1;
+      @FXML private CheckBox b2;
+      @FXML private CheckBox b3;
+      @FXML private CheckBox b4;
+      @FXML private CheckBox b5;
+      @FXML private CheckBox b6;
+      @FXML private CheckBox b7;
+      @FXML private CheckBox b8;
+      @FXML private CheckBox b9;
+      @FXML private CheckBox b10;
+      @FXML private CheckBox b11;
+      @FXML private CheckBox c1;
+      @FXML private CheckBox c2;
+      @FXML private CheckBox c3;
+      @FXML private CheckBox c4;
+      @FXML private CheckBox c5;
+      @FXML private CheckBox c6;
+      @FXML private CheckBox c7;
+      @FXML private CheckBox c8;
+      @FXML private CheckBox c9;
+      @FXML private CheckBox c10;
+      @FXML private CheckBox c11;
+      @FXML private CheckBox d1;
+      @FXML private CheckBox d2;
+      @FXML private CheckBox d3;
+      @FXML private CheckBox d4;
+      @FXML private CheckBox d5;
+      @FXML private CheckBox d6;
+      @FXML private CheckBox d7;
+      @FXML private CheckBox d8;
+      @FXML private CheckBox d9;
+      @FXML private CheckBox d10;
+      @FXML private CheckBox d11;
+      private ArrayList<CheckBox> checkBoxes;
+      public void init(ViewHandler viewHandler, SeatMappingViewModel viewModel, Region root)
+      {
+        this.viewHandler = viewHandler;
+        this.viewModel = viewModel;
+
+        this.root = root;
+        checkBoxes = new ArrayList<>();
+        Field[] fields = this.getClass().getDeclaredFields();
+        for (Field field : fields) {
+          if (field.getType().equals(CheckBox.class)) {
+            field.setAccessible(true);
+            try {
+              CheckBox checkBox = (CheckBox) field.get(this);
+              if (checkBox != null) {
+                checkBoxes.add(checkBox);
+              }
+            } catch (IllegalAccessException e) {
+              e.printStackTrace();
+            }
+          }
+        }
 
     a1.setOnAction(e -> handleSeatSelection(a1, "A1"));
     a2.setOnAction(e -> handleSeatSelection(a2, "A2"));
@@ -114,22 +135,56 @@ public class SeatMappingViewController
     d9.setOnAction(e -> handleSeatSelection(d9, "D9"));
     d10.setOnAction(e -> handleSeatSelection(d10, "D10"));
     d11.setOnAction(e -> handleSeatSelection(d11, "D11"));
+
+    setSeatsFromModel();
+        viewModel.reset();
+    //selectionControl();
   }
 
+  private void setSeatsFromModel(){
+        for (CheckBox checkBox : checkBoxes){
+          if (viewModel.setSeats().contains(checkBox.getId().toUpperCase())){
+            checkBox.setDisable(true);
+          }
+        }
+  }
+  private void selectionControl(){
+        if (!viewModel.keepSelecting())
+        {
+          for (CheckBox checkBox : checkBoxes)
+          {
+            if (!checkBox.isSelected())
+            {
+              checkBox.setDisable(true);
+            }
+          }
+        }
+        if (viewModel.keepSelecting()){
+          for (CheckBox checkBox : checkBoxes){
+            if (checkBox.isDisabled()){
+              checkBox.setDisable(false);
+            }
+          }
+          setSeatsFromModel();
+        }
+  }
   private void handleSeatSelection(CheckBox checkBox, String seatId)
   {
     if (checkBox.isSelected())
     {
       viewModel.selectSeat(seatId);
+      selectionControl();
     }
     else
     {
       viewModel.deselectSeat(seatId);
+      selectionControl();
     }
   }
   @FXML public void onConfirm()
   {
-    viewHandler.openView("ticketConfirmation");
+    if (viewModel.proceedPressed()){
+    viewHandler.openView("ticketConfirmation");}
   }
   @FXML public void onBack()
   {

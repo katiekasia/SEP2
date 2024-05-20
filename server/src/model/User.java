@@ -41,9 +41,6 @@ public class User implements Serializable
 
   public ArrayList<Order> getOrders()
   {
-    if (orders.isEmpty()){
-      return null;
-    }
     return orders;
   }
 

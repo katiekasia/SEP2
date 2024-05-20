@@ -38,14 +38,26 @@ public class TransitionPageViewController
     this.viewModel = viewModel;
     this.root = root;
     this.viewState = viewModel.getViewState();
-    movieTitle.setText(viewState.getSelectedScreening().movieProperty().get());
-    length.setText(String.valueOf(viewState.getSelectedScreening().lengthProperty().get()));
-    movieGenre.setText(viewState.getSelectedScreening().genreProperty().get());
-    movieDate.setText(viewState.getSelectedScreening().dateProperty().get());
-    movieTime.setText(viewState.getSelectedScreening().timeProperty().get());
-    roomID.setText(String.valueOf(viewState.getSelectedScreening().roomProperty().get()));
+    viewModel.bindStandard(numberOfStandartTickets.textProperty());
+    viewModel.bindVIP(numberOfVIPTickets.textProperty());
+    viewModel.bindPrice(totalPrice.textProperty());
+
+    movieTitle.textProperty().bind(viewModel.movieTitleProperty());
+
+    length.textProperty().bind(viewModel.lengthProperty());
+
+    movieGenre.textProperty().bind(viewModel.movieGenreProperty());
+
+    movieDate.textProperty().bind(viewModel.movieDateProperty());
+
+    movieTime.textProperty().bind(viewModel.movieTimeProperty());
+
+    roomID.textProperty().bind(viewModel.roomIDProperty().asString());
+
+    username.textProperty().bind(viewState.usernameProperty());
 
     initializeTicketInputFields();
+    viewModel.reset();
   }
   private void initializeTicketInputFields() {
     UnaryOperator<TextFormatter.Change> integerFilter = change -> {
@@ -59,24 +71,8 @@ public class TransitionPageViewController
     numberOfStandartTickets.setTextFormatter(new TextFormatter<>(integerFilter));
     numberOfVIPTickets.setTextFormatter(new TextFormatter<>(integerFilter));
 
-    numberOfStandartTickets.textProperty().addListener((obs, oldVal, newVal) -> updateTotal());
-    numberOfVIPTickets.textProperty().addListener((obs, oldVal, newVal) -> updateTotal());
-  }
-
-  private void updateTotal() {
-    int standardTickets = parseTicketNumber(numberOfStandartTickets.getText());
-    int vipTickets = parseTicketNumber(numberOfVIPTickets.getText());
-    int total = standardTickets + vipTickets;
-
-    if (total <= 44) {
-      viewState.setNumberOfStandardTickets(standardTickets);
-      viewState.setNumberOfVIPTickets(vipTickets);
-      int totalPriceAmount = standardTickets * 120 + vipTickets * 170;
-      totalPrice.setText(String.valueOf(totalPriceAmount) + " DKK");
-    } else {
-      System.out.println("Total tickets cannot exceed 44. Please adjust your quantities.");
-      totalPrice.setText("Limit exceeded!");
-    }
+    numberOfStandartTickets.textProperty().addListener((obs, oldVal, newVal) -> viewModel.updateTotal());
+    numberOfVIPTickets.textProperty().addListener((obs, oldVal, newVal) -> viewModel.updateTotal());
   }
 
   @FXML public void onManage()
@@ -94,31 +90,24 @@ public class TransitionPageViewController
 
   }
 
-  private int parseTicketNumber(String text) {
-    try {
-      return Integer.parseInt(text);
-    } catch (NumberFormatException e) {
-      return 0;
-    }
-  }
+
   @FXML private void onBackToMovieSelection()
   {
     viewHandler.openView("mainPage");
   }
 
-  private boolean isValidTicketEntry() {
-    int standardTickets = parseTicketNumber(numberOfStandartTickets.getText());
-    int vipTickets = parseTicketNumber(numberOfVIPTickets.getText());
-    int totalTickets = standardTickets + vipTickets;
 
-    return totalTickets > 0 && totalTickets <= 44;
-  }
 
   @FXML public void onBackToSeatSelection() {
-    if (isValidTicketEntry()) {
+    viewModel.updateTotal();
+
+    if (viewModel.isValidTicketEntry()) {
+      viewModel.setViewState();
       viewHandler.openView("seatMapping");
     } else {
-      System.out.println("Please enter valid ticket numbers before proceeding.");
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText("Please enter valid ticket numbers before proceeding.");
+      alert.showAndWait();
     }
   }
 

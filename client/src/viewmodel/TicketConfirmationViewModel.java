@@ -1,73 +1,76 @@
 package viewmodel;
 
-import javafx.scene.control.Alert;
-import model.Model;
-import model.Screening;
-import model.Ticket;
-import model.User;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import model.Model;
+import model.Screening;
+import model.User;
+
+import java.rmi.RemoteException;
 
 public class TicketConfirmationViewModel
   {
     private Model model;
     private ViewState viewState;
-    private ObservableList<SimpleTicketView> tickets;
-    private ObjectProperty<SimpleTicketView> selectedObject;
+    private ObservableList<SimpleScreeningView> screenings;
+    private ObjectProperty<SimpleScreeningView> selectedObject;
 
 
     public TicketConfirmationViewModel(Model model, ViewState viewState)
+
     {
       this.model = model;
       this.viewState = viewState;
-      this.tickets = FXCollections.observableArrayList();
+      this.screenings = FXCollections.observableArrayList();
       this.selectedObject = new SimpleObjectProperty<>();
 
-      loadFromModel();
+      try
+      {
+        loadFromModel();
+      }catch (Exception e){
+        e.printStackTrace();
+      }
     }
-    private void loadFromModel()
+    private void loadFromModel() throws RemoteException
     {
+      Screening[] allScreenings = model.getAllScreenings()
+          .toArray(new Screening[0]);
+      for (Screening screening : allScreenings)
+      {
+        User user = model.getUser();
+        SimpleScreeningView simpleScreeningView = new SimpleScreeningView(
+            screening);
+        screenings.add(simpleScreeningView);
 
-try
-{
-  if (model.getAllTickets() != null)
-  {
-    Ticket[] allTickets = model.getAllTickets().toArray(new Ticket[0]);
-    if (allTickets == null){
-      System.out.println("empty");
+      }
     }
-    for (Ticket ticket : allTickets)
+    public void updateScreeningsWithSelectedSeats(ObservableList<String> selectedSeats) {
+      ObservableList<SimpleScreeningView> updatedViews = FXCollections.observableArrayList();
+      selectedSeats.forEach(seatId -> {
+  // Assuming there's a method to find screenings by seat ID
+        Screening screening = model.findScreeningBySeatId(seatId);
+        User user = model.getUser();
+        SimpleScreeningView view = new SimpleScreeningView(screening);
+        view.setSeatID(seatId); // Make sure SimpleScreeningView has this method
+        updatedViews.add(view);
+      });
+      screenings.setAll(updatedViews);
+    }
+
+
+    public void bindScreenings(ObservableList<SimpleScreeningView> propery)
     {
-      User user = viewState.getUser();
-      SimpleTicketView simpleTicketView = new SimpleTicketView(
-          ticket,user);
-      tickets.add(simpleTicketView);
-
+      screenings.addListener(
+          (ListChangeListener<? super SimpleScreeningView>) c -> {
+            propery.setAll(screenings);
+          });
     }
-  }else {
-//    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//    alert.setHeaderText("");
-//    alert.showAndWait();
-  }
-}catch (Exception e){
-  e.printStackTrace();
-}
-    }
-
-
-    public void bindScreenings(ObservableList<SimpleTicketView> propery)
+    public void setScreenings(ObservableList<SimpleScreeningView> property)
     {
-      tickets.addListener(
-          (ListChangeListener<? super SimpleTicketView>) c -> {
-            propery.setAll(tickets);
-          });;
-    }
-    public void setScreenings(ObservableList<SimpleTicketView> property)
-    {
-      property.setAll(tickets);
+      property.setAll(screenings);
     }
     public ViewState getViewState()
     {
@@ -75,7 +78,7 @@ try
     }
     public void setSelected()
     {
-      selectedObject.set(viewState.getSelectedTicket());
+      selectedObject.set(viewState.getSelectedScreening());
     }
 }
 

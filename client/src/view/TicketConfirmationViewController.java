@@ -7,8 +7,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import model.Order;
-import viewmodel.*;
+import viewmodel.SeatMappingViewModel;
+import viewmodel.SimpleScreeningView;
+import viewmodel.TicketConfirmationViewModel;
+import viewmodel.ViewState;
 
 public class TicketConfirmationViewController
 {
@@ -16,7 +18,7 @@ public class TicketConfirmationViewController
   private TicketConfirmationViewModel viewModel;
   private ViewHandler viewHandler;
   private ViewState viewState;
-  private SimpleTicketView selected;
+  private SimpleScreeningView selected;
 
   @FXML private Button fidelityPoints;
   @FXML private Button manage;
@@ -45,11 +47,11 @@ public class TicketConfirmationViewController
     this.viewModel = viewModel;
     this.root = root;
     this.viewState= viewModel.getViewState();
-
-
-
-    viewModel.setScreenings(screeningsTable.getItems());
-    viewModel.bindScreenings(screeningsTable.getItems());
+//
+//
+//
+//    viewModel.setScreenings(screeningsTable.getItems());
+//    viewModel.bindScreenings(screeningsTable.getItems());
 
     /*
     movie.setText(viewState.getSelectedScreening().movieProperty().get());
@@ -59,24 +61,25 @@ public class TicketConfirmationViewController
     time.setText(viewState.getSelectedScreening().timeProperty().get());
     //roomID.setText(String.valueOf(viewState.getSelectedScreening().roomProperty().get()));
      */
-    this.movie.setCellValueFactory(new PropertyValueFactory<>("movie"));
-    this.seat.setCellValueFactory(new PropertyValueFactory<>("seatID"));
-    this.date.setCellValueFactory(new PropertyValueFactory<>("date"));
-    this.time.setCellValueFactory(new PropertyValueFactory<>("time"));
-    this.ticketType.setCellValueFactory(new PropertyValueFactory<>("ticketType"));
+//    this.movie.setCellValueFactory(new PropertyValueFactory<>("movie"));
+//    this.seat.setCellValueFactory(new PropertyValueFactory<>("seatID"));
+//    this.date.setCellValueFactory(new PropertyValueFactory<>("date"));
+//    this.time.setCellValueFactory(new PropertyValueFactory<>("time"));
+//    this.ticketType.setCellValueFactory(new PropertyValueFactory<>("ticketType"));
 
 
-    screeningsTable.getSelectionModel().selectedItemProperty().addListener((obs,oldVal, newVal) -> {
-      selected = (SimpleTicketView) newVal;
-      viewState.setSelectedTicket((SimpleTicketView) newVal);
-      viewModel.setSelected();
-
-
-
-
-      // Bind the updated screenings list to the table view
-      screeningsTable.setItems(screeningsTable.getItems());
-    });
+//    screeningsTable.getSelectionModel().selectedItemProperty().addListener((obs,oldVal, newVal) -> {
+//      selected = (SimpleScreeningView) newVal;
+//      viewState.setSelectedScreening((SimpleScreeningView) newVal);
+//      viewModel.setSelected();
+//
+//
+//      ObservableList<String> selectedSeats = seatMappingViewModel.getSelectedSeats();
+//      viewModel.updateScreeningsWithSelectedSeats(selectedSeats);
+//
+//      // Bind the updated screenings list to the table view
+////      screeningsTable.setItems(screeningsTable.getItems());
+//    });
   }
 
 
@@ -109,17 +112,16 @@ public class TicketConfirmationViewController
   }
   @FXML public void onUpgradeToVIP()
   {
-    if (selected != null)
-    {
-      selected.ticketTypeProperty().set("VIP ticket");
-      //should upgrade the info also in database
-      Order firstOrder = selected.getUser().getOrders().get(0);
-      double newPrice = firstOrder.getOrderPrice() + 50;
-      firstOrder.setOrderPrice(newPrice);
-
-    }
-    else
-      System.out.println("no selection");
+//    if (selected != null)
+//    {
+//      selected.ticketTypeProperty().set("VIP ticket");
+//      //should upgrade the info also in database
+//      Order firstOrder = selected.getUser().getOrders().get(0);
+//      double newPrice = firstOrder.getOrderPrice() + 50;
+//      firstOrder.setOrderPrice(newPrice);
+//    }
+//    else
+//      System.out.println("no selection");
   }
   @FXML public void onCancelOrder()
   {

@@ -46,9 +46,14 @@ public class RmiClient implements Model, RemoteListener<String,String>
     }
   }
 
-  @Override public void updateUser(User user) throws RemoteException
+  @Override public void updateUser(User user)
   {
-    server.updateUser(user);
+    try
+    {
+      server.updateUser(user);
+    }catch (RemoteException e) {
+      e.printStackTrace();
+  }
   }
 
   @Override public void cancelOrder(Order order)
@@ -61,6 +66,17 @@ public class RmiClient implements Model, RemoteListener<String,String>
     }
   }
 
+  @Override public Screening getScreeningForView(String time, String date,
+      String title, int room)
+  {
+      try
+      {
+        return server.getScreeningForView(time, date, title, room);
+      }catch (RemoteException e){
+        e.printStackTrace();
+      }
+      return null;
+  }
 
   @Override public void connect()
   {
@@ -82,21 +98,39 @@ public class RmiClient implements Model, RemoteListener<String,String>
 
   }
 
-  @Override public Order[] getAllOrders(User user) throws RemoteException
+  @Override public Order[] getAllOrders(User user)
   {
-    return server.getAllOrders(user);
+    try
+    {
+      return server.getAllOrders(user);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override public Snack[] getSnacksFromOrder(Order order)
-      throws RemoteException
+
   {
-    return server.getSnacksFromOrder(order);
+   try
+   {
+     return server.getSnacksFromOrder(order);
+   }catch (RemoteException e){
+     e.printStackTrace();
+   }
+   return null;
   }
 
   @Override public Ticket[] getTicketsFromOrder(Order order)
-      throws RemoteException
+
   {
-    return server.getTicketsFromOrder(order);
+    try
+    {
+      return server.getTicketsFromOrder(order);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override public String getUsername()
@@ -110,33 +144,61 @@ public class RmiClient implements Model, RemoteListener<String,String>
   }
 
   @Override public void reserveSeats(Seat[] seats, User customer,
-      Screening screening) throws RemoteException
+      Screening screening, int nbVIP)
   {
-    server.reserveSeats(seats, customer, screening);
+    try
+    {
+      server.reserveSeats(seats, customer, screening,nbVIP);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
   }
 
   @Override public boolean checkSeatAvailability(int index, Screening screening)
-      throws RemoteException
+
   {
-    return server.checkSeatAvailability(index, screening);
+    try
+    {
+      return server.checkSeatAvailability(index, screening);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return false;
   }
 
   @Override public void reserveSeat(Seat seat, User customer,
-      Screening screening) throws RemoteException
+      Screening screening)
   {
-    server.reserveSeat(seat, customer, screening);
+    try
+    {
+      server.reserveSeat(seat, customer, screening);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
   }
 
   @Override public Seat[] getAvailableSeats(Screening screening)
-      throws RemoteException
+
   {
-    return server.getAvailableSeats(screening);
+    try
+    {
+      return server.getAvailableSeats(screening);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override public Seat[] getEmptySeats(Screening screening)
-      throws RemoteException
+
   {
-    return server.getEmptySeats(screening);
+    try
+    {
+      return server.getEmptySeats(screening);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override public double calculateTotalPrice()
@@ -145,86 +207,174 @@ public class RmiClient implements Model, RemoteListener<String,String>
   }
 
   @Override public void updateSeatToBooked(Seat seat, Ticket ticket)
-      throws RemoteException
+
   {
-    server.updateSeatToBooked(seat, ticket);
+    try
+    {
+      server.updateSeatToBooked(seat, ticket);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
   }
 
-  @Override public void addOrder(Order order) throws RemoteException
+  @Override public void addOrder(Order order)
   {
-    server.addOrder(order);
+    try
+    {
+      server.addOrder(order);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
   }
 
-  @Override public User logIn(String username, String password) throws RemoteException
+  @Override public User logIn(String username, String password)
   {
-    return server.logIn(username, password);
+    try
+    {
+      return server.logIn(username, password);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override public void register(String username, String password, String email,
-      String firstName, String lastName, String phone) throws RemoteException
+      String firstName, String lastName, String phone)
   {
-server.register(username, password, email, firstName, lastName, phone);
+    try
+    {
+      server.register(username, password, email, firstName, lastName, phone);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
   }
 
-  @Override public void addScreening(Screening screening) throws RemoteException
+  @Override public void addScreening(Screening screening)
   {
-server.addScreening(screening);
+    try
+    {
+      server.addScreening(screening);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
   }
 
   @Override public void removeScreening(Screening screening)
-      throws RemoteException
+
   {
-server.removeScreening(screening);
+    try
+    {
+      server.removeScreening(screening);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
   }
 
-  @Override public void removeByDate(SimpleDate date) throws RemoteException
+  @Override public void removeByDate(SimpleDate date)
   {
-server.removeByDate(date);
+    try
+    {
+      server.removeByDate(date);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
   }
 
   @Override public ArrayList<Screening> getAllScreenings()
-      throws RemoteException
   {
-    return server.getAllScreenings();
+    try
+    {
+      return server.getAllScreenings();
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return null;
   }
 
-  @Override public int getNbOfScreenings() throws RemoteException
+  @Override public int getNbOfScreenings()
   {
-    return server.getNbOfScreenings();
+    try
+    {
+      return server.getNbOfScreenings();
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return 0;
   }
 
   @Override public Screening getScreening(Screening screening)
-      throws RemoteException
+
   {
-    return server.getScreening(screening);
+    try
+    {
+      return server.getScreening(screening);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return null;
   }
 
-  @Override public ArrayList<Ticket> getAllTickets() throws RemoteException
+  @Override public ArrayList<Ticket> getAllTickets()
   {
-    return server.getAllTickets();
+    try
+    {
+      return server.getAllTickets();
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return null;
   }
 
-  @Override public User getUser() throws RemoteException
+  @Override public User getUser()
   {
-    return server.getUser();
+    try
+    {
+      return server.getUser();
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override public Screening findScreeningBySeatId(String seatId)
-      throws RemoteException
+
   {
-    return server.findScreeningBySeatId(seatId);
+    try
+    {
+      return server.findScreeningBySeatId(seatId);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override public ArrayList<Screening> getScreaningsByMovieTitle(String title)
-      throws RemoteException
+
   {
-    return server.getScreaningsByMovieTitle(title);
+    try
+    {
+      return server.getScreaningsByMovieTitle(title);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override public ArrayList<Screening> getScreeningsByDate(LocalDate date)
-      throws RemoteException
+
   {
-    return server.getScreeningsByDate(date);
+    try
+    {
+      return server.getScreeningsByDate(date);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  @Override public ArrayList<Order> getOrdersForUser(String username)
+  {
+    return null;
   }
 
   public static void main(String[] args) throws RemoteException

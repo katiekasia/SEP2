@@ -9,7 +9,6 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import model.Model;
 import model.Screening;
-import model.User;
 
 import java.rmi.RemoteException;
 import java.time.LocalDate;
@@ -22,28 +21,31 @@ public class MainPageViewModel
   private ObjectProperty<SimpleScreeningView> selectedObject;
   private ViewState viewState;
   private StringProperty input;
-  private StringProperty username;
-  private User user;
+
 
   public MainPageViewModel(Model model, ViewState viewState)
+
   {
-    this.user = viewState.getUser();
     this.model = model;
     this.viewState = viewState;
     this.screenings = FXCollections.observableArrayList();
+
     this.selectedObject = new SimpleObjectProperty<>();
     this.input = new SimpleStringProperty();
 
-    loadFromModel();
-  }
 
-  private void loadFromModel()
-  {
 try
 {
-  if (model.getAllScreenings() != null)
+  loadFromModel();
+}catch (Exception e){
+  e.printStackTrace();
+}
+  }
+
+  private void loadFromModel() throws RemoteException
   {
-    Screening[] allScreenings = model.getAllScreenings().toArray(new Screening[0]);
+    Screening[] allScreenings = model.getAllScreenings()
+        .toArray(new Screening[0]);
     for (Screening screening : allScreenings)
     {
       SimpleScreeningView simpleScreeningView = new SimpleScreeningView(
@@ -51,15 +53,9 @@ try
       screenings.add(simpleScreeningView);
     }
   }
-}catch (Exception e){
-  e.printStackTrace();
-}
-  }
 
-  public void setUsername(String username)
-  {
-    this.username.set(username);
-  }
+
+
 
   public StringProperty inputProperty()
   {
@@ -90,38 +86,26 @@ try
     return viewState;
   }
 
-  public StringProperty getUsername()
-  {
-    return username;
-  }
+
   public void loadScreenings(ArrayList<Screening> screenings){
     for (Screening screening :screenings){
       SimpleScreeningView screeningView = new SimpleScreeningView(screening);
       this.screenings.add(screeningView);
     }
   }
-public void filterByTitle(){
+public void filterByTitle() throws RemoteException
+{
 if (input != null){
   screenings.clear();
-  try
-  {
-    loadScreenings(model.getScreaningsByMovieTitle(input.get()));
-  }catch (RemoteException e){
-    e.printStackTrace();
-  }
-
+  loadScreenings(model.getScreaningsByMovieTitle(input.get()));
 }else {
   loadFromModel();
 }
 }
-public void filterByDate(LocalDate date){
+public void filterByDate(LocalDate date) throws RemoteException
+{
     screenings.clear();
-    try
-    {
-      loadScreenings(model.getScreeningsByDate(date));
-    }catch (RemoteException e){
-      e.printStackTrace();
-    }
+    loadScreenings(model.getScreeningsByDate(date));
 }
 
 }

@@ -1,7 +1,8 @@
 package viewmodel;
 
-import model.Screening;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import model.User;
 
 public class ViewState
@@ -13,6 +14,7 @@ public class ViewState
       0);
   private SimpleIntegerProperty numberOfVIPTickets = new SimpleIntegerProperty(
       0);
+
 
   public ViewState()
   {
@@ -43,11 +45,8 @@ public class ViewState
   {
     this.user = user;
   }
-
-  public Screening getScreeningFromView()
-  {
-    SimpleScreeningView view = getSelectedScreening(); // Assumes this returns SimpleScreeningView
-    return view.getScreening();
+  public StringProperty usernameProperty(){
+    return new SimpleStringProperty(user.getUsername());
   }
 
   public void setSelectedScreening(SimpleScreeningView screening)
@@ -68,6 +67,18 @@ public class ViewState
   public void setNumberOfStandardTickets(int numberOfStandardTickets)
   {
     this.numberOfStandardTickets.set(numberOfStandardTickets);
+  }
+  public String getTime(){
+    return selectedScreening.getTime();
+  }
+  public String getDate(){
+    return selectedScreening.getDate().toString();
+  }
+  public int room(){
+    return selectedScreening.getRoom();
+  }
+  public String getTitle(){
+    return selectedScreening.getMovie();
   }
 
   public int getNumberOfVIPTickets()

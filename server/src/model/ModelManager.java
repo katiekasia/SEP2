@@ -17,6 +17,7 @@ public class ModelManager implements Model
   private int PORT;
   private boolean running;
   private ScreeningsList screenings;
+  private UsersList usersList;
 
   //not sure if the user variable is the one connected here
   private User user;
@@ -30,15 +31,25 @@ public class ModelManager implements Model
     this.HOST = "localhost";
     this.user = null;
     this.propertyChangeSupport = new PropertyChangeSupport(this);
+
     try
     {
-      screenings = new ScreeningsList();
+      usersList = new UsersList();
+      screenings = DataBaseHandler.getSetScreenings(usersList);
     }
     catch (SQLException e)
     {
       e.printStackTrace();
     }
-
+    ArrayList<Order> orders = DataBaseHandler.getAllOrders(usersList);
+    setUpScreenings(orders, screenings);
+  }
+  private void setUpScreenings(ArrayList<Order> orders, ScreeningsList screenings){
+    for (Order order : orders){
+      for (Ticket ticket : order.getTickets()){
+        screenings.getScreening(ticket.getScreening()).getRoom().getSeatByID(ticket.getSeat().getID()).book(ticket);
+      }
+    }
   }
   @Override  public void updateUser(User user) throws RemoteException
   {
@@ -51,6 +62,15 @@ public class ModelManager implements Model
       e.printStackTrace();
     }
   }
+  @Override public Screening getScreeningForView(String time, String date,String title, int room){
+    return screenings.getScreeningForView(time, date, title, room);
+  }
+//  public Ticket getTicketForView(String time, String date,String title, int room, String username){
+//    for (Order order : usersList.getByUsername(username).getOrders()){
+//     if (order.getOrderDate().toString().equals(date))
+//    }
+//    throw
+//  }
   @Override public User logIn(String username, String password)
   {
     try
@@ -203,7 +223,7 @@ public class ModelManager implements Model
     }
     Order temp = new Order(customer.getOrders().size() + 1);
     Ticket tempT = new StandardTicket(seat.getID(), 13, seat, screening,
-        customer, "Standard");
+        customer);
     seat.book(tempT);
     temp.addTicket(tempT);
     customer.addOrder(temp);
@@ -343,7 +363,7 @@ public class ModelManager implements Model
   }
 
   @Override public void reserveSeats(Seat[] seats, User customer,
-      Screening screening)
+      Screening screening, int nbVip)
   {
     if (screening.getRoom().availableSeats() < seats.length)
     {
@@ -353,10 +373,17 @@ public class ModelManager implements Model
     Order temp = new Order(customer.getOrders().size() + 1);
     for (Seat seat : seats)
     {
-      Ticket tempT = new StandardTicket(seat.getID(), 13, seat, screening,
-          customer, "Standard");
-      seat.book(tempT);
-      temp.addTicket(tempT);
+      if (nbVip > 0){
+        Ticket tempT = new VIPTicket(seat.getID(), 13, seat,screening,customer);
+        seat.book(tempT);
+        temp.addTicket(tempT);
+      }else
+      {
+        Ticket tempT = new StandardTicket(seat.getID(), 13, seat, screening,
+            customer);
+        seat.book(tempT);
+        temp.addTicket(tempT);
+      }
     }
     customer.addOrder(temp);
   }

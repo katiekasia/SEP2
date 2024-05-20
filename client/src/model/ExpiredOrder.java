@@ -1,6 +1,8 @@
 package model;
 
-public class ExpiredOrder extends OrderState
+import java.io.Serializable;
+
+public class ExpiredOrder extends OrderState implements Serializable
 {
   private boolean expired;
   public ExpiredOrder(Order order){

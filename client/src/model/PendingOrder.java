@@ -1,14 +1,15 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class PendingOrder extends OrderState
+public class PendingOrder extends OrderState implements Serializable
 {
 
   private boolean expired;
   public PendingOrder(Order order){
     expired = false;
-    expire(order);
+    // expire(order);
   }
   @Override public void expire(Order order)
   {
@@ -23,12 +24,6 @@ public class PendingOrder extends OrderState
   @Override public void cancel(Order order)
   {
     order.setOrderState(new CancelledOrder(order));
-    for (Ticket ticket:order.getTickets()){
-      ticket.cancelTicket();
-    }
-//    for (Snack snack : order.getSnacks()){
-//      order.removeSnack();
-//    }
   }
 
   @Override public String status()

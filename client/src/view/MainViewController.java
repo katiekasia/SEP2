@@ -8,6 +8,8 @@ import viewmodel.MainPageViewModel;
 import viewmodel.SimpleScreeningView;
 import viewmodel.ViewState;
 
+import java.rmi.RemoteException;
+
 public class MainViewController
 {
   private Region root;
@@ -48,6 +50,9 @@ public class MainViewController
     viewModel.setScreenings(screeningsTable.getItems());
     viewModel.bindScreenings(screeningsTable.getItems());
     searchBar.textProperty().bindBidirectional(viewModel.inputProperty());
+    username.textProperty().bind(viewState.usernameProperty());
+
+    //username.textProperty().bind(viewModel.usernameProperty());
     this.title.setCellValueFactory(new PropertyValueFactory<>("movie"));
     this.screeningTime.setCellValueFactory(new PropertyValueFactory<>("length"));
     this.date.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -65,7 +70,7 @@ viewModel.setSelected();
 
   @FXML public void onManage()
   {
-    viewHandler.openView("managePage");
+
   }
 
   @FXML public void onSignOut()
@@ -89,15 +94,15 @@ viewModel.setSelected();
     }else
       System.out.println("no selection");
   }
-  @FXML public void onDatePicked()
+  @FXML public void onDatePicked() throws RemoteException
   {
     viewModel.filterByDate(datePicker.getValue());
   }
-  @FXML public void onSearch()
+  @FXML public void onSearch() throws RemoteException
   {
     viewModel.filterByTitle();
   }
-  @FXML public void onSearchBar()
+  @FXML public void onSearchBar() throws RemoteException
   {
     viewModel.filterByTitle();
   }

@@ -50,6 +50,7 @@ public class MainViewController
     viewModel.setScreenings(screeningsTable.getItems());
     viewModel.bindScreenings(screeningsTable.getItems());
     searchBar.textProperty().bindBidirectional(viewModel.inputProperty());
+    username.textProperty().bind(viewState.usernameProperty());
 
     //username.textProperty().bind(viewModel.usernameProperty());
     this.title.setCellValueFactory(new PropertyValueFactory<>("movie"));

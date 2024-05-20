@@ -109,19 +109,19 @@ public class TicketConfirmationViewController
   {
 
   }
-  @FXML public void onUpgradeToVIP()
-  {
-    if (selected != null)
-    {
-      selected.ticketTypeProperty().set("VIP ticket");
-      //should upgrade the info also in database
-      Order firstOrder = selected.getUser().getOrders().get(0);
-      double newPrice = firstOrder.getOrderPrice() + 50;
-      firstOrder.setOrderPrice(newPrice);
-    }
-    else
-      System.out.println("no selection");
-  }
+//  @FXML public void onUpgradeToVIP()
+//  {
+//    if (selected != null)
+//    {
+//      selected.ticketTypeProperty().set("VIP ticket");
+//      //should upgrade the info also in database
+//      Order firstOrder = selected.getUser().getOrders().get(0);
+//      double newPrice = firstOrder.getOrderPrice() + 50;
+//      firstOrder.setOrderPrice(newPrice);
+//    }
+//    else
+//      System.out.println("no selection");
+//  }
   @FXML public void onCancelOrder()
   {
 

@@ -35,7 +35,7 @@ public class TicketConfirmationViewModel
       {
         User user = model.getUser();
         SimpleScreeningView simpleScreeningView = new SimpleScreeningView(
-            screening, user);
+            screening);
         screenings.add(simpleScreeningView);
 
       }
@@ -61,7 +61,7 @@ public class TicketConfirmationViewModel
         {
           throw new RuntimeException(e);
         }
-        SimpleScreeningView view = new SimpleScreeningView(screening, user);
+        SimpleScreeningView view = new SimpleScreeningView(screening);
         view.setSeatID(seatId); // Make sure SimpleScreeningView has this method
         updatedViews.add(view);
       });

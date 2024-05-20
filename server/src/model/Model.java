@@ -10,6 +10,7 @@ public interface Model extends UnnamedPropertyChangeSubject
 {
   public void updateUser(User user) throws RemoteException;
   void cancelOrder(Order order);
+  Screening getScreeningForView(String time, String date,String title, int room) throws RemoteException;
   public User logIn(String username, String password) throws RemoteException;
   public void connect();
   public void disconnect();
@@ -21,7 +22,7 @@ public interface Model extends UnnamedPropertyChangeSubject
   public String getUsername();
   public String getHost();
   public void reserveSeats(Seat[] seats, User customer,
-       Screening screening ) throws RemoteException;
+       Screening screening, int nbVIP) throws RemoteException;
   public boolean checkSeatAvailability(int index, Screening screening) throws RemoteException;
 
   public void reserveSeat(Seat seat, User customer,

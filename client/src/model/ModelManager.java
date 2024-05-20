@@ -52,8 +52,18 @@ public class ModelManager implements Model, PropertyChangeListener
     client.cancelOrder(order);
   }
 
+  @Override public Screening getScreeningForView(String time, String date,
+      String title, int room)
+  {
+    try
+    {
+      return client.getScreeningForView(time, date, title, room);
+    }catch (Exception e){
+      throw e;
+    }
+  }
+
   @Override public User logIn(String username, String password)
-      throws RemoteException
   {
     try
     {
@@ -66,7 +76,7 @@ public class ModelManager implements Model, PropertyChangeListener
     throw e;
   }
   }
-  @Override  public void updateUser(User user) throws RemoteException
+  @Override  public void updateUser(User user)
   {
     try
     {
@@ -97,19 +107,19 @@ public class ModelManager implements Model, PropertyChangeListener
     this.PORT = port;
   }
 
-  @Override public Order[] getAllOrders(User user) throws RemoteException
+  @Override public Order[] getAllOrders(User user)
   {
    return client.getAllOrders(user);
   }
 
   @Override public Snack[] getSnacksFromOrder(Order order)
-      throws RemoteException
+
   {
    return client.getSnacksFromOrder(order);
   }
 
   @Override public Ticket[] getTicketsFromOrder(Order order)
-      throws RemoteException
+
   {
     return client.getTicketsFromOrder(order);
   }
@@ -345,12 +355,17 @@ try
     return null;
   }
 
+  @Override public ArrayList<Order> getOrdersForUser(String username)
+  {
+    return null;
+  }
+
   @Override public void reserveSeats(Seat[] seats, User customer,
-      Screening screening)
+      Screening screening, int nbVIP)
   {
 try
 {
-  client.reserveSeats(seats, customer, screening);
+  client.reserveSeats(seats, customer, screening, nbVIP);
 }catch (Exception e){
   e.printStackTrace();
 }

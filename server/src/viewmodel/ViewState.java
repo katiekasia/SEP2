@@ -1,7 +1,10 @@
 package viewmodel;
 
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import model.Screening;
+import model.Ticket;
 import model.User;
 
 public class ViewState
@@ -13,6 +16,7 @@ public class ViewState
       0);
   private SimpleIntegerProperty numberOfVIPTickets = new SimpleIntegerProperty(
       0);
+
 
   public ViewState()
   {
@@ -43,11 +47,8 @@ public class ViewState
   {
     this.user = user;
   }
-
-  public Screening getScreeningFromView()
-  {
-    SimpleScreeningView view = getSelectedScreening(); // Assumes this returns SimpleScreeningView
-    return view.getScreening();
+  public StringProperty usernameProperty(){
+    return new SimpleStringProperty(user.getUsername());
   }
 
   public void setSelectedScreening(SimpleScreeningView screening)

@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Room implements Serializable
 {
@@ -18,12 +19,14 @@ public class Room implements Serializable
 
 
   public void setSeats() {
-    for (int i = 0; i < 4; i++)
-    {
+    int index = 0;  // Index to track the position in the seats array
+    seats = new Seat[4 * 11];  // Assuming seats array is a class variable and initializing it here
+
+    for (int i = 0; i < 4; i++) {
       String id = "";
-      switch (i){
+      switch (i) {
         case 0:
-          id ="A";
+          id = "A";
           break;
         case 1:
           id = "B";
@@ -35,14 +38,29 @@ public class Room implements Serializable
           id = "D";
           break;
       }
-      for (int j = 0; j < 11; j++)
-      {
-        Seat seat = new Seat(id + (j+1),false);
-        for (int k = 0; k < seats.length; k++)
-        {
-          seats[k] = seat;
-        }
+
+      for (int j = 0; j < 11; j++) {
+        Seat seat = new Seat(id + (j + 1), false);
+        seats[index++] = seat;  // Assign the seat to the next position in the array
       }
+    }
+  }
+  public ArrayList<String> getBookedSeatsIDs(){
+    ArrayList<String> result = new ArrayList<>();
+
+    for (Seat seat : seats){
+      if (!seat.isAvailable()){
+        result.add(seat.getID());
+      }
+    }
+    return result;
+  }
+
+  public static void main(String[] args)
+  {
+    Room room = new Room(23,44);
+    for (Seat seat: room.getSeats()){
+      System.out.println(seat.getID());
     }
   }
 
@@ -64,6 +82,17 @@ public class Room implements Serializable
   }
   public Seat[] getSeats() {
     return seats;
+  }
+  public Seat getSeatByID(String ID){
+    System.out.println(ID);
+    for (Seat seat :seats){
+      if (seat.getID().equals(ID)){
+        System.out.println(seat.getID());
+        return seat;
+      }
+    }
+    System.out.println("Not FOund");
+    return null;
   }
   public Seat getSeat(int index) {
     return seats[index];

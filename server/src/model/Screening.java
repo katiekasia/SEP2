@@ -16,12 +16,22 @@ public class Screening implements Serializable
 	this.hour = hour;
 	this.minute = minute;
 	this.movie = movie;
-	this.room = new Room(room.getRoomID(), room.getNbSeats());
+	this.room = room;
 	}
 
 
 	//**********************************************Getters and setters*******************************
 
+	@Override public boolean equals(Object obj)
+	{
+		if (obj == null || getClass() != obj.getClass())
+		{
+			return false;
+		}
+		Screening other = (Screening) obj;
+		return date.equals(other.getDate()) && getTime().equals(other.getTime()) &&
+				movie.getName().equals(other.getMovie().getName()) && room.getRoomID() == other.getRoom().getRoomID();
+	}
 
 	public String getTime(){
 		return hour + ":" + minute;

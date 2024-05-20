@@ -53,10 +53,16 @@ private void start() throws RemoteException, MalformedURLException
   }
 
   @Override public void reserveSeats(Seat[] seats, User customer,
-       Screening screening) throws RemoteException
+       Screening screening, int nbVIP) throws RemoteException
   {
-    cinema.reserveSeats(seats,customer, screening);
+    cinema.reserveSeats(seats,customer, screening,nbVIP);
     property.firePropertyChange("RESERVE SEATS", null, screening.getTime());
+  }
+
+  @Override public Screening getScreeningForView(String time, String date,
+      String title, int room) throws RemoteException
+  {
+    return cinema.getScreeningForView(time, date, title, room);
   }
 
   @Override public Order[] getAllOrders(User user) throws RemoteException

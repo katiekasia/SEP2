@@ -31,6 +31,15 @@ public class Order implements Serializable
     return orderState;
   }
 
+  public Ticket getTicketForView(String date, String time, String title){
+    for (Ticket ticket : tickets){
+      if (ticket.getScreening().getDate().toString().equals(date) && ticket.getScreening().getTime().equals(time) &&
+      ticket.getScreening().getMovie().getName().equals(title)){
+        return ticket;
+      }
+    }
+    throw new RuntimeException("No such ticket found");
+  }
   public void calculateOrderPrice()
   {
     double price = 0;
@@ -78,7 +87,6 @@ if (orderState instanceof PendingOrder){
   }
 public void cancelOrder(){
     orderState.cancel(this);
-
 }
 
 //*******************************************************Getters and setters*********************************8
