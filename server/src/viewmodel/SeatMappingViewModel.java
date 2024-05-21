@@ -45,7 +45,9 @@ try
   int index = 0;
   for (String s : selectedSeats){
     seatsToReserve[index] = model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
-        viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom()).getRoom().getSeatByID(s);
+
+        viewState.getSelectedScreening().getMovie(),
+        viewState.getSelectedScreening().getRoom()).getRoom().getSeatByID(s);
     index++;
   }
   return seatsToReserve;
@@ -91,6 +93,7 @@ return null;
       model.reserveSeats(selectedSeats(),viewState.getUser(),model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
           viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom()),
           viewState.getNumberOfVIPTickets());
+      selectedSeats.clear();
     }catch (Exception e){
       Alert alert = new Alert(Alert.AlertType.ERROR);
       alert.setHeaderText(e.getMessage());

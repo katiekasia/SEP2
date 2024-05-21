@@ -21,4 +21,7 @@ public class MyApplication extends Application
 
 
 }
+  @Override public void stop(){
+
+  }
 }

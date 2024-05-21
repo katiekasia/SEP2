@@ -37,8 +37,9 @@ public class MainPageViewModel
     loadFromModel();
   }
 
-  private void loadFromModel() throws RemoteException
+  private void loadFromModel()
   {
+    screenings.clear();
     Screening[] allScreenings = model.getAllScreenings()
         .toArray(new Screening[0]);
     for (Screening screening : allScreenings)
@@ -88,7 +89,25 @@ public class MainPageViewModel
       this.screenings.add(screeningView);
     }
   }
-public void filterByTitle() throws RemoteException
+  public void clearFilters(){
+    loadFromModel();
+  }
+  public void onSearch(LocalDate date){
+    if (input != null && date !=null){
+      model.getScreeningsByDateAndTitle(input.get(),date);
+    }
+    else if (input != null && date ==null){
+      filterByTitle();
+    }
+    else if (input == null && date != null)
+    {
+      filterByDate(date);
+    }else
+    {
+      loadFromModel();
+    }
+  }
+public void filterByTitle()
 {
 if (input != null){
   screenings.clear();
@@ -97,7 +116,7 @@ if (input != null){
   loadFromModel();
 }
 }
-public void filterByDate(LocalDate date) throws RemoteException
+public void filterByDate(LocalDate date)
 {
     screenings.clear();
     loadScreenings(model.getScreeningsByDate(date));

@@ -118,9 +118,9 @@ private void start() throws RemoteException, MalformedURLException
     property.firePropertyChange("UPDATE SEAT TO BOOKED", null, ticket.toString());
   }
 
-  @Override public void addOrder(Order order) throws RemoteException
+  @Override public void addOrder(Order order,User user) throws RemoteException
   {
-    cinema.addOrder(order);
+    cinema.addOrder(order,user);
     property.firePropertyChange("ADD ORDER", null, order.toString());
   }
 
@@ -172,21 +172,13 @@ private void start() throws RemoteException, MalformedURLException
     return cinema.getScreening(screening);
   }
 
-  @Override public ArrayList<Ticket> getAllTickets() throws RemoteException
+  @Override public ArrayList<Ticket> getAllTickets(User user) throws RemoteException
   {
-    return cinema.getAllTickets();
+    return cinema.getAllTickets(user);
   }
 
-  @Override public User getUser() throws RemoteException
-  {
-    return cinema.getUser();
-  }
 
-  @Override public Screening findScreeningBySeatId(String seatId)
-      throws RemoteException
-  {
-    return cinema.findScreeningBySeatId(seatId);
-  }
+
 
   @Override public ArrayList<Screening> getScreaningsByMovieTitle(String title)
       throws RemoteException

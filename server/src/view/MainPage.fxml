@@ -51,7 +51,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="ticketConfirmation" layoutX="14.0" layoutY="409.0" mnemonicParsing="false" onAction="#onTicketConfirmation" prefHeight="56.0" prefWidth="183.0" text="Order confimations">
+            <Button fx:id="orderConfirmation" layoutX="14.0" layoutY="409.0" mnemonicParsing="false" onAction="#onOrderConfirmation" prefHeight="56.0" prefWidth="183.0" text="Order confimations">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -83,7 +83,7 @@
       </ImageView>
       <AnchorPane layoutX="205.0" layoutY="136.0" prefHeight="648.0" prefWidth="730.0">
          <children>
-            <Button fx:id="bookTicket1" layoutX="299.0" layoutY="535.0" mnemonicParsing="false" onAction="#bookTicket1" prefHeight="47.0" prefWidth="132.0" text="Book a ticket" />
+            <Button fx:id="bookTicket1" layoutX="299.0" layoutY="535.0" mnemonicParsing="false" onAction="#bookTicket1" prefHeight="47.0" prefWidth="132.0" text="Book" />
             <ScrollPane layoutX="57.0" layoutY="81.0" prefHeight="408.0" prefWidth="594.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="399.0" prefWidth="602.0">
@@ -104,7 +104,7 @@
             <Button fx:id="search" layoutX="240.0" layoutY="36.0" mnemonicParsing="false" onAction="#onSearch" text="search" />
             <TextField fx:id="searchBar" layoutX="59.0" layoutY="36.0" onAction="#onSearchBar" prefHeight="26.0" prefWidth="159.0" />
             <DatePicker fx:id="datePicker" layoutX="365.0" layoutY="37.0" onAction="#onDatePicked" />
-            <Button layoutX="575.0" layoutY="37.0" mnemonicParsing="false" text="Clear filters" />
+            <Button fx:id="clearFilters" layoutX="575.0" layoutY="37.0" mnemonicParsing="false" onAction="#onClearFiters" text="Clear filters" />
          </children>
       </AnchorPane>
    </children>

@@ -36,6 +36,15 @@ public class RmiClient implements Model, RemoteListener<String,String>
       e.printStackTrace();
     }
   }
+  public void stop(){
+    try
+    {
+      UnicastRemoteObject.unexportObject(this,true);
+    }catch (Exception e){
+      e.printStackTrace();
+    }
+
+  }
 
   public void start() throws RemoteException
   {

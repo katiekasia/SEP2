@@ -25,6 +25,26 @@ public class Order implements Serializable
   {
     this.orderState = orderState;
   }
+  public void upgrade(Ticket ticket){
+    Seat seat = ticket.getSeat();
+    Screening screening = ticket.getScreening();
+    String id = ticket.getTicketID();
+    ticket.cancelTicket();
+    Ticket temp = new VIPTicket(id,13,seat,screening);
+    screening.getRoom().getSeatByID(seat.getID()).book(ticket);
+    tickets.remove(ticket);
+    tickets.add(temp);
+  }
+  public void downgrade(Ticket ticket){
+    Seat seat = ticket.getSeat();
+    Screening screening = ticket.getScreening();
+    String id = ticket.getTicketID();
+    ticket.cancelTicket();
+    Ticket temp = new StandardTicket(id,13,seat,screening);
+    screening.getRoom().getSeatByID(seat.getID()).book(ticket);
+    tickets.remove(ticket);
+    tickets.add(temp);
+  }
 
   public OrderState getOrderState()
   {

@@ -24,6 +24,9 @@ public class PendingOrder extends OrderState implements Serializable
   @Override public void cancel(Order order)
   {
     order.setOrderState(new CancelledOrder(order));
+    for (Ticket ticket : order.getTickets()){
+      ticket.cancelTicket();
+    }
   }
 
   @Override public String status()

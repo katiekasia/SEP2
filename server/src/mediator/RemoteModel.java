@@ -29,7 +29,7 @@ public interface RemoteModel extends Remote, RemoteSubject<String ,String >
   //public double calculateTotalPrice() throws RemoteException;
   public void updateSeatToBooked(Seat seat, Ticket ticket) throws RemoteException;
 
-  public void addOrder(Order order) throws RemoteException;
+  public void addOrder(Order order,User user) throws RemoteException;
   void register(String username, String password, String email, String firstName, String lastName, String phone) throws RemoteException;
   void addScreening(Screening screening) throws RemoteException;
   void removeScreening(Screening screening) throws RemoteException;
@@ -37,9 +37,8 @@ public interface RemoteModel extends Remote, RemoteSubject<String ,String >
   ArrayList<Screening> getAllScreenings() throws RemoteException;
   int getNbOfScreenings() throws RemoteException;
   Screening getScreening(Screening screening) throws RemoteException;
-  public ArrayList<Ticket> getAllTickets() throws RemoteException;
-  public User getUser() throws RemoteException;
-  Screening findScreeningBySeatId(String seatId) throws RemoteException;
+  public ArrayList<Ticket> getAllTickets(User user) throws RemoteException;
+
   ArrayList<Screening> getScreaningsByMovieTitle(String title) throws RemoteException;
   ArrayList<Screening> getScreeningsByDate(LocalDate date) throws RemoteException;
 }

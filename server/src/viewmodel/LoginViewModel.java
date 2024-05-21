@@ -2,16 +2,8 @@ package viewmodel;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import model.DataBaseHandler;
 import model.Model;
-import model.Order;
-import model.User;
-
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginViewModel
 {
@@ -19,6 +11,7 @@ public class LoginViewModel
   private Model model;
   private StringProperty usernameField;
   private StringProperty passwordField;
+  private boolean logged;
 
   public LoginViewModel(Model model, ViewState viewState)
   {
@@ -26,6 +19,7 @@ public class LoginViewModel
     this.usernameField = new SimpleStringProperty();
     this.passwordField = new SimpleStringProperty();
     this.viewState = viewState;
+    logged = false;
   }
 
   public void login()
@@ -33,13 +27,23 @@ public class LoginViewModel
     try
     {
       viewState.setUser(model.logIn(usernameField.get(), passwordField.get()));
+      logged = true;
+
     }
    catch(Exception e)
    {
+     logged = false;
+     reset();
      Alert alert= new Alert(Alert.AlertType.ERROR);
      alert.setHeaderText(e.getMessage());
      alert.showAndWait();
    }
+
+  }
+
+  public boolean isLogged()
+  {
+    return logged;
   }
 
   public StringProperty getUsernameField()

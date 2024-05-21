@@ -14,6 +14,8 @@ public class ViewModelFactory
   private TransitionPageViewModel transitionPageViewModel;
   private SnackSelectionViewModel snackSelectionViewModel;
   private TicketConfirmationViewModel ticketConfirmationViewModel;
+  private OrderConfirmationViewModel orderConfirmationViewModel;
+  private OrderDetailsViewModel orderDetailsViewModel;
   private ManageViewModel manageViewModel;
   private ViewState viewState;
 
@@ -28,6 +30,13 @@ public class ViewModelFactory
     this.ticketConfirmationViewModel = new TicketConfirmationViewModel(model, viewState);
     this.transitionPageViewModel = new TransitionPageViewModel(model, viewState);
     this.manageViewModel= new ManageViewModel(model, viewState);
+    this.orderConfirmationViewModel = new OrderConfirmationViewModel(model, viewState);
+    this.orderDetailsViewModel = new OrderDetailsViewModel(model,viewState);
+  }
+
+  public OrderDetailsViewModel getOrderDetailsViewModel()
+  {
+    return orderDetailsViewModel;
   }
 
   public MainPageViewModel getPageViewModel()
@@ -39,6 +48,7 @@ public class ViewModelFactory
   {
     return loginViewModel;
   }
+  public OrderConfirmationViewModel getOrderConfirmationViewModel(){return orderConfirmationViewModel;}
 
   public ManageViewModel getManageViewModel()
   {

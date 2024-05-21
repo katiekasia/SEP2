@@ -87,12 +87,17 @@ public class TransitionPageViewController
 
   @FXML public void onSignOut()
   {
-
+    viewState.logOut();
+    viewHandler.openView("login");
   }
 
+  @FXML public void onOrderConfirmation(){
+    viewHandler.openView("orderConfirmation");
+  }
 
   @FXML private void onBackToMovieSelection()
   {
+    viewState.setSelectedScreening(null);
     viewHandler.openView("mainPage");
   }
 

@@ -9,14 +9,13 @@ public abstract class Ticket implements Serializable
 	private String ticketType;
 	private Seat seat;
 	private Screening screening;
-	private User customer;
 
-	public Ticket(String ticketID, double ticketPrice, Seat seat, Screening screening, User customer, String ticketType) {
+	public Ticket(String ticketID, double ticketPrice, Seat seat, Screening screening, String ticketType) {
 		this.ticketID = ticketID;
 		this.ticketPrice = ticketPrice;
 		this.seat = seat;
 		this.screening = screening;
-		this.customer = customer;
+
 		this.ticketType= ticketType;
 	}
 	public String getTicketType()

@@ -25,48 +25,48 @@ public class TicketConfirmationViewModel
       this.screenings = FXCollections.observableArrayList();
       this.selectedObject = new SimpleObjectProperty<>();
 
-      loadFromModel();
+      //loadFromModel();
     }
-    private void loadFromModel() throws RemoteException
-    {
-      Screening[] allScreenings = model.getAllScreenings()
-          .toArray(new Screening[0]);
-      for (Screening screening : allScreenings)
-      {
-        User user = model.getUser();
-        SimpleScreeningView simpleScreeningView = new SimpleScreeningView(
-            screening);
-        screenings.add(simpleScreeningView);
-
-      }
-    }
-    public void updateScreeningsWithSelectedSeats(ObservableList<String> selectedSeats) {
-      ObservableList<SimpleScreeningView> updatedViews = FXCollections.observableArrayList();
-      selectedSeats.forEach(seatId -> {
-        Screening screening = null;  // Assuming there's a method to find screenings by seat ID
-        try
-        {
-          screening = model.findScreeningBySeatId(seatId);
-        }
-        catch (RemoteException e)
-        {
-          throw new RuntimeException(e);
-        }
-        User user = null;
-        try
-        {
-          user = model.getUser();
-        }
-        catch (RemoteException e)
-        {
-          throw new RuntimeException(e);
-        }
-        SimpleScreeningView view = new SimpleScreeningView(screening);
-        view.setSeatID(seatId); // Make sure SimpleScreeningView has this method
-        updatedViews.add(view);
-      });
-      screenings.setAll(updatedViews);
-    }
+//    private void loadFromModel() throws RemoteException
+//    {
+//      Screening[] allScreenings = model.getAllScreenings()
+//          .toArray(new Screening[0]);
+//      for (Screening screening : allScreenings)
+//      {
+//        User user = model.getUser();
+//        SimpleScreeningView simpleScreeningView = new SimpleScreeningView(
+//            screening);
+//        screenings.add(simpleScreeningView);
+//
+//      }
+//    }
+//    public void updateScreeningsWithSelectedSeats(ObservableList<String> selectedSeats) {
+//      ObservableList<SimpleScreeningView> updatedViews = FXCollections.observableArrayList();
+//      selectedSeats.forEach(seatId -> {
+//        Screening screening = null;  // Assuming there's a method to find screenings by seat ID
+//        try
+//        {
+//          screening = model.findScreeningBySeatId(seatId);
+//        }
+//        catch (RemoteException e)
+//        {
+//          throw new RuntimeException(e);
+//        }
+//        User user = null;
+//        try
+//        {
+//          user = model.getUser();
+//        }
+//        catch (RemoteException e)
+//        {
+//          throw new RuntimeException(e);
+//        }
+//        SimpleScreeningView view = new SimpleScreeningView(screening);
+//        view.setSeatID(seatId); // Make sure SimpleScreeningView has this method
+//        updatedViews.add(view);
+//      });
+//      screenings.setAll(updatedViews);
+//    }
 
 
     public void bindScreenings(ObservableList<SimpleScreeningView> propery)

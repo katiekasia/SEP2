@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.OrderDetailsViewController">
    <children>
       <Label layoutX="29.0" layoutY="26.0" text="Order ID:">
          <font>
@@ -59,28 +59,37 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TableView layoutX="66.0" layoutY="196.0" prefHeight="118.0" prefWidth="454.0">
-        <columns>
-          <TableColumn prefWidth="219.99999713897705" text="Seat" />
-          <TableColumn prefWidth="234.40003967285156" text="TicketType" />
-        </columns>
-      </TableView>
-      <TableView layoutX="66.0" layoutY="349.0" prefHeight="118.0" prefWidth="454.0">
-         <columns>
-            <TableColumn prefWidth="147.99999713897705" text="Snack Name" />
-            <TableColumn prefWidth="136.0000762939453" text="Size" />
-            <TableColumn prefWidth="171.99993896484375" text="Price" />
-         </columns>
-      </TableView>
-      <Button layoutX="210.0" layoutY="494.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="166.0" text="Change order">
+      <AnchorPane layoutX="66.0" layoutY="196.0" prefHeight="458.0" prefWidth="454.0">
+         <children>
+            <TableView fx:id="ticketsTable" prefHeight="118.0" prefWidth="454.0">
+              <columns>
+                <TableColumn fx:id="seatColumn" prefWidth="136.0000762939453" text="Seat" />
+                <TableColumn fx:id="ticketTypeColumn" prefWidth="147.99999713897705" text="Ticket Type" />
+                  <TableColumn fx:id="ticketPriceColumn" prefWidth="170.99993896484375" text="Price" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="66.0" layoutY="349.0" prefHeight="298.0" prefWidth="454.0">
+         <children>
+            <TableView fx:id="snacksTable" prefHeight="118.0" prefWidth="454.0">
+               <columns>
+                  <TableColumn fx:id="snackNameColumn" prefWidth="147.99999713897705" text="Snack Name" />
+                  <TableColumn fx:id="sizeColumn" prefWidth="136.0000762939453" text="Size" />
+                  <TableColumn fx:id="snackPriceColumn" prefWidth="170.99993896484375" text="Price" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <Button fx:id="deleteTicketButton" layoutX="536.0" layoutY="242.0" mnemonicParsing="false" onAction="#onDeleteTicket" prefHeight="26.0" prefWidth="98.0" text="Delete a ticket" />
+      <Button fx:id="upgradeButton" layoutX="537.0" layoutY="196.0" mnemonicParsing="false" onAction="#onUpgrade" text="Upgrade to VIP" />
+      <Button fx:id="deleteSnackButton" layoutX="532.0" layoutY="427.0" mnemonicParsing="false" onAction="#onDeleteSnack" prefHeight="26.0" prefWidth="106.0" text="Delete a snack" />
+      <Button fx:id="addSnackButton" layoutX="533.0" layoutY="382.0" mnemonicParsing="false" onAction="#onAddSnack" text="Add a new snack" />
+      <Button fx:id="downgradeButton" layoutX="536.0" layoutY="287.0" mnemonicParsing="false" onAction="#onDowngrade" prefHeight="26.0" prefWidth="99.0" text="Downgrade" />
+      <Button fx:id="backButton" layoutX="210.0" layoutY="494.0" mnemonicParsing="false" onAction="#onBack" prefHeight="41.0" prefWidth="166.0" text="Back">
          <font>
             <Font size="19.0" />
          </font>
       </Button>
-      <Button layoutX="536.0" layoutY="242.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" text="Delete a ticket" />
-      <Button layoutX="537.0" layoutY="196.0" mnemonicParsing="false" text="Upgrade to VIP" />
-      <Button layoutX="532.0" layoutY="427.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="106.0" text="Delete a snack" />
-      <Button layoutX="533.0" layoutY="382.0" mnemonicParsing="false" text="Add a new snack" />
-      <Button layoutX="536.0" layoutY="287.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" text="Standart" />
    </children>
 </AnchorPane>

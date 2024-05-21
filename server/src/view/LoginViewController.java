@@ -25,19 +25,22 @@ public class LoginViewController
     this.viewModel = viewModel;
     this.root = root;
 
+    viewModel.reset();
     this.usernameField.textProperty()
         .bindBidirectional(viewModel.getUsernameField());
     this.passwordField.textProperty()
         .bindBidirectional(viewModel.getPasswordField());
     this.loginButton.setVisible(true);
 
-    //loginButton.setOnAction(event -> viewModel.login());
   }
 
   @FXML public void onLogin()
   {
     viewModel.login();
-    viewHandler.openView("mainPage");
+    if (viewModel.isLogged())
+    {
+      viewHandler.openView("mainPage");
+    }
 
   }
   @FXML public void onNewAccount()

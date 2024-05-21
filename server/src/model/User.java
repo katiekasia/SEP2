@@ -29,6 +29,14 @@ public class User implements Serializable
   public void addOrder(Order order){
     orders.add(order);
   }
+  public Order getOrderByID(int orderID){
+    for (Order order : orders){
+      if (order.getOrderID() == orderID){
+        return order;
+      }
+    }
+    throw new IllegalArgumentException("No order with that id found.");
+  }
 //  public void cancelOrder(client_model.Order order){
 //    orders.remove(order);
 //  }

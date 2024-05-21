@@ -74,7 +74,7 @@ public class TicketConfirmationViewController
 
 
       ObservableList<String> selectedSeats = seatMappingViewModel.getSelectedSeats();
-      viewModel.updateScreeningsWithSelectedSeats(selectedSeats);
+     // viewModel.updateScreeningsWithSelectedSeats(selectedSeats);
 
       // Bind the updated screenings list to the table view
       screeningsTable.setItems(screeningsTable.getItems());

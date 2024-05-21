@@ -5,7 +5,73 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="723c4a8f-fde4-47fd-a45c-a3d225645339" name="Changes" comment="changes">
+      <change afterPath="$PROJECT_DIR$/server/src/view/OrderConfirmationViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/view/OrderDetailsViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/viewmodel/OrderConfirmationViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/viewmodel/OrderDetailsViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/viewmodel/SimpleOrderView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/MyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/MyApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/mediator/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/mediator/RmiClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/mediator/RemoteModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/mediator/RemoteModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/mediator/RmiServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/mediator/RmiServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/DataBaseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/DataBaseHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/Model.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/ModelManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/ModelManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/PendingOrder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/PendingOrder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/StandardTicket.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/StandardTicket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/Ticket.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/Ticket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/VIPTicket.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/VIPTicket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/view/LoginViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/view/LoginViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/view/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/view/MainPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/view/MainViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/view/MainViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/view/OrderConfirmation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/view/OrderConfirmation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/view/OrderDetails.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/view/OrderDetails.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/view/SeatMappingViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/view/SeatMappingViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/view/TicketConfirmationViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/view/TicketConfirmationViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/view/TransitionPageViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/view/TransitionPageViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/view/ViewHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/view/ViewHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/viewmodel/LoginViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/viewmodel/LoginViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/viewmodel/MainPageViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/viewmodel/MainPageViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/viewmodel/SeatMappingViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/viewmodel/SeatMappingViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/viewmodel/SimpleSnackView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/viewmodel/SimpleSnackView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/viewmodel/SimpleTicketView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/viewmodel/SimpleTicketView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/viewmodel/TicketConfirmationViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/viewmodel/TicketConfirmationViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/viewmodel/TransitionPageViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/viewmodel/TransitionPageViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/viewmodel/ViewModelFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/viewmodel/ViewModelFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/viewmodel/ViewState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/viewmodel/ViewState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/mediator/RemoteModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/mediator/RemoteModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/mediator/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/mediator/RmiServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/ModelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/PendingOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/PendingOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/StandardTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/StandardTicket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/VIPTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/VIPTicket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/LoginViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/LoginViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/MainPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/MainViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/OrderConfirmation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/OrderConfirmation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/OrderDetails.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/OrderDetails.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/SeatMappingViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/SeatMappingViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/TicketConfirmationViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/TicketConfirmationViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/TransitionPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/TransitionPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/TransitionPageViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/TransitionPageViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/ViewHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/viewmodel/LoginViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/viewmodel/LoginViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/viewmodel/MainPageViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/viewmodel/MainPageViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/viewmodel/SeatMappingViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/viewmodel/SeatMappingViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/viewmodel/SimpleSnackView.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/viewmodel/SimpleSnackView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/viewmodel/SimpleTicketView.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/viewmodel/SimpleTicketView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/viewmodel/TicketConfirmationViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/viewmodel/TicketConfirmationViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/viewmodel/TransitionPageViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/viewmodel/TransitionPageViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/viewmodel/ViewModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/viewmodel/ViewModelFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/viewmodel/ViewState.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/viewmodel/ViewState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +97,8 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Documents/GitHub/SEP2/client/src/model&quot;
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Documents/GitHub/SEP2/server/src/view/OrderConfirmation.fxml&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -42,12 +109,13 @@
       <recent name="C:\Users\user\Documents\GitHub\SEP2\server\src\view" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="view" />
+      <recent name="viewmodel" />
       <recent name="mediator" />
       <recent name="model" />
-      <recent name="viewmodel" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DataBaseHandler">
+  <component name="RunManager" selected="Application.MyApplication (1)">
     <configuration name="DataBaseHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="model.DataBaseHandler" />
       <module name="server" />
@@ -90,9 +158,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DataBaseHandler" />
         <item itemvalue="Application.MyApplication (1)" />
         <item itemvalue="Application.MyApplication" />
+        <item itemvalue="Application.DataBaseHandler" />
         <item itemvalue="Application.Room" />
       </list>
     </recent_temporary>
@@ -130,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716188990347</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="changes">
+      <option name="closed" value="true" />
+      <created>1716208343630</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716208343630</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

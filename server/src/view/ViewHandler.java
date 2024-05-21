@@ -17,6 +17,8 @@ public class ViewHandler
   private TransitionPageViewController transitionPageViewController;
   private SnackSelectionViewModel snackSlectionViewController;
   private TicketConfirmationViewController ticketConfirmationViewController;
+  private OrderConfirmationViewController orderConfirmationViewController;
+  private OrderDetailsViewController orderDetailsViewController;
 
   private ManageViewController manageViewController;
   private Stage primaryStage;
@@ -49,6 +51,8 @@ public class ViewHandler
       case "login" -> root = loadLoginView("Login page.fxml");
       case "registerPage" -> root = loadRegisterView("Registerpage.fxml");
       case "managePage" -> root= loadManageView("ManagePage.fxml");
+      case "orderConfirmation" -> root = loadOrderConfirmationView("OrderConfirmation.fxml");
+      case "orderDetails" -> root = loadOrderDetailsView("OrderDetails.fxml");
       //ALL THE OTHERS PAGES
     }
     if (primaryStage.isShowing())
@@ -193,6 +197,44 @@ public class ViewHandler
       root = loader.load();
       ticketConfirmationViewController = loader.getController();
       ticketConfirmationViewController.init(this, modelFactory.getTicketConfirmationViewModel(), root);
+    }
+    catch (Exception e)
+    {
+      System.out.println(
+          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
+      e.printStackTrace();
+    }
+
+    return root;
+  }
+  private Region loadOrderConfirmationView(String fxmlFile){
+    Region root = null;
+    try
+    {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(fxmlFile));
+      root = loader.load();
+       orderConfirmationViewController = loader.getController();
+      orderConfirmationViewController.init(this, modelFactory.getOrderConfirmationViewModel(), root);
+    }
+    catch (Exception e)
+    {
+      System.out.println(
+          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
+      e.printStackTrace();
+    }
+
+    return root;
+  }
+  private Region loadOrderDetailsView(String fxmlFile){
+    Region root = null;
+    try
+    {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(fxmlFile));
+      root = loader.load();
+      orderDetailsViewController = loader.getController();
+      orderDetailsViewController.init(this, modelFactory.getOrderDetailsViewModel(), root);
     }
     catch (Exception e)
     {

@@ -12,6 +12,8 @@ public class ViewState
   private SimpleScreeningView selectedScreening;
   private User user;
   private SimpleTicketView selectedTicket;
+  private SimpleOrderView selectedOrder;
+  private SimpleSnackView selectedSnack;
   private SimpleIntegerProperty numberOfStandardTickets = new SimpleIntegerProperty(
       0);
   private SimpleIntegerProperty numberOfVIPTickets = new SimpleIntegerProperty(
@@ -21,6 +23,36 @@ public class ViewState
   public ViewState()
   {
 
+  }
+  public void logOut(){
+    user = null;
+    selectedScreening = null;
+    selectedOrder = null;
+    selectedTicket = null;
+    selectedSnack = null;
+    numberOfStandardTickets.set(0);
+    numberOfVIPTickets.set(0);
+  }
+
+  public void setSelectedOrder(SimpleOrderView selectedOrder)
+  {
+    this.selectedOrder = selectedOrder;
+  }
+
+  public SimpleSnackView getSelectedSnack()
+  {
+    return selectedSnack;
+  }
+
+  public void setSelectedSnack(SimpleSnackView selectedSnack)
+  {
+    this.selectedSnack = selectedSnack;
+  }
+
+
+  public SimpleOrderView getSelectedOrder()
+  {
+    return selectedOrder;
   }
 
   public SimpleScreeningView getSelectedScreening()

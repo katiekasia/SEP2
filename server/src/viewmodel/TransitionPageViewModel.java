@@ -48,6 +48,8 @@ totalPrice = new SimpleStringProperty();
     movieDate.set(viewState.getSelectedScreening().dateProperty().get());
     movieTime.set(viewState.getSelectedScreening().timeProperty().get());
     roomID.set(viewState.getSelectedScreening().roomProperty().get());
+    standardTickets.set("");
+    VIPTickets.set("");
   }
 
 

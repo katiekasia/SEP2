@@ -20,7 +20,7 @@ public class ModelManager implements Model
   private UsersList usersList;
 
   //not sure if the user variable is the one connected here
-  private User user;
+
   private PropertyChangeSupport propertyChangeSupport;
 
 
@@ -29,13 +29,13 @@ public class ModelManager implements Model
     this.running = false;
     this.PORT = 5678;
     this.HOST = "localhost";
-    this.user = null;
+
     this.propertyChangeSupport = new PropertyChangeSupport(this);
 
     try
     {
       usersList = new UsersList();
-      screenings = DataBaseHandler.getSetScreenings(usersList);
+      screenings = new ScreeningsList();
     }
     catch (SQLException e)
     {
@@ -51,7 +51,7 @@ public class ModelManager implements Model
       }
     }
   }
-  @Override  public void updateUser(User user) throws RemoteException
+  @Override  public void updateUser(User user)
   {
     try
     {
@@ -91,7 +91,7 @@ public class ModelManager implements Model
     {
       e.printStackTrace();
     }
-    propertyChangeSupport.firePropertyChange("user", null, user);
+    propertyChangeSupport.firePropertyChange("user", null, username);
     throw new IllegalStateException("No such user found.");
   }
 
@@ -107,17 +107,15 @@ public class ModelManager implements Model
     propertyChangeSupport.removePropertyChangeListener(listener);
   }
 
-  @Override public String getUsername()
-  {
-    return user.getUsername();
-  }
-
   @Override public void cancelOrder(Order order)
   {
     order.cancelOrder();
   }
 
-
+  @Override public Order getOrderByID(int orderID,User user)
+  {
+    return user.getOrderByID(orderID);
+  }
 
   @Override public void connect()
   {
@@ -144,7 +142,7 @@ public class ModelManager implements Model
     return HOST;
   }
 
-  @Override public ArrayList<Ticket> getAllTickets()
+  @Override public ArrayList<Ticket> getAllTickets(User user)
 
   {
     ArrayList<Ticket> tickets = new ArrayList<>();
@@ -168,17 +166,6 @@ public class ModelManager implements Model
   }
 
  */
-  @Override public Screening findScreeningBySeatId(String seatId)
-  {
-    for (int i = 0; i < screenings.getSize(); i++)
-    {
-      if (screenings.getScreenings().get(i).getRoom().getSeat(i).getID()
-          .equals(seatId))
-        ;
-      return screenings.getScreenings().get(i);
-    }
-    return null;
-  }
 
   @Override public ArrayList<Screening> getScreaningsByMovieTitle(String title)
   {
@@ -209,9 +196,17 @@ public class ModelManager implements Model
     return result;
   }
 
-  @Override public User getUser()
+  @Override public ArrayList<Screening> getScreeningsByDateAndTitle(
+      String title, LocalDate date)
   {
-    return user;
+    SimpleDate temp = new SimpleDate(date);
+    ArrayList<Screening> result = new ArrayList<>();
+    for (Screening screening:screenings.getScreenings()){
+      if (screening.getMovie().getName().equals(title) && screening.getDate().equals(temp)){
+        result.add(screening);
+      }
+    }
+    return result;
   }
 
   @Override public void reserveSeat(Seat seat, User customer,
@@ -222,8 +217,7 @@ public class ModelManager implements Model
       throw new RuntimeException("No available seats left for this screening");
     }
     Order temp = new Order(customer.getOrders().size() + 1);
-    Ticket tempT = new StandardTicket(seat.getID(), 13, seat, screening,
-        customer);
+    Ticket tempT = new StandardTicket(seat.getID(), 13, seat, screening);
     seat.book(tempT);
     temp.addTicket(tempT);
     customer.addOrder(temp);
@@ -277,14 +271,9 @@ public class ModelManager implements Model
     return emptySeats.toArray(new Seat[screening.getRoom().getNbSeats()]);
   }
 
-  @Override public double calculateTotalPrice()
+  @Override public User getUserByUsername(String username)
   {
-    double price = 0;
-    for (int i = 0; i < user.getOrders().size(); i++)
-    {
-      price += user.getOrders().get(0).getOrderPrice();
-    }
-    return price;
+    return usersList.getByUsername(username);
   }
 
   @Override public void updateSeatToBooked(Seat seat, Ticket ticket)
@@ -292,7 +281,7 @@ public class ModelManager implements Model
     seat.book(ticket);
   }
 
-  @Override public void addOrder(Order order)
+  @Override public void addOrder(Order order, User user)
   {
     user.addOrder(order);
   }
@@ -324,7 +313,36 @@ public class ModelManager implements Model
     }
     return null;
   }
+@Override public void upgradeTicket(Ticket ticket, Order order){
+  if (ticket instanceof StandardTicket)
+  {
+    order.upgrade(ticket);
 
+  }else
+  {
+    throw new IllegalStateException("Ticket cannot be upgraded.");
+  }
+}
+
+  @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
+  {
+    order.removeTicket(ticket);
+  }
+
+  @Override public void deleteSnackFromOrder(Snack snack, Order order)
+  {
+    order.removeSnack(snack);
+  }
+
+  @Override public void downgradeTicket(Ticket ticket, Order order){
+  if (ticket instanceof VIPTicket)
+  {
+order.downgrade(ticket);
+  }else
+  {
+    throw new IllegalStateException("Ticket cannot be downgraded.");
+  }
+}
 
   @Override public void register(String username, String password, String email,
       String firstName, String lastName, String phone)
@@ -365,31 +383,42 @@ public class ModelManager implements Model
   @Override public void reserveSeats(Seat[] seats, User customer,
       Screening screening, int nbVip)
   {
+    boolean freeSeats = true;
     if (screening.getRoom().availableSeats() < seats.length)
     {
       throw new RuntimeException(
           "Not enough available seats left for this screening");
     }
-    Order temp = new Order(customer.getOrders().size() + 1);
-    for (Seat seat : seats)
-    {
-      if (nbVip > 0){
-        Ticket tempT = new VIPTicket(seat.getID(), 13, seat,screening,customer);
-        seat.book(tempT);
-        temp.addTicket(tempT);
-      }else
-      {
-        Ticket tempT = new StandardTicket(seat.getID(), 13, seat, screening,
-            customer);
-        seat.book(tempT);
-        temp.addTicket(tempT);
+    for (Seat seat : seats){
+      if (!seat.isAvailable()){
+        freeSeats = false;
       }
     }
-    customer.addOrder(temp);
+    if (freeSeats)
+    {
+      Order temp = new Order(customer.getOrders().size() + 1);
+      for (Seat seat : seats)
+      {
+        if (nbVip > 0)
+        {
+          Ticket tempT = new VIPTicket(seat.getID(), 13, seat, screening);
+          seat.book(tempT);
+          temp.addTicket(tempT);
+          nbVip--;
+        }
+        else
+        {
+          Ticket tempT = new StandardTicket(seat.getID(), 13, seat, screening);
+          seat.book(tempT);
+          temp.addTicket(tempT);
+        }
+      }
+      customer.addOrder(temp);
+    }else throw new IllegalStateException("Seats are already reserved.");
   }
 
   @Override
   public ArrayList<Order> getOrdersForUser(String username) {
-    return user != null && user.getUsername().equals(username) ? user.getOrders() : new ArrayList<>();
+    return usersList.getByUsername(username).getOrders();
   }
 }

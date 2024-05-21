@@ -8,28 +8,46 @@ import model.User;
 public class SimpleTicketView
 {
   private StringProperty seatID;
-  private User user;
+  private StringProperty price;
   private StringProperty time;
   private StringProperty ticketType;
   private StringProperty date;
   private StringProperty movie;
-  private Ticket ticket;
-  public SimpleTicketView(Ticket ticket, User user)
+
+  public SimpleTicketView(Ticket ticket)
     {
-      this.user = user;
-      this.ticket = ticket;
+      price = new SimpleStringProperty(ticket.getTicketPrice() + "$");
       time = new SimpleStringProperty(ticket.getScreening().getTime());
       date = new SimpleStringProperty(ticket.getScreening().getDate().toString());
       movie = new SimpleStringProperty(ticket.getScreening().getMovie().getName());
-//      seatID = new SimpleStringProperty(user.getOrders().get(0).getTickets().get(0).getSeat().getID());
-//      ticketType= new SimpleStringProperty(user.getOrders().get(0).getTickets().get(0).getTicketType()); TODO
-      seatID = new SimpleStringProperty("lorem");
-      ticketType= new SimpleStringProperty("Ipsum");
+     seatID = new SimpleStringProperty(ticket.getSeat().getID());
+     ticketType= new SimpleStringProperty(ticket.getTicketType());
+
     }
 
   public String getDate()
   {
     return date.get();
+  }
+
+  public StringProperty timeProperty()
+  {
+    return time;
+  }
+
+  public StringProperty priceProperty()
+  {
+    return price;
+  }
+
+  public StringProperty movieProperty()
+  {
+    return movie;
+  }
+
+  public StringProperty dateProperty()
+  {
+    return date;
   }
 
   public String getMovie()
@@ -50,10 +68,6 @@ public class SimpleTicketView
   }
   public String getSeatID() {
     return seatID.get();
-  }
-  public User getUser()
-  {
-    return user;
   }
   public StringProperty ticketTypeProperty() {
     return ticketType;
