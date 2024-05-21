@@ -55,15 +55,21 @@ public class RmiClient implements Model, RemoteListener<String,String>
     }
   }
 
-  @Override public void updateUser(User user)
+  @Override public void updateUser(User user, String previousUsername)
+      throws RemoteException
   {
     try
     {
-      server.updateUser(user);
-    }catch (RemoteException e) {
-      e.printStackTrace();
+      System.out.println("rmi coient");
+      server.updateUser(user, previousUsername);
+      System.out.println("!!!!");
+    }
+    catch (RemoteException e)
+    {
+      System.out.println("\nRemote exception from server\n------------------");
+    }
   }
-  }
+
 
   @Override public void cancelOrder(Order order)
   {

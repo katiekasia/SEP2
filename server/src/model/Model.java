@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public interface Model extends UnnamedPropertyChangeSubject
 {
-  public void updateUser(User user);
+  public void updateUser(User user, String previousUsername) throws RemoteException;
   void cancelOrder(Order order);
   Order getOrderByID(int orderID, User user);
 

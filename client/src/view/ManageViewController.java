@@ -98,8 +98,6 @@ public class ManageViewController
   {
     try
     {
-      viewModel.updateUserInDatabase();
-
       username.setEditable(false);
       password.setEditable(false);
       name.setEditable(false);
@@ -107,13 +105,31 @@ public class ManageViewController
       phoneNumber.setEditable(false);
       email.setEditable(false);
       save.setDisable(true);
-      System.out.println("User information saved successfully.");
+
+      String username1 = username.getText();
+      String name1 = name.getText();
+      String surname1 = surname.getText();
+      String phoneNumber1 = phoneNumber.getText();
+      String email1 = email.getText();
+      String password1 = password.getText();
+      User user = new User(username1, name1, surname1, phoneNumber1, email1, password1);
+
+      //the user is not updated before geting the info for model but whyy???
+      User oldUser= viewState.getUser();
+      viewState.setUser(user);
+
+      viewModel.updateUserInDatabase(user, oldUser.getUsername());
+
+      System.out.println("MANAGE VIEW CONTROLLER\nShould not be 1");
+      System.out.println(user.getUsername());
+      System.out.println("User information added to viewModel.");
     }
     catch (RemoteException e)
     {
       throw new RuntimeException(e);
     }
   }
+
 
 
 }

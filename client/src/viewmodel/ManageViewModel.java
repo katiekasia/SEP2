@@ -14,10 +14,6 @@ public class ManageViewModel
 
   //all the others
 
-  public void updateUserInDatabase() throws RemoteException
-  {
-    model.updateUser(viewState.getUser());
-  }
   public ManageViewModel(Model model, ViewState viewState)
   {
     this.model= model;
@@ -27,6 +23,20 @@ public class ManageViewModel
   public String getUsername() throws RemoteException
   {
     return viewState.getUser().getUsername();
+  }
+
+  public void updateUserInDatabase(User user, String previousUsername) throws RemoteException
+  {
+    User newUser =viewState.getUser();
+    model.updateUser(user, previousUsername);
+
+    for(int i=0; i<1; i++)
+    {
+      System.out.println("MANAGE VIEW MODEL\nUser name should not be '1'");
+      System.out.println(newUser.getUsername());
+    }
+    System.out.println("User information added to model to client.\n");
+
   }
   public String getPassword() throws RemoteException
   {

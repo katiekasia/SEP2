@@ -76,14 +76,15 @@ public class ModelManager implements Model, PropertyChangeListener
     throw e;
   }
   }
-  @Override  public void updateUser(User user)
+  @Override  public void updateUser(User user, String previousUsername)
   {
     try
     {
-      client.updateUser(user);
+      client.updateUser(user, previousUsername);
     }
     catch(Exception e)
     {
+
       e.printStackTrace();
     }
   }

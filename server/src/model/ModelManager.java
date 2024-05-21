@@ -50,11 +50,13 @@ public class ModelManager implements Model
       }
     }
   }
-  @Override  public void updateUser(User user)
+  @Override  public void updateUser(User user, String previousUsername) throws RemoteException
   {
     try
     {
-      DataBaseHandler.updateUser(user);
+      System.out.println("calling method to update the info in database");
+      DataBaseHandler.updateUser(user, previousUsername);
+      //System.out.println("calling method to update the info in database");
     }
     catch(Exception e)
     {

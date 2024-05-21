@@ -12,7 +12,7 @@ public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "VIAVIAVIA";
+  private static final String PASSWORD = "papiezpolak";
 
   private static Connection connection;
 
@@ -64,18 +64,17 @@ public class DataBaseHandler
   }
 
 
-  public static void updateUser(User user) throws SQLException
-  {
-    String query = "UPDATE Customer SET name = ?, surname = ?, phone_number = ?, email = ?, password = ? WHERE username = ?";
+  public static void updateUser(User user, String previousUsername) throws SQLException {
+    String query = "UPDATE Customer SET name = ?, surname = ?, phone_number = ?, email = ?, password = ?,  username = ? WHERE username = ?";
     try (Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(query))
-    {
+        PreparedStatement statement = connection.prepareStatement(query)) {
       statement.setString(1, user.getFstName());
       statement.setString(2, user.getLstName());
       statement.setString(3, user.getPhoneNumber());
       statement.setString(4, user.getEmail());
       statement.setString(5, user.getPassword());
       statement.setString(6, user.getUsername());
+      statement.setString(7, previousUsername);
       statement.executeUpdate();
     }
   }
@@ -235,7 +234,7 @@ public class DataBaseHandler
     return movies;
   }
 
-  // method to get all the movies //
+  // method to get all the movies
   //  public static ArrayList<Ticket> getAllTicket() throws SQLException{
   //    ArrayList<Ticket> tickets = new ArrayList<>();
   //    ArrayList<Screening> screenings = getAllScreenings();

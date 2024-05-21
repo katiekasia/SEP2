@@ -47,10 +47,11 @@ private void start() throws RemoteException, MalformedURLException
   Naming.rebind("Case", this);
 }
 
-  @Override public void updateUser(User user) throws RemoteException
+  @Override public void updateUser(User user, String previousUsername) throws RemoteException
   {
-    cinema.updateUser(user);
-  }
+    System.out.println("rmi server");
+    cinema.updateUser(user, previousUsername);
+      }
 
   @Override public void reserveSeats(Seat[] seats, User customer,
        Screening screening, int nbVIP) throws RemoteException
