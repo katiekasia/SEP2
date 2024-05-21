@@ -12,7 +12,7 @@ public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "VIAVIAVIA";
+  private static final String PASSWORD = "7890";
 
   private static Connection connection;
 
@@ -47,6 +47,22 @@ public class DataBaseHandler
   }
 
   // Method to close the database connection
+
+  public static void newUser(String username, String name, String surname, String phoneNumber, String email, String password) throws SQLException {
+    String sql = "INSERT INTO Customer (username, name, surname, phone_number, email, password, fidelity_points) VALUES (?, ?, ?, ?, ?, ?, 0)";
+
+    try (Connection conn = getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql)) {
+      pstmt.setString(1, username);
+      pstmt.setString(2, name);
+      pstmt.setString(3, surname);
+      pstmt.setString(4, phoneNumber);
+      pstmt.setString(5, email);
+      pstmt.setString(6, password);
+      pstmt.executeUpdate();
+    }
+  }
+
 
   public static void updateUser(User user) throws SQLException
   {

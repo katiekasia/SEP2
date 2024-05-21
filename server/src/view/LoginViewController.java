@@ -45,7 +45,7 @@ public class LoginViewController
   }
   @FXML public void onNewAccount()
   {
-
+    viewHandler.openView("registerPage");
   }
   public Region getRoot()
   {
