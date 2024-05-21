@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -344,11 +343,6 @@ order.downgrade(ticket);
   }
 }
 
-  @Override public void register(String username, String password, String email,
-      String firstName, String lastName, String phone)
-  {
-
-  }
 
   @Override public void addScreening(Screening screening)
   {
@@ -421,4 +415,13 @@ order.downgrade(ticket);
   public ArrayList<Order> getOrdersForUser(String username) {
     return usersList.getByUsername(username).getOrders();
   }
+
+  public void register(String username, String password, String email, String firstName, String lastName, String phone) throws RemoteException {
+    try {
+      DataBaseHandler.newUser(username, firstName, lastName, phone, email, password);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      throw new RemoteException("Error registering user", e);
+    }
 }
+  }
