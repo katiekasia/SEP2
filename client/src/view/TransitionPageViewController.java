@@ -25,7 +25,6 @@ public class TransitionPageViewController
   @FXML private Label movieDate;
   @FXML private Label movieTime;
   @FXML private Label roomID;
-  @FXML private Button fidelityPoints;
   @FXML private Button manage;
   @FXML private Button signOut;
   @FXML private Button ticketConfirmation;
@@ -54,7 +53,7 @@ public class TransitionPageViewController
 
     roomID.textProperty().bind(viewModel.roomIDProperty().asString());
 
-    username.textProperty().bind(viewState.usernameProperty());
+    username.textProperty().bind(viewState.nameProperty());
 
     initializeTicketInputFields();
     viewModel.reset();
@@ -79,10 +78,7 @@ public class TransitionPageViewController
   {
     viewHandler.openView("managePage");
   }
-  @FXML public void onFidelityPoints()
-  {
-    //
-  }
+
 
 
   @FXML public void onSignOut()

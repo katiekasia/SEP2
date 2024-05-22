@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="949.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddMoviePageViewController">
+   <children>
+      <AnchorPane layoutX="6.0" layoutY="-1.0" prefHeight="794.0" prefWidth="199.0">
+         <children>
+            <ImageView fitHeight="121.0" fitWidth="126.0" layoutX="45.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/user%20-%20profile.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="36.0" layoutY="182.0" prefHeight="47.0" prefWidth="142.0" text="Welcome">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Label fx:id="username" layoutX="56.0" layoutY="230.0" text="Admin">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="signOut" layoutX="28.0" layoutY="525.0" mnemonicParsing="false" onAction="#onSignOut" prefHeight="47.0" prefWidth="55.0" />
+            <ImageView fitHeight="30.0" fitWidth="36.0" layoutX="30.0" layoutY="752.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logout.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="100.0" layoutY="533.0" text="Sign out">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="260.0" layoutY="66.0" prefHeight="86.0" prefWidth="318.0" text="Add Movie">
+         <font>
+            <Font size="58.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="130.0" fitWidth="177.0" layoutX="760.0" layoutY="44.0">
+         <image>
+            <Image url="@images/cinema.png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="488.0" layoutY="237.0" />
+      <TextField layoutX="488.0" layoutY="373.0" />
+      <TextField layoutX="488.0" layoutY="327.0" />
+      <TextField layoutX="488.0" layoutY="281.0" />
+      <Button fx:id="add" alignment="CENTER" contentDisplay="CENTER" layoutX="546.0" layoutY="505.0" mnemonicParsing="false" onAction="#onAdd" prefHeight="56.0" prefWidth="183.0" text="Add">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/settings%20-%20profile.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="388.0" layoutY="377.0" text="Description">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="388.0" layoutY="241.0" text="Title">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="388.0" layoutY="331.0" text="Length">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="388.0" layoutY="285.0" text="Genre">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="386.0" layoutY="422.0" text="Release date">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="488.0" layoutY="418.0" />
+      <Button fx:id="cancel" alignment="CENTER" contentDisplay="CENTER" layoutX="339.0" layoutY="505.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="56.0" prefWidth="183.0" text="Cancel">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/settings%20-%20profile.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

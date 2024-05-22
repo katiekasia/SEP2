@@ -3,6 +3,7 @@ package viewmodel;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import model.User;
 
 public class ViewState
@@ -114,5 +115,10 @@ public class ViewState
   public void setNumberOfVIPTickets(int numberOfVIPTickets)
   {
     this.numberOfVIPTickets.set(numberOfVIPTickets);
+  }
+
+  public ObservableValue<String> nameProperty()
+  {
+    return new SimpleStringProperty(user.getFstName());
   }
 }

@@ -19,7 +19,6 @@ public class TicketConfirmationViewController
   private ViewState viewState;
   private SimpleScreeningView selected;
 
-  @FXML private Button fidelityPoints;
   @FXML private Button manage;
   @FXML private Button signOut;
   @FXML private Button ticketConfirmation;
@@ -33,7 +32,7 @@ public class TicketConfirmationViewController
   @FXML private TableColumn ticketType;
 
   @FXML private TableColumn snacks;
-
+@FXML private Label username;
   @FXML private Button cancel;
   @FXML private Button confirmOrder;
   @FXML private Button snackSelection;
@@ -46,8 +45,7 @@ public class TicketConfirmationViewController
     this.viewModel = viewModel;
     this.root = root;
     this.viewState= viewModel.getViewState();
-
-
+    username.textProperty().bind(viewState.nameProperty());
 
     viewModel.setScreenings(screeningsTable.getItems());
     viewModel.bindScreenings(screeningsTable.getItems());
@@ -91,11 +89,7 @@ public class TicketConfirmationViewController
     //we need a page with user page
     viewHandler.openView(" ");
   }
-  @FXML public void onFidelityPoints()
-  {
-    //we need a page with user fidelity points
-      viewHandler.openView(" ");
-  }
+
   @FXML public void onConfirmOrder()
   {
     //we need a information after confirming the order

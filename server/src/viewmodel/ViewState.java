@@ -83,6 +83,11 @@ public class ViewState
     return new SimpleStringProperty(user.getUsername());
   }
 
+  public StringProperty nameProperty()
+  {
+    return new SimpleStringProperty(user.getFstName());
+  }
+
   public void setSelectedScreening(SimpleScreeningView screening)
   {
     this.selectedScreening = screening;
