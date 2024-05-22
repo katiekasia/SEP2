@@ -1,6 +1,5 @@
 package mediator;
 
-
 import model.*;
 import utility.observer.listener.GeneralListener;
 import utility.observer.subject.PropertyChangeHandler;
@@ -17,47 +16,82 @@ import java.util.ArrayList;
 
 public class RmiServer implements RemoteModel
 {
-private Model cinema;
-private PropertyChangeHandler<String ,String > property;
-public RmiServer(){
-  cinema = new ModelManager();
-  property = new PropertyChangeHandler<>(this);
-try
-{
-startRegistry();
-start();
-}catch (Exception e){
-e.printStackTrace();
-}
-}
-private void startRegistry() throws RemoteException
-{
-try
-{
-  Registry reg = LocateRegistry.createRegistry(1099);
-  System.out.println("Registry started...");
-}catch (ExportException e){
-  System.out.println("Registry already started? " + e.getMessage());
-}
-}
-private void start() throws RemoteException, MalformedURLException
-{
+  private Model cinema;
+  private PropertyChangeHandler<String, String> property;
+  private Registry registry;
 
-  UnicastRemoteObject.exportObject(this,0);
-  Naming.rebind("Case", this);
-}
+  public RmiServer()
+  {
+    cinema = new ModelManager();
+    property = new PropertyChangeHandler<>(this);
+    try
+    {
+      startRegistry();
+      start();
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+  }
+  public void stop(){
+   try
+   {
+     stopRegistry();
+     UnicastRemoteObject.unexportObject(this,true);
+   }catch (Exception e){
+     e.printStackTrace();
+   }
+  }
 
-  @Override public void updateUser(User user, String previousUsername) throws RemoteException
+  private void stopRegistry(){
+    try {
+      if (registry != null) {
+        UnicastRemoteObject.unexportObject(registry, true);
+        System.out.println("Registry stopped...");
+      }
+    } catch (Exception e) {
+      System.out.println("Error while stopping registry: " + e.getMessage());
+    }
+  }
+  private void startRegistry() throws RemoteException
+  {
+    try
+    {
+      registry = LocateRegistry.createRegistry(1099);
+
+      System.out.println("Registry started...");
+    }
+    catch (ExportException e)
+    {
+      System.out.println("Registry already started? " + e.getMessage());
+    }
+  }
+
+  private void start() throws RemoteException, MalformedURLException
+  {
+
+    UnicastRemoteObject.exportObject(this, 0);
+    Naming.rebind("Case", this);
+  }
+
+  @Override public void updateUser(User user, String previousUsername)
+      throws RemoteException
   {
     System.out.println("rmi server");
     cinema.updateUser(user, previousUsername);
-      }
+  }
 
   @Override public void reserveSeats(Seat[] seats, User customer,
-       Screening screening, int nbVIP) throws RemoteException
+      Screening screening, int nbVIP) throws RemoteException
   {
-    cinema.reserveSeats(seats,customer, screening,nbVIP);
+    cinema.reserveSeats(seats, customer, screening, nbVIP);
     property.firePropertyChange("RESERVE SEATS", null, screening.getTime());
+  }
+
+  @Override public Order getOrderByID(int orderID, User user)
+  {
+    return cinema.getOrderByID(orderID, user);
   }
 
   @Override public Screening getScreeningForView(String time, String date,
@@ -91,13 +125,13 @@ private void start() throws RemoteException, MalformedURLException
   @Override public boolean checkSeatAvailability(int index, Screening screening)
       throws RemoteException
   {
-    return cinema.checkSeatAvailability(index,screening);
+    return cinema.checkSeatAvailability(index, screening);
   }
 
   @Override public void reserveSeat(Seat seat, User customer,
       Screening screening) throws RemoteException
   {
-    cinema.reserveSeat(seat,customer,screening);
+    cinema.reserveSeat(seat, customer, screening);
     property.firePropertyChange("RESERVE SEAT", null, screening.getTime());
   }
 
@@ -113,22 +147,30 @@ private void start() throws RemoteException, MalformedURLException
     return cinema.getEmptySeats(screening);
   }
 
-  @Override public void updateSeatToBooked(Seat seat, Ticket ticket) throws RemoteException
+  @Override public void updateSeatToBooked(Seat seat, Ticket ticket)
+      throws RemoteException
   {
     cinema.updateSeatToBooked(seat, ticket);
-    property.firePropertyChange("UPDATE SEAT TO BOOKED", null, ticket.toString());
+    property.firePropertyChange("UPDATE SEAT TO BOOKED", null,
+        ticket.toString());
   }
 
-  @Override public void addOrder(Order order,User user) throws RemoteException
+  @Override public void addOrder(Order order, User user) throws RemoteException
   {
-    cinema.addOrder(order,user);
+    cinema.addOrder(order, user);
     property.firePropertyChange("ADD ORDER", null, order.toString());
   }
 
   @Override public User logIn(String username, String password)
       throws RemoteException
   {
-   return cinema.logIn(username,password);
+    return cinema.logIn(username, password);
+  }
+
+  @Override public Ticket getTicketForView(Order order, String ID)
+      throws RemoteException
+  {
+    return cinema.getTicketForView(order, ID);
   }
 
   @Override public void register(String username, String password, String email,
@@ -140,7 +182,7 @@ private void start() throws RemoteException, MalformedURLException
   @Override public void addScreening(Screening screening) throws RemoteException
   {
     cinema.addScreening(screening);
-    property.firePropertyChange("ADD SCREENING",null, screening.getTime());
+    property.firePropertyChange("ADD SCREENING", null, screening.getTime());
   }
 
   @Override public void removeScreening(Screening screening)
@@ -173,13 +215,47 @@ private void start() throws RemoteException, MalformedURLException
     return cinema.getScreening(screening);
   }
 
-  @Override public ArrayList<Ticket> getAllTickets(User user) throws RemoteException
+  @Override public ArrayList<Ticket> getAllTickets(User user)
+      throws RemoteException
   {
     return cinema.getAllTickets(user);
   }
 
+  @Override public void downgradeTicket(Ticket ticket, Order order)
+      throws RemoteException
+  {
+    cinema.downgradeTicket(ticket, order);
+  }
 
+  @Override public void upgradeTicket(Ticket ticket, Order order)
+      throws RemoteException
+  {
+    cinema.upgradeTicket(ticket, order);
+  }
 
+  @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
+      throws RemoteException
+  {
+    cinema.cancelTicketFromOrder(ticket, order);
+  }
+
+  @Override public void deleteSnackFromOrder(Snack snack, Order order)
+      throws RemoteException
+  {
+    cinema.deleteSnackFromOrder(snack, order);
+  }
+
+  @Override public ArrayList<Screening> getScreeningsByDateAndTitle(
+      String title, LocalDate date) throws RemoteException
+  {
+    return cinema.getScreeningsByDateAndTitle(title, date);
+  }
+
+  @Override public ArrayList<Order> getOrdersForUser(String username)
+      throws RemoteException
+  {
+    return cinema.getOrdersForUser(username);
+  }
 
   @Override public ArrayList<Screening> getScreaningsByMovieTitle(String title)
       throws RemoteException
@@ -193,10 +269,10 @@ private void start() throws RemoteException, MalformedURLException
     return cinema.getScreeningsByDate(date);
   }
 
-  //Overrides for methods
-  public static void main(String[] args)
+  @Override public User getUserByUsername(String username)
+      throws RemoteException
   {
-    RemoteModel server = new RmiServer();
+    return cinema.getUserByUsername(username);
   }
 
   @Override public boolean addListener(GeneralListener<String, String> listener,

@@ -13,8 +13,8 @@ public class PendingOrder extends OrderState implements Serializable
   }
   @Override public void expire(Order order)
   {
-    while (!expired){
-      if (order.getOrderDate().isAfter(new SimpleDate(LocalDate.now()))){
+    if (!expired){
+      if (order.isExpired()){
         expired = true;
         order.setOrderState(new ExpiredOrder(order));
       }

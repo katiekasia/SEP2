@@ -9,19 +9,19 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MyApplication extends Application
-{public void start(Stage primaryStage) throws IOException
 {
-  RmiClient client = new RmiClient("localhost");
+  private RmiClient client;
+  public void start(Stage primaryStage) throws IOException
+{
+  client = new RmiClient("localhost");
   Model model = new ModelManager(client);
 
   ViewModelFactory viewModelFactory = new ViewModelFactory(model);
   ViewHandler view = new ViewHandler(viewModelFactory);
   view.start(primaryStage);
-
-
-
 }
-  @Override public void stop(){
-
+  @Override public void stop()
+  {
+    client.stop();
   }
 }

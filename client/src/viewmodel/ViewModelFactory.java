@@ -2,6 +2,8 @@ package viewmodel;
 
 import model.Model;
 
+import java.rmi.RemoteException;
+
 public class ViewModelFactory
 {
 
@@ -12,10 +14,12 @@ public class ViewModelFactory
   private TransitionPageViewModel transitionPageViewModel;
   private SnackSelectionViewModel snackSelectionViewModel;
   private TicketConfirmationViewModel ticketConfirmationViewModel;
+  private OrderConfirmationViewModel orderConfirmationViewModel;
+  private OrderDetailsViewModel orderDetailsViewModel;
   private ManageViewModel manageViewModel;
   private ViewState viewState;
 
-  public ViewModelFactory(Model model)
+  public ViewModelFactory(Model model) throws RemoteException
   {
     this.viewState = new ViewState();
     this.pageViewModel = new MainPageViewModel(model,viewState);
@@ -26,6 +30,13 @@ public class ViewModelFactory
     this.ticketConfirmationViewModel = new TicketConfirmationViewModel(model, viewState);
     this.transitionPageViewModel = new TransitionPageViewModel(model, viewState);
     this.manageViewModel= new ManageViewModel(model, viewState);
+    this.orderConfirmationViewModel = new OrderConfirmationViewModel(model, viewState);
+    this.orderDetailsViewModel = new OrderDetailsViewModel(model,viewState);
+  }
+
+  public OrderDetailsViewModel getOrderDetailsViewModel()
+  {
+    return orderDetailsViewModel;
   }
 
   public MainPageViewModel getPageViewModel()
@@ -37,6 +48,7 @@ public class ViewModelFactory
   {
     return loginViewModel;
   }
+  public OrderConfirmationViewModel getOrderConfirmationViewModel(){return orderConfirmationViewModel;}
 
   public ManageViewModel getManageViewModel()
   {

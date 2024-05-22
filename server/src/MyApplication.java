@@ -12,21 +12,20 @@ import java.sql.SQLException;
 
 public class MyApplication extends Application
 {
+  private RmiServer server;
   public void start(Stage primaryStage) throws IOException, SQLException
   {
     Model model = new ModelManager();
-   /*
-    if (System.getSecurityManager() == null)
-    {
-      System.setSecurityManager(new SecurityManager());
-    }
 
-*/
-    RemoteModel server = new RmiServer();
+     server = new RmiServer();
     ViewModelFactory viewModelFactory = new ViewModelFactory(model);
     ViewHandler view = new ViewHandler(viewModelFactory);
     view.start(primaryStage);
 
   }
 
+  @Override public void stop() throws Exception
+  {
+    server.stop();
+  }
 }

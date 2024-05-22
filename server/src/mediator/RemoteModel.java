@@ -10,26 +10,28 @@ import java.util.ArrayList;
 
 public interface RemoteModel extends Remote, RemoteSubject<String ,String >
 {
-  public void updateUser(User user, String previousUsername) throws RemoteException;
-  public void reserveSeats(Seat[] seats, User customer,
+   void updateUser(User user, String previousUsername) throws RemoteException;
+   void reserveSeats(Seat[] seats, User customer,
       Screening screening, int nbVIP ) throws RemoteException;
+  Order getOrderByID(int orderID, User user) throws RemoteException;
   Screening getScreeningForView(String time, String date,String title, int room) throws  RemoteException;
-  public User logIn(String username, String password) throws RemoteException;
+   User logIn(String username, String password) throws RemoteException;
+   Ticket getTicketForView(Order order, String ID) throws RemoteException;
   Order[] getAllOrders(User user) throws RemoteException;
   Snack[] getSnacksFromOrder(Order order) throws RemoteException;
   Ticket[] getTicketsFromOrder(Order order) throws RemoteException;
-  public void cancelOrder(Order order) throws RemoteException;
-  public boolean checkSeatAvailability(int index, Screening screening) throws RemoteException;
+   void cancelOrder(Order order) throws RemoteException;
+   boolean checkSeatAvailability(int index, Screening screening) throws RemoteException;
 
-  public void reserveSeat(Seat seat, User customer ,
+   void reserveSeat(Seat seat, User customer ,
       Screening screening) throws RemoteException;
-  public Seat[] getAvailableSeats(Screening screening) throws RemoteException;
-  public Seat[] getEmptySeats(Screening screening) throws RemoteException;
+   Seat[] getAvailableSeats(Screening screening) throws RemoteException;
+   Seat[] getEmptySeats(Screening screening) throws RemoteException;
 
   //public double calculateTotalPrice() throws RemoteException;
-  public void updateSeatToBooked(Seat seat, Ticket ticket) throws RemoteException;
+   void updateSeatToBooked(Seat seat, Ticket ticket) throws RemoteException;
 
-  public void addOrder(Order order,User user) throws RemoteException;
+   void addOrder(Order order, User user) throws RemoteException;
   void register(String username, String password, String email, String firstName, String lastName, String phone) throws RemoteException;
   void addScreening(Screening screening) throws RemoteException;
   void removeScreening(Screening screening) throws RemoteException;
@@ -37,8 +39,16 @@ public interface RemoteModel extends Remote, RemoteSubject<String ,String >
   ArrayList<Screening> getAllScreenings() throws RemoteException;
   int getNbOfScreenings() throws RemoteException;
   Screening getScreening(Screening screening) throws RemoteException;
-  public ArrayList<Ticket> getAllTickets(User user) throws RemoteException;
+   ArrayList<Ticket> getAllTickets(User user) throws RemoteException;
+  void downgradeTicket(Ticket ticket, Order order) throws RemoteException;
+  void upgradeTicket(Ticket ticket, Order order) throws RemoteException;
+  void cancelTicketFromOrder(Ticket ticket, Order order) throws RemoteException;
+  void deleteSnackFromOrder(Snack snack, Order order) throws RemoteException;
+  ArrayList<Screening> getScreeningsByDateAndTitle(
+      String title, LocalDate date) throws RemoteException;
+  ArrayList<Order> getOrdersForUser(String username) throws RemoteException;
 
   ArrayList<Screening> getScreaningsByMovieTitle(String title) throws RemoteException;
   ArrayList<Screening> getScreeningsByDate(LocalDate date) throws RemoteException;
+  User getUserByUsername(String username) throws RemoteException;
 }

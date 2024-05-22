@@ -12,7 +12,7 @@ public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "papiezpolak";
+  private static final String PASSWORD = "VIAVIAVIA";
 
   private static Connection connection;
 
@@ -65,17 +65,35 @@ public class DataBaseHandler
 
 
   public static void updateUser(User user, String previousUsername) throws SQLException {
-    String query = "UPDATE Customer SET name = ?, surname = ?, phone_number = ?, email = ?, password = ?,  username = ? WHERE username = ?";
+    String updateCustomerQuery = "UPDATE Customer SET name = ?, surname = ?, phone_number = ?, email = ?, password = ?, username = ? WHERE username = ?";
+    String updateOrdersQuery = "UPDATE Orders SET username = ? WHERE username = ?";
+
     try (Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(query)) {
-      statement.setString(1, user.getFstName());
-      statement.setString(2, user.getLstName());
-      statement.setString(3, user.getPhoneNumber());
-      statement.setString(4, user.getEmail());
-      statement.setString(5, user.getPassword());
-      statement.setString(6, user.getUsername());
-      statement.setString(7, previousUsername);
-      statement.executeUpdate();
+        PreparedStatement statementOrder = connection.prepareStatement(updateOrdersQuery);
+        PreparedStatement statementUser = connection.prepareStatement(updateCustomerQuery)) {
+
+      connection.setAutoCommit(false);
+
+      try {
+        statementUser.setString(1, user.getFstName());
+        statementUser.setString(2, user.getLstName());
+        statementUser.setString(3, user.getPhoneNumber());
+        statementUser.setString(4, user.getEmail());
+        statementUser.setString(5, user.getPassword());
+        statementUser.setString(6, user.getUsername());
+        statementUser.setString(7, previousUsername);
+        statementUser.executeUpdate();
+
+        statementOrder.setString(1, user.getUsername());
+        statementOrder.setString(2, previousUsername);
+        statementOrder.executeUpdate();
+
+        connection.commit();
+
+      } catch (SQLException e) {
+        connection.rollback();
+        throw e;
+      }
     }
   }
 

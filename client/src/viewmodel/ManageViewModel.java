@@ -1,6 +1,5 @@
 package viewmodel;
 
-import model.DataBaseHandler;
 import model.Model;
 import model.User;
 

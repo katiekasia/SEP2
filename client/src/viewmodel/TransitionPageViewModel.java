@@ -46,6 +46,8 @@ totalPrice = new SimpleStringProperty();
     movieDate.set(viewState.getSelectedScreening().dateProperty().get());
     movieTime.set(viewState.getSelectedScreening().timeProperty().get());
     roomID.set(viewState.getSelectedScreening().roomProperty().get());
+    standardTickets.set("");
+    VIPTickets.set("");
   }
 
 
@@ -103,35 +105,38 @@ public void bindPrice(StringProperty property){
   }
 
   public void updateTotal() {
-    int standardTickets = parseTicketNumber(this.standardTickets.get());
-    int vipTickets = parseTicketNumber(VIPTickets.get());
-    int total = standardTickets + vipTickets;
-    Screening screening = model.getScreeningForView(viewState.getSelectedScreening().getTime(), viewState.getSelectedScreening().getDate(),
-        viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom());
-    if (total <= screening.getRoom().availableSeats()) {
-      viewState.setNumberOfStandardTickets(standardTickets);
-      viewState.setNumberOfVIPTickets(vipTickets);
-      int totalPriceAmount = standardTickets * 120 + vipTickets * 170;
-      totalPrice.set(String.valueOf(totalPriceAmount) + " DKK");
-    } else {
-      totalPrice.set("Limit exceeded!");
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setHeaderText("Please enter correct amount of tickets. Seats available: " + screening.getRoom().availableSeats());
-      alert.showAndWait();
-    }
-  }
-  public void setViewState(){
-    viewState.setNumberOfVIPTickets(parseTicketNumber(VIPTickets.get()));
-    viewState.setNumberOfStandardTickets(parseTicketNumber(standardTickets.get()));
+      try
+      {
+        int standardTickets = parseTicketNumber(this.standardTickets.get());
+        int vipTickets = parseTicketNumber(VIPTickets.get());
+        int total = standardTickets + vipTickets;
+        Screening screening = model.getScreeningForView(viewState.getSelectedScreening().getTime(), viewState.getSelectedScreening().getDate(),
+            viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom());
+        if (total <= screening.getRoom().availableSeats()) {
+          viewState.setNumberOfStandardTickets(standardTickets);
+          viewState.setNumberOfVIPTickets(vipTickets);
+          int totalPriceAmount = standardTickets * 120 + vipTickets * 170;
+          totalPrice.set(String.valueOf(totalPriceAmount) + " DKK");
+        } else {
+          totalPrice.set("Limit exceeded!");
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+          alert.setHeaderText("Please enter correct amount of tickets. Seats available: " + screening.getRoom().availableSeats());
+          alert.showAndWait();
+        }
+      }catch (Exception e){e.printStackTrace();}
   }
   public boolean isValidTicketEntry() {
-    int standardTickets = parseTicketNumber(this.standardTickets.get());
-    int vipTickets = parseTicketNumber(VIPTickets.get());
-    int totalTickets = standardTickets + vipTickets;
+    try
+    {
+      int standardTickets = parseTicketNumber(this.standardTickets.get());
+      int vipTickets = parseTicketNumber(VIPTickets.get());
+      int totalTickets = standardTickets + vipTickets;
 
-    Screening screening = model.getScreeningForView(viewState.getSelectedScreening().getTime(), viewState.getSelectedScreening().getDate(),
-        viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom());
-    return totalTickets > 0 && totalTickets <= screening.getRoom().availableSeats();
+      Screening screening = model.getScreeningForView(viewState.getSelectedScreening().getTime(), viewState.getSelectedScreening().getDate(),
+          viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom());
+      return totalTickets > 0 && totalTickets <= screening.getRoom().availableSeats();
+    }catch (Exception e){e.printStackTrace();}
+    return false;
+    }
 
-  }
 }

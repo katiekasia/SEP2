@@ -7,7 +7,7 @@ public class UsersList
 {
   private ArrayList<User> users;
   public UsersList() throws SQLException{
-    users = DataBaseHandler.getAllCustomers();
+    users = new ArrayList<>();
   }
   public UsersList(ArrayList<User> users){
     this.users = users;
@@ -19,6 +19,21 @@ public class UsersList
       }
     }
     return null;
+  }
+  public User logIn(String username, String password){
+    for (User user : users)
+    {
+
+      if (user.getUsername().equals(username) && user.getPassword()
+          .equals(password))
+      {
+        return user;
+      }
+    }
+    throw new IllegalArgumentException("No user with matching credentials found.");
+  }
+  public ArrayList<Order> getOrdersForUser(String username) {
+    return getByUsername(username).getOrders();
   }
 
   public ArrayList<User> getUsers()

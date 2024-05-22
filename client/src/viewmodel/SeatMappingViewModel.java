@@ -31,26 +31,30 @@ public class SeatMappingViewModel {
     }
   }
   public ArrayList<String> setSeats(){
-    return model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
-        viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom()).getRoom().getBookedSeatsIDs();
-  }
-  public void backPressed(){
-selectedSeats.clear();
+    try
+    {
+      return model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
+          viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom()).getRoom().getBookedSeatsIDs();
+    }catch (Exception e){}
+    return null;
   }
   public Seat[] selectedSeats(){
-    Seat[] seatsToReserve = new Seat[myTickets];
-    int index = 0;
 try
 {
+  Seat[] seatsToReserve = new Seat[myTickets];
+  int index = 0;
   for (String s : selectedSeats){
     seatsToReserve[index] = model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
-        viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom()).getRoom().getSeatByID(s);
+
+        viewState.getSelectedScreening().getMovie(),
+        viewState.getSelectedScreening().getRoom()).getRoom().getSeatByID(s);
     index++;
   }
+  return seatsToReserve;
 }catch (Exception e){
   e.printStackTrace();
 }
-    return seatsToReserve;
+return null;
   }
 
   public void deselectSeat(String seatId) {
@@ -86,29 +90,26 @@ try
     }
     try
     {
-      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-      alert.setHeaderText("Processing. Please wait.");
-      alert.showAndWait();
-      Screening screening = model.getScreeningForView(viewState.getTime(),
-          viewState.getDate(), viewState.getTitle(), viewState.room());
-
-      model.reserveSeats(selectedSeats(),viewState.getUser(),screening,
-           viewState.getNumberOfVIPTickets());
-
+      model.reserveSeats(selectedSeats(),viewState.getUser(),model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
+          viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom()),
+          viewState.getNumberOfVIPTickets());
+      selectedSeats.clear();
     }catch (Exception e){
       Alert alert = new Alert(Alert.AlertType.ERROR);
       alert.setHeaderText(e.getMessage());
       alert.showAndWait();
       return false;
     }
-
     return true;
   }
 
   public Screening getScreening()
   {
-    return model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
-        viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom());
-
+   try
+   {
+     return model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
+         viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom());
+   }catch (Exception e){e.printStackTrace();}
+   return null;
   }
 }

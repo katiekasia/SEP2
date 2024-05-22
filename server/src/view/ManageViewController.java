@@ -23,7 +23,7 @@ public class ManageViewController
   @FXML private TextField phoneNumber;
   @FXML private TextField email;
   @FXML private Button fidelityPoints;
-  @FXML private Button manage;
+  @FXML private Button screenings;
   @FXML private Button signOut;
   @FXML private Button ticketConfirmation;
   @FXML private Button save;
@@ -36,6 +36,7 @@ public class ManageViewController
     this.viewModel = viewModel;
     this.root = root;
     this.save.setDisable(true);
+    setFields(true);
 
     this.viewState= viewModel.getViewState();
 
@@ -58,9 +59,19 @@ public class ManageViewController
     // this.username.textProperty().bind(viewModel.getUsername());
   }
 
-  @FXML public void onManage()
+  private void setFields(boolean disable){
+    username.setDisable(disable);
+    password.setDisable(disable);
+    name.setDisable(disable);
+    surname.setDisable(disable);
+    phoneNumber.setDisable(disable);
+    email.setDisable(disable);
+  }
+
+
+  @FXML public void onScreening()
   {
-    viewHandler.openView("managePage");
+    viewHandler.openView("mainPage");
   }
 
   @FXML public void onSignOut()
@@ -72,9 +83,9 @@ public class ManageViewController
   {
 
   }
-  @FXML public void onTicketConfirmation()
+  @FXML public void onOrderConfirmation()
   {
-    viewHandler.openView("ticketConfirmation");
+    viewHandler.openView("orderConfirmation");
   }
   @FXML public void onDelete()
   {
@@ -82,6 +93,7 @@ public class ManageViewController
   }
   @FXML public void onEdit()
   {
+    setFields(false);
     username.setEditable(true);
     password.setEditable(true);
     name.setEditable(true);
@@ -95,6 +107,7 @@ public class ManageViewController
   {
     try
     {
+      setFields(true);
       username.setEditable(false);
       password.setEditable(false);
       name.setEditable(false);

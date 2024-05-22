@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class StandardTicket extends Ticket implements Serializable
 {
   public StandardTicket(String ticketID, double ticketPrice, Seat seat,
-       Screening screening, User customer)
+       Screening screening)
   {
-    super(ticketID, ticketPrice, seat, screening,customer, "Standard");
+    super(ticketID, ticketPrice, seat, screening, "Standard");
   }
 }

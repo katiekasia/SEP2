@@ -320,7 +320,7 @@
             <Font size="25.0" />
          </font>
       </Text>
-      <Button fx:id="confirm" layoutX="466.0" layoutY="451.0" mnemonicParsing="false" onAction="#onConfirm" text="Confirm" />
-      <Button fx:id="back" layoutX="256.0" layoutY="451.0" mnemonicParsing="false" onAction="#onBack" text="Back" />
+      <Button fx:id="confirm" layoutX="466.0" layoutY="464.0" mnemonicParsing="false" onAction="#onConfirm" text="Confirm" />
+      <Button fx:id="back" layoutX="256.0" layoutY="464.0" mnemonicParsing="false" onAction="#onBack" text="Back" />
    </children>
 </AnchorPane>

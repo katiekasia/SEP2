@@ -52,41 +52,26 @@ public class ModelManager implements Model, PropertyChangeListener
     client.cancelOrder(order);
   }
 
+  @Override public Order getOrderByID(int orderID, User user)
+  {
+    return client.getOrderByID(orderID, user);
+  }
+
   @Override public Screening getScreeningForView(String time, String date,
       String title, int room)
   {
-    try
-    {
       return client.getScreeningForView(time, date, title, room);
-    }catch (Exception e){
-      throw e;
-    }
   }
 
   @Override public User logIn(String username, String password)
   {
-    try
-    {
       User loggedInUser = client.logIn(username, password);
       this.user = loggedInUser;
       return loggedInUser;
-    }
-  catch(Exception e)
-  {
-    throw e;
-  }
   }
   @Override  public void updateUser(User user, String previousUsername)
   {
-    try
-    {
       client.updateUser(user, previousUsername);
-    }
-    catch(Exception e)
-    {
-
-      e.printStackTrace();
-    }
   }
   @Override public void connect()
   {
@@ -127,11 +112,6 @@ public class ModelManager implements Model, PropertyChangeListener
 
 
 
-  @Override public String getUsername()
-  {
-    return client.getUsername();
-  }
-
   @Override public String getHost()
   {
     return client.getHost();
@@ -140,13 +120,7 @@ public class ModelManager implements Model, PropertyChangeListener
   @Override public void reserveSeat(Seat seat, User customer,
       Screening screening)
   {
-    try
-    {
       client.reserveSeat(seat, customer, screening);
-
-    }catch (Exception e){
-      e.printStackTrace();
-    }
   }
 
   private void updateDatabaseWithBooking(User customer, Ticket ticket) {
@@ -160,179 +134,101 @@ public class ModelManager implements Model, PropertyChangeListener
 
   @Override public boolean checkSeatAvailability(int index, Screening screening)
   {
-    try
-    {
       return client.checkSeatAvailability(index,screening);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
-    return false;
   }
 
   @Override public Seat[] getAvailableSeats(Screening screening)
   {
-    try
-    {
-      client.getAvailableSeats(screening);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
-    return null;
+     return client.getAvailableSeats(screening);
   }
 
   @Override public Seat[] getEmptySeats(Screening screening)
   {
-    try
-    {
-      client.getEmptySeats(screening);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
-    return null;
+     return client.getEmptySeats(screening);
   }
 
-
-  @Override public double calculateTotalPrice()
+  @Override public User getUserByUsername(String username)
   {
-    double price =0;
-    for(int i=0; i<user.getOrders().size(); i++)
-    {
-      price +=user.getOrders().get(0).getOrderPrice();
-    }
-    return price;
+    return client.getUserByUsername(username);
   }
+
+
 
   @Override public void updateSeatToBooked(Seat seat, Ticket ticket)
   {
-try
-{
   client.updateSeatToBooked(seat,ticket);
-}catch (Exception e){
-  e.printStackTrace();
-}
   }
 
-  @Override public void addOrder(Order order)
+  @Override public void addOrder(Order order, User user)
   {
-    try
-    {
-      client.addOrder(order);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
+    client.addOrder(order, user);
   }
 
 
     @Override public void register(String username, String password, String email,
       String firstName, String lastName, String phone)
   {
-    try
-    {
       client.register(username, password, email, firstName, lastName, phone);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
   }
 
   @Override public void addScreening(Screening screening)
   {
-    try
-    {
       client.addScreening(screening);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
   }
 
   @Override public void removeScreening(Screening screening)
   {
-    try
-    {
       client.removeScreening(screening);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
   }
 
   @Override public void removeByDate(SimpleDate date)
   {
-    try
-    {
       client.removeByDate(date);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
   }
 
   @Override public ArrayList<Screening> getAllScreenings()
   {
-    try
-    {
       return client.getAllScreenings();
-    }catch (Exception e){
-      e.printStackTrace();
-    }
-    return null;
   }
 
   @Override public int getNbOfScreenings()
   {
-    try
-    {
       return client.getNbOfScreenings();
-    }catch (Exception e){
-      e.printStackTrace();
-    }
-    return 0;
   }
 
   @Override public Screening getScreening(Screening screening)
   {
-    try
-    {
      return client.getScreening(screening);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
-    return null;
+
   }
 
-  @Override public ArrayList<Ticket> getAllTickets()
+  @Override public ArrayList<Ticket> getAllTickets(User user)
   {
-    System.out.println("error here");
-    try
-    {
-      return client.getAllTickets();
-    }catch (NullPointerException e){
-      System.out.println("MAYBE FIX LATER");
-      //TODO
-    }catch (Exception e){
-      e.printStackTrace();
-    }
-    return null;
+      return client.getAllTickets(user);
+  }
+@Override public Ticket getTicketForView(Order order, String ID){
+    return client.getTicketForView(order, ID);
+}
+  @Override public void downgradeTicket(Ticket ticket, Order order)
+  {
+    client.downgradeTicket(ticket,order);
   }
 
-  @Override public User getUser()
+  @Override public void upgradeTicket(Ticket ticket, Order order)
   {
-    try
-    {
-      return client.getUser();
-    }catch (Exception e){
-      e.printStackTrace();
-    }
-    return null;
+    client.upgradeTicket(ticket, order);
   }
 
-  @Override public Screening findScreeningBySeatId(String seatId)
+  @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
   {
-    try
-    {
-      return client.findScreeningBySeatId(seatId);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
-    return null;
+    client.cancelTicketFromOrder(ticket, order);
   }
+
+  @Override public void deleteSnackFromOrder(Snack snack, Order order)
+  {
+    client.deleteSnackFromOrder(snack, order);
+  }
+
 
   @Override public ArrayList<Screening> getScreaningsByMovieTitle(String title)
   {
@@ -356,9 +252,15 @@ try
     return null;
   }
 
+  @Override public ArrayList<Screening> getScreeningsByDateAndTitle(
+      String title, LocalDate date)
+  {
+    return client.getScreeningsByDateAndTitle(title, date);
+  }
+
   @Override public ArrayList<Order> getOrdersForUser(String username)
   {
-    return null;
+    return client.getOrdersForUser(username);
   }
 
   @Override public void reserveSeats(Seat[] seats, User customer,

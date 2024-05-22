@@ -25,6 +25,7 @@ public class LoginViewController
     this.viewModel = viewModel;
     this.root = root;
 
+    viewModel.reset();
     this.usernameField.textProperty()
         .bindBidirectional(viewModel.getUsernameField());
     this.passwordField.textProperty()
@@ -44,7 +45,7 @@ public class LoginViewController
   }
   @FXML public void onNewAccount()
   {
-
+    viewHandler.openView("registerPage");
   }
   public Region getRoot()
   {

@@ -8,8 +8,6 @@ import viewmodel.MainPageViewModel;
 import viewmodel.SimpleScreeningView;
 import viewmodel.ViewState;
 
-import java.rmi.RemoteException;
-
 public class MainViewController
 {
   private Region root;
@@ -22,9 +20,10 @@ public class MainViewController
   @FXML private Button fidelityPoints;
   @FXML private Button manage;
   @FXML private Button signOut;
-  @FXML private Button ticketConfirmation;
+  @FXML private Button orderConfirmation;
   @FXML private Button bookTicket1;
   @FXML private Button search;
+  @FXML private Button clearFilters;
   @FXML private TextField searchBar;
   @FXML private TableView screeningsTable;
   @FXML private TableColumn title;
@@ -45,7 +44,7 @@ public class MainViewController
     this.fidelityPoints.setVisible(true);
     this.manage.setVisible(true);
     this.signOut.setVisible(true);
-    this.ticketConfirmation.setVisible(true);
+    this.orderConfirmation.setVisible(true);
     this.bookTicket1.setVisible(true);
     viewModel.setScreenings(screeningsTable.getItems());
     viewModel.bindScreenings(screeningsTable.getItems());
@@ -70,21 +69,22 @@ viewModel.setSelected();
 
   @FXML public void onManage()
   {
-
+    viewHandler.openView("managePage");
   }
 
   @FXML public void onSignOut()
   {
-
+    viewState.logOut();
+    viewHandler.openView("login");
   }
 
   @FXML public void onFidelityPoints()
   {
 
   }
-  @FXML public void onTicketConfirmation()
+  @FXML public void onOrderConfirmation()
   {
-
+    viewHandler.openView("orderConfirmation");
   }
   @FXML public void bookTicket1()
   {
@@ -92,17 +92,24 @@ viewModel.setSelected();
     {
       viewHandler.openView("transitionPage");
     }else
-      System.out.println("no selection");
+    {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText("No screening selected.");
+      alert.showAndWait();
+    }
   }
-  @FXML public void onDatePicked() throws RemoteException
+  @FXML public void onDatePicked()
   {
     viewModel.filterByDate(datePicker.getValue());
   }
-  @FXML public void onSearch() throws RemoteException
+  @FXML public void onSearch()
   {
-    viewModel.filterByTitle();
+    viewModel.onSearch(datePicker.getValue());
   }
-  @FXML public void onSearchBar() throws RemoteException
+  @FXML public void onClearFiters(){
+    viewModel.clearFilters();
+  }
+  @FXML public void onSearchBar()
   {
     viewModel.filterByTitle();
   }

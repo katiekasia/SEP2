@@ -37,6 +37,29 @@ public class User implements Serializable
     }
     throw new IllegalArgumentException("No order with that id found.");
   }
+  public ArrayList<Ticket> getAllTickets(){
+    ArrayList<Ticket> tickets = new ArrayList<>();
+    for (int i = 0; i < getOrders().size(); i++)
+    {
+      for (Ticket ticket : getOrders().get(i).getTickets())
+      {
+        if (ticket != null)
+        {
+          tickets.add(ticket);
+        }
+      }
+    }
+    return tickets;
+  }
+
+  public Order[] getAllOrders()
+  {
+    if (getOrders() != null){
+      Order[] result = getOrders().toArray(new Order[0]);
+      return result;
+    }
+    return null;
+  }
 //  public void cancelOrder(client_model.Order order){
 //    orders.remove(order);
 //  }

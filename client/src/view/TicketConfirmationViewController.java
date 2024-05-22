@@ -47,11 +47,11 @@ public class TicketConfirmationViewController
     this.viewModel = viewModel;
     this.root = root;
     this.viewState= viewModel.getViewState();
-//
-//
-//
-//    viewModel.setScreenings(screeningsTable.getItems());
-//    viewModel.bindScreenings(screeningsTable.getItems());
+
+
+
+    viewModel.setScreenings(screeningsTable.getItems());
+    viewModel.bindScreenings(screeningsTable.getItems());
 
     /*
     movie.setText(viewState.getSelectedScreening().movieProperty().get());
@@ -61,25 +61,25 @@ public class TicketConfirmationViewController
     time.setText(viewState.getSelectedScreening().timeProperty().get());
     //roomID.setText(String.valueOf(viewState.getSelectedScreening().roomProperty().get()));
      */
-//    this.movie.setCellValueFactory(new PropertyValueFactory<>("movie"));
-//    this.seat.setCellValueFactory(new PropertyValueFactory<>("seatID"));
-//    this.date.setCellValueFactory(new PropertyValueFactory<>("date"));
-//    this.time.setCellValueFactory(new PropertyValueFactory<>("time"));
-//    this.ticketType.setCellValueFactory(new PropertyValueFactory<>("ticketType"));
+    this.movie.setCellValueFactory(new PropertyValueFactory<>("movie"));
+    this.seat.setCellValueFactory(new PropertyValueFactory<>("seatID"));
+    this.date.setCellValueFactory(new PropertyValueFactory<>("date"));
+    this.time.setCellValueFactory(new PropertyValueFactory<>("time"));
+    this.ticketType.setCellValueFactory(new PropertyValueFactory<>("ticketType"));
 
 
-//    screeningsTable.getSelectionModel().selectedItemProperty().addListener((obs,oldVal, newVal) -> {
-//      selected = (SimpleScreeningView) newVal;
-//      viewState.setSelectedScreening((SimpleScreeningView) newVal);
-//      viewModel.setSelected();
-//
-//
-//      ObservableList<String> selectedSeats = seatMappingViewModel.getSelectedSeats();
-//      viewModel.updateScreeningsWithSelectedSeats(selectedSeats);
-//
-//      // Bind the updated screenings list to the table view
-////      screeningsTable.setItems(screeningsTable.getItems());
-//    });
+    screeningsTable.getSelectionModel().selectedItemProperty().addListener((obs,oldVal, newVal) -> {
+      selected = (SimpleScreeningView) newVal;
+      viewState.setSelectedScreening((SimpleScreeningView) newVal);
+      viewModel.setSelected();
+
+
+      ObservableList<String> selectedSeats = seatMappingViewModel.getSelectedSeats();
+     // viewModel.updateScreeningsWithSelectedSeats(selectedSeats);
+
+      // Bind the updated screenings list to the table view
+      screeningsTable.setItems(screeningsTable.getItems());
+    });
   }
 
 
@@ -110,8 +110,8 @@ public class TicketConfirmationViewController
   {
 
   }
-  @FXML public void onUpgradeToVIP()
-  {
+//  @FXML public void onUpgradeToVIP()
+//  {
 //    if (selected != null)
 //    {
 //      selected.ticketTypeProperty().set("VIP ticket");
@@ -122,7 +122,7 @@ public class TicketConfirmationViewController
 //    }
 //    else
 //      System.out.println("no selection");
-  }
+//  }
   @FXML public void onCancelOrder()
   {
 

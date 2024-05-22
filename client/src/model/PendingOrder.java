@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 public class PendingOrder extends OrderState implements Serializable
 {
@@ -13,8 +12,8 @@ public class PendingOrder extends OrderState implements Serializable
   }
   @Override public void expire(Order order)
   {
-    while (!expired){
-      if (order.getOrderDate().isAfter(new SimpleDate(LocalDate.now()))){
+    if (!expired){
+      if (order.isExpired()){
         expired = true;
         order.setOrderState(new ExpiredOrder(order));
       }
@@ -24,6 +23,9 @@ public class PendingOrder extends OrderState implements Serializable
   @Override public void cancel(Order order)
   {
     order.setOrderState(new CancelledOrder(order));
+    for (Ticket ticket : order.getTickets()){
+      ticket.cancelTicket();
+    }
   }
 
   @Override public String status()

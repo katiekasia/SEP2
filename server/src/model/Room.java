@@ -97,6 +97,9 @@ public class Room implements Serializable
   public Seat getSeat(int index) {
     return seats[index];
   }
+  public boolean getSeatAvailability(int indx){
+    return getSeat(indx).isAvailable();
+  }
   public void setSeats(Seat[] seats){
     this.seats = seats;
   }

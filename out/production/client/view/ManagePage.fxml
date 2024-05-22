@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -33,7 +34,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="fidelityPoints" layoutX="14.0" layoutY="297.0" mnemonicParsing="false" onAction="#onFidelityPoints" prefHeight="56.0" prefWidth="183.0" text="Fidelity points">
+            <Button fx:id="fidelityPoints" contentDisplay="CENTER" layoutX="14.0" layoutY="297.0" mnemonicParsing="false" onAction="#onFidelityPoints" prefHeight="56.0" prefWidth="183.0" text="Fidelity points">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -42,7 +43,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="ticketConfirmation" layoutX="16.0" layoutY="382.0" mnemonicParsing="false" onAction="#onTicketConfirmation" prefHeight="56.0" prefWidth="183.0" text="Ticket confimations">
+            <Button fx:id="ticketConfirmation" contentDisplay="CENTER" layoutX="16.0" layoutY="382.0" mnemonicParsing="false" onAction="#onOrderConfirmation" prefHeight="56.0" prefWidth="183.0" text="Order confimations">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -51,7 +52,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="manage" layoutX="15.0" layoutY="473.0" mnemonicParsing="false" onAction="#onManage" prefHeight="56.0" prefWidth="183.0" text="Manage account">
+            <Button fx:id="screenings" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="15.0" layoutY="473.0" mnemonicParsing="false" onAction="#onScreening" prefHeight="56.0" prefWidth="183.0" text="Screenings list">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -59,6 +60,9 @@
                      </image>
                   </ImageView>
                </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </Button>
          </children>
       </AnchorPane>

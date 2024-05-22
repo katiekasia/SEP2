@@ -13,34 +13,32 @@ public interface Model extends UnnamedPropertyChangeSubject
   Order getOrderByID(int orderID, User user);
 
   Screening getScreeningForView(String time, String date,String title, int room);
-  public User logIn(String username, String password);
-  public void connect();
-  public void disconnect();
-  public int getPort();
-  public void setPort(int port);
+   User logIn(String username, String password);
+
   Order[] getAllOrders(User user);
+   Ticket getTicketForView(Order order, String ID);
   Snack[] getSnacksFromOrder(Order order);
   Ticket[] getTicketsFromOrder(Order order);
-  public String getHost();
-  public void reserveSeats(Seat[] seats, User customer,
+   String getHost();
+   void reserveSeats(Seat[] seats, User customer,
        Screening screening, int nbVIP);
-  public boolean checkSeatAvailability(int index, Screening screening);
+   boolean checkSeatAvailability(int index, Screening screening);
 
-  public void reserveSeat(Seat seat, User customer,
+   void reserveSeat(Seat seat, User customer,
       Screening screening);
-  public Seat[] getAvailableSeats(Screening screening);
-  public Seat[] getEmptySeats(Screening screening);
+   Seat[] getAvailableSeats(Screening screening);
+   Seat[] getEmptySeats(Screening screening);
 
 User getUserByUsername(String username);
-  public void updateSeatToBooked(Seat seat, Ticket ticket);
-  public void addOrder(Order order, User user);
+   void updateSeatToBooked(Seat seat, Ticket ticket);
+   void addOrder(Order order, User user);
 void addScreening(Screening screening);
 void removeScreening(Screening screening);
 void removeByDate(SimpleDate date);
 ArrayList<Screening> getAllScreenings();
 int getNbOfScreenings();
 Screening getScreening(Screening screening);
-  public ArrayList<Ticket> getAllTickets(User user);
+   ArrayList<Ticket> getAllTickets(User user);
   void downgradeTicket(Ticket ticket, Order order);
    void upgradeTicket(Ticket ticket, Order order);
    void cancelTicketFromOrder(Ticket ticket, Order order);

@@ -1,6 +1,9 @@
 package viewmodel;
 
-import javafx.beans.property.*;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import model.Order;
 
 public class SimpleOrderView
@@ -8,13 +11,14 @@ public class SimpleOrderView
   private IntegerProperty orderID;
   private StringProperty orderPrice;
   private StringProperty orderDate;
-  private Order order;
+  private StringProperty orderStatus;
+
 
   public SimpleOrderView(Order order){
-    this.order = order;
     orderID = new SimpleIntegerProperty(order.getOrderID());
     orderPrice = new SimpleStringProperty(order.getOrderPrice() + "$");
     orderDate = new SimpleStringProperty(order.getOrderDate().toString());
+    orderStatus = new SimpleStringProperty(order.getOrderState().status());
   }
 
   public void setOrderPrice(String orderPrice)
@@ -22,10 +26,11 @@ public class SimpleOrderView
     this.orderPrice.set(orderPrice);
   }
 
-  public void setOrder(Order order)
+  public StringProperty orderStatusProperty()
   {
-    this.order = order;
+    return orderStatus;
   }
+
 
   public void setOrderID(int orderID)
   {

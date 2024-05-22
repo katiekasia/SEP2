@@ -1,10 +1,10 @@
 package viewmodel;
 
-import view.ViewHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Region;
 import model.Model;
+import view.ViewHandler;
 
 public class SnackSelectionViewModel
 {
@@ -26,4 +26,5 @@ public class SnackSelectionViewModel
     this.root = root;
 
   }
+
 }

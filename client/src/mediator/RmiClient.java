@@ -27,7 +27,6 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
 
       server = (RemoteModel) Naming.lookup("rmi://" + host + ":1099/Case");
-      //server.addListener(this); for listener
       UnicastRemoteObject.exportObject(this,0);
       server.addListener(this);
     }
@@ -43,20 +42,10 @@ public class RmiClient implements Model, RemoteListener<String,String>
     }catch (Exception e){
       e.printStackTrace();
     }
-
   }
 
-  public void start() throws RemoteException
-  {
-    Scanner input = new Scanner(System.in);
-    while (true)
-    {
-      //
-    }
-  }
 
   @Override public void updateUser(User user, String previousUsername)
-      throws RemoteException
   {
     try
     {
@@ -79,6 +68,28 @@ public class RmiClient implements Model, RemoteListener<String,String>
     }catch (Exception e){
       e.printStackTrace();
     }
+  }
+
+  @Override public Ticket getTicketForView(Order order, String ID)
+  {
+    try
+    {
+      return server.getTicketForView(order, ID);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  @Override public Order getOrderByID(int orderID, User user)
+  {
+    try
+    {
+      return server.getOrderByID(orderID, user);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override public Screening getScreeningForView(String time, String date,
@@ -148,10 +159,6 @@ public class RmiClient implements Model, RemoteListener<String,String>
     return null;
   }
 
-  @Override public String getUsername()
-  {
-    return null;
-  }
 
   @Override public String getHost()
   {
@@ -216,10 +223,17 @@ public class RmiClient implements Model, RemoteListener<String,String>
     return null;
   }
 
-  @Override public double calculateTotalPrice()
+  @Override public User getUserByUsername(String username)
   {
-    return 0;
+    try
+    {
+      return server.getUserByUsername(username);
+    }catch (RemoteException e){
+
+    }
+    return null;
   }
+
 
   @Override public void updateSeatToBooked(Seat seat, Ticket ticket)
 
@@ -232,15 +246,16 @@ public class RmiClient implements Model, RemoteListener<String,String>
     }
   }
 
-  @Override public void addOrder(Order order)
+  @Override public void addOrder(Order order, User user)
   {
     try
     {
-      server.addOrder(order);
+      server.addOrder(order, user);
     }catch (RemoteException e){
       e.printStackTrace();
     }
   }
+
 
   @Override public User logIn(String username, String password)
   {
@@ -329,39 +344,58 @@ public class RmiClient implements Model, RemoteListener<String,String>
     return null;
   }
 
-  @Override public ArrayList<Ticket> getAllTickets()
+  @Override public ArrayList<Ticket> getAllTickets(User user)
   {
     try
     {
-      return server.getAllTickets();
+      return server.getAllTickets(user);
     }catch (RemoteException e){
       e.printStackTrace();
     }
     return null;
   }
 
-  @Override public User getUser()
+  @Override public void downgradeTicket(Ticket ticket, Order order)
   {
     try
     {
-      return server.getUser();
+      server.downgradeTicket(ticket, order);
     }catch (RemoteException e){
       e.printStackTrace();
     }
-    return null;
   }
 
-  @Override public Screening findScreeningBySeatId(String seatId)
-
+  @Override public void upgradeTicket(Ticket ticket, Order order)
   {
     try
     {
-      return server.findScreeningBySeatId(seatId);
+      server.upgradeTicket(ticket, order);
     }catch (RemoteException e){
       e.printStackTrace();
     }
-    return null;
   }
+
+  @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
+  {
+    try
+    {
+      server.cancelTicketFromOrder(ticket, order);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+  }
+
+  @Override public void deleteSnackFromOrder(Snack snack, Order order)
+  {
+    try
+    {
+      server.deleteSnackFromOrder(snack, order);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+  }
+
+
 
   @Override public ArrayList<Screening> getScreaningsByMovieTitle(String title)
 
@@ -387,25 +421,29 @@ public class RmiClient implements Model, RemoteListener<String,String>
     return null;
   }
 
-  @Override public ArrayList<Order> getOrdersForUser(String username)
+  @Override public ArrayList<Screening> getScreeningsByDateAndTitle(
+      String title, LocalDate date)
   {
+    try
+    {
+      return server.getScreeningsByDateAndTitle(title, date);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
     return null;
   }
 
-  public static void main(String[] args) throws RemoteException
+  @Override public ArrayList<Order> getOrdersForUser(String username)
   {
-    if (System.getSecurityManager() == null)
+    try
     {
-      System.setSecurityManager(new SecurityManager());
+      return server.getOrdersForUser(username);
+    }catch (RemoteException e){
+      e.printStackTrace();
     }
-    String host = "localhost";
-    if (args.length > 0)
-    {
-      host = args[0];
-    }
-    RmiClient client = new RmiClient(host);
-    client.start();
+    return null;
   }
+
 
 
   @Override public void addListener(PropertyChangeListener listener)

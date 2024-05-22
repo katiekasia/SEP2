@@ -183,14 +183,11 @@ public class SeatMappingViewController
   @FXML public void onConfirm()
   {
     if (viewModel.proceedPressed()){
-    viewHandler.openView("ticketConfirmation");}
+    viewHandler.openView("orderConfirmation");}
   }
   @FXML public void onBack()
   {
-    viewModel.backPressed();
-
     viewHandler.openView("transitionPage");
-
   }
 }
 

@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Order implements Serializable
@@ -25,20 +26,84 @@ public class Order implements Serializable
   {
     this.orderState = orderState;
   }
+  public void upgrade(Ticket ticket, double price){
+    if (orderState instanceof PendingOrder)
+    {
+      if (ticket instanceof StandardTicket)
+      {
+        Seat seat = ticket.getSeat();
+        Screening screening = ticket.getScreening();
+        String id = ticket.getTicketID();
+        ticket.cancelTicket();
+        Ticket temp = new VIPTicket(id, price, seat, screening);
+        screening.getRoom().getSeatByID(seat.getID()).book(ticket);
+        tickets.add(temp);
+        tickets.remove(ticket);
+      }
+      else
+      {
+        throw new IllegalStateException("Ticket cannot be upgraded.");
+      }
+    }else {
+      throw new IllegalStateException("Order cannot be modified because it is: " + orderState.status());
+    }
+  }
+  public boolean isExpired(){
+    return getOrderDate().isAfter(new SimpleDate(LocalDate.now()));
+  }
+  public void downgrade(Ticket ticket, double price){
+    if (orderState instanceof PendingOrder)
+    {
+      if (ticket instanceof VIPTicket)
+      {
+    Seat seat = ticket.getSeat();
+    Screening screening = ticket.getScreening();
+    String id = ticket.getTicketID();
+    ticket.cancelTicket();
+    Ticket temp = new StandardTicket(id,price,seat,screening);
+    screening.getRoom().getSeatByID(seat.getID()).book(ticket);
+    tickets.remove(ticket);
+    tickets.add(temp);
+      }
+      else
+      {
+        throw new IllegalStateException("Ticket cannot be downgraded.");
+      }
+    }else {
+      throw new IllegalStateException("Order cannot be modified because it is: " + orderState.status());
+    }
+  }
 
   public OrderState getOrderState()
   {
     return orderState;
   }
 
-  public Ticket getTicketForView(String date, String time, String title){
+  public Ticket getTicketForView(String ID){
     for (Ticket ticket : tickets){
-      if (ticket.getScreening().getDate().toString().equals(date) && ticket.getScreening().getTime().equals(time) &&
-      ticket.getScreening().getMovie().getName().equals(title)){
+      if (ticket.getTicketID().equals(ID)){
         return ticket;
       }
     }
     throw new RuntimeException("No such ticket found");
+  }
+
+  public Snack[] getSnacksFromOrder()
+  {
+    if (getSnacks() != null){
+      Snack[] result = getSnacks().toArray(new Snack[0]);
+      return result;
+    }
+    return null;
+  }
+  public Ticket[] getTicketsFromOrder()
+  {
+    if (getTickets() != null)
+    {
+      Ticket[] result = getTickets().toArray(new Ticket[0]);
+      return result;
+    }
+    return null;
   }
   public void calculateOrderPrice()
   {
@@ -61,7 +126,7 @@ public class Order implements Serializable
 if (orderState instanceof PendingOrder){
   snacks.remove(snack);
   calculateOrderPrice();
-}else throw new IllegalStateException("Order has expired and cannot be cancelled or modified.");
+}else throw new IllegalStateException("Order cannot be modified because it is: " + orderState.status());
   }
   public void removeTicket(Ticket ticket){
     if (orderState instanceof PendingOrder)

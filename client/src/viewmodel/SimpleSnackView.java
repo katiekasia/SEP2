@@ -9,9 +9,9 @@ public class SimpleSnackView
   private StringProperty price;
   private StringProperty type;
   private StringProperty size;
-  private Snack snack;
+
   public SimpleSnackView(Snack snack){
-    this.snack = snack;
+
     price = new SimpleStringProperty(snack.getPrice() + "$");
     type = new SimpleStringProperty(snack.getType());
     size = new SimpleStringProperty(snack.getSize());
@@ -31,17 +31,6 @@ public class SimpleSnackView
   {
     this.price.set(price);
   }
-
-  public Snack getSnack()
-  {
-    return snack;
-  }
-
-  public void setSnack(Snack snack)
-  {
-    this.snack = snack;
-  }
-
   public StringProperty typeProperty()
   {
     return type;
