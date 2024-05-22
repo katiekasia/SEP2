@@ -290,6 +290,7 @@ return screenings.getAvailableSeats(screening);
   public void register(String username, String password, String email, String firstName, String lastName, String phone) throws RemoteException {
     try {
       DataBaseHandler.newUser(username, firstName, lastName, phone, email, password);
+      usersList = new UsersList(DataBaseHandler.getAllCustomers());
     } catch (SQLException e) {
       e.printStackTrace();
       throw new RemoteException("Error registering user", e);
