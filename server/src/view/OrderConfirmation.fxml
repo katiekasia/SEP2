@@ -29,12 +29,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="fidelityPoints" layoutX="14.0" layoutY="297.0" mnemonicParsing="false" onAction="#onFidelityPoints" prefHeight="56.0" prefWidth="183.0" text="Fidelity points">
-               <graphic>
-
-               </graphic>
-            </Button>
-            <Button fx:id="backToScreenings" layoutX="16.0" layoutY="382.0" mnemonicParsing="false" onAction="#onBack" prefHeight="56.0" prefWidth="183.0" text="Back to screenings">
+            <Button fx:id="backToScreenings" layoutX="16.0" layoutY="341.0" mnemonicParsing="false" onAction="#onBack" prefHeight="56.0" prefWidth="183.0" text="Back to screenings">
                <graphic>
 
                </graphic>

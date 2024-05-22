@@ -19,7 +19,6 @@ public class MainViewController
   private SimpleScreeningView selected;
 
   @FXML private Label username;
-  @FXML private Button fidelityPoints;
   @FXML private Button manage;
   @FXML private Button signOut;
   @FXML private Button orderConfirmation;
@@ -43,7 +42,6 @@ public class MainViewController
     this.root = root;
     this.viewState = viewModel.getViewState();
 
-    this.fidelityPoints.setVisible(true);
     this.manage.setVisible(true);
     this.signOut.setVisible(true);
     this.orderConfirmation.setVisible(true);
@@ -51,7 +49,7 @@ public class MainViewController
     viewModel.setScreenings(screeningsTable.getItems());
     viewModel.bindScreenings(screeningsTable.getItems());
     searchBar.textProperty().bindBidirectional(viewModel.inputProperty());
-    username.textProperty().bind(viewState.usernameProperty());
+    username.textProperty().bind(viewState.nameProperty());
 
     //username.textProperty().bind(viewModel.usernameProperty());
     this.title.setCellValueFactory(new PropertyValueFactory<>("movie"));
@@ -80,10 +78,7 @@ viewModel.setSelected();
     viewHandler.openView("login");
   }
 
-  @FXML public void onFidelityPoints()
-  {
 
-  }
   @FXML public void onOrderConfirmation()
   {
     viewHandler.openView("orderConfirmation");

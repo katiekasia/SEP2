@@ -18,7 +18,6 @@ public class OrderConfirmationViewController
   private SimpleOrderView selected;
 
   @FXML private Label username;
-  @FXML private Button fidelityPoints;
   @FXML private Button manage;
   @FXML private Button signOut;
   @FXML private Button backToScreenings;
@@ -42,7 +41,7 @@ public class OrderConfirmationViewController
 
     viewModel.setOrders(ordersTable.getItems());
     viewModel.bindOrders(ordersTable.getItems());
-    username.textProperty().bind(viewState.usernameProperty());
+    username.textProperty().bind(viewState.nameProperty());
     this.orderID.setCellValueFactory(new PropertyValueFactory<>("orderID"));
     this.orderStatus.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
     this.orderDate.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
@@ -66,7 +65,6 @@ public class OrderConfirmationViewController
   @FXML public void onBack(){
     viewHandler.openView("mainPage");
   }
-  @FXML public void onFidelityPoints(){}
   @FXML public void onCancelOrder(){
     if (selected != null){
       viewModel.cancelOrderPressed();

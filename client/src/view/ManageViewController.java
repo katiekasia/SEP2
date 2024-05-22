@@ -22,7 +22,6 @@ public class ManageViewController
   @FXML private TextField surname;
   @FXML private TextField phoneNumber;
   @FXML private TextField email;
-  @FXML private Button fidelityPoints;
   @FXML private Button screenings;
   @FXML private Button signOut;
   @FXML private Button ticketConfirmation;
@@ -79,10 +78,6 @@ public class ManageViewController
     viewHandler.openView("login");
   }
 
-  @FXML public void onFidelityPoints()
-  {
-
-  }
   @FXML public void onOrderConfirmation()
   {
     viewHandler.openView("orderConfirmation");
