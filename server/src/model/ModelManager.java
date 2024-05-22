@@ -50,6 +50,7 @@ public class ModelManager implements Model
       }
     }
   }
+
   @Override  public void updateUser(User user, String previousUsername) throws RemoteException
   {
     try
@@ -57,6 +58,7 @@ public class ModelManager implements Model
       System.out.println("calling method to update the info in database");
       DataBaseHandler.updateUser(user, previousUsername);
       //System.out.println("calling method to update the info in database");
+      usersList = new UsersList(DataBaseHandler.getAllCustomers());
     }
     catch(SQLException e)
     {
@@ -288,6 +290,7 @@ return screenings.getAvailableSeats(screening);
   public void register(String username, String password, String email, String firstName, String lastName, String phone) throws RemoteException {
     try {
       DataBaseHandler.newUser(username, firstName, lastName, phone, email, password);
+      usersList = new UsersList(DataBaseHandler.getAllCustomers());
     } catch (SQLException e) {
       e.printStackTrace();
       throw new RemoteException("Error registering user", e);
