@@ -50,6 +50,7 @@ public class ModelManager implements Model
       }
     }
   }
+
   @Override  public void updateUser(User user, String previousUsername) throws RemoteException
   {
     try
@@ -57,6 +58,7 @@ public class ModelManager implements Model
       System.out.println("calling method to update the info in database");
       DataBaseHandler.updateUser(user, previousUsername);
       //System.out.println("calling method to update the info in database");
+      usersList = new UsersList(DataBaseHandler.getAllCustomers());
     }
     catch(SQLException e)
     {
