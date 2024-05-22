@@ -9,6 +9,16 @@ public class PricesManager
 
   public PricesManager(){}
 
+  public double getPriceForSize(double price, String size){
+    switch (size){
+      case "M":
+      return   price * 1.3;
+      case "L":
+        return price * 1.5;
+      default:
+        return price;
+    }
+  }
   public double getNachosPrice()
   {
     return nachosPrice;

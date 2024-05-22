@@ -14,7 +14,7 @@ public interface Model extends UnnamedPropertyChangeSubject
 
   Screening getScreeningForView(String time, String date,String title, int room);
    User logIn(String username, String password);
-
+   double getPriceForSize(String snackType, String size);
   Order[] getAllOrders(User user);
    Ticket getTicketForView(Order order, String ID);
   Snack[] getSnacksFromOrder(Order order);

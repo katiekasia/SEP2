@@ -81,7 +81,19 @@ public class ModelManager implements Model
    }
    return null;
   }
-private Admin logInAdmin(String username, String password){
+
+  @Override public double getPriceForSize(String snackType, String size)
+  {
+    switch (snackType){
+      case "popcorn":
+        return pricesManager.getPriceForSize(pricesManager.getPopcornPrice(), size);
+      case "nachos":
+        return pricesManager.getPriceForSize(pricesManager.getNachosPrice(),size);
+    }
+    return 0;
+  }
+
+  private Admin logInAdmin(String username, String password){
     if (username.equals("Admin") && password.equals(admin.getPassword())){
       return admin;
     }

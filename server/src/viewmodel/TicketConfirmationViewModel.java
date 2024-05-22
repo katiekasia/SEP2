@@ -18,7 +18,6 @@ public class TicketConfirmationViewModel
 
 
     public TicketConfirmationViewModel(Model model, ViewState viewState)
-        throws RemoteException
     {
       this.model = model;
       this.viewState = viewState;
