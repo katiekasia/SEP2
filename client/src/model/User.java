@@ -37,6 +37,7 @@ public class User implements Serializable
     }
     throw new IllegalArgumentException("No order with that id found.");
   }
+
   public ArrayList<Ticket> getAllTickets(){
     ArrayList<Ticket> tickets = new ArrayList<>();
     for (int i = 0; i < getOrders().size(); i++)
@@ -102,6 +103,9 @@ public class User implements Serializable
 
   public void setUsername(String username)
   {
+    if (username.equals("Admin")){
+      throw new IllegalArgumentException("Username not available.");
+    }
     this.username = username;
   }
 

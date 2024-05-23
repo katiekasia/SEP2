@@ -92,6 +92,13 @@ public class RmiServer implements RemoteModel
   @Override public double getPriceForSize(String snackType, String size){
     return cinema.getPriceForSize(snackType, size);
   }
+
+  @Override public boolean logInAdmin(String username, String password)
+      throws RemoteException
+  {
+    return cinema.logInAdmin(username, password);
+  }
+
   @Override public void addSnackToOrder(String snackType, int amount, Order order, User user,String size){
     cinema.addSnackToOrder(snackType, amount, order, user, size);
   }

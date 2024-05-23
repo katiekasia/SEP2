@@ -2,25 +2,9 @@ package model;
 
 public class Admin
 {
-  private static final String USERNAME = "Admin";
-  private String password;
+  public static final String USERNAME = "Admin";
+  public static final String PASSWORD = "123ADMIN321";
 
-  public Admin(String password){
-    this.password = "123";
-  }
+  public Admin(){}
 
-  public String getPassword()
-  {
-    return password;
-  }
-
-  public void setPassword(String password)
-  {
-    this.password = password;
-  }
-
-  public static String getUSERNAME()
-  {
-    return USERNAME;
-  }
 }

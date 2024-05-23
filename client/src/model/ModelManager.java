@@ -137,6 +137,11 @@ public class ModelManager implements Model, PropertyChangeListener
       return client.checkSeatAvailability(index,screening);
   }
 
+  @Override public boolean logInAdmin(String username, String password)
+  {
+    return client.logInAdmin(username, password);
+  }
+
   @Override public Seat[] getAvailableSeats(Screening screening)
   {
      return client.getAvailableSeats(screening);

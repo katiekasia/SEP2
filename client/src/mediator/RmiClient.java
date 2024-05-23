@@ -208,6 +208,17 @@ public class RmiClient implements Model, RemoteListener<String,String>
     return false;
   }
 
+  @Override public boolean logInAdmin(String username, String password)
+  {
+    try
+    {
+      return server.logInAdmin(username, password);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return false;
+  }
+
   @Override public void reserveSeat(Seat seat, User customer,
       Screening screening)
   {

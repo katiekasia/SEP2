@@ -20,6 +20,7 @@ public interface RemoteModel extends Remote, RemoteSubject<String ,String >
   Screening getScreeningForView(String time, String date,String title, int room) throws  RemoteException;
    User logIn(String username, String password) throws RemoteException;
   Order[] getAllOrders(User user) throws RemoteException;
+ boolean logInAdmin(String username, String password) throws RemoteException;
   Snack[] getSnacksFromOrder(Order order) throws RemoteException;
   Ticket[] getTicketsFromOrder(Order order) throws RemoteException;
    void cancelOrder(Order order) throws RemoteException;

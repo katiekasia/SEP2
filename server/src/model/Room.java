@@ -56,13 +56,6 @@ public class Room implements Serializable
     return result;
   }
 
-  public static void main(String[] args)
-  {
-    Room room = new Room(23,44);
-    for (Seat seat: room.getSeats()){
-      System.out.println(seat.getID());
-    }
-  }
 
   //Returns the amount of available seats
   public int availableSeats(){
@@ -91,8 +84,7 @@ public class Room implements Serializable
         return seat;
       }
     }
-    System.out.println("Not FOund");
-    return null;
+    throw new IllegalArgumentException("SEAT NOT FOUND.");
   }
   public Seat getSeat(int index) {
     return seats[index];

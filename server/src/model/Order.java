@@ -25,6 +25,8 @@ public class Order implements Serializable
   public void setOrderState(OrderState orderState)
   {
     this.orderState = orderState;
+    orderState.expire(this);
+
   }
   public void upgrade(Ticket ticket, double price){
     if (orderState instanceof PendingOrder)

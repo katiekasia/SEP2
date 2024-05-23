@@ -28,7 +28,7 @@ public class ModelManager implements Model
     this.HOST = "localhost";
     this.pricesManager = new PricesManager();
     this.propertyChangeSupport = new PropertyChangeSupport(this);
-    this.admin = new Admin(""); //TODO
+    this.admin = new Admin();
 
     try
     {
@@ -87,9 +87,9 @@ public class ModelManager implements Model
     return 0;
   }
 
-  private Admin logInAdmin(String username, String password){
-    if (username.equals("Admin") && password.equals(admin.getPassword())){
-      return admin;
+  @Override public boolean logInAdmin(String username, String password){
+    if (username.equals(Admin.USERNAME) && password.equals(Admin.PASSWORD)){
+      return true;
     }
     throw new IllegalArgumentException("No user with such credentials found");
 }

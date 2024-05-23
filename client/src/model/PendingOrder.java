@@ -8,7 +8,6 @@ public class PendingOrder extends OrderState implements Serializable
   private boolean expired;
   public PendingOrder(Order order){
     expired = false;
-     expire(order);
   }
   @Override public void expire(Order order)
   {
