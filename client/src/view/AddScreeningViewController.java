@@ -30,7 +30,7 @@ public class AddScreeningViewController
 
   @FXML public void onCancel()
   {
-
+    viewHandler.openView("adminPage");
   }
   @FXML public void onAdd()
   {

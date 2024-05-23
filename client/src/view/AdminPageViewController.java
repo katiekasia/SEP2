@@ -22,14 +22,31 @@ public class AdminPageViewController
   @FXML private TableColumn screeningTime;
   @FXML private TableColumn time;
   @FXML private TableColumn room;
-  @FXML private DatePicker datePicker;
+  private SimpleScreeningView selected;
 
 
   public void init(ViewHandler viewHandler, Region root, AdminPageViewModel viewModel) {
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;
     this.root = root;
+    this.viewState= viewModel.getViewState();
 
+
+    viewModel.setScreenings(screeningsTable.getItems());
+    viewModel.bindScreenings(screeningsTable.getItems());
+    username.textProperty().bind(viewState.nameProperty());
+
+    this.title.setCellValueFactory(new PropertyValueFactory<>("movie"));
+    this.screeningTime.setCellValueFactory(new PropertyValueFactory<>("length"));
+    this.date.setCellValueFactory(new PropertyValueFactory<>("date"));
+    this.time.setCellValueFactory(new PropertyValueFactory<>("time"));
+    this.room.setCellValueFactory(new PropertyValueFactory<>("room"));
+
+    screeningsTable.getSelectionModel().selectedItemProperty().addListener((obs,oldVal, newVal) -> {
+      selected = (SimpleScreeningView) newVal;
+      viewState.setSelectedScreening((SimpleScreeningView) newVal);
+      viewModel.setSelected();
+    });
   }
 
 

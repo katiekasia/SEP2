@@ -29,7 +29,7 @@ public class AddMoviePageViewController
 
   @FXML public void onCancel()
   {
-
+    viewHandler.openView("adminPage");
   }
   @FXML public void onAdd()
   {

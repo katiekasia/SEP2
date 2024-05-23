@@ -81,7 +81,7 @@ public class ViewHandler
       loader.setLocation(getClass().getResource(fxmlFile));
       root = loader.load();
       adminPageViewController = loader.getController();
-      adminPageViewController.init(this, root, modelFactory.getAdminPageViewModel());
+      adminPageViewController.init(this,root, modelFactory.getAdminPageViewModel());
     } catch (Exception e) {
       System.out.println(
           "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
