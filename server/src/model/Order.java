@@ -53,6 +53,10 @@ public class Order implements Serializable
   public boolean isExpired(){
     return getOrderDate().isAfter(new SimpleDate(LocalDate.now()));
   }
+  public String generateTicketID(){
+    String id =String.valueOf(orderID + tickets.size() + Math.floor(Math.random() * 401));
+    return id;
+  }
   public void downgrade(Ticket ticket, double price){
     if (orderState instanceof PendingOrder)
     {

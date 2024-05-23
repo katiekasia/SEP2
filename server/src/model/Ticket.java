@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Random;
 
 public abstract class Ticket implements Serializable
 {
@@ -9,14 +11,15 @@ public abstract class Ticket implements Serializable
 	private String ticketType;
 	private Seat seat;
 	private Screening screening;
+	private ArrayList<String > ids = new ArrayList<>();
 
 	public Ticket(String ticketID, double ticketPrice, Seat seat, Screening screening, String ticketType) {
-		this.ticketID = ticketID;
+		setTicketID(ticketID);
 		this.ticketPrice = ticketPrice;
 		this.seat = seat;
 		this.screening = screening;
-
 		this.ticketType= ticketType;
+		ids.add(ticketID);
 	}
 	public String getTicketType()
 	{
@@ -61,7 +64,13 @@ public abstract class Ticket implements Serializable
 	}
 
 	public void setTicketID(String ticketID) {
-		this.ticketID = ticketID;
+		if (!ids.contains(ticketID)){
+			this.ticketID = ticketID;
+		}else
+		{
+			String ID = ticketID + Math.floor(Math.random() * Integer.MAX_VALUE);
+			setTicketID(ID);
+		}
 	}
 
 	public void setTicketPrice(double ticketPrice) {

@@ -273,12 +273,12 @@ return screenings.getAvailableSeats(screening);
     }
     if (freeSeats)
     {
-      Order temp = new Order(user.getOrders().size() + 1);
+      Order temp = new Order(user.generateOrderID());
       for (Seat seat : seats)
       {
         if (nbVip > 0)
         {
-          Ticket tempT = new VIPTicket(seat.getID(),
+          Ticket tempT = new VIPTicket(temp.generateTicketID(),
               pricesManager.getVipTicketPrice(), seat, scr);
           scr.bookSeatById(seat.getID(),tempT);
           temp.addTicket(tempT);
@@ -286,7 +286,7 @@ return screenings.getAvailableSeats(screening);
         }
         else
         {
-          Ticket tempT = new StandardTicket(seat.getID(),
+          Ticket tempT = new StandardTicket(temp.generateTicketID(),
               pricesManager.getStandardTicketPrice(), seat, screening);
           scr.bookSeatById(seat.getID(),tempT);
           temp.addTicket(tempT);
