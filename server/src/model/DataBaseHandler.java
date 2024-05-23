@@ -14,6 +14,7 @@ public class DataBaseHandler
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
   private static final String PASSWORD = "7890";
+
   private static Connection connection;
 
   private DataBaseHandler()
@@ -282,19 +283,25 @@ public class DataBaseHandler
     try (Connection conn = getConnection();
         Statement statement = conn.createStatement();
         ResultSet resultSet = statement.executeQuery(sql)) {
-      pricesManager.setCandiesPrice(resultSet.getDouble("CadniesPrice"));
-      pricesManager.setColaPrice(resultSet.getDouble("ColaPrice"));
-      pricesManager.setFantaPrice(resultSet.getDouble("FantaPrice"));
-      pricesManager.setNachosPrice(resultSet.getDouble("NachosPrice"));
-      pricesManager.setOreoPrice(resultSet.getDouble("OreoPrice"));
-      pricesManager.setPeanutsPrice(resultSet.getDouble("PeanutsPrice"));
-      pricesManager.setPopcornPrice(resultSet.getDouble("PopcornPrice"));
-      pricesManager.setRedbullPrice(resultSet.getDouble("RedbullPrice"));
-      pricesManager.setPepsiPrice(resultSet.getDouble("PepsiPrice"));
-      pricesManager.setStandardTicketPrice(resultSet.getDouble("SticketPrice"));
-      pricesManager.setTuborgPrice(resultSet.getDouble("TuborgPrice"));
-      pricesManager.setVipTicketPrice(resultSet.getDouble("VticketPrice"));
+      while (resultSet.next())
+      {
+        pricesManager.setCandiesPrice(resultSet.getDouble("CandiesPrice"));
 
+        pricesManager.setColaPrice(resultSet.getDouble("ColaPrice"));
+
+        pricesManager.setFantaPrice(resultSet.getDouble("FantaPrice"));
+
+        pricesManager.setNachosPrice(resultSet.getDouble("NachosPrice"));
+        pricesManager.setOreoPrice(resultSet.getDouble("OreoPrice"));
+        pricesManager.setPeanutsPrice(resultSet.getDouble("PeanutsPrice"));
+        pricesManager.setPopcornPrice(resultSet.getDouble("PopcornPrice"));
+        pricesManager.setRedbullPrice(resultSet.getDouble("RedbullPrice"));
+        pricesManager.setPepsiPrice(resultSet.getDouble("PepsiPrice"));
+        pricesManager.setStandardTicketPrice(
+            resultSet.getDouble("SticketPrice"));
+        pricesManager.setTuborgPrice(resultSet.getDouble("TuborgPrice"));
+        pricesManager.setVipTicketPrice(resultSet.getDouble("VticketPrice"));
+      }
     }
     return pricesManager;
   }
