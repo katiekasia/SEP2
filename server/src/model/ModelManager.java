@@ -221,9 +221,10 @@ return screenings.getAvailableSeats(screening);
   @Override public Ticket[] getTicketsFromOrder(Order order)
   {
     return order.getTicketsFromOrder();
+
   }
-@Override public void upgradeTicket(Ticket ticket, Order order){
-    order.upgrade(ticket, pricesManager.getVipTicketPrice());
+@Override public void upgradeTicket(Ticket ticket, Order order, User user){
+    getOrderByID(order.getOrderID(), user).upgrade(ticket, pricesManager.getVipTicketPrice());
 }
 
   @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
@@ -236,8 +237,8 @@ return screenings.getAvailableSeats(screening);
     order.removeSnack(snack);
   }
 
-  @Override public void downgradeTicket(Ticket ticket, Order order){
-  order.downgrade(ticket, pricesManager.getStandardTicketPrice());
+  @Override public void downgradeTicket(Ticket ticket, Order order, User user){
+  getOrderByID(order.getOrderID(), user).downgrade(ticket, pricesManager.getStandardTicketPrice());
 }
 
 

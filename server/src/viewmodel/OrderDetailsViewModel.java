@@ -114,7 +114,7 @@ ticketSelected = false;
     Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(), viewState.getUser());
     for (Ticket ticket : tickets){
       if (ticket.getSeat().getID().equals(selectedTicket.get().getSeatID())){
-        model.upgradeTicket(ticket, order);
+        model.upgradeTicket(ticket, order, viewState.getUser());
         ticketSelected = false;
         loadFromModel();
       }
@@ -126,7 +126,7 @@ ticketSelected = false;
     Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(), viewState.getUser());
     for (Ticket ticket : tickets){
       if (ticket.getSeat().getID().equals(selectedTicket.get().getSeatID())){
-        model.downgradeTicket(ticket, order);
+        model.downgradeTicket(ticket, order, viewState.getUser());
         ticketSelected = false;
         loadFromModel();
       }

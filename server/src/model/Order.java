@@ -33,14 +33,15 @@ public class Order implements Serializable
     {
       if (ticket instanceof StandardTicket)
       {
+        Ticket tick = getTicketForView(ticket.getTicketID());
         Seat seat = ticket.getSeat();
         Screening screening = ticket.getScreening();
         String id = ticket.getTicketID();
-        ticket.cancelTicket();
+        tick.cancelTicket();
         Ticket temp = new VIPTicket(id, price, seat, screening);
         screening.getRoom().getSeatByID(seat.getID()).book(ticket);
         tickets.add(temp);
-        tickets.remove(ticket);
+        tickets.remove(tick);
       }
       else
       {
@@ -62,13 +63,14 @@ public class Order implements Serializable
     {
       if (ticket instanceof VIPTicket)
       {
+        Ticket tick = getTicketForView(ticket.getTicketID());
     Seat seat = ticket.getSeat();
     Screening screening = ticket.getScreening();
     String id = ticket.getTicketID();
-    ticket.cancelTicket();
+    tick.cancelTicket();
     Ticket temp = new StandardTicket(id,price,seat,screening);
     screening.getRoom().getSeatByID(seat.getID()).book(ticket);
-    tickets.remove(ticket);
+    tickets.remove(tick);
     tickets.add(temp);
       }
       else

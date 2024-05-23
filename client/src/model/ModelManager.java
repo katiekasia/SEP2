@@ -214,14 +214,14 @@ public class ModelManager implements Model, PropertyChangeListener
 @Override public Ticket getTicketForView(Order order, String ID){
     return client.getTicketForView(order, ID);
 }
-  @Override public void downgradeTicket(Ticket ticket, Order order)
+  @Override public void downgradeTicket(Ticket ticket, Order order, User user)
   {
-    client.downgradeTicket(ticket,order);
+    client.downgradeTicket(ticket,order, user);
   }
 
-  @Override public void upgradeTicket(Ticket ticket, Order order)
+  @Override public void upgradeTicket(Ticket ticket, Order order, User user)
   {
-    client.upgradeTicket(ticket, order);
+    client.upgradeTicket(ticket, order, user);
   }
 
   @Override public void cancelTicketFromOrder(Ticket ticket, Order order)

@@ -386,24 +386,25 @@ public class RmiClient implements Model, RemoteListener<String,String>
     return null;
   }
 
-  @Override public void downgradeTicket(Ticket ticket, Order order)
+  @Override public void downgradeTicket(Ticket ticket, Order order, User user)
   {
     try
     {
-      server.downgradeTicket(ticket, order);
+      server.downgradeTicket(ticket, order, user);
     }catch (RemoteException e){
       e.printStackTrace();
     }
   }
 
-  @Override public void upgradeTicket(Ticket ticket, Order order)
+  @Override public void upgradeTicket(Ticket ticket, Order order, User user)
   {
     try
     {
-      server.upgradeTicket(ticket, order);
+      server.upgradeTicket(ticket, order, user);
     }catch (RemoteException e){
       e.printStackTrace();
     }
+
   }
 
   @Override public void cancelTicketFromOrder(Ticket ticket, Order order)

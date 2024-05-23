@@ -43,6 +43,7 @@ public class OrderDetailsViewModel
     tickets.clear();
     Ticket[] orderTickets = model.getTicketsFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
         viewState.getUser()));
+    System.out.println(orderTickets.length);
     Snack[] orderSnacks = model.getSnacksFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
         viewState.getUser()));
     for (Ticket ticket : orderTickets){
@@ -114,7 +115,7 @@ ticketSelected = false;
     Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(), viewState.getUser());
     for (Ticket ticket : tickets){
       if (ticket.getSeat().getID().equals(selectedTicket.get().getSeatID())){
-        model.upgradeTicket(ticket, order);
+        model.upgradeTicket(ticket, order, viewState.getUser());
         ticketSelected = false;
         loadFromModel();
       }
@@ -126,7 +127,7 @@ ticketSelected = false;
     Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(), viewState.getUser());
     for (Ticket ticket : tickets){
       if (ticket.getSeat().getID().equals(selectedTicket.get().getSeatID())){
-        model.downgradeTicket(ticket, order);
+        model.downgradeTicket(ticket, order, viewState.getUser());
         ticketSelected = false;
         loadFromModel();
       }

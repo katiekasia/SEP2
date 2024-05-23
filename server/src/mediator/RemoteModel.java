@@ -46,8 +46,8 @@ public interface RemoteModel extends Remote, RemoteSubject<String ,String >
   int getNbOfScreenings() throws RemoteException;
   Screening getScreening(Screening screening) throws RemoteException;
    ArrayList<Ticket> getAllTickets(User user) throws RemoteException;
-  void downgradeTicket(Ticket ticket, Order order) throws RemoteException;
-  void upgradeTicket(Ticket ticket, Order order) throws RemoteException;
+  void downgradeTicket(Ticket ticket, Order order, User user) throws RemoteException;
+   void upgradeTicket(Ticket ticket, Order order, User user) throws RemoteException;
   void cancelTicketFromOrder(Ticket ticket, Order order) throws RemoteException;
   void deleteSnackFromOrder(Snack snack, Order order) throws RemoteException;
   ArrayList<Screening> getScreeningsByDateAndTitle(

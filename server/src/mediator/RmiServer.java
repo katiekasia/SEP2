@@ -246,16 +246,16 @@ public class RmiServer implements RemoteModel
     return cinema.getAllTickets(user);
   }
 
-  @Override public void downgradeTicket(Ticket ticket, Order order)
+  @Override public void downgradeTicket(Ticket ticket, Order order, User user)
       throws RemoteException
   {
-    cinema.downgradeTicket(ticket, order);
+    cinema.downgradeTicket(ticket, order, user);
   }
 
-  @Override public void upgradeTicket(Ticket ticket, Order order)
+  @Override public void upgradeTicket(Ticket ticket, Order order, User user)
       throws RemoteException
   {
-    cinema.upgradeTicket(ticket, order);
+     cinema.upgradeTicket(ticket, order, user);
   }
 
   @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
