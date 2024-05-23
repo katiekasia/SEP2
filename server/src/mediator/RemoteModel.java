@@ -5,11 +5,13 @@ import utility.observer.subject.RemoteSubject;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public interface RemoteModel extends Remote, RemoteSubject<String ,String >
 {
+  void deleteAccount(String username) throws RemoteException;
    void updateUser(User user, String previousUsername) throws RemoteException;
    Order reserveSeats(Seat[] seats, User customer,
       Screening screening, int nbVIP ) throws RemoteException;

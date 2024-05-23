@@ -1,7 +1,9 @@
 package view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import model.User;
@@ -9,6 +11,8 @@ import viewmodel.ManageViewModel;
 import viewmodel.ViewState;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
+import java.util.Optional;
 
 public class ManageViewController
 { private Region root;
@@ -84,7 +88,26 @@ public class ManageViewController
   }
   @FXML public void onDelete()
   {
+    Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+    confirmationAlert.setTitle("Confirm Account Deletion");
+    confirmationAlert.setHeaderText("Are you sure you want to delete your account?");
+    confirmationAlert.setContentText("This action cannot be undone.");
 
+    Optional<ButtonType> result = confirmationAlert.showAndWait();
+    if (result.isPresent() && result.get() == ButtonType.OK)
+    {
+      try
+      {
+        viewModel.deleteAccount();
+        viewHandler.openView("login");
+      }
+      catch (RemoteException | SQLException e)
+      {
+        showAlert("Deletion Failed",
+            "An error occurred while trying to delete your account.");
+        e.printStackTrace();
+      }
+    }
   }
   @FXML public void onEdit()
   {
@@ -134,7 +157,9 @@ public class ManageViewController
       throw new RuntimeException(e);
     }
   }
-
+  private void showAlert(String deletionFailed, String s)
+  {
+  }
 
 
 }

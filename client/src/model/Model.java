@@ -3,11 +3,13 @@ package model;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public interface Model extends UnnamedPropertyChangeSubject
 {
+  void deleteAccount(String username);
   public void updateUser(User user, String previousUsername);
 
   Ticket getTicketForView(Order order, String ID);

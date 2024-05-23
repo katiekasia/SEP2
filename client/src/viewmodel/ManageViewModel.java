@@ -4,6 +4,7 @@ import model.Model;
 import model.User;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 public class ManageViewModel
 {
@@ -22,6 +23,12 @@ public class ManageViewModel
   public String getUsername() throws RemoteException
   {
     return viewState.getUser().getUsername();
+  }
+
+  public void deleteAccount() throws RemoteException, SQLException
+  {
+    String username = viewState.getUser().getUsername();
+    model.deleteAccount(username);
   }
 
   public void updateUserInDatabase(User user, String previousUsername) throws RemoteException

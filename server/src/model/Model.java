@@ -54,7 +54,7 @@ Screening getScreening(Screening screening);
   void changePrices(ArrayList<Double> newPrices);
 
   void register(String username, String password, String email, String firstName, String lastName, String phone);
-void deleteAccount(String username) throws SQLException;
+void deleteAccount(String username);
 
 
 /*

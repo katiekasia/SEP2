@@ -11,6 +11,7 @@ import java.rmi.Naming;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -44,6 +45,17 @@ public class RmiClient implements Model, RemoteListener<String,String>
     }
   }
 
+  @Override public void deleteAccount(String username)
+  {
+    try
+    {
+      server.deleteAccount(username);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+  }
 
   @Override public void updateUser(User user, String previousUsername)
   {

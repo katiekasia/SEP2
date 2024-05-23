@@ -11,6 +11,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -33,6 +34,10 @@ public class RmiServer implements RemoteModel
     {
       e.printStackTrace();
     }
+  }
+  public void deleteAccount(String username) throws RemoteException
+  {
+    cinema.deleteAccount(username);
   }
   public void stop(){
    try
