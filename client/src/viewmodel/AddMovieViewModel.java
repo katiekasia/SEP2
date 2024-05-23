@@ -1,13 +1,15 @@
 package viewmodel;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
 import model.Model;
 
-public class AdminPageViewModel
+public class AddMovieViewModel
 {
   private Model model;
   private ViewState viewState;
 
-  public AdminPageViewModel(Model model, ViewState viewState)
+  public AddMovieViewModel(Model model, ViewState viewState)
   {
     this.model = model;
     this.viewState = viewState;
@@ -16,5 +18,7 @@ public class AdminPageViewModel
   {
     return viewState;
   }
+
+
 
 }

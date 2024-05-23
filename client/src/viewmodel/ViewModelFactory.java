@@ -18,6 +18,9 @@ public class ViewModelFactory
   private OrderConfirmationViewModel orderConfirmationViewModel;
   private OrderDetailsViewModel orderDetailsViewModel;
   private ManageViewModel manageViewModel;
+  private AddMovieViewModel addMovieViewModel;
+  private AddScreeningViewModel addScreeningViewModel;
+  private EditPricesViewModel editPricesViewModel;
   private ViewState viewState;
 
   public ViewModelFactory(Model model) throws RemoteException
@@ -26,7 +29,7 @@ public class ViewModelFactory
     this.pageViewModel = new MainPageViewModel(model,viewState);
     this.registerViewModel = new RegisterPageViewModel(model);
     this.loginViewModel = new LoginViewModel(model, viewState);
-    this.adminPageViewModel = new AdminPageViewModel();
+    this.adminPageViewModel = new AdminPageViewModel(model, viewState);
     this.seatMappingViewModel = new SeatMappingViewModel(model, viewState);
     this.snackSelectionViewModel = new SnackSelectionViewModel(model,viewState);
     this.ticketConfirmationViewModel = new TicketConfirmationViewModel(model, viewState);
@@ -34,9 +37,13 @@ public class ViewModelFactory
     this.manageViewModel= new ManageViewModel(model, viewState);
     this.orderConfirmationViewModel = new OrderConfirmationViewModel(model, viewState);
     this.orderDetailsViewModel = new OrderDetailsViewModel(model,viewState);
+    this.addMovieViewModel= new AddMovieViewModel(model, viewState);
+    this.addScreeningViewModel= new AddScreeningViewModel(model, viewState);
+    this.adminPageViewModel= new AdminPageViewModel(model, viewState);
+    this.editPricesViewModel= new EditPricesViewModel(model, viewState);
+
 
   }
-
   public OrderDetailsViewModel getOrderDetailsViewModel()
   {
     return orderDetailsViewModel;
@@ -46,8 +53,6 @@ public class ViewModelFactory
   {
     return pageViewModel;
   }
-
-  public AdminPageViewModel getAdminPageViewModel() {return adminPageViewModel;}
 
   public LoginViewModel getLoginViewModel()
   {
@@ -78,6 +83,18 @@ public class ViewModelFactory
   public TicketConfirmationViewModel getTicketConfirmationViewModel()
   {
     return ticketConfirmationViewModel;
+  }
+  public AddScreeningViewModel getAddScreeningViewModel()
+  {
+    return addScreeningViewModel;
+  }
+  public AddMovieViewModel getAddMovieViewModel()
+  {
+    return addMovieViewModel;
+  }
+  public EditPricesViewModel getEditPricesViewModel()
+  {
+    return editPricesViewModel;
   }
 
 }
