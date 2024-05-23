@@ -137,6 +137,11 @@ public class ModelManager implements Model, PropertyChangeListener
       return client.checkSeatAvailability(index,screening);
   }
 
+  @Override public boolean logInAdmin(String username, String password)
+  {
+    return client.logInAdmin(username, password);
+  }
+
   @Override public Seat[] getAvailableSeats(Screening screening)
   {
      return client.getAvailableSeats(screening);
@@ -261,6 +266,11 @@ public class ModelManager implements Model, PropertyChangeListener
   @Override public ArrayList<Order> getOrdersForUser(String username)
   {
     return client.getOrdersForUser(username);
+  }
+
+  @Override public Movie getMovieForView(String title)
+  {
+    return client.getMovieForView(title);
   }
 
   @Override public Order reserveSeats(Seat[] seats, User customer,

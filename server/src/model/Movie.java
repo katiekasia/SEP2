@@ -16,13 +16,20 @@ public class Movie implements Serializable
 
 
 
-	public Movie(String length, String description, String name, String genre) {
+	public Movie(String length, String description, String name, String genre, LocalDate releaseDate) {
 		this.length = length;
 		this.description = description;
 		this.name = name;
 		this.genre = genre;
 	}
 
+	public LocalDate getReleaseDate()
+	{
+		return releaseDate;
+	}
+	public String getReleaseString(){
+		return releaseDate.toString();
+	}
 	//Checks if the room is already in use on the same day
 
 	// ************************************************Getters and setters**************************************

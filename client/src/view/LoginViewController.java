@@ -37,9 +37,13 @@ public class LoginViewController
   @FXML public void onLogin()
   {
     viewModel.login();
-    if (viewModel.isLogged())
+    if (viewModel.isLogged() && !viewModel.isAdmin())
     {
       viewHandler.openView("mainPage");
+    }
+    else if (viewModel.isAdmin() && viewModel.isLogged()){
+      //viewHandler.openView(); TODO admin main page
+      System.out.println("ADMIN LOGGED");
     }
 
   }

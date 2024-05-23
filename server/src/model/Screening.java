@@ -19,7 +19,9 @@ public class Screening implements Serializable
 	this.movie = movie;
 	this.room = room;
 	}
-
+public String getDateString(){
+		return date.toString();
+}
 
 	//**********************************************Getters and setters*******************************
 

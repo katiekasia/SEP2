@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Alert;
 import model.Model;
+import model.User;
 
 public class LoginViewModel
 {
@@ -12,6 +13,7 @@ public class LoginViewModel
   private StringProperty usernameField;
   private StringProperty passwordField;
   private boolean logged;
+  private boolean admin;
 
   public LoginViewModel(Model model, ViewState viewState)
   {
@@ -20,6 +22,12 @@ public class LoginViewModel
     this.passwordField = new SimpleStringProperty();
     this.viewState = viewState;
     logged = false;
+    admin = false;
+  }
+
+  public boolean isAdmin()
+  {
+    return admin;
   }
 
   public void login()
@@ -33,12 +41,18 @@ public class LoginViewModel
    catch(Exception e)
    {
      logged = false;
-     reset();
-     Alert alert= new Alert(Alert.AlertType.ERROR);
-     alert.setHeaderText(e.getMessage());
-     alert.showAndWait();
+     try
+     {
+       admin = model.logInAdmin(usernameField.get(), passwordField.get());
+       viewState.setUser(new User("Admin","","","","",passwordField.get()));
+       logged = true;
+     }catch (Exception s){
+       reset();
+       Alert alert= new Alert(Alert.AlertType.ERROR);
+       alert.setHeaderText(s.getMessage());
+       alert.showAndWait();
+     }
    }
-
   }
 
   public boolean isLogged()

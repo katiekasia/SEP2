@@ -92,6 +92,13 @@ public class RmiServer implements RemoteModel
   @Override public double getPriceForSize(String snackType, String size){
     return cinema.getPriceForSize(snackType, size);
   }
+
+  @Override public boolean logInAdmin(String username, String password)
+      throws RemoteException
+  {
+    return cinema.logInAdmin(username, password);
+  }
+
   @Override public void addSnackToOrder(String snackType, int amount, Order order, User user,String size){
     cinema.addSnackToOrder(snackType, amount, order, user, size);
   }
@@ -122,6 +129,11 @@ public class RmiServer implements RemoteModel
       throws RemoteException
   {
     return cinema.getTicketsFromOrder(order);
+  }
+
+  @Override public Movie getMovieForView(String title) throws RemoteException
+  {
+    return cinema.getMovieForView(title);
   }
 
   @Override public void cancelOrder(Order order) throws RemoteException

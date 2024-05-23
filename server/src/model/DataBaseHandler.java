@@ -76,18 +76,18 @@ public class DataBaseHandler
     }
   }
 
-  public static void main(String[] args)
-  {
-    Order order = new Order(44);
-    LocalDate date = LocalDate.now();
-    Screening screening = new Screening(8,30,LocalDate.of(2024,05,24), new Movie("","","Bullet Train",""),new Room(10,20));
-    Ticket ticket = new StandardTicket("33",1,new Seat("A1",false),screening);
-try
-{
-  //DataBaseHandler.addOrderToDatabase(order,"michael");
-  DataBaseHandler.addTicketToDatabase(ticket,order);
-}catch (Exception e){e.printStackTrace();}
-  }
+//  public static void main(String[] args)
+//  {
+//    Order order = new Order(44);
+//    LocalDate date = LocalDate.now();
+//    //Screening screening = new Screening(8,30,LocalDate.of(2024,05,24), new Movie("","","Bullet Train",""),new Room(10,20));
+//    //Ticket ticket = new StandardTicket("33",1,new Seat("A1",false),screening);
+//try
+//{
+//  //DataBaseHandler.addOrderToDatabase(order,"michael");
+//  DataBaseHandler.addTicketToDatabase(ticket,order);
+//}catch (Exception e){e.printStackTrace();}
+//  }
 
   public static void newUser(String username, String name, String surname, String phoneNumber, String email, String password) throws SQLException {
     String sql = "INSERT INTO Customer (username, name, surname, phone_number, email, password, fidelity_points) VALUES (?, ?, ?, ?, ?, ?, 0)";
@@ -295,7 +295,7 @@ try
           String genre = resultSet.getString("genre");
           LocalDate releaseDate = resultSet.getDate("releasedate")
               .toLocalDate();
-          Movie movie = new Movie(name, length, description, genre);
+          Movie movie = new Movie(name, length, description, genre,releaseDate);
           movies.add(movie);
         }
       }
@@ -521,7 +521,7 @@ try
           String snackSize = resultSet.getString("size");
 
           Movie movie = new Movie(movieLength, movieDescription, movieName,
-              movieGenre);
+              movieGenre, movieReleaseDate);
           Room room = new Room(roomID, numberOfSeats);
           Seat seat = new Seat(seatID, false);
           Screening screening = new Screening(
@@ -896,7 +896,7 @@ try
         int numberOfSeats = resultSet.getInt("numberOfSeats");
 
         Movie movie = new Movie(movieLength, movieDescription, movieName,
-            movieGenre);
+            movieGenre,movieReleaseDate);
         Room room = new Room(roomID, numberOfSeats);
         Screening screening = new Screening(
             screeningHour.toLocalTime().getHour(),

@@ -48,7 +48,10 @@ Screening getScreening(Screening screening);
   ArrayList<Screening> getScreeningsByDate(LocalDate date);
   ArrayList<Screening> getScreeningsByDateAndTitle(String title, LocalDate date);
    ArrayList<Order> getOrdersForUser(String username);
+  boolean logInAdmin(String username, String password);
+  Movie getMovieForView(String title);
   void addSnackToOrder(String snackType, int amount, Order order, User user,String size);
+
   void register(String username, String password, String email, String firstName, String lastName, String phone) throws RemoteException;
 void deleteAccount(String username) throws RemoteException, SQLException;
 

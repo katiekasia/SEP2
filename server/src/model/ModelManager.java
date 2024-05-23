@@ -15,9 +15,11 @@ public class ModelManager implements Model
   private String HOST;
   private ScreeningsList screenings;
   private UsersList usersList;
+  private MoviesList moviesList;
   private PricesManager pricesManager;
   private Admin admin;
 
+  private RoomsList roomsList;
   //not sure if the user variable is the one connected here
 
   private PropertyChangeSupport propertyChangeSupport;
@@ -28,13 +30,14 @@ public class ModelManager implements Model
     this.HOST = "localhost";
     this.pricesManager = new PricesManager();
     this.propertyChangeSupport = new PropertyChangeSupport(this);
-    this.admin = new Admin(""); //TODO
+    this.admin = new Admin();
 
     try
     {
       usersList = new UsersList(DataBaseHandler.getAllCustomers());
       screenings = new ScreeningsList(DataBaseHandler.getAllScreenings());
-
+      moviesList = new MoviesList(DataBaseHandler.getAllMovies());
+      roomsList = new RoomsList(DataBaseHandler.getAllRooms());
     }
     catch (SQLException e)
     {
@@ -55,9 +58,7 @@ public class ModelManager implements Model
   {
     try
     {
-      System.out.println("calling method to update the info in database");
       DataBaseHandler.updateUser(user, previousUsername);
-      //System.out.println("calling method to update the info in database");
       usersList = new UsersList(DataBaseHandler.getAllCustomers());
     }
     catch(SQLException e)
@@ -67,6 +68,9 @@ public class ModelManager implements Model
   }
   @Override public Screening getScreeningForView(String time, String date,String title, int room){
     return screenings.getScreeningForView(time, date, title, room);
+  }
+  @Override public Movie getMovieForView(String title){
+    return moviesList.getMovieByTitle(title);
   }
   public Ticket getTicketForView(Order order, String ID){
  return order.getTicketForView(ID);
@@ -87,9 +91,9 @@ public class ModelManager implements Model
     return 0;
   }
 
-  private Admin logInAdmin(String username, String password){
-    if (username.equals("Admin") && password.equals(admin.getPassword())){
-      return admin;
+  @Override public boolean logInAdmin(String username, String password){
+    if (username.equals(Admin.USERNAME) && password.equals(Admin.PASSWORD)){
+      return true;
     }
     throw new IllegalArgumentException("No user with such credentials found");
 }
