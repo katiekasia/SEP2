@@ -57,7 +57,7 @@ public class ViewHandler
       case "managePage" -> root= loadManageView("ManagePage.fxml");
       case "orderConfirmation" -> root = loadOrderConfirmationView("OrderConfirmation.fxml");
       case "orderDetails" -> root = loadOrderDetailsView("OrderDetails.fxml");
-
+      case "adminPage" -> root = loadAdminPageView("AdminPage.fxml");
       case "addMovie" -> root = loadAddMovieView("AddMovie.fxml");
       case "addScreening" -> root = loadAddScreeningView("AddScreening.fxml");
       case "editPrices" -> root = loadEditPricesView("EditPrices.fxml");
@@ -288,27 +288,7 @@ public class ViewHandler
 
     return root;
   }
-  private Region loadAdminPageView(String fxmlFile)
-  {
-    Region root = null;
-    try
-    {
-      FXMLLoader loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource(fxmlFile));
-      root = loader.load();
-      adminPageViewController = loader.getController();
-      adminPageViewController.init(this, root, modelFactory.getAdminPageViewModel());
-    }
-    catch (Exception e)
-    {
-      System.out.println(
-          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
-      e.printStackTrace();
-    }
-
-    return root;
-  }
-  private Region loadAddMovieView(String fxmlFile)
+   private Region loadAddMovieView(String fxmlFile)
   {
     Region root = null;
     try

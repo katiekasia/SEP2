@@ -1,10 +1,13 @@
 package view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
-import viewmodel.*;
+import viewmodel.AdminPageViewModel;
+import viewmodel.ViewState;
 
 public class AdminPageViewController
 {
@@ -35,7 +38,7 @@ public class AdminPageViewController
 
   @FXML public void onDeleteScreening()
   {
-
+    
   }
   @FXML public void onEditPrices()
   {
