@@ -54,7 +54,7 @@ public class ModelManager implements Model
     }
   }
 
-  @Override  public void updateUser(User user, String previousUsername) throws RemoteException
+  @Override  public void updateUser(User user, String previousUsername)
   {
     try
     {
