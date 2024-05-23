@@ -90,9 +90,12 @@ return null;
     }
     try
     {
-      model.reserveSeats(selectedSeats(),viewState.getUser(),model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
-          viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom()),
-          viewState.getNumberOfVIPTickets());
+     viewState.setSelectedOrder(new SimpleOrderView(model.reserveSeats(selectedSeats(),viewState.getUser(),model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
+             viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom()),
+         viewState.getNumberOfVIPTickets())));
+//      model.reserveSeats(selectedSeats(),viewState.getUser(),model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
+//              viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom()),
+//          viewState.getNumberOfVIPTickets());
       selectedSeats.clear();
     }catch (Exception e){
       Alert alert = new Alert(Alert.AlertType.ERROR);

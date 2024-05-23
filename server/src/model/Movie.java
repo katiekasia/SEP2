@@ -17,7 +17,7 @@ public class Movie implements Serializable
 	private LocalDate releaseDate;
 
 
-	public Movie(String length, String description, String name, String genre, LocalDate releaseDate) {
+	public Movie(String length, String description, String name, String genre) {
 		this.length = length;
 		this.description = description;
 		this.name = name;

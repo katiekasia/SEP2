@@ -11,9 +11,11 @@ import java.util.ArrayList;
 public interface RemoteModel extends Remote, RemoteSubject<String ,String >
 {
  void updateUser(User user, String previousUsername) throws RemoteException;
- void reserveSeats(Seat[] seats, User customer,
+ Order reserveSeats(Seat[] seats, User customer,
       Screening screening, int nbVIP ) throws RemoteException;
   Order getOrderByID(int orderID, User user) throws RemoteException;
+ double getPriceForSize(String snackType, String size) throws RemoteException;
+ void addSnackToOrder(String snackType, int amount, Order order, User user,String size) throws RemoteException;
  Ticket getTicketForView(Order order, String ID) throws RemoteException;
   Screening getScreeningForView(String time, String date,String title, int room) throws  RemoteException;
    User logIn(String username, String password) throws RemoteException;

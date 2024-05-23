@@ -165,12 +165,32 @@ public class RmiClient implements Model, RemoteListener<String,String>
     return null;
   }
 
-  @Override public void reserveSeats(Seat[] seats, User customer,
+  @Override public Order reserveSeats(Seat[] seats, User customer,
       Screening screening, int nbVIP)
   {
     try
     {
-      server.reserveSeats(seats, customer, screening,nbVIP);
+     return server.reserveSeats(seats, customer, screening,nbVIP);
+    }catch (RemoteException e){
+      e.printStackTrace();
+      throw new RuntimeException(e.getMessage());
+    }
+  }
+
+  @Override public double getPriceForSize(String snackType, String size)
+  {
+    try
+    {
+      return server.getPriceForSize(snackType, size);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return 0;
+  }
+  @Override public void addSnackToOrder(String snackType, int amount, Order order, User user,String size){
+    try
+    {
+      server.addSnackToOrder(snackType, amount, order, user, size);
     }catch (RemoteException e){
       e.printStackTrace();
     }

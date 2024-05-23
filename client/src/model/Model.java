@@ -23,8 +23,10 @@ public interface Model extends UnnamedPropertyChangeSubject
   Snack[] getSnacksFromOrder(Order order);
   Ticket[] getTicketsFromOrder(Order order);
   public String getHost();
-  public void reserveSeats(Seat[] seats, User customer,
+   Order reserveSeats(Seat[] seats, User customer,
        Screening screening, int nbVIP);
+   double getPriceForSize(String snackType, String size);
+  void addSnackToOrder(String snackType, int amount, Order order, User user,String size);
   public boolean checkSeatAvailability(int index, Screening screening);
 
   public void reserveSeat(Seat seat, User customer,

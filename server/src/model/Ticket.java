@@ -27,6 +27,9 @@ public abstract class Ticket implements Serializable
 		this.ticketType= ticketType;
 	}
 	public String getSeatID(){return seat.getID();}
+	public int getHour(){return screening.getHour();}
+	public int getMinute(){return screening.getMinute();}
+	public SimpleDate getDate(){return screening.getDate();}
 
 	public String getTicketID() {
 		return ticketID;

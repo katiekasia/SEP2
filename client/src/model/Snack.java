@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public abstract class Snack implements Serializable
+public class Snack implements Serializable
 {
   private double price;
   private String type;

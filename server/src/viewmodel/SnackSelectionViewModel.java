@@ -4,9 +4,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import model.Model;
+import model.Order;
 import view.ViewHandler;
+
+import java.util.ArrayList;
 
 public class SnackSelectionViewModel
 {
@@ -36,8 +40,9 @@ private StringProperty pepsiAmount;
 private StringProperty fantaAmount;
 private StringProperty tuborgAmount;
 private StringProperty redbullAmount;
-
 private String size;
+
+
 
   public SnackSelectionViewModel(Model model, ViewState viewState) {
     this.model = model;
@@ -45,7 +50,8 @@ private String size;
 
     total= 0;
     totalPrice = new SimpleStringProperty();
-    size ="";
+    size = "";
+
 
     candyPrice = new SimpleStringProperty();
     nachosPrice = new SimpleStringProperty();
@@ -94,13 +100,10 @@ private String size;
 
     totalPrice.set("");
     total = 0;
-    size = "";
+
   }
 
-  public void setSize(String size)
-  {
-    this.size = size;
-  }
+
 
   public StringProperty tuborgPriceProperty()
   {
@@ -192,9 +195,46 @@ private String size;
   {
     return viewState;
   }
+  public void controlPrice(String size){
 
-  public void sizeChosen(){
-    popcornPrice.set(String.valueOf(model.getPriceForSize("popcorn", size)) + "DKK");
-    nachosPrice.set(String.valueOf(model.getPriceForSize("nachos", size)) + "DKK");
+    total = Double.parseDouble(candiesAmount.get()) * model.getPriceForSize("candies",size) +
+        Double.parseDouble(nachosAmount.get()) * model.getPriceForSize("nachos", size) +
+        Double.parseDouble(oreoAmount.get()) * model.getPriceForSize("oreo", size) +
+        Double.parseDouble(popcornAmount.get()) * model.getPriceForSize("popcorn", size) +
+        Double.parseDouble(peanutsAmount.get()) * model.getPriceForSize("peanuts", size) +
+        Double.parseDouble(colaAmount.get()) * model.getPriceForSize("cola", size) +
+        Double.parseDouble(pepsiAmount.get()) * model.getPriceForSize("pepsi", size) +
+        Double.parseDouble(fantaAmount.get()) * model.getPriceForSize("fanta", size) +
+        Double.parseDouble(tuborgAmount.get()) * model.getPriceForSize("tuborg", size) +
+        Double.parseDouble(redbullAmount.get()) * model.getPriceForSize("redbull", size);
+    totalPrice.set(total + " DKK");
+  }
+
+  public void sizeChosen(String size){
+    this.size = size;
+    popcornPrice.set(String.valueOf(model.getPriceForSize("popcorn", size)) + " DKK");
+    nachosPrice.set(String.valueOf(model.getPriceForSize("nachos", size)) + " DKK");
+    candyPrice.set(String.valueOf(model.getPriceForSize("candies",size)) + " DKK");
+    oreoPrice.set(String.valueOf(model.getPriceForSize("oreo",size)) + " DKK");
+    peanutsPrice.set(String.valueOf(model.getPriceForSize("peanuts",size)) + " DKK");
+    colaPrice.set(String.valueOf(model.getPriceForSize("cola",size)) + " DKK");
+    pepsiPrice.set(String.valueOf(model.getPriceForSize("pepsi",size)) + " DKK");
+    fantaPrice.set(String.valueOf(model.getPriceForSize("fanta",size)) + " DKK");
+    tuborgPrice.set(String.valueOf(model.getPriceForSize("tuborg",size)) + " DKK");
+    redbullPrice.set(String.valueOf(model.getPriceForSize("redbull",size)) + " DKK");
+  }
+
+  public void addPressed(){
+    Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),viewState.getUser());
+    model.addSnackToOrder("popcorn",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
+    model.addSnackToOrder("nachos",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
+    model.addSnackToOrder("candies",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
+    model.addSnackToOrder("cola",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
+    model.addSnackToOrder("pepsi",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
+    model.addSnackToOrder("peanuts",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
+    model.addSnackToOrder("fanta",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
+    model.addSnackToOrder("tuborg",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
+    model.addSnackToOrder("redbull",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
+    model.addSnackToOrder("oreo",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
   }
 }

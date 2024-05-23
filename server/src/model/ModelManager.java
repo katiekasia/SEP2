@@ -73,13 +73,7 @@ public class ModelManager implements Model
   }
   @Override public User logIn(String username, String password)
   {
-   try
-   {
      return usersList.logIn(username, password);
-   }catch (IllegalArgumentException e){
-     logInAdmin(username, password);
-   }
-   return null;
   }
 
   @Override public double getPriceForSize(String snackType, String size)
@@ -118,7 +112,9 @@ public class ModelManager implements Model
 
   @Override public Order getOrderByID(int orderID,User user)
   {
-    return user.getOrderByID(orderID);
+    Order order = user.getOrderByID(orderID);
+    System.out.println(order.toString());
+    return getUserByUsername(user.getUsername()).getOrderByID(orderID);
   }
   @Override public String getHost()
   {
@@ -128,7 +124,7 @@ public class ModelManager implements Model
   @Override public ArrayList<Ticket> getAllTickets(User user)
 
   {
- return user.getAllTickets();
+    return user.getAllTickets();
   }
   @Override public ArrayList<Screening> getScreaningsByMovieTitle(String title)
   {
@@ -255,11 +251,13 @@ return screenings.getAvailableSeats(screening);
     return screenings.getScreening(screening);
   }
 
-  @Override public void reserveSeats(Seat[] seats, User customer,
+  @Override public Order reserveSeats(Seat[] seats, User customer,
       Screening screening, int nbVip)
   {
+    Screening scr = getScreening(screening);
+    User user = getUserByUsername(customer.getUsername());
     boolean freeSeats = true;
-    if (screening.getNbOfAvailableSeats() < seats.length)
+    if (scr.getNbOfAvailableSeats() < seats.length)
     {
       throw new RuntimeException(
           "Not enough available seats left for this screening");
@@ -271,14 +269,14 @@ return screenings.getAvailableSeats(screening);
     }
     if (freeSeats)
     {
-      Order temp = new Order(customer.getOrders().size() + 1);
+      Order temp = new Order(user.getOrders().size() + 1);
       for (Seat seat : seats)
       {
         if (nbVip > 0)
         {
           Ticket tempT = new VIPTicket(seat.getID(),
-              pricesManager.getVipTicketPrice(), seat, screening);
-          seat.book(tempT);
+              pricesManager.getVipTicketPrice(), seat, scr);
+          scr.bookSeatById(seat.getID(),tempT);
           temp.addTicket(tempT);
           nbVip--;
         }
@@ -286,17 +284,29 @@ return screenings.getAvailableSeats(screening);
         {
           Ticket tempT = new StandardTicket(seat.getID(),
               pricesManager.getStandardTicketPrice(), seat, screening);
-          seat.book(tempT);
+          scr.bookSeatById(seat.getID(),tempT);
           temp.addTicket(tempT);
         }
       }
-      customer.addOrder(temp);
+      user.addOrder(temp);
+      return user.getOrderByID(temp.getOrderID());
     }else throw new IllegalStateException("Seats are already reserved.");
   }
 
   @Override
   public ArrayList<Order> getOrdersForUser(String username) {
     return usersList.getOrdersForUser(username);
+  }
+
+  @Override public void addSnackToOrder(String snackType, int amount, Order order, User user,String size)
+  {
+    User customer = getUserByUsername(user.getUsername());
+    Order temp = getOrderByID(order.getOrderID(), customer);
+    for (int i = 0; i < amount; i++)
+    {
+      Snack snack = new Snack(pricesManager.getPriceForSnack(snackType),snackType,size);
+      temp.addSnack(snack);
+    }
   }
 
   public void register(String username, String password, String email, String firstName, String lastName, String phone) throws RemoteException {

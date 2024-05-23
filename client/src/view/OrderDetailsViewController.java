@@ -120,7 +120,7 @@ public class OrderDetailsViewController
     }
   }
   @FXML public void onAddSnack(){
-    //viewHandler.openView();
+    viewHandler.openView("snackSelection");
   }
   @FXML public void onDeleteSnack(){
     if (selectedSnack != null){

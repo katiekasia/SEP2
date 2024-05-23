@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import model.Model;
 import model.Order;
+import model.User;
 
 import java.util.Optional;
 
@@ -31,7 +32,8 @@ public class OrderConfirmationViewModel
 
   public void loadFromModel(){
     orders.clear();
-    Order[] userOrders = viewState.getUser().getOrders().toArray(new Order[0]);
+    Order[] userOrders = model.getAllOrders(model.getUserByUsername(viewState.getUser().getUsername()));
+    System.out.println(userOrders.length);
     for (Order order : userOrders){
       SimpleOrderView simpleOrderView = new SimpleOrderView(order);
       orders.add(simpleOrderView);

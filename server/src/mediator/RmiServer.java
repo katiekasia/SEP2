@@ -82,11 +82,18 @@ public class RmiServer implements RemoteModel
     cinema.updateUser(user, previousUsername);
   }
 
-  @Override public void reserveSeats(Seat[] seats, User customer,
+  @Override public Order reserveSeats(Seat[] seats, User customer,
       Screening screening, int nbVIP) throws RemoteException
   {
-    cinema.reserveSeats(seats, customer, screening, nbVIP);
     property.firePropertyChange("RESERVE SEATS", null, screening.getTime());
+    return cinema.reserveSeats(seats, customer, screening, nbVIP);
+
+  }
+  @Override public double getPriceForSize(String snackType, String size){
+    return cinema.getPriceForSize(snackType, size);
+  }
+  @Override public void addSnackToOrder(String snackType, int amount, Order order, User user,String size){
+    cinema.addSnackToOrder(snackType, amount, order, user, size);
   }
 
   @Override public Order getOrderByID(int orderID, User user)

@@ -1,10 +1,11 @@
 package model;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.sql.*;
 
@@ -12,7 +13,7 @@ public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "7890";
+  private static final String PASSWORD = "VIAVIAVIA";
   private static Connection connection;
 
   private DataBaseHandler()
@@ -46,6 +47,47 @@ public class DataBaseHandler
   }
 
   // Method to close the database connection
+
+  public static void addTicketToDatabase(Ticket ticket,Order order) throws SQLException{
+    String sql = "INSERT INTO ticket (ticketID,ticketPrice,ticketType,screeningHour,screeningDate,seatID,orderID) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    try(Connection conn = getConnection();
+   PreparedStatement statement = conn.prepareStatement(sql)){
+      LocalTime.of(ticket.getHour(),ticket.getMinute(),0);
+      SimpleDate date = ticket.getDate();
+      statement.setString(1, ticket.getTicketID());
+      statement.setBigDecimal(2, BigDecimal.valueOf(ticket.getTicketPrice()));
+      statement.setString(3, ticket.getTicketType());
+      statement.setTime(4, Time.valueOf(LocalTime.of(ticket.getHour(),ticket.getMinute(),0)));
+      statement.setDate(5, Date.valueOf(date.getDate()));
+      statement.setString(6, ticket.getSeatID());
+      statement.setString(7, String.valueOf(order.getOrderID()));
+      statement.executeUpdate();
+    }
+  }
+  public static void addOrderToDatabase(Order order, String username) throws SQLException{
+    String sql = "INSERT INTO orders (orderID,totalPrice,username) VALUES (?, ?, ?)";
+    try(Connection conn = getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql)){
+
+      statement.setString(1, String.valueOf(order.getOrderID()));
+      statement.setBigDecimal(2, BigDecimal.valueOf(order.getOrderPrice()));
+      statement.setString(3, username);
+      statement.executeUpdate();
+    }
+  }
+
+  public static void main(String[] args)
+  {
+    Order order = new Order(44);
+    LocalDate date = LocalDate.now();
+    Screening screening = new Screening(8,30,LocalDate.of(2024,05,24), new Movie("","","Bullet Train",""),new Room(10,20));
+    Ticket ticket = new StandardTicket("33",1,new Seat("A1",false),screening);
+try
+{
+  //DataBaseHandler.addOrderToDatabase(order,"michael");
+  DataBaseHandler.addTicketToDatabase(ticket,order);
+}catch (Exception e){e.printStackTrace();}
+  }
 
   public static void newUser(String username, String name, String surname, String phoneNumber, String email, String password) throws SQLException {
     String sql = "INSERT INTO Customer (username, name, surname, phone_number, email, password, fidelity_points) VALUES (?, ?, ?, ?, ?, ?, 0)";
@@ -122,6 +164,7 @@ public class DataBaseHandler
     }
     return customers;
   }
+
 
   // METHOD TO GET ALL THE screenings  FROM DATABASE
   //  public static void main(String[] args) {
@@ -242,8 +285,7 @@ public class DataBaseHandler
           String genre = resultSet.getString("genre");
           LocalDate releaseDate = resultSet.getDate("releasedate")
               .toLocalDate();
-          Movie movie = new Movie(name, length, description, genre,
-              releaseDate);
+          Movie movie = new Movie(name, length, description, genre);
           movies.add(movie);
         }
       }
@@ -469,7 +511,7 @@ public class DataBaseHandler
           String snackSize = resultSet.getString("size");
 
           Movie movie = new Movie(movieLength, movieDescription, movieName,
-              movieGenre, movieReleaseDate);
+              movieGenre);
           Room room = new Room(roomID, numberOfSeats);
           Seat seat = new Seat(seatID, false);
           Screening screening = new Screening(
@@ -747,71 +789,71 @@ public class DataBaseHandler
   //    return screeningsList;
   //  }
 
-  public static void main(String[] args)
-  {
-    try
-    {
-      // Establishing a connection to the database
-      Connection connection = getConnection();
-
-      if (connection != null)
-      {
-        System.out.println("Database connection successful!");
-        UsersList list = new UsersList();
-        ArrayList<Order> orders = getAllOrders(list);
-
-
-        // Printing details of each screening
-        for (Order order : orders)
-        {
-          System.out.println("Order Date: " + order.getOrderDate());
-          System.out.println("Screening Time: " + order.getOrderPrice());
-          for (Ticket ticket : order.getTickets())
-          {
-            System.out.println("@@@@@@@@@@@@@@@@");
-            System.out.println(
-                "Room ID: " + ticket.getScreening().getRoom().getRoomID());
-            System.out.println(
-                "Movie Title: " + ticket.getScreening().getMovie().getName());
-            System.out.println(
-                "Movie Length: " + ticket.getScreening().getMovie()
-                    .getLenghth());
-            System.out.println(
-                "Movie Description: " + ticket.getScreening().getMovie()
-                    .getDescription());
-            System.out.println(
-                "Movie Genre: " + ticket.getScreening().getMovie().getGenre());
-            System.out.println("Seat ID: " + ticket.getSeat().getID());
-            System.out.println("@@@@@@@@@@@@@@@@");
-          }
-          System.out.println("!______________________________________!");
-          for (Snack snack : order.getSnacks())
-          {
-            System.out.println("!!!!!!!!!!!!!!");
-            System.out.println("Snack: " + snack.getType());
-            System.out.println("Snack price: " + snack.getPrice());
-            System.out.println("Snack size: " + snack.getSize());
-            System.out.println("!!!!!!!!!!!!!!");
-          }
-          System.out.println("---------------------------");
-
-        }
-        System.out.println(list.getByUsername("sandutchilat").getOrders().size());
-
-        // Closing the database connection
-        closeConnection();
-      }
-      else
-      {
-        System.out.println("Failed to establish database connection.");
-      }
-    }
-    catch (SQLException e)
-    {
-      // Handling any SQL exceptions
-      e.printStackTrace();
-    }
-  }
+//  public static void main(String[] args)
+//  {
+//    try
+//    {
+//      // Establishing a connection to the database
+//      Connection connection = getConnection();
+//
+//      if (connection != null)
+//      {
+//        System.out.println("Database connection successful!");
+//        UsersList list = new UsersList();
+//        ArrayList<Order> orders = getAllOrders(list);
+//
+//
+//        // Printing details of each screening
+//        for (Order order : orders)
+//        {
+//          System.out.println("Order Date: " + order.getOrderDate());
+//          System.out.println("Screening Time: " + order.getOrderPrice());
+//          for (Ticket ticket : order.getTickets())
+//          {
+//            System.out.println("@@@@@@@@@@@@@@@@");
+//            System.out.println(
+//                "Room ID: " + ticket.getScreening().getRoom().getRoomID());
+//            System.out.println(
+//                "Movie Title: " + ticket.getScreening().getMovie().getName());
+//            System.out.println(
+//                "Movie Length: " + ticket.getScreening().getMovie()
+//                    .getLenghth());
+//            System.out.println(
+//                "Movie Description: " + ticket.getScreening().getMovie()
+//                    .getDescription());
+//            System.out.println(
+//                "Movie Genre: " + ticket.getScreening().getMovie().getGenre());
+//            System.out.println("Seat ID: " + ticket.getSeat().getID());
+//            System.out.println("@@@@@@@@@@@@@@@@");
+//          }
+//          System.out.println("!______________________________________!");
+//          for (Snack snack : order.getSnacks())
+//          {
+//            System.out.println("!!!!!!!!!!!!!!");
+//            System.out.println("Snack: " + snack.getType());
+//            System.out.println("Snack price: " + snack.getPrice());
+//            System.out.println("Snack size: " + snack.getSize());
+//            System.out.println("!!!!!!!!!!!!!!");
+//          }
+//          System.out.println("---------------------------");
+//
+//        }
+//        System.out.println(list.getByUsername("sandutchilat").getOrders().size());
+//
+//        // Closing the database connection
+//        closeConnection();
+//      }
+//      else
+//      {
+//        System.out.println("Failed to establish database connection.");
+//      }
+//    }
+//    catch (SQLException e)
+//    {
+//      // Handling any SQL exceptions
+//      e.printStackTrace();
+//    }
+//  }
 
   // METHOD TO GET ALL THE SCREENINGS FROM DATABASE
   public static ArrayList<Screening> getAllScreenings() throws SQLException
@@ -844,7 +886,7 @@ public class DataBaseHandler
         int numberOfSeats = resultSet.getInt("numberOfSeats");
 
         Movie movie = new Movie(movieLength, movieDescription, movieName,
-            movieGenre, movieReleaseDate);
+            movieGenre);
         Room room = new Room(roomID, numberOfSeats);
         Screening screening = new Screening(
             screeningHour.toLocalTime().getHour(),

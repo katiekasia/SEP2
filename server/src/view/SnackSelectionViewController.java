@@ -45,6 +45,7 @@ public class SnackSelectionViewController
     this.viewModel = viewModel;
     this.root = root;
     viewState = viewModel.getViewState();
+    addButton.setDisable(true);
 
     candyPrice.textProperty().bind(viewModel.candyPriceProperty());
     nachosPrice.textProperty().bind(viewModel.nachosPriceProperty());
@@ -73,11 +74,29 @@ public class SnackSelectionViewController
     viewModel.reset();
   }
 
-  @FXML public void onConfirm(){}
-  @FXML public void onAdd(){}
-  @FXML public void onS(){}
-  @FXML public void onM(){}
-  @FXML public void onL(){}
+  @FXML public void onConfirm(){
 
-
+    viewHandler.openView("orderConfirmation");
+  }
+  @FXML public void onAdd(){
+    try
+    {
+      viewModel.addPressed();
+    }catch (Exception e){
+      e.printStackTrace();
+    }
+    addButton.setDisable(true);
+  }
+  @FXML public void onS(){
+    addButton.setDisable(false);
+    viewModel.sizeChosen("S");
+  }
+  @FXML public void onM(){
+    addButton.setDisable(false);
+    viewModel.sizeChosen("M");
+  }
+  @FXML public void onL(){
+    addButton.setDisable(false);
+    viewModel.sizeChosen("L");
+  }
 }

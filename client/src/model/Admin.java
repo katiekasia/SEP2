@@ -6,7 +6,7 @@ public class Admin
   private String password;
 
   public Admin(String password){
-    this.password = password;
+    this.password = "123";
   }
 
   public String getPassword()

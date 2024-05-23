@@ -263,15 +263,24 @@ public class ModelManager implements Model, PropertyChangeListener
     return client.getOrdersForUser(username);
   }
 
-  @Override public void reserveSeats(Seat[] seats, User customer,
+  @Override public Order reserveSeats(Seat[] seats, User customer,
       Screening screening, int nbVIP)
   {
 try
 {
-  client.reserveSeats(seats, customer, screening, nbVIP);
+ return client.reserveSeats(seats, customer, screening, nbVIP);
 }catch (Exception e){
   e.printStackTrace();
 }
+return null;
+  }
+
+  @Override public double getPriceForSize(String snackType, String size)
+  {
+    return client.getPriceForSize(snackType, size);
+  }
+  @Override public void addSnackToOrder(String snackType, int amount, Order order, User user,String size){
+    client.addSnackToOrder(snackType, amount, order, user, size);
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)

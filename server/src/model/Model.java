@@ -20,7 +20,7 @@ public interface Model extends UnnamedPropertyChangeSubject
   Snack[] getSnacksFromOrder(Order order);
   Ticket[] getTicketsFromOrder(Order order);
    String getHost();
-   void reserveSeats(Seat[] seats, User customer,
+   Order reserveSeats(Seat[] seats, User customer,
        Screening screening, int nbVIP);
    boolean checkSeatAvailability(int index, Screening screening);
 
@@ -46,7 +46,8 @@ Screening getScreening(Screening screening);
   ArrayList<Screening> getScreaningsByMovieTitle(String title);
   ArrayList<Screening> getScreeningsByDate(LocalDate date);
   ArrayList<Screening> getScreeningsByDateAndTitle(String title, LocalDate date);
-  public ArrayList<Order> getOrdersForUser(String username);
+   ArrayList<Order> getOrdersForUser(String username);
+  void addSnackToOrder(String snackType, int amount, Order order, User user,String size);
   void register(String username, String password, String email, String firstName, String lastName, String phone) throws RemoteException;
 
 

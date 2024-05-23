@@ -15,7 +15,7 @@ public class ViewHandler
   private LoginViewController loginViewController;
   private SeatMappingViewController seatMappingViewController;
   private TransitionPageViewController transitionPageViewController;
-  private SnackSelectionViewModel snackSlectionViewController;
+  private SnackSelectionViewController snackSlectionViewController;
   private TicketConfirmationViewController ticketConfirmationViewController;
   private OrderConfirmationViewController orderConfirmationViewController;
   private OrderDetailsViewController orderDetailsViewController;
@@ -176,7 +176,7 @@ public class ViewHandler
       loader.setLocation(getClass().getResource(fxmlFile));
       root = loader.load();
       snackSlectionViewController = loader.getController();
-      //snackSlectionViewController.init(this, modelFactory.getSnackSelectionViewModel(), root);
+      snackSlectionViewController.init(this,modelFactory.getSnackSelectionViewModel(),root);
     }
     catch (Exception e)
     {
