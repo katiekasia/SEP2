@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class User implements Serializable
 {
@@ -107,6 +108,13 @@ public class User implements Serializable
       throw new IllegalArgumentException("Username not available.");
     }
     this.username = username;
+  }
+  public int generateOrderID(){
+    Random random = new Random();
+    int randomPart = random.nextInt(401);
+
+    int id = Integer.parseInt(orders.size() + "" + randomPart);
+    return id;
   }
 
   public void setEmail(String email)
