@@ -18,6 +18,7 @@ public class ViewHandler
   private TicketConfirmationViewController ticketConfirmationViewController;
   private OrderConfirmationViewController orderConfirmationViewController;
   private OrderDetailsViewController orderDetailsViewController;
+  private AdminPageViewController adminPageViewController;
 
   private ManageViewController manageViewController;
   private Stage primaryStage;
@@ -52,7 +53,8 @@ public class ViewHandler
       case "managePage" -> root= loadManageView("ManagePage.fxml");
       case "orderConfirmation" -> root = loadOrderConfirmationView("OrderConfirmation.fxml");
       case "orderDetails" -> root = loadOrderDetailsView("OrderDetails.fxml");
-      //ALL THE OTHERS PAGES
+      case "adminPage" -> root = loadAdminPageView("AdminPage.fxml");
+
     }
     if (primaryStage.isShowing())
     {
@@ -64,6 +66,21 @@ public class ViewHandler
     primaryStage.setWidth(root.getPrefWidth());
     primaryStage.setResizable(false);
     primaryStage.show();
+  }
+  private Region loadAdminPageView(String fxmlFile) {
+    Region root = null;
+    try {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(fxmlFile));
+      root = loader.load();
+      adminPageViewController = loader.getController();
+      adminPageViewController.init(this, root, modelFactory.getAdminPageViewModel());
+    } catch (Exception e) {
+      System.out.println(
+          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
+      e.printStackTrace();
+    }
+    return root;
   }
   private Region loadLoginView(String fxmlFile)
   {

@@ -3,10 +3,7 @@ package view;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Region;
-import viewmodel.AdminPageViewModel;
-import viewmodel.MainPageViewModel;
-import viewmodel.SimpleScreeningView;
-import viewmodel.ViewState;
+import viewmodel.*;
 
 public class AdminPageViewController
 {
@@ -31,6 +28,12 @@ public class AdminPageViewController
   @FXML private TableColumn room;
   @FXML private DatePicker datePicker;
 
+  public void init(ViewHandler viewHandler, Region root, AdminPageViewModel viewModel) {
+    this.viewHandler = viewHandler;
+    this.viewModel = viewModel;
+    this.root = root;
+
+  }
 
   @FXML public void onDeleteScreening()
   {

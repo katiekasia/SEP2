@@ -42,7 +42,7 @@ public class LoginViewController
       viewHandler.openView("mainPage");
     }
     else if (viewModel.isAdmin() && viewModel.isLogged()){
-      //viewHandler.openView(); TODO admin main page
+      viewHandler.openView("adminPage");
       System.out.println("ADMIN LOGGED");
     }
 

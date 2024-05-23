@@ -18,21 +18,20 @@ public class Movie implements Serializable
 
 
 
+
+
 	public Movie(String length, String description, String name, String genre, LocalDate releaseDate) {
 		this.length = length;
 		this.description = description;
 		this.name = name;
 		this.genre = genre;
+
 		this.releaseDate= releaseDate;
+
+
+
 	}
 
-	public LocalDate getReleaseDate()
-	{
-		return releaseDate;
-	}
-	public String getReleaseString(){
-		return releaseDate.toString();
-	}
 	//Checks if the room is already in use on the same day
 
 	// ************************************************Getters and setters**************************************
@@ -74,7 +73,6 @@ public class Movie implements Serializable
 	public String getGenre() {
 		return genre;
 	}
-
 
 	public void setLength(String length) {
 this.length = length;
