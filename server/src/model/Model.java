@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public interface Model extends UnnamedPropertyChangeSubject
 {
   public void updateUser(User user, String previousUsername) throws RemoteException;
-  void cancelOrder(Order order);
+   void cancelOrder(Order order, User user);
   Order getOrderByID(int orderID, User user);
 
   Screening getScreeningForView(String time, String date,String title, int room);

@@ -142,9 +142,9 @@ public class RmiServer implements RemoteModel
     cinema.changePrices(newPrices);
   }
 
-  @Override public void cancelOrder(Order order) throws RemoteException
+  @Override public void cancelOrder(Order order, User user) throws RemoteException
   {
-    cinema.cancelOrder(order);
+    cinema.cancelOrder(order, user);
   }
 
   @Override public boolean checkSeatAvailability(int index, Screening screening)

@@ -125,9 +125,9 @@ public class ModelManager implements Model
     propertyChangeSupport.removePropertyChangeListener(listener);
   }
 
-  @Override public void cancelOrder(Order order)
+  @Override public void cancelOrder(Order order, User user)
   {
-    order.cancelOrder();
+    getOrderByID(order.getOrderID(), getUserByUsername(user.getUsername())).cancelOrder();
   }
 
   @Override public Order getOrderByID(int orderID,User user)

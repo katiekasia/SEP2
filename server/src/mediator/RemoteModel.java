@@ -25,7 +25,8 @@ public interface RemoteModel extends Remote, RemoteSubject<String ,String >
   Ticket[] getTicketsFromOrder(Order order) throws RemoteException;
   Movie getMovieForView(String title) throws RemoteException;
   void changePrices(ArrayList<Double> newPrices) throws RemoteException;
-   void cancelOrder(Order order) throws RemoteException;
+   void cancelOrder(Order order, User user) throws RemoteException;
+
    boolean checkSeatAvailability(int index, Screening screening) throws RemoteException;
 
    void reserveSeat(Seat seat, User customer ,

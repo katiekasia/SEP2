@@ -64,7 +64,7 @@ public class OrderConfirmationViewModel
     if (confirmation())
     {
       model.cancelOrder(model.getOrderByID(
-          viewState.getSelectedOrder().orderIDProperty().get(), viewState.getUser()));
+          viewState.getSelectedOrder().orderIDProperty().get(), viewState.getUser()), viewState.getUser());
       loadFromModel();
     }
   }

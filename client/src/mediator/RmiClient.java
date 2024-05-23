@@ -60,11 +60,11 @@ public class RmiClient implements Model, RemoteListener<String,String>
   }
 
 
-  @Override public void cancelOrder(Order order)
+  @Override public void cancelOrder(Order order, User user)
   {
     try
     {
-      server.cancelOrder(order);
+      server.cancelOrder(order, user);
     }catch (Exception e){
       e.printStackTrace();
     }

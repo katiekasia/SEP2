@@ -47,9 +47,9 @@ public class ModelManager implements Model, PropertyChangeListener
     propertyChangeSupport.removePropertyChangeListener(listener);
   }
 
-  @Override public void cancelOrder(Order order)
+  @Override public void cancelOrder(Order order, User user)
   {
-    client.cancelOrder(order);
+    client.cancelOrder(order, user);
   }
 
   @Override public Order getOrderByID(int orderID, User user)
