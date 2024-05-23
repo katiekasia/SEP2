@@ -10,6 +10,7 @@ public class ViewModelFactory
   private MainPageViewModel pageViewModel;
   private LoginViewModel loginViewModel;
   private RegisterPageViewModel registerViewModel;
+  private AdminPageViewModel adminPageViewModel;
   private SeatMappingViewModel seatMappingViewModel;
   private TransitionPageViewModel transitionPageViewModel;
   private SnackSelectionViewModel snackSelectionViewModel;
@@ -25,6 +26,7 @@ public class ViewModelFactory
     this.pageViewModel = new MainPageViewModel(model,viewState);
     this.registerViewModel = new RegisterPageViewModel(model);
     this.loginViewModel = new LoginViewModel(model, viewState);
+    this.adminPageViewModel = new AdminPageViewModel();
     this.seatMappingViewModel = new SeatMappingViewModel(model, viewState);
     this.snackSelectionViewModel = new SnackSelectionViewModel(model,viewState);
     this.ticketConfirmationViewModel = new TicketConfirmationViewModel(model, viewState);
@@ -32,6 +34,7 @@ public class ViewModelFactory
     this.manageViewModel= new ManageViewModel(model, viewState);
     this.orderConfirmationViewModel = new OrderConfirmationViewModel(model, viewState);
     this.orderDetailsViewModel = new OrderDetailsViewModel(model,viewState);
+
   }
 
   public OrderDetailsViewModel getOrderDetailsViewModel()
@@ -43,6 +46,8 @@ public class ViewModelFactory
   {
     return pageViewModel;
   }
+
+  public AdminPageViewModel getAdminPageViewModel() {return adminPageViewModel;}
 
   public LoginViewModel getLoginViewModel()
   {
