@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e003eb95-bd43-4246-b6c2-ef0251e6aa71" name="Changes" comment="changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/client/src/mediator/RemoteModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/mediator/RemoteModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/mediator/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/mediator/RmiClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/Admin.java" afterDir="false" />
@@ -29,10 +30,21 @@
       <change beforePath="$PROJECT_DIR$/out/production/server/model/DataBaseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/DataBaseHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/mediator/RemoteModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/mediator/RemoteModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/mediator/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/mediator/RmiServer.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/client/src/model/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/view/AddScreening.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/view/AddScreening.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/view/OrderConfirmation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/view/OrderConfirmation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/view/TransitionPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/view/TransitionPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/view/TransitionPageViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/view/TransitionPageViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/viewmodel/SimpleScreeningView.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/viewmodel/SimpleScreeningView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/viewmodel/TransitionPageViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/viewmodel/TransitionPageViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/view/TransitionPageViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/view/TransitionPageViewController.class" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Model.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/ModelManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/model/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Movie.java" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/server/src/model/PricesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/PricesManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/model/Snack.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Snack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/model/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Ticket.java" afterDir="false" />
@@ -42,6 +54,13 @@
       <change beforePath="$PROJECT_DIR$/server/src/view/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/ViewHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/viewmodel/SeatMappingViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/viewmodel/SeatMappingViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/viewmodel/SnackSelectionViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/viewmodel/SnackSelectionViewModel.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/server/src/view/ManageViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/ManageViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/TransitionPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/TransitionPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/view/TransitionPageViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/TransitionPageViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/viewmodel/ManageViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/viewmodel/ManageViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/viewmodel/TransitionPageViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/viewmodel/TransitionPageViewModel.java" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +77,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2gmtwxvIbnLjAwkqcVsTBqTIqWz" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -66,14 +88,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< Updated upstream
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Documents/GitHub/SEP2/client/src/view&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.MyApplication (1).executor": "Run",
+    "Application.MyApplication.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/user/Documents/GitHub/SEP2/client/src/model"
+>>>>>>> Stashed changes
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\user\Documents\GitHub\SEP2\client\src\view" />
@@ -88,6 +124,7 @@
       <recent name="mediator" />
     </key>
   </component>
+<<<<<<< Updated upstream
   <component name="RunManager" selected="Application.MyApplication (1)">
     <configuration name="DataBaseHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="model.DataBaseHandler" />
@@ -102,6 +139,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+=======
+  <component name="RunManager" selected="Application.MyApplication">
+>>>>>>> Stashed changes
     <configuration name="MyApplication (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MyApplication" />
       <module name="client" />
@@ -118,9 +158,12 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MyApplication (1)" />
         <item itemvalue="Application.MyApplication" />
+<<<<<<< Updated upstream
         <item itemvalue="Application.DataBaseHandler" />
+=======
+        <item itemvalue="Application.MyApplication (1)" />
+>>>>>>> Stashed changes
       </list>
     </recent_temporary>
   </component>

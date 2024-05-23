@@ -3,6 +3,7 @@ package model;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -49,8 +50,7 @@ Screening getScreening(Screening screening);
    ArrayList<Order> getOrdersForUser(String username);
   void addSnackToOrder(String snackType, int amount, Order order, User user,String size);
   void register(String username, String password, String email, String firstName, String lastName, String phone) throws RemoteException;
-
-
+void deleteAccount(String username) throws RemoteException, SQLException;
 
 
 /*

@@ -4,6 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Alert;
 import model.Model;
 import model.Screening;
@@ -23,6 +24,7 @@ public class TransitionPageViewModel
   private StringProperty movieDate;
   private StringProperty movieTime;
   private IntegerProperty roomID;
+
   private StringProperty totalPrice;
 
 
@@ -84,6 +86,7 @@ totalPrice = new SimpleStringProperty();
     return roomID;
   }
 
+
   public ViewState getViewState()
   {
     return viewState;
@@ -140,5 +143,6 @@ public void bindPrice(StringProperty property){
     }catch (Exception e){e.printStackTrace();}
     return false;
     }
+
 
 }

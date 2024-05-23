@@ -43,6 +43,8 @@ public class TransitionPageViewController
 
     movieTitle.textProperty().bind(viewModel.movieTitleProperty());
 
+
+
     length.textProperty().bind(viewModel.lengthProperty());
 
     movieGenre.textProperty().bind(viewModel.movieGenreProperty());
@@ -53,7 +55,10 @@ public class TransitionPageViewController
 
     roomID.textProperty().bind(viewModel.roomIDProperty().asString());
 
+
+
     username.textProperty().bind(viewState.nameProperty());
+
 
     initializeTicketInputFields();
     viewModel.reset();

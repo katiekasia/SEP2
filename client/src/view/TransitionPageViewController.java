@@ -25,6 +25,7 @@ public class TransitionPageViewController
   @FXML private Label movieDate;
   @FXML private Label movieTime;
   @FXML private Label roomID;
+  @FXML private Label releaseDate;
   @FXML private Button manage;
   @FXML private Button signOut;
   @FXML private Button ticketConfirmation;
@@ -52,6 +53,9 @@ public class TransitionPageViewController
     movieTime.textProperty().bind(viewModel.movieTimeProperty());
 
     roomID.textProperty().bind(viewModel.roomIDProperty().asString());
+
+
+
 
     username.textProperty().bind(viewState.nameProperty());
 

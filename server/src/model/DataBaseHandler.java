@@ -138,6 +138,16 @@ try
     }
   }
 
+  public static void deleteUser(String username) throws SQLException {
+    String sql = "DELETE FROM Customer WHERE username = ?";
+
+    try (Connection conn = getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql)) {
+      pstmt.setString(1, username);
+      pstmt.executeUpdate();
+    }
+  }
+
   // METHOD TO GET ALL THE CUSTOMERS ( USERS ) FROM DATABASE
   public static ArrayList<User> getAllCustomers() throws SQLException
   {

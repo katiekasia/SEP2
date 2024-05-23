@@ -318,4 +318,12 @@ return screenings.getAvailableSeats(screening);
       throw new RemoteException("Error registering user", e);
     }
 }
+
+  public void deleteAccount(String username)
+      throws RemoteException, SQLException
+  {
+    DataBaseHandler.deleteUser(username);
+    usersList = new UsersList(DataBaseHandler.getAllCustomers());
+  }
+
   }

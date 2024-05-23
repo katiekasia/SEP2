@@ -4,6 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Alert;
 import model.Model;
 import model.Screening;
@@ -37,6 +38,7 @@ movieTitle =new SimpleStringProperty();
     roomID = new SimpleIntegerProperty();
 totalPrice = new SimpleStringProperty();
 
+
   }
   public void reset(){
 
@@ -46,6 +48,7 @@ totalPrice = new SimpleStringProperty();
     movieDate.set(viewState.getSelectedScreening().dateProperty().get());
     movieTime.set(viewState.getSelectedScreening().timeProperty().get());
     roomID.set(viewState.getSelectedScreening().roomProperty().get());
+
     standardTickets.set("");
     VIPTickets.set("");
   }
@@ -81,6 +84,8 @@ totalPrice = new SimpleStringProperty();
   {
     return roomID;
   }
+
+
 
   public ViewState getViewState()
   {
@@ -138,5 +143,6 @@ public void bindPrice(StringProperty property){
     }catch (Exception e){e.printStackTrace();}
     return false;
     }
+
 
 }
