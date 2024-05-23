@@ -65,6 +65,29 @@ public class DataBaseHandler
       statement.executeUpdate();
     }
   }
+  public static void addMovieToDatabase(Movie movie)throws SQLException{
+    String sql = "INSERT INTO Movie (name, length, description, genre, releaseDate) VALUES(?, ?, ?, ?, ?)";
+    try(Connection conn = getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql)){
+      statement.setString(1,movie.getName());
+      statement.setString(2, movie.getLenghth());
+      statement.setString(3, movie.getDescription());
+      statement.setString(4, movie.getGenre());
+      statement.setDate(5, Date.valueOf(movie.getReleaseDate()));
+      statement.executeUpdate();
+    }
+  }
+  public static void addScreeningToDatabase(Screening screening) throws SQLException{
+    String sql = "INSERT INTO Screening (screeningHour, screeningDate, roomID, name) VALUES(?, ?, ?, ?)";
+    try(Connection conn = getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql)){
+      statement.setTime(1,Time.valueOf(LocalTime.of(screening.getHour() ,screening.getMinute(), 0)));
+      statement.setDate(2, Date.valueOf(screening.getDate().getDate()));
+      statement.setInt(3, screening.getRoomID());
+      statement.setString(4, screening.getMovieTitle());
+      statement.executeUpdate();
+    }
+  }
   public static void addOrderToDatabase(Order order, String username) throws SQLException{
     String sql = "INSERT INTO orders (orderID,totalPrice,username) VALUES (?, ?, ?)";
     try(Connection conn = getConnection();
@@ -145,6 +168,34 @@ public class DataBaseHandler
     try (Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
       pstmt.setString(1, username);
+      pstmt.executeUpdate();
+    }
+  }
+  public static void deleteTicket(String ticketID) throws SQLException{
+    String sql = "DELETE * FROM ticket WHERE ticketID = ?";
+    try (Connection conn = getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql))
+    {
+      pstmt.setString(1, ticketID);
+      pstmt.executeUpdate();
+    }
+  }
+  public static void deleteScreening(){}//TODO
+  public static void deleteMovie(String title) throws SQLException{
+    String sql =  "DELETE * FROM Movie WHERE name = ?";
+    try (Connection conn = getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql))
+    {
+      pstmt.setString(1, title);
+      pstmt.executeUpdate();
+    }
+  }
+  public static void deleteOrder(int orderID) throws SQLException{
+    String sql = "DELETE * FROM orders WHERE orderID = ?";
+    try (Connection conn = getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql))
+    {
+      pstmt.setInt(1, orderID);
       pstmt.executeUpdate();
     }
   }
