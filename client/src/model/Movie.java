@@ -14,6 +14,8 @@ public class Movie implements Serializable
 
 	private String genre;
 
+	private LocalDate releaseDate;
+
 
 
 	public Movie(String length, String description, String name, String genre, LocalDate releaseDate) {
@@ -21,8 +23,7 @@ public class Movie implements Serializable
 		this.description = description;
 		this.name = name;
 		this.genre = genre;
-
-
+		this.releaseDate= releaseDate;
 	}
 
 	public LocalDate getReleaseDate()
@@ -73,7 +74,6 @@ public class Movie implements Serializable
 	public String getGenre() {
 		return genre;
 	}
-
 
 
 	public void setLength(String length) {
