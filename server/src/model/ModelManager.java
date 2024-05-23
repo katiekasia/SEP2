@@ -18,7 +18,6 @@ public class ModelManager implements Model
   private MoviesList moviesList;
   private PricesManager pricesManager;
   private Admin admin;
-
   private RoomsList roomsList;
   //not sure if the user variable is the one connected here
 
@@ -28,7 +27,7 @@ public class ModelManager implements Model
   public ModelManager()
   {
     this.HOST = "localhost";
-    this.pricesManager = new PricesManager();
+
     this.propertyChangeSupport = new PropertyChangeSupport(this);
     this.admin = new Admin();
 
@@ -38,6 +37,7 @@ public class ModelManager implements Model
       screenings = new ScreeningsList(DataBaseHandler.getAllScreenings());
       moviesList = new MoviesList(DataBaseHandler.getAllMovies());
       roomsList = new RoomsList(DataBaseHandler.getAllRooms());
+      pricesManager = DataBaseHandler.fetchPrices();
     }
     catch (SQLException e)
     {
@@ -95,7 +95,7 @@ public class ModelManager implements Model
     if (username.equals(Admin.USERNAME) && password.equals(Admin.PASSWORD)){
       return true;
     }
-    throw new IllegalArgumentException("No user with such credentials found");
+    throw new IllegalArgumentException("No user with such credentials found.");
 }
 
   @Override public void addListener(PropertyChangeListener listener)
@@ -312,22 +312,30 @@ return screenings.getAvailableSeats(screening);
       temp.addSnack(snack);
     }
   }
+  @Override public void changePrices(ArrayList<Double> newPrices){
+    pricesManager.setAllPrices(newPrices);
+  }
 
-  public void register(String username, String password, String email, String firstName, String lastName, String phone) throws RemoteException {
+  public void register(String username, String password, String email, String firstName, String lastName, String phone) {
     try {
       DataBaseHandler.newUser(username, firstName, lastName, phone, email, password);
       usersList = new UsersList(DataBaseHandler.getAllCustomers());
     } catch (SQLException e) {
       e.printStackTrace();
-      throw new RemoteException("Error registering user", e);
+      throw new RuntimeException("Error registering user", e);
     }
 }
 
+
   public void deleteAccount(String username)
-      throws RemoteException, SQLException
   {
-    DataBaseHandler.deleteUser(username);
-    usersList = new UsersList(DataBaseHandler.getAllCustomers());
+    try
+    {
+      DataBaseHandler.deleteUser(username);
+      usersList = new UsersList(DataBaseHandler.getAllCustomers());
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
   }
 
   }

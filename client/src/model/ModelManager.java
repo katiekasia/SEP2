@@ -273,6 +273,11 @@ public class ModelManager implements Model, PropertyChangeListener
     return client.getMovieForView(title);
   }
 
+  @Override public void changePrices(ArrayList<Double> newPrices)
+  {
+    client.changePrices(newPrices);
+  }
+
   @Override public Order reserveSeats(Seat[] seats, User customer,
       Screening screening, int nbVIP)
   {

@@ -486,6 +486,16 @@ public class RmiClient implements Model, RemoteListener<String,String>
     return null;
   }
 
+  @Override public void changePrices(ArrayList<Double> newPrices)
+  {
+    try
+    {
+      server.changePrices(newPrices);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+  }
+
   @Override public void addListener(PropertyChangeListener listener)
   {
     property.addPropertyChangeListener(listener);

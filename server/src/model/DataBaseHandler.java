@@ -276,6 +276,56 @@ public class DataBaseHandler
     }
     return rooms;
   }
+  public static PricesManager fetchPrices() throws SQLException{
+    PricesManager pricesManager = new PricesManager();
+    String sql = "SELECT * FROM pricesTable";
+    try (Connection conn = getConnection();
+        Statement statement = conn.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql)) {
+      pricesManager.setCandiesPrice(resultSet.getDouble("CadniesPrice"));
+      pricesManager.setColaPrice(resultSet.getDouble("ColaPrice"));
+      pricesManager.setFantaPrice(resultSet.getDouble("FantaPrice"));
+      pricesManager.setNachosPrice(resultSet.getDouble("NachosPrice"));
+      pricesManager.setOreoPrice(resultSet.getDouble("OreoPrice"));
+      pricesManager.setPeanutsPrice(resultSet.getDouble("PeanutsPrice"));
+      pricesManager.setPopcornPrice(resultSet.getDouble("PopcornPrice"));
+      pricesManager.setRedbullPrice(resultSet.getDouble("RedbullPrice"));
+      pricesManager.setPepsiPrice(resultSet.getDouble("PepsiPrice"));
+      pricesManager.setStandardTicketPrice(resultSet.getDouble("SticketPrice"));
+      pricesManager.setTuborgPrice(resultSet.getDouble("TuborgPrice"));
+      pricesManager.setVipTicketPrice(resultSet.getDouble("VticketPrice"));
+
+    }
+    return pricesManager;
+  }
+
+  private static void wipePrices() throws SQLException{
+    String sql = "DELETE * FROM pricesTable";
+    try (Connection conn = getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql)) {
+      pstmt.executeUpdate();
+    }
+  }
+  public static void changePrices(PricesManager manager) throws SQLException{
+
+    String sql = "INSERT INTO pricesTable(SticketPrice, VticketPrice, NachosPrice, PopcornPrice, CandiesPrice, PeanutsPrice, TuborgPrice, RedbullPrice, ColaPrice, PepsiPrice, OreoPrice, FantaPrice) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    try(Connection conn = getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql)){
+      wipePrices();
+      statement.setBigDecimal(1,BigDecimal.valueOf(manager.getStandardTicketPrice()));
+      statement.setBigDecimal(2,BigDecimal.valueOf(manager.getVipTicketPrice()));
+      statement.setBigDecimal(3,BigDecimal.valueOf(manager.getNachosPrice()));
+      statement.setBigDecimal(4,BigDecimal.valueOf(manager.getPopcornPrice()));
+      statement.setBigDecimal(5,BigDecimal.valueOf(manager.getCandiesPrice()));
+      statement.setBigDecimal(6,BigDecimal.valueOf(manager.getPeanutsPrice()));
+      statement.setBigDecimal(7,BigDecimal.valueOf(manager.getTuborgPrice()));
+      statement.setBigDecimal(8,BigDecimal.valueOf(manager.getRedbullPrice()));
+      statement.setBigDecimal(9,BigDecimal.valueOf(manager.getColaPrice()));
+      statement.setBigDecimal(10,BigDecimal.valueOf(manager.getPepsiPrice()));
+      statement.setBigDecimal(11,BigDecimal.valueOf(manager.getOreoPrice()));
+      statement.setBigDecimal(12,BigDecimal.valueOf(manager.getFantaPrice()));
+    }
+  }
 
   // method to get all the movies //
   public static ArrayList<Movie> getAllMovies() throws SQLException

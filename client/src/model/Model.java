@@ -54,6 +54,7 @@ Screening getScreening(Screening screening);
   ArrayList<Screening> getScreeningsByDateAndTitle(String title, LocalDate date);
    ArrayList<Order> getOrdersForUser(String username);
   Movie getMovieForView(String title);
+  void changePrices(ArrayList<Double> newPrices);
   void register(String username, String password, String email, String firstName, String lastName, String phone);
 
 

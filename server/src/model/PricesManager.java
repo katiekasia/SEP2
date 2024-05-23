@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class PricesManager
 {
   private double standardTicketPrice;
@@ -202,6 +204,20 @@ this.pepsiPrice = pepsiPrice;
     else throw new IllegalArgumentException("Price cannot be lower than 0.");
   }
 
+  public void setAllPrices(ArrayList<Double> newPrices){
+    setStandardTicketPrice(newPrices.get(0));
+    setVipTicketPrice(newPrices.get(1));
+    setCandiesPrice(newPrices.get(2));
+    setNachosPrice(newPrices.get(3));
+    setOreoPrice(newPrices.get(4));
+    setPopcornPrice(newPrices.get(5));
+    setPeanutsPrice(newPrices.get(6));
+    setColaPrice(newPrices.get(7));
+    setPepsiPrice(newPrices.get(8));
+    setFantaPrice(newPrices.get(9));
+    setTuborgPrice(newPrices.get(10));
+    setRedbullPrice(newPrices.get(11));
+  }
   public void setRedbullPrice(double redbullPrice)
   {
     if (nachosPrice >= 0){
