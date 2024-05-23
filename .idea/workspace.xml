@@ -6,42 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="e003eb95-bd43-4246-b6c2-ef0251e6aa71" name="Changes" comment="changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/mediator/RemoteModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/mediator/RemoteModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/mediator/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/mediator/RmiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/DataBaseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/ModelManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/model/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/model/Snack.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/Snack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/model/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/Ticket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/view/OrderDetailsViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/view/OrderDetailsViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/view/SeatMappingViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/view/SeatMappingViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/view/SnackSelection.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/view/SnackSelection.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/view/SnackSelectionViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/view/SnackSelectionViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/view/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/view/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/viewmodel/OrderConfirmationViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/viewmodel/OrderConfirmationViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/viewmodel/SeatMappingViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/viewmodel/SeatMappingViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/viewmodel/SnackSelectionViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/viewmodel/SnackSelectionViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/viewmodel/ViewModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/viewmodel/ViewModelFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/viewmodel/ViewState.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/viewmodel/ViewState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/view/TransitionPageViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/view/TransitionPageViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/model/DataBaseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/DataBaseHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/mediator/RemoteModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/mediator/RemoteModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/mediator/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/mediator/RmiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/ModelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/model/PendingOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/PendingOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/model/Screening.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/Screening.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/model/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/model/PricesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/PricesManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/model/Snack.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Snack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/model/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Ticket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/view/OrderDetailsViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/OrderDetailsViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/view/SeatMappingViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/SeatMappingViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/view/SnackSelectionViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/SnackSelectionViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/view/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/view/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/viewmodel/SeatMappingViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/viewmodel/SeatMappingViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/viewmodel/SnackSelectionViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/viewmodel/SnackSelectionViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/Nachos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/PendingOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/PendingOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/Popcorn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/model/Screening.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Screening.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,14 +39,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Documents/GitHub/SEP2/client/src/view&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/user/Documents/GitHub/SEP2/client/src/model"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\user\Documents\GitHub\SEP2\client\src\view" />
@@ -197,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716377048912</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="changes">
+      <option name="closed" value="true" />
+      <created>1716455076640</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1716455076640</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

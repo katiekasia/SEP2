@@ -91,8 +91,7 @@ public class Room implements Serializable
         return seat;
       }
     }
-    System.out.println("Not FOund");
-    return null;
+    throw new IllegalArgumentException("SEAT NOT FOUND.");
   }
   public Seat getSeat(int index) {
     return seats[index];
