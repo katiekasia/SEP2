@@ -87,6 +87,22 @@ public class ModelManager implements Model
         return pricesManager.getPriceForSize(pricesManager.getPopcornPrice(), size);
       case "nachos":
         return pricesManager.getPriceForSize(pricesManager.getNachosPrice(),size);
+      case "candies":
+        return pricesManager.getPriceForSize(pricesManager.getCandiesPrice(),size);
+      case "tuborg":
+        return pricesManager.getPriceForSize(pricesManager.getTuborgPrice(),size);
+      case "oreo":
+        return pricesManager.getPriceForSize(pricesManager.getOreoPrice(),size);
+      case "cola":
+        return pricesManager.getPriceForSize(pricesManager.getColaPrice(),size);
+      case "pepsi":
+        return pricesManager.getPriceForSize(pricesManager.getPepsiPrice(),size);
+      case "fanta":
+        return pricesManager.getPriceForSize(pricesManager.getFantaPrice(),size);
+      case "redbull":
+        return pricesManager.getPriceForSize(pricesManager.getRedbullPrice(),size);
+      case "peanuts":
+        return pricesManager.getPriceForSize(pricesManager.getPeanutsPrice(),size);
     }
     return 0;
   }
@@ -308,7 +324,7 @@ return screenings.getAvailableSeats(screening);
     Order temp = getOrderByID(order.getOrderID(), customer);
     for (int i = 0; i < amount; i++)
     {
-      Snack snack = new Snack(pricesManager.getPriceForSnack(snackType),snackType,size);
+      Snack snack = new Snack(pricesManager.getPriceForSize(pricesManager.getPriceForSnack(snackType),size),snackType,size);
       temp.addSnack(snack);
     }
   }

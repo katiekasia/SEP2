@@ -20,6 +20,10 @@ public class ViewHandler
   private OrderDetailsViewController orderDetailsViewController;
   private AdminPageViewController adminPageViewController;
 
+  private AddMoviePageViewController addMoviePageViewController;
+  private AddScreeningViewController addScreeningViewController;
+  private EditPricesViewController editPricesViewController;
+
   private ManageViewController manageViewController;
   private Stage primaryStage;
   private Scene currentScene;
@@ -54,6 +58,9 @@ public class ViewHandler
       case "orderConfirmation" -> root = loadOrderConfirmationView("OrderConfirmation.fxml");
       case "orderDetails" -> root = loadOrderDetailsView("OrderDetails.fxml");
       case "adminPage" -> root = loadAdminPageView("AdminPage.fxml");
+      case "addMovie" -> root = loadAddMovieView("AddMovie.fxml");
+      case "addScreening" -> root = loadAddScreeningView("AddScreening.fxml");
+      case "editPrices" -> root = loadEditPricesView("EditPrices.fxml");
 
     }
     if (primaryStage.isShowing())
@@ -271,6 +278,66 @@ public class ViewHandler
       root = loader.load();
       manageViewController = loader.getController();
       manageViewController.init(this, root, modelFactory.getManageViewModel());
+    }
+    catch (Exception e)
+    {
+      System.out.println(
+          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
+      e.printStackTrace();
+    }
+
+    return root;
+  }
+   private Region loadAddMovieView(String fxmlFile)
+  {
+    Region root = null;
+    try
+    {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(fxmlFile));
+      root = loader.load();
+      addMoviePageViewController = loader.getController();
+      addMoviePageViewController.init(this, root, modelFactory.getAddMovieViewModel());
+    }
+    catch (Exception e)
+    {
+      System.out.println(
+          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
+      e.printStackTrace();
+    }
+
+    return root;
+  }
+  private Region loadAddScreeningView(String fxmlFile)
+  {
+    Region root = null;
+    try
+    {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(fxmlFile));
+      root = loader.load();
+      addScreeningViewController = loader.getController();
+      addScreeningViewController.init(this,root, modelFactory.getAddScreeningViewModel());
+    }
+    catch (Exception e)
+    {
+      System.out.println(
+          "\n\n--------- Cannot load the correct page! :(( ---------\n\n");
+      e.printStackTrace();
+    }
+
+    return root;
+  }
+  private Region loadEditPricesView(String fxmlFile)
+  {
+    Region root = null;
+    try
+    {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(fxmlFile));
+      root = loader.load();
+      editPricesViewController = loader.getController();
+      editPricesViewController.init(this,root, modelFactory.getEditPricesViewModel());
     }
     catch (Exception e)
     {

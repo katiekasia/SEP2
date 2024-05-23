@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="793.0" prefWidth="949.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AdminPageViewController">
+   <children>
+      <AnchorPane layoutX="6.0" layoutY="-1.0" prefHeight="794.0" prefWidth="199.0">
+         <children>
+            <ImageView fitHeight="121.0" fitWidth="126.0" layoutX="45.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/user%20-%20profile.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="36.0" layoutY="182.0" prefHeight="47.0" prefWidth="142.0" text="Welcome">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Label fx:id="username" layoutX="56.0" layoutY="230.0" text="Admin">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button layoutX="29.0" layoutY="671.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="55.0" />
+            <ImageView fitHeight="30.0" fitWidth="36.0" layoutX="30.0" layoutY="752.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logout.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="101.0" layoutY="679.0" text="Sign out">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="addMovie" layoutX="11.0" layoutY="308.0" mnemonicParsing="false" onAction="#onAddMovie" prefHeight="56.0" prefWidth="183.0" text="Add movie">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/fidelity%20points%20-%20profile.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="deleteScreening" layoutX="11.0" layoutY="389.0" mnemonicParsing="false" onAction="#onDeleteScreening" prefHeight="56.0" prefWidth="183.0" text="Delete screening">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/ticket%20-%20profile.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="addScreening" layoutX="11.0" layoutY="469.0" mnemonicParsing="false" onAction="#onAddScreening" prefHeight="56.0" prefWidth="183.0" text="Add screening">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/settings%20-%20profile.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="editPrices" layoutX="11.0" layoutY="551.0" mnemonicParsing="false" onAction="#onEditPrices" prefHeight="56.0" prefWidth="183.0" text="Edit prices">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/settings%20-%20profile.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Label layoutX="260.0" layoutY="66.0" prefHeight="86.0" prefWidth="318.0" text="Admin site">
+         <font>
+            <Font size="58.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="130.0" fitWidth="177.0" layoutX="760.0" layoutY="44.0">
+         <image>
+            <Image url="@images/cinema.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="205.0" layoutY="136.0" prefHeight="648.0" prefWidth="730.0">
+         <children>
+            <ScrollPane layoutX="57.0" layoutY="81.0" prefHeight="408.0" prefWidth="594.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="399.0" prefWidth="602.0">
+                     <children>
+                        <TableView fx:id="screeningsTable" layoutX="1.0" prefHeight="400.0" prefWidth="589.0">
+                          <columns>
+                            <TableColumn fx:id="title" prefWidth="120.79998469352722" text="Title" />
+                            <TableColumn fx:id="date" prefWidth="105.5999755859375" text="Date" />
+                              <TableColumn fx:id="screeningTime" prefWidth="109.59999084472656" text="Length" />
+                              <TableColumn fx:id="time" prefWidth="110.39996337890625" text="Time" />
+                              <TableColumn fx:id="room" prefWidth="131.20001220703125" text="Room" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

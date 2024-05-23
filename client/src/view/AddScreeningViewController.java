@@ -1,14 +1,15 @@
 package view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import viewmodel.*;
 
-public class AddMoviePageViewController
+public class AddScreeningViewController
 {
   private Region root;
-  private AddMovieViewModel viewModel;
+  private AddScreeningViewModel viewModel;
   private ViewHandler viewHandler;
   private ViewState viewState;
   private SimpleScreeningView selected;
@@ -18,7 +19,7 @@ public class AddMoviePageViewController
   @FXML private Button add;
   @FXML private Button cancel;
 
-  public void init(ViewHandler viewHandler, Region root, AddMovieViewModel viewModel)
+  public void init(ViewHandler viewHandler, Region root, AddScreeningViewModel viewModel)
   {
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;

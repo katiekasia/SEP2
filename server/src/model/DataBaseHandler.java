@@ -282,7 +282,7 @@ public class DataBaseHandler
     try (Connection conn = getConnection();
         Statement statement = conn.createStatement();
         ResultSet resultSet = statement.executeQuery(sql)) {
-      pricesManager.setCandiesPrice(resultSet.getDouble("CandiesPrice"));
+      pricesManager.setCandiesPrice(resultSet.getDouble("CadniesPrice"));
       pricesManager.setColaPrice(resultSet.getDouble("ColaPrice"));
       pricesManager.setFantaPrice(resultSet.getDouble("FantaPrice"));
       pricesManager.setNachosPrice(resultSet.getDouble("NachosPrice"));
