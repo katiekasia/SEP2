@@ -5,24 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e003eb95-bd43-4246-b6c2-ef0251e6aa71" name="Changes" comment="changes">
+      <change afterPath="$PROJECT_DIR$/client/src/viewmodel/SimpleMovieView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/model/MoviesList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/model/RoomsList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/view/SimpleMovieView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/mediator/RemoteModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/mediator/RemoteModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/mediator/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/mediator/RmiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/model/Admin.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/Model.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/ModelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/view/LoginViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/view/LoginViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/viewmodel/LoginViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/viewmodel/LoginViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/model/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/model/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/model/PendingOrder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/model/PendingOrder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/model/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/model/Room.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/model/Screening.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/model/Screening.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/view/LoginViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/view/LoginViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/viewmodel/LoginViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/viewmodel/LoginViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/Nachos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/PendingOrder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/PendingOrder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/Popcorn.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/Room.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/Screening.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/Screening.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/model/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/mediator/RemoteModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/mediator/RemoteModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/mediator/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/mediator/RmiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/DataBaseHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Model.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/ModelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/model/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,9 +73,9 @@
       <recent name="C:\Users\user\Documents\GitHub\SEP2\server\src\view" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="view" />
       <recent name="model" />
       <recent name="viewmodel" />
-      <recent name="view" />
       <recent name="mediator" />
     </key>
   </component>
@@ -194,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716456984487</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="changes">
+      <option name="closed" value="true" />
+      <created>1716458491375</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1716458491375</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

@@ -268,6 +268,11 @@ public class ModelManager implements Model, PropertyChangeListener
     return client.getOrdersForUser(username);
   }
 
+  @Override public Movie getMovieForView(String title)
+  {
+    return client.getMovieForView(title);
+  }
+
   @Override public Order reserveSeats(Seat[] seats, User customer,
       Screening screening, int nbVIP)
   {

@@ -131,6 +131,11 @@ public class RmiServer implements RemoteModel
     return cinema.getTicketsFromOrder(order);
   }
 
+  @Override public Movie getMovieForView(String title) throws RemoteException
+  {
+    return cinema.getMovieForView(title);
+  }
+
   @Override public void cancelOrder(Order order) throws RemoteException
   {
     cinema.cancelOrder(order);

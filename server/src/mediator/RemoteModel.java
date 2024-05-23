@@ -23,6 +23,7 @@ public interface RemoteModel extends Remote, RemoteSubject<String ,String >
   Order[] getAllOrders(User user) throws RemoteException;
   Snack[] getSnacksFromOrder(Order order) throws RemoteException;
   Ticket[] getTicketsFromOrder(Order order) throws RemoteException;
+  Movie getMovieForView(String title) throws RemoteException;
    void cancelOrder(Order order) throws RemoteException;
    boolean checkSeatAvailability(int index, Screening screening) throws RemoteException;
 

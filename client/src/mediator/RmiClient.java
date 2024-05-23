@@ -475,7 +475,16 @@ public class RmiClient implements Model, RemoteListener<String,String>
     return null;
   }
 
-
+  @Override public Movie getMovieForView(String title)
+  {
+    try
+    {
+      return server.getMovieForView(title);
+    }catch (RemoteException e){
+      e.printStackTrace();
+    }
+    return null;
+  }
 
   @Override public void addListener(PropertyChangeListener listener)
   {

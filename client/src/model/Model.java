@@ -53,6 +53,7 @@ Screening getScreening(Screening screening);
   ArrayList<Screening> getScreeningsByDate(LocalDate date);
   ArrayList<Screening> getScreeningsByDateAndTitle(String title, LocalDate date);
    ArrayList<Order> getOrdersForUser(String username);
+  Movie getMovieForView(String title);
   void register(String username, String password, String email, String firstName, String lastName, String phone);
 
 

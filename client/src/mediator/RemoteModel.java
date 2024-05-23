@@ -23,6 +23,7 @@ public interface RemoteModel extends Remote, RemoteSubject<String ,String >
  boolean logInAdmin(String username, String password) throws RemoteException;
   Snack[] getSnacksFromOrder(Order order) throws RemoteException;
   Ticket[] getTicketsFromOrder(Order order) throws RemoteException;
+ Movie getMovieForView(String title) throws RemoteException;
    void cancelOrder(Order order) throws RemoteException;
    boolean checkSeatAvailability(int index, Screening screening) throws RemoteException;
 
