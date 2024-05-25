@@ -50,7 +50,7 @@ public class DataBaseHandler
   // Method to close the database connection
 
   public static void addTicketToDatabase(Ticket ticket,Order order) throws SQLException{
-    String sql = "INSERT INTO ticket (ticketID,ticketPrice,ticketType,screeningHour,screeningDate,seatID,orderID) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO ticket (ticketID,ticketPrice,ticketType,screeningHour,screeningDate,seatID,orderID, id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     try(Connection conn = getConnection();
    PreparedStatement statement = conn.prepareStatement(sql)){
       LocalTime.of(ticket.getHour(),ticket.getMinute(),0);
@@ -62,6 +62,7 @@ public class DataBaseHandler
       statement.setDate(5, Date.valueOf(date.getDate()));
       statement.setString(6, ticket.getSeatID());
       statement.setString(7, String.valueOf(order.getOrderID()));
+      statement.setInt(8,ticket.getScreening().getId());
       statement.executeUpdate();
     }
 

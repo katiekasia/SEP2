@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.net.IDN;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -11,13 +12,34 @@ public class Screening implements Serializable
 	private SimpleDate date;
 	private Movie movie;
 	private Room room;
+	private int id;
+	private ArrayList<Integer> ids = new ArrayList<>();
 
 	public Screening(int hour, int minute, LocalDate date, Movie movie, Room room){
 		this.date = new SimpleDate(date);
+		setID(generateID());
 	this.hour = hour;
 	this.minute = minute;
 	this.movie = movie;
 	this.room = room;
+
+	}
+	private int generateID(){
+		int id = Integer.parseInt(String.valueOf(ids.size() + Math.floor(Math.random() * 401)));
+		return id;
+	}
+	public int getId(){
+		return id;
+	}
+	private void setID(int ID) {
+		if (!ids.contains(ID)){
+			this.id = ID;
+			this.ids.add(ID);
+		}else
+		{
+			int Id = Integer.parseInt(String.valueOf(ID + Math.floor(Math.random() * Integer.MAX_VALUE)));
+			setID(Id);
+		}
 	}
 public String getDateString(){
 		return date.toString();
