@@ -23,7 +23,6 @@ public class ModelManager implements Model
 
   private PropertyChangeSupport propertyChangeSupport;
 
-
   public ModelManager()
   {
     this.HOST = "localhost";
@@ -46,73 +45,100 @@ public class ModelManager implements Model
     ArrayList<Order> orders = DataBaseHandler.getAllOrders(usersList);
     setUpScreenings(orders, screenings);
   }
-  private void setUpScreenings(ArrayList<Order> orders, ScreeningsList screenings){
-    for (Order order : orders){
-      for (Ticket ticket : order.getTickets()){
-        screenings.bookSeatByID(ticket.getScreening(),ticket.getSeatID(),ticket);
+
+  private void setUpScreenings(ArrayList<Order> orders,
+      ScreeningsList screenings)
+  {
+    for (Order order : orders)
+    {
+      for (Ticket ticket : order.getTickets())
+      {
+        screenings.bookSeatByID(ticket.getScreening(), ticket.getSeatID(),
+            ticket);
       }
     }
   }
 
-  @Override  public void updateUser(User user, String previousUsername)
+  @Override public void updateUser(User user, String previousUsername)
   {
     try
     {
       DataBaseHandler.updateUser(user, previousUsername);
       usersList = new UsersList(DataBaseHandler.getAllCustomers());
     }
-    catch(SQLException e)
+    catch (SQLException e)
     {
       e.printStackTrace();
     }
   }
-  @Override public Screening getScreeningForView(String time, String date,String title, int room){
+
+  @Override public Screening getScreeningForView(String time, String date,
+      String title, int room)
+  {
     return screenings.getScreeningForView(time, date, title, room);
   }
-  @Override public Movie getMovieForView(String title){
+
+  @Override public Movie getMovieForView(String title)
+  {
     return moviesList.getMovieByTitle(title);
   }
-  public Ticket getTicketForView(Order order, String ID){
- return order.getTicketForView(ID);
+
+  public Ticket getTicketForView(Order order, String ID)
+  {
+    return order.getTicketForView(ID);
   }
+
   @Override public User logIn(String username, String password)
   {
-     return usersList.logIn(username, password);
+    return usersList.logIn(username, password);
   }
 
   @Override public double getPriceForSize(String snackType, String size)
   {
-    switch (snackType){
+    switch (snackType)
+    {
       case "popcorn":
-        return pricesManager.getPriceForSize(pricesManager.getPopcornPrice(), size);
+        return pricesManager.getPriceForSize(pricesManager.getPopcornPrice(),
+            size);
       case "nachos":
-        return pricesManager.getPriceForSize(pricesManager.getNachosPrice(),size);
+        return pricesManager.getPriceForSize(pricesManager.getNachosPrice(),
+            size);
       case "candies":
-        return pricesManager.getPriceForSize(pricesManager.getCandiesPrice(),size);
+        return pricesManager.getPriceForSize(pricesManager.getCandiesPrice(),
+            size);
       case "tuborg":
-        return pricesManager.getPriceForSize(pricesManager.getTuborgPrice(),size);
+        return pricesManager.getPriceForSize(pricesManager.getTuborgPrice(),
+            size);
       case "oreo":
-        return pricesManager.getPriceForSize(pricesManager.getOreoPrice(),size);
+        return pricesManager.getPriceForSize(pricesManager.getOreoPrice(),
+            size);
       case "cola":
-        return pricesManager.getPriceForSize(pricesManager.getColaPrice(),size);
+        return pricesManager.getPriceForSize(pricesManager.getColaPrice(),
+            size);
       case "pepsi":
-        return pricesManager.getPriceForSize(pricesManager.getPepsiPrice(),size);
+        return pricesManager.getPriceForSize(pricesManager.getPepsiPrice(),
+            size);
       case "fanta":
-        return pricesManager.getPriceForSize(pricesManager.getFantaPrice(),size);
+        return pricesManager.getPriceForSize(pricesManager.getFantaPrice(),
+            size);
       case "redbull":
-        return pricesManager.getPriceForSize(pricesManager.getRedbullPrice(),size);
+        return pricesManager.getPriceForSize(pricesManager.getRedbullPrice(),
+            size);
       case "peanuts":
-        return pricesManager.getPriceForSize(pricesManager.getPeanutsPrice(),size);
+        return pricesManager.getPriceForSize(pricesManager.getPeanutsPrice(),
+            size);
     }
     return 0;
   }
 
-  @Override public boolean logInAdmin(String username, String password){
-    if (username.equals(Admin.USERNAME) && password.equals(Admin.PASSWORD)){
+  @Override public boolean logInAdmin(String username, String password)
+  {
+    if (username.equals(Admin.USERNAME) && password.equals(Admin.PASSWORD))
+    {
       return true;
     }
     throw new IllegalArgumentException("No user with such credentials found.");
-}
+  }
 
   @Override public void addListener(PropertyChangeListener listener)
   {
@@ -127,15 +153,25 @@ public class ModelManager implements Model
 
   @Override public void cancelOrder(Order order, User user)
   {
-    getOrderByID(order.getOrderID(), getUserByUsername(user.getUsername())).cancelOrder();
+    getOrderByID(order.getOrderID(),
+        getUserByUsername(user.getUsername())).cancelOrder();
+    try
+    {
+      DataBaseHandler.deleteOrder(order.getOrderID());
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
   }
 
-  @Override public Order getOrderByID(int orderID,User user)
+  @Override public Order getOrderByID(int orderID, User user)
   {
     Order order = user.getOrderByID(orderID);
     System.out.println(order.toString());
     return getUserByUsername(user.getUsername()).getOrderByID(orderID);
   }
+
   @Override public String getHost()
   {
     return HOST;
@@ -146,6 +182,7 @@ public class ModelManager implements Model
   {
     return user.getAllTickets();
   }
+
   @Override public ArrayList<Screening> getScreaningsByMovieTitle(String title)
   {
     return screenings.getScreaningsByMovieTitle(title);
@@ -153,13 +190,13 @@ public class ModelManager implements Model
 
   @Override public ArrayList<Screening> getScreeningsByDate(LocalDate date)
   {
-  return screenings.getScreeningsByDate(date);
+    return screenings.getScreeningsByDate(date);
   }
 
   @Override public ArrayList<Screening> getScreeningsByDateAndTitle(
       String title, LocalDate date)
   {
-return screenings.getScreeningsByDateAndTitle(title, date);
+    return screenings.getScreeningsByDateAndTitle(title, date);
   }
 
   @Override public void reserveSeat(Seat seat, User customer,
@@ -177,7 +214,6 @@ return screenings.getScreeningsByDateAndTitle(title, date);
     customer.addOrder(temp);
   }
 
-
   @Override public boolean checkSeatAvailability(int index, Screening screening)
   {
     return screening.getSeatAvailabilty(index);
@@ -185,12 +221,12 @@ return screenings.getScreeningsByDateAndTitle(title, date);
 
   @Override public Seat[] getAvailableSeats(Screening screening)
   {
-return screenings.getAvailableSeats(screening);
+    return screenings.getAvailableSeats(screening);
   }
 
   @Override public Seat[] getEmptySeats(Screening screening)
   {
- return screenings.getEmptySeats(screening);
+    return screenings.getEmptySeats(screening);
   }
 
   @Override public User getUserByUsername(String username)
@@ -223,9 +259,12 @@ return screenings.getAvailableSeats(screening);
     return order.getTicketsFromOrder();
 
   }
-@Override public void upgradeTicket(Ticket ticket, Order order, User user){
-    getOrderByID(order.getOrderID(), user).upgrade(ticket, pricesManager.getVipTicketPrice());
-}
+
+  @Override public void upgradeTicket(Ticket ticket, Order order, User user)
+  {
+    getOrderByID(order.getOrderID(), user).upgrade(ticket,
+        pricesManager.getVipTicketPrice());
+  }
 
   @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
   {
@@ -235,21 +274,46 @@ return screenings.getAvailableSeats(screening);
   @Override public void deleteSnackFromOrder(Snack snack, Order order)
   {
     order.removeSnack(snack);
+   try
+   {
+     DataBaseHandler.deleteSnack(snack,order);
+   }catch (SQLException e){
+     e.printStackTrace();
+   }
   }
 
-  @Override public void downgradeTicket(Ticket ticket, Order order, User user){
-  getOrderByID(order.getOrderID(), user).downgrade(ticket, pricesManager.getStandardTicketPrice());
-}
-
+  @Override public void downgradeTicket(Ticket ticket, Order order, User user)
+  {
+    getOrderByID(order.getOrderID(), user).downgrade(ticket,
+        pricesManager.getStandardTicketPrice());
+    try
+    {
+      DataBaseHandler.changeTicketType(ticket);
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
+  }
 
   @Override public void addScreening(Screening screening)
   {
     screenings.addScreening(screening);
+    try
+    {
+      DataBaseHandler.addScreeningToDatabase(screening);
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
   }
 
   @Override public void removeScreening(Screening screening)
   {
     screenings.removeScreening(screening);
+    try
+    {
+      DataBaseHandler.deleteScreening(screening);
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
   }
 
   @Override public void removeByDate(SimpleDate date)
@@ -283,66 +347,101 @@ return screenings.getAvailableSeats(screening);
       throw new RuntimeException(
           "Not enough available seats left for this screening");
     }
-    for (Seat seat : seats){
-      if (!seat.isAvailable()){
+    for (Seat seat : seats)
+    {
+      if (!seat.isAvailable())
+      {
         freeSeats = false;
       }
     }
     if (freeSeats)
     {
-      Order temp = new Order(user.generateOrderID());
-      for (Seat seat : seats)
+      try
       {
-        if (nbVip > 0)
+        Order temp = new Order(user.generateOrderID());
+        for (Seat seat : seats)
         {
-          Ticket tempT = new VIPTicket(temp.generateTicketID(),
-              pricesManager.getVipTicketPrice(), seat, scr);
-          scr.bookSeatById(seat.getID(),tempT);
-          temp.addTicket(tempT);
-          nbVip--;
+          if (nbVip > 0)
+          {
+            Ticket tempT = new VIPTicket(temp.generateTicketID(),
+                pricesManager.getVipTicketPrice(), seat, scr);
+            scr.bookSeatById(seat.getID(), tempT);
+            temp.addTicket(tempT);
+            DataBaseHandler.addTicketToDatabase(tempT, temp);
+            nbVip--;
+          }
+          else
+          {
+            Ticket tempT = new StandardTicket(temp.generateTicketID(),
+                pricesManager.getStandardTicketPrice(), seat, screening);
+            scr.bookSeatById(seat.getID(), tempT);
+            DataBaseHandler.addTicketToDatabase(tempT, temp);
+            temp.addTicket(tempT);
+          }
         }
-        else
-        {
-          Ticket tempT = new StandardTicket(temp.generateTicketID(),
-              pricesManager.getStandardTicketPrice(), seat, screening);
-          scr.bookSeatById(seat.getID(),tempT);
-          temp.addTicket(tempT);
-        }
+        user.addOrder(temp);
+        DataBaseHandler.addOrderToDatabase(temp, user.getUsername());
+        return user.getOrderByID(temp.getOrderID());
       }
-      user.addOrder(temp);
-      return user.getOrderByID(temp.getOrderID());
-    }else throw new IllegalStateException("Seats are already reserved.");
+      catch (SQLException e)
+      {
+        throw new RuntimeException(e.getMessage());
+      }
+    }
+    else
+      throw new IllegalStateException("Seats are already reserved.");
   }
 
-  @Override
-  public ArrayList<Order> getOrdersForUser(String username) {
+  @Override public ArrayList<Order> getOrdersForUser(String username)
+  {
     return usersList.getOrdersForUser(username);
   }
 
-  @Override public void addSnackToOrder(String snackType, int amount, Order order, User user,String size)
+  @Override public void addSnackToOrder(String snackType, int amount,
+      Order order, User user, String size)
   {
     User customer = getUserByUsername(user.getUsername());
     Order temp = getOrderByID(order.getOrderID(), customer);
     for (int i = 0; i < amount; i++)
     {
-      Snack snack = new Snack(pricesManager.getPriceForSize(pricesManager.getPriceForSnack(snackType),size),snackType,size);
+      Snack snack = new Snack(pricesManager.getPriceForSize(
+          pricesManager.getPriceForSnack(snackType), size), snackType, size);
       temp.addSnack(snack);
+      try
+      {
+        DataBaseHandler.addSnack(snack,temp);
+      }catch (SQLException e){
+        e.printStackTrace();
+      }
     }
   }
-  @Override public void changePrices(ArrayList<Double> newPrices){
+
+  @Override public void changePrices(ArrayList<Double> newPrices)
+  {
     pricesManager.setAllPrices(newPrices);
+    try
+    {
+      DataBaseHandler.changePrices(pricesManager);
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
   }
 
-  public void register(String username, String password, String email, String firstName, String lastName, String phone) {
-    try {
-      DataBaseHandler.newUser(username, firstName, lastName, phone, email, password);
+  public void register(String username, String password, String email,
+      String firstName, String lastName, String phone)
+  {
+    try
+    {
+      DataBaseHandler.newUser(username, firstName, lastName, phone, email,
+          password);
       usersList = new UsersList(DataBaseHandler.getAllCustomers());
-    } catch (SQLException e) {
+    }
+    catch (SQLException e)
+    {
       e.printStackTrace();
       throw new RuntimeException("Error registering user", e);
     }
-}
-
+  }
 
   public void deleteAccount(String username)
   {
@@ -350,9 +449,11 @@ return screenings.getAvailableSeats(screening);
     {
       DataBaseHandler.deleteUser(username);
       usersList = new UsersList(DataBaseHandler.getAllCustomers());
-    }catch (SQLException e){
+    }
+    catch (SQLException e)
+    {
       e.printStackTrace();
     }
   }
 
-  }
+}
