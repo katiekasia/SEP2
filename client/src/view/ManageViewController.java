@@ -46,8 +46,7 @@ public class ManageViewController implements PropertyChangeListener
 
     this.viewState= viewModel.getViewState();
 
-    try
-    {
+
       this.username.setText(viewModel.getUsername());
       this.password.setText(viewModel.getPassword());
       this.name.setText(viewModel.getName());
@@ -55,15 +54,11 @@ public class ManageViewController implements PropertyChangeListener
       this.phoneNumber.setText(viewModel.getPhoneNumber());
       this.email.setText(viewModel.getEmail());
     }
-    catch (Exception e)
-    {
-      System.out.println("ManageViewController username and password error");
-      e.printStackTrace();
-    }
 
 
-    // this.username.textProperty().bind(viewModel.getUsername());
-  }
+
+
+
 
   private void setFields(boolean disable){
     username.setDisable(disable);
@@ -148,9 +143,6 @@ public class ManageViewController implements PropertyChangeListener
 
       viewModel.updateUserInDatabase(user, oldUser.getUsername());
 
-      System.out.println("MANAGE VIEW CONTROLLER\nShould not be 1");
-      System.out.println(user.getUsername());
-      System.out.println("User information added to viewModel.");
     }
 
   private void showAlert(String deletionFailed, String s)
