@@ -54,7 +54,7 @@ public class TransitionPageViewController
 
     roomID.textProperty().bind(viewModel.roomIDProperty().asString());
 
-
+    releaseDate.textProperty().bind(viewModel.getReleaseDate());
 
 
     username.textProperty().bind(viewState.nameProperty());

@@ -168,4 +168,21 @@ ticketSelected = false;
     loadFromModel();
   }
 
+
+  public String getTime()
+  {
+    return viewState.getSelectedScreening().getTime();
+  }
+  public String getMovie()
+  {
+    return viewState.getSelectedScreening().getMovie();
+  }
+  public String getDate()
+  {
+    return viewState.getSelectedScreening().getDate();
+  }
+  public String getOrderID()
+  {
+    return viewState.getSelectedOrder().orderIDProperty().asString().getValue();
+  }
 }

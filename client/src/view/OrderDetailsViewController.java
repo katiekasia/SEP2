@@ -1,10 +1,7 @@
 package view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import viewmodel.OrderDetailsViewModel;
@@ -20,6 +17,11 @@ public class OrderDetailsViewController
   private ViewState viewState;
   private SimpleSnackView selectedSnack;
   private SimpleTicketView selectedTicket;
+
+  @FXML private Label date;
+  @FXML private Label movie;
+  @FXML private Label orderId;
+  @FXML private Label time;
 
   @FXML private TableView ticketsTable;
   @FXML private TableView snacksTable;
@@ -51,6 +53,12 @@ public class OrderDetailsViewController
     viewModel.setSnacks(snacksTable.getItems());
     viewModel.bindSnacks(snacksTable.getItems());
     viewModel.bindTickets(ticketsTable.getItems());
+
+    time.setText(viewModel.getTime());
+    movie.setText(viewModel.getMovie());
+    date.setText(viewModel.getDate());
+    orderId.setText(viewModel.getOrderID());
+
     seatColumn.setCellValueFactory(new PropertyValueFactory<>("seatID"));
     ticketTypeColumn.setCellValueFactory(new PropertyValueFactory<>("ticketType"));
     ticketPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));

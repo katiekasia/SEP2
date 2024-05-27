@@ -23,6 +23,7 @@ public class TransitionPageViewModel
   private StringProperty movieTime;
   private IntegerProperty roomID;
   private StringProperty totalPrice;
+  private StringProperty releaseDate;
 
 
   public TransitionPageViewModel(Model model, ViewState viewState) {
@@ -37,7 +38,7 @@ movieTitle =new SimpleStringProperty();
     movieTime = new SimpleStringProperty();
     roomID = new SimpleIntegerProperty();
 totalPrice = new SimpleStringProperty();
-
+    releaseDate= new SimpleStringProperty();
 
   }
   public void reset(){
@@ -48,6 +49,7 @@ totalPrice = new SimpleStringProperty();
     movieDate.set(viewState.getSelectedScreening().dateProperty().get());
     movieTime.set(viewState.getSelectedScreening().timeProperty().get());
     roomID.set(viewState.getSelectedScreening().roomProperty().get());
+    releaseDate.set(viewState.getSelectedScreening().getReleaseDate());
 
     standardTickets.set("");
     VIPTickets.set("");
@@ -55,6 +57,10 @@ totalPrice = new SimpleStringProperty();
 
 
 
+  public StringProperty getReleaseDate()
+  {
+    return releaseDate;
+  }
   public StringProperty movieTitleProperty()
   {
     return movieTitle;

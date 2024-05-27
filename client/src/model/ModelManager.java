@@ -46,6 +46,7 @@ public class ModelManager implements Model, PropertyChangeListener
   {
     propertyChangeSupport.removePropertyChangeListener(listener);
   }
+
   @Override public void deleteAccount(String username)
   {
     client.deleteAccount(username);
