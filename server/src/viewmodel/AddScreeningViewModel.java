@@ -22,22 +22,22 @@ public class AddScreeningViewModel
   }
 
 
-<<<<<<< Updated upstream
-  public ArrayList<Movie> getAllMovies() {
-      return model.getAllMovies();
-}
 
-public void addScreening(int hour, int minute, LocalDate date, String movieTitle, int roomID)
-{
-model.newScreening(hour,minute,date,movieTitle,roomID);
-=======
-  //public ArrayList<Movie> getAllMovies() {
+//  public ArrayList<Movie> getAllMovies() {
 //      return model.getAllMovies();
 //}
-
-public void addScreening(int hour, int minute, LocalDate date, String movieTitle, int roomID)
-{
-  //model.newScreening(hour,minute,date,movieTitle,roomID);
->>>>>>> Stashed changes
-}
+//
+//public void addScreening(int hour, int minute, LocalDate date, String movieTitle, int roomID)
+//{
+//model.newScreening(hour,minute,date,movieTitle,roomID);
+//
+//  //public ArrayList<Movie> getAllMovies() {
+////      return model.getAllMovies();
+////}
+//
+//public void addScreening(int hour, int minute, LocalDate date, String movieTitle, int roomID)
+//{
+//  //model.newScreening(hour,minute,date,movieTitle,roomID);
+//
+//}
   }
