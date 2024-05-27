@@ -15,21 +15,12 @@ import java.util.ArrayList;
 // then press Enter. You can now see whitespace characters in your code.
 public class ModelManager implements Model, PropertyChangeListener
 {
-  private String HOST;
-  private int PORT;
-  private boolean running;
-
-
-  //not sure if the user variable is the one connected here
   private User user;
   private PropertyChangeSupport propertyChangeSupport;
   private RmiClient client;
 
   public ModelManager(RmiClient client)
   {
-    this.running=false;
-    this.PORT=5678;
-    this.HOST ="localhost";
     this.user = null;
     this.propertyChangeSupport = new PropertyChangeSupport(this);
     this.client = client;
@@ -39,7 +30,6 @@ public class ModelManager implements Model, PropertyChangeListener
   @Override public void addListener(PropertyChangeListener listener)
   {
     propertyChangeSupport.addPropertyChangeListener(listener);
-
   }
 
   @Override public void removeListener(PropertyChangeListener listener)
@@ -78,26 +68,6 @@ public class ModelManager implements Model, PropertyChangeListener
   {
       client.updateUser(user, previousUsername);
   }
-  @Override public void connect()
-  {
-    client.connect();
-  }
-
-  @Override public void disconnect()
-  {
-    client.disconnect();
-  }
-
-  @Override public int getPort()
-  {
-    return client.getPort();
-  }
-
-  @Override public void setPort(int port)
-  {
-    this.PORT = port;
-  }
-
   @Override public Order[] getAllOrders(User user)
   {
    return client.getAllOrders(user);
@@ -115,26 +85,10 @@ public class ModelManager implements Model, PropertyChangeListener
     return client.getTicketsFromOrder(order);
   }
 
-
-
-  @Override public String getHost()
-  {
-    return client.getHost();
-  }
-
   @Override public void reserveSeat(Seat seat, User customer,
       Screening screening)
   {
       client.reserveSeat(seat, customer, screening);
-  }
-
-  private void updateDatabaseWithBooking(User customer, Ticket ticket) {
-    // Example method to illustrate saving to DB (requires actual implementation)
-    try (Connection conn = DataBaseHandler.getConnection()) {
-      // SQL queries to insert ticket and update seat status
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
   }
 
   @Override public boolean checkSeatAvailability(int index, Screening screening)
@@ -307,16 +261,16 @@ return null;
   {
     switch (evt.getPropertyName()){
       case "reserve seats":
-        propertyChangeSupport.firePropertyChange("reserveSeats", null, evt.getNewValue());
+        propertyChangeSupport.firePropertyChange("reserveSeats" + evt.getNewValue(), null, evt.getNewValue());
         break;
       case "reserve seat":
-        propertyChangeSupport.firePropertyChange("reserveSeat", null, evt.getNewValue());
-        break;
-      case "update seat to booked":
-        propertyChangeSupport.firePropertyChange("updateSeatToBooked", null, evt.getNewValue());
+        propertyChangeSupport.firePropertyChange("reserveSeat" + evt.getNewValue(), null, evt.getNewValue());
         break;
       case "add order":
-        propertyChangeSupport.firePropertyChange("addOrder", null, evt.getNewValue());
+        propertyChangeSupport.firePropertyChange("addOrder" + evt.getNewValue(), null, evt.getNewValue());
+        break;
+      case "remove order":
+        propertyChangeSupport.firePropertyChange("removeOrder" + evt.getNewValue(), null, evt.getNewValue());
         break;
       case "add screening":
         propertyChangeSupport.firePropertyChange("addScreening",null,evt.getNewValue());
@@ -324,9 +278,9 @@ return null;
       case "remove screening":
         propertyChangeSupport.firePropertyChange("removeScreening", null, evt.getNewValue());
         break;
-      case "remove by date":
-        propertyChangeSupport.firePropertyChange("removeByDate", null, evt.getNewValue());
-        break;
+//      case "remove by date":
+//        propertyChangeSupport.firePropertyChange("removeByDate", null, evt.getNewValue());
+//        break;
     }
   }
 

@@ -83,7 +83,6 @@ public class RmiServer implements RemoteModel
   @Override public void updateUser(User user, String previousUsername)
       throws RemoteException
   {
-    System.out.println("rmi server");
     cinema.updateUser(user, previousUsername);
   }
 
@@ -150,6 +149,7 @@ public class RmiServer implements RemoteModel
   @Override public void cancelOrder(Order order, User user) throws RemoteException
   {
     cinema.cancelOrder(order, user);
+    property.firePropertyChange("REMOVE ORDER", null, user.getUsername());
   }
 
   @Override public boolean checkSeatAvailability(int index, Screening screening)
@@ -188,7 +188,7 @@ public class RmiServer implements RemoteModel
   @Override public void addOrder(Order order, User user) throws RemoteException
   {
     cinema.addOrder(order, user);
-    property.firePropertyChange("ADD ORDER", null, order.toString());
+    property.firePropertyChange("ADD ORDER", null, user.getUsername());
   }
 
   @Override public User logIn(String username, String password)

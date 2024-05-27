@@ -1,17 +1,18 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import viewmodel.RegisterPageViewModel;
 
-public class RegisterViewController {
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class RegisterViewController implements PropertyChangeListener
+{
   private RegisterPageViewModel viewModel;
   private ViewHandler viewHandler;
   private Region root;
@@ -30,6 +31,8 @@ public class RegisterViewController {
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;
     this.root = root;
+
+    viewModel.addListener(this);
 
 
     viewModel.registrationStatusProperty().addListener(new ChangeListener<String>() {
@@ -122,5 +125,15 @@ public class RegisterViewController {
     firstNameField.setText("");
     lastNameField.setText("");
     phoneField.setText("");
+  }
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        viewHandler.close();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
+        alert.showAndWait();
+      }});
   }
 }

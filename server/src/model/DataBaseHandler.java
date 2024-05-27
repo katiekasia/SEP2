@@ -13,7 +13,7 @@ public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "papiezpolak";
+  private static final String PASSWORD = "VIAVIAVIA";
 
   private static Connection connection;
 
@@ -680,19 +680,10 @@ public class DataBaseHandler
               screeningHour.toLocalTime().getMinute(), screeningDate, movie,
               room);
 
-          Snack snack = null;
+          Snack snack;
           if (snackName != null)
           {
-            switch (snackName)
-            {
-              case "Nachos":
-                snack = new Nachos(snackPrice, snackSize);
-                break;
-              case "Popcorn":
-                snack = new Popcorn(snackPrice, snackSize);
-                break;
-
-            }
+            snack = new Snack(snackPrice, snackName,snackSize);
             order.addSnack(snack);
           }
 

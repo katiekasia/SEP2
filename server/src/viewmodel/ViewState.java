@@ -3,8 +3,6 @@ package viewmodel;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import model.Screening;
-import model.Ticket;
 import model.User;
 
 public class ViewState

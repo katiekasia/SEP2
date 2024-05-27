@@ -1,5 +1,6 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -8,11 +9,18 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Alert;
 import model.Model;
 import model.Screening;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
-public class TransitionPageViewModel
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
+public class TransitionPageViewModel implements PropertyChangeListener,
+    UnnamedPropertyChangeSubject
 {
   private Model model;
   private ViewState viewState;
+  private PropertyChangeSupport property;
 
   private StringProperty standardTickets;
   private StringProperty VIPTickets;
@@ -29,6 +37,7 @@ public class TransitionPageViewModel
   public TransitionPageViewModel(Model model, ViewState viewState) {
     this.model = model;
     this.viewState = viewState;
+    property = new PropertyChangeSupport(this);
     standardTickets = new SimpleStringProperty();
     VIPTickets = new SimpleStringProperty();
 movieTitle =new SimpleStringProperty();
@@ -39,6 +48,7 @@ movieTitle =new SimpleStringProperty();
     roomID = new SimpleIntegerProperty();
 totalPrice = new SimpleStringProperty();
     releaseDate= new SimpleStringProperty();
+    this.model.addListener(this);
 
   }
   public void reset(){
@@ -150,5 +160,21 @@ public void bindPrice(StringProperty property){
     return false;
     }
 
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
+      }});
+  }
 
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    property.removePropertyChangeListener(listener);
+  }
 }

@@ -1,20 +1,25 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Alert;
 import model.Model;
 import model.Screening;
-import model.Seat;
-import model.User;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
-public class TransitionPageViewModel
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
+public class TransitionPageViewModel implements PropertyChangeListener,
+    UnnamedPropertyChangeSubject
 {
   private Model model;
   private ViewState viewState;
+  private PropertyChangeSupport property;
 
   private StringProperty standardTickets;
   private StringProperty VIPTickets;
@@ -24,13 +29,14 @@ public class TransitionPageViewModel
   private StringProperty movieDate;
   private StringProperty movieTime;
   private IntegerProperty roomID;
-
   private StringProperty totalPrice;
+  private StringProperty releaseDate;
 
 
   public TransitionPageViewModel(Model model, ViewState viewState) {
     this.model = model;
     this.viewState = viewState;
+    property = new PropertyChangeSupport(this);
     standardTickets = new SimpleStringProperty();
     VIPTickets = new SimpleStringProperty();
 movieTitle =new SimpleStringProperty();
@@ -40,6 +46,8 @@ movieTitle =new SimpleStringProperty();
     movieTime = new SimpleStringProperty();
     roomID = new SimpleIntegerProperty();
 totalPrice = new SimpleStringProperty();
+    releaseDate= new SimpleStringProperty();
+    this.model.addListener(this);
 
   }
   public void reset(){
@@ -50,12 +58,18 @@ totalPrice = new SimpleStringProperty();
     movieDate.set(viewState.getSelectedScreening().dateProperty().get());
     movieTime.set(viewState.getSelectedScreening().timeProperty().get());
     roomID.set(viewState.getSelectedScreening().roomProperty().get());
+    releaseDate.set(viewState.getSelectedScreening().getReleaseDate());
+
     standardTickets.set("");
     VIPTickets.set("");
   }
 
 
 
+  public StringProperty getReleaseDate()
+  {
+    return releaseDate;
+  }
   public StringProperty movieTitleProperty()
   {
     return movieTitle;
@@ -85,6 +99,7 @@ totalPrice = new SimpleStringProperty();
   {
     return roomID;
   }
+
 
 
   public ViewState getViewState()
@@ -144,5 +159,21 @@ public void bindPrice(StringProperty property){
     return false;
     }
 
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
+      }});
+  }
 
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    property.removePropertyChangeListener(listener);
+  }
 }

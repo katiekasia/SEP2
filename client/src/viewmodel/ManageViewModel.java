@@ -1,62 +1,61 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import model.Model;
 import model.User;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
-public class ManageViewModel
+public class ManageViewModel implements PropertyChangeListener,
+    UnnamedPropertyChangeSubject
 {
   private Model model;
 
   private ViewState viewState;
+  private PropertyChangeSupport property;
 
-  //all the others
 
   public ManageViewModel(Model model, ViewState viewState)
   {
     this.model= model;
     this.viewState= viewState;
-
+    property = new PropertyChangeSupport(this);
+    this.model.addListener(this);
   }
-  public String getUsername() throws RemoteException
+  public String getUsername()
   {
     return viewState.getUser().getUsername();
   }
 
-  public void deleteAccount() throws RemoteException, SQLException
+  public void deleteAccount()
   {
     String username = viewState.getUser().getUsername();
     model.deleteAccount(username);
   }
 
-  public void updateUserInDatabase(User user, String previousUsername) throws RemoteException
+  public void updateUserInDatabase(User user, String previousUsername)
   {
     User newUser =viewState.getUser();
     model.updateUser(user, previousUsername);
-
-    for(int i=0; i<1; i++)
-    {
-      System.out.println("MANAGE VIEW MODEL\nUser name should not be '1'");
-      System.out.println(newUser.getUsername());
-    }
-    System.out.println("User information added to model to client.\n");
-
   }
-  public String getPassword() throws RemoteException
+  public String getPassword()
   {
     return viewState.getUser().getPassword();
   }
-  public String getPhoneNumber() throws RemoteException
+  public String getPhoneNumber()
   {
     return viewState.getUser().getPhoneNumber();
   }
-  public String getName() throws RemoteException
+  public String getName()
   {
     return viewState.getUser().getFstName();
   }
-  public String getSurname() throws RemoteException
+  public String getSurname()
   {
     return viewState.getUser().getLstName();
   }
@@ -68,5 +67,23 @@ public class ManageViewModel
   public String getEmail()
   {
     return viewState.getUser().getEmail();
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
+      }});
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    property.removePropertyChangeListener(listener);
   }
 }

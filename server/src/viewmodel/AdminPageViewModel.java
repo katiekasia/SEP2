@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+
 import javafx.scene.control.Alert;
 import model.Model;
 import model.Screening;
@@ -21,6 +22,7 @@ public class AdminPageViewModel implements PropertyChangeListener,
   private Model model;
   private ViewState viewState;
   private PropertyChangeSupport property;
+
   private ObservableList<SimpleScreeningView> screenings;
   private ObjectProperty<SimpleScreeningView> selectedObject;
 
@@ -32,8 +34,12 @@ public class AdminPageViewModel implements PropertyChangeListener,
     this.screenings = FXCollections.observableArrayList();
 
     this.selectedObject = new SimpleObjectProperty<>();
+
+    model.addListener(this);
+
     this.model.addListener(this);
     property = new PropertyChangeSupport(this);
+
     loadFromModel();
   }
   private void loadFromModel()
@@ -76,15 +82,14 @@ public class AdminPageViewModel implements PropertyChangeListener,
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
-    if (evt.getPropertyName().equals("addScreening") || evt.getPropertyName()
-        .equals("removeScreening"))
-    {
-      loadFromModel();
-    }else if (evt.getPropertyName().equals("fatalError")){
-      property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
-    }});
+      if (evt.getPropertyName().equals("addScreening") || evt.getPropertyName()
+          .equals("removeScreening"))
+      {
+        loadFromModel();
+      }else if (evt.getPropertyName().equals("fatalError")){
+        property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
+      }});
   }
-
   @Override public void addListener(PropertyChangeListener listener)
   {
     property.addPropertyChangeListener(listener);
@@ -94,14 +99,5 @@ public class AdminPageViewModel implements PropertyChangeListener,
   {
 property.removePropertyChangeListener(listener);
   }
-  //  @Override public void propertyChange(PropertyChangeEvent evt)
-//  {
-//    Platform.runLater(() ->{
-//      if (evt.getPropertyName().equals("fatalError")){
-//        primaryStage.close();
-//        Alert alert = new Alert(Alert.AlertType.ERROR);
-//        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
-//        alert.showAndWait();
-//      }});
-//  }
+
 }

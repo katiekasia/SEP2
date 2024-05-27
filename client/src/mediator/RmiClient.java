@@ -33,7 +33,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     }
     catch (Exception e)
     {
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
   public void stop(){
@@ -41,7 +41,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       UnicastRemoteObject.unexportObject(this,true);
     }catch (Exception e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -53,7 +53,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     }
     catch (RemoteException e)
     {
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -61,13 +61,11 @@ public class RmiClient implements Model, RemoteListener<String,String>
   {
     try
     {
-      System.out.println("rmi coient");
       server.updateUser(user, previousUsername);
-      System.out.println("!!!!");
     }
     catch (RemoteException e)
     {
-      System.out.println("\nRemote exception from server\n------------------");
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -78,7 +76,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       server.cancelOrder(order, user);
     }catch (Exception e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -88,9 +86,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getTicketForView(order, ID);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
   }
 
   @Override public Order getOrderByID(int orderID, User user)
@@ -99,9 +96,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getOrderByID(orderID, user);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
   }
 
   @Override public Screening getScreeningForView(String time, String date,
@@ -111,30 +107,10 @@ public class RmiClient implements Model, RemoteListener<String,String>
       {
         return server.getScreeningForView(time, date, title, room);
       }catch (RemoteException e){
-        e.printStackTrace();
+        throw new RuntimeException("Server connection error. "  + e.getMessage());
       }
-      return null;
   }
 
-  @Override public void connect()
-  {
-
-  }
-
-  @Override public void disconnect()
-  {
-
-  }
-
-  @Override public int getPort()
-  {
-    return 0;
-  }
-
-  @Override public void setPort(int port)
-  {
-
-  }
 
   @Override public Order[] getAllOrders(User user)
   {
@@ -142,9 +118,9 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getAllOrders(user);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
+
   }
 
   @Override public Snack[] getSnacksFromOrder(Order order)
@@ -154,9 +130,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
    {
      return server.getSnacksFromOrder(order);
    }catch (RemoteException e){
-     e.printStackTrace();
+     throw new RuntimeException("Server connection error. "  + e.getMessage());
    }
-   return null;
   }
 
   @Override public Ticket[] getTicketsFromOrder(Order order)
@@ -166,15 +141,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getTicketsFromOrder(order);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
-  }
-
-
-  @Override public String getHost()
-  {
-    return null;
   }
 
   @Override public Order reserveSeats(Seat[] seats, User customer,
@@ -184,8 +152,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
      return server.reserveSeats(seats, customer, screening,nbVIP);
     }catch (RemoteException e){
-      e.printStackTrace();
-      throw new RuntimeException(e.getMessage());
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -195,16 +162,15 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getPriceForSize(snackType, size);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return 0;
   }
   @Override public void addSnackToOrder(String snackType, int amount, Order order, User user,String size){
     try
     {
       server.addSnackToOrder(snackType, amount, order, user, size);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -215,9 +181,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.checkSeatAvailability(index, screening);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return false;
   }
 
   @Override public boolean logInAdmin(String username, String password)
@@ -226,9 +191,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.logInAdmin(username, password);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return false;
   }
 
   @Override public void reserveSeat(Seat seat, User customer,
@@ -238,7 +202,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       server.reserveSeat(seat, customer, screening);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -249,9 +213,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getAvailableSeats(screening);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
   }
 
   @Override public Seat[] getEmptySeats(Screening screening)
@@ -261,9 +224,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getEmptySeats(screening);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
   }
 
   @Override public User getUserByUsername(String username)
@@ -272,9 +234,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getUserByUsername(username);
     }catch (RemoteException e){
-
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
   }
 
 
@@ -285,7 +246,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       server.updateSeatToBooked(seat, ticket);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -295,7 +256,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       server.addOrder(order, user);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -306,9 +267,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.logIn(username, password);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
   }
 
   @Override public void register(String username, String password, String email,
@@ -318,7 +278,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       server.register(username, password, email, firstName, lastName, phone);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -328,7 +288,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       server.addScreening(screening);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -339,7 +299,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       server.removeScreening(screening);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -349,7 +309,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       server.removeByDate(date);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -359,9 +319,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getAllScreenings();
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
   }
 
   @Override public int getNbOfScreenings()
@@ -370,9 +329,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getNbOfScreenings();
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return 0;
   }
 
   @Override public Screening getScreening(Screening screening)
@@ -382,9 +340,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getScreening(screening);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
   }
 
   @Override public ArrayList<Ticket> getAllTickets(User user)
@@ -393,9 +350,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getAllTickets(user);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
   }
 
   @Override public void downgradeTicket(Ticket ticket, Order order, User user)
@@ -404,7 +360,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       server.downgradeTicket(ticket, order, user);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -414,9 +370,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       server.upgradeTicket(ticket, order, user);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-
   }
 
   @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
@@ -425,7 +380,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       server.cancelTicketFromOrder(ticket, order);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -435,7 +390,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       server.deleteSnackFromOrder(snack, order);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -448,9 +403,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getScreaningsByMovieTitle(title);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
   }
 
   @Override public ArrayList<Screening> getScreeningsByDate(LocalDate date)
@@ -460,9 +414,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getScreeningsByDate(date);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
   }
 
   @Override public ArrayList<Screening> getScreeningsByDateAndTitle(
@@ -472,9 +425,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getScreeningsByDateAndTitle(title, date);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
   }
 
   @Override public ArrayList<Order> getOrdersForUser(String username)
@@ -483,9 +435,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getOrdersForUser(username);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
   }
 
   @Override public Movie getMovieForView(String title)
@@ -494,9 +445,8 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       return server.getMovieForView(title);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
-    return null;
   }
 
   @Override public void changePrices(ArrayList<Double> newPrices)
@@ -505,7 +455,7 @@ public class RmiClient implements Model, RemoteListener<String,String>
     {
       server.changePrices(newPrices);
     }catch (RemoteException e){
-      e.printStackTrace();
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
 
@@ -529,9 +479,6 @@ property.removePropertyChangeListener(listener);
       case "RESERVE SEAT":
         property.firePropertyChange("reserve seat", null, event.getValue2());
         break;
-      case "UPDATE SEAT TO BOOKED":
-        property.firePropertyChange("update seat to booked", null, event.getValue2());
-        break;
       case "ADD ORDER":
         property.firePropertyChange("add order", null, event.getValue2());
         break;
@@ -541,9 +488,12 @@ property.removePropertyChangeListener(listener);
       case "REMOVE SCREENING":
         property.firePropertyChange("remove screening", null, event.getValue2());
         break;
-      case "REMOVE BY DATE":
-        property.firePropertyChange("remove by date", null, event.getValue2());
+      case "REMOVE ORDER":
+        property.firePropertyChange("remove order", null,event.getValue2());
         break;
+//      case "REMOVE BY DATE":
+//        property.firePropertyChange("remove by date", null, event.getValue2());
+//        break;
     }
   }
 }

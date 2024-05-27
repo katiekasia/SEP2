@@ -1,5 +1,6 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -10,12 +11,12 @@ import model.User;
 import viewmodel.ManageViewModel;
 import viewmodel.ViewState;
 
-import java.rmi.RemoteException;
-import java.sql.SQLException;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Optional;
 
-public class ManageViewController {
-  private Region root;
+public class ManageViewController implements PropertyChangeListener
+{ private Region root;
   private ManageViewModel viewModel;
   private ViewHandler viewHandler;
   private ViewState viewState;
@@ -30,6 +31,7 @@ public class ManageViewController {
   @FXML private Button signOut;
   @FXML private Button ticketConfirmation;
   @FXML private Button save;
+
 
 
   public void init(ViewHandler viewHandler, Region root, ManageViewModel viewModel)
@@ -81,34 +83,32 @@ public class ManageViewController {
     viewHandler.openView("login");
   }
 
-
   @FXML public void onOrderConfirmation()
   {
     viewHandler.openView("orderConfirmation");
   }
-
-  @FXML public void onDelete() {
+  @FXML public void onDelete()
+  {
     Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
     confirmationAlert.setTitle("Confirm Account Deletion");
     confirmationAlert.setHeaderText("Are you sure you want to delete your account?");
     confirmationAlert.setContentText("This action cannot be undone.");
-    
+
     Optional<ButtonType> result = confirmationAlert.showAndWait();
-    if (result.isPresent() && result.get() == ButtonType.OK) {
-      try {
+    if (result.isPresent() && result.get() == ButtonType.OK)
+    {
+      try
+      {
         viewModel.deleteAccount();
         viewHandler.openView("login");
-      } catch (RemoteException | SQLException e) {
-        showAlert("Deletion Failed", "An error occurred while trying to delete your account.");
-        e.printStackTrace();
-      } 
+      }
+      catch (Exception e)
+      {
+        showAlert("Deletion Failed",
+            "An error occurred while trying to delete your account. " + e.getMessage());
+      }
     }
   }
-
-  private void showAlert(String deletionFailed, String s)
-  {
-  }
-
   @FXML public void onEdit()
   {
     setFields(false);
@@ -123,8 +123,6 @@ public class ManageViewController {
 
   @FXML public void onSave()
   {
-    try
-    {
       setFields(true);
       username.setEditable(false);
       password.setEditable(false);
@@ -152,12 +150,19 @@ public class ManageViewController {
       System.out.println(user.getUsername());
       System.out.println("User information added to viewModel.");
     }
-    catch (RemoteException e)
-    {
-      throw new RuntimeException(e);
-    }
+
+  private void showAlert(String deletionFailed, String s)
+  {
   }
 
-
-
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        viewHandler.close();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
+        alert.showAndWait();
+      }});
+  }
 }

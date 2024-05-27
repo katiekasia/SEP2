@@ -4,7 +4,10 @@
   import javafx.beans.property.SimpleIntegerProperty;
   import javafx.beans.property.SimpleStringProperty;
   import javafx.beans.property.StringProperty;
-  import model.*;
+  import model.Screening;
+
+  import java.time.LocalDate;
+  import java.time.format.DateTimeFormatter;
 
   public class SimpleScreeningView
   {
@@ -16,6 +19,7 @@
     private IntegerProperty room;
     private StringProperty length;
     private StringProperty genre;
+    private StringProperty releaseDate;
     //for Ticket Confirmation table
     private StringProperty seatID;
 
@@ -35,6 +39,10 @@
   room = new SimpleIntegerProperty(screening.getRoom().getRoomID());
   length = new SimpleStringProperty(screening.getMovie().getLenghth());
 
+      LocalDate releaseDateLocal = screening.getMovie().getReleaseDate();
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+      String releaseDateString = releaseDateLocal.format(formatter);
+      releaseDate = new SimpleStringProperty(releaseDateString);
     }
 
     public void setRoom(int room)
@@ -56,6 +64,10 @@
       this.length.set(length);
     }
 
+    public String getReleaseDate()
+    {
+      return releaseDate.get();
+    }
     public String getTime()
     {
       return time.get();
@@ -125,7 +137,6 @@
     {
       return date;
     }
-
 
 
   }

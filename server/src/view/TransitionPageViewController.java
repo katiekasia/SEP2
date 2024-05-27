@@ -1,14 +1,17 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import viewmodel.TransitionPageViewModel;
 import viewmodel.ViewState;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.function.UnaryOperator;
 
-public class TransitionPageViewController
+public class TransitionPageViewController implements PropertyChangeListener
 {
 
   private Region root;
@@ -25,6 +28,7 @@ public class TransitionPageViewController
   @FXML private Label movieDate;
   @FXML private Label movieTime;
   @FXML private Label roomID;
+  @FXML private Label releaseDate;
   @FXML private Button manage;
   @FXML private Button signOut;
   @FXML private Button ticketConfirmation;
@@ -37,13 +41,14 @@ public class TransitionPageViewController
     this.viewModel = viewModel;
     this.root = root;
     this.viewState = viewModel.getViewState();
+
+    viewModel.addListener(this);
+
     viewModel.bindStandard(numberOfStandartTickets.textProperty());
     viewModel.bindVIP(numberOfVIPTickets.textProperty());
     viewModel.bindPrice(totalPrice.textProperty());
 
     movieTitle.textProperty().bind(viewModel.movieTitleProperty());
-
-
 
     length.textProperty().bind(viewModel.lengthProperty());
 
@@ -55,10 +60,10 @@ public class TransitionPageViewController
 
     roomID.textProperty().bind(viewModel.roomIDProperty().asString());
 
+    releaseDate.textProperty().bind(viewModel.getReleaseDate());
 
 
     username.textProperty().bind(viewState.nameProperty());
-
 
     initializeTicketInputFields();
     viewModel.reset();
@@ -113,5 +118,14 @@ public class TransitionPageViewController
       alert.showAndWait();
     }
   }
-
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        viewHandler.close();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
+        alert.showAndWait();
+      }});
+  }
 }

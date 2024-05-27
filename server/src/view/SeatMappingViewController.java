@@ -1,16 +1,19 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.Region;
-import model.Screening;
 import viewmodel.SeatMappingViewModel;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-public class SeatMappingViewController
+public class SeatMappingViewController implements PropertyChangeListener
     {
       private Region root;
       private SeatMappingViewModel viewModel;
@@ -138,13 +141,19 @@ public class SeatMappingViewController
 
     setSeatsFromModel();
         viewModel.reset();
-    //selectionControl();
+        viewModel.addListener(this);
+
   }
 
   private void setSeatsFromModel(){
+
         for (CheckBox checkBox : checkBoxes){
           if (viewModel.setSeats().contains(checkBox.getId().toUpperCase())){
             checkBox.setDisable(true);
+            if (checkBox.isSelected()){
+              checkBox.setSelected(false);
+              viewModel.deselectSeat(checkBox.getId());
+            }
           }
         }
   }
@@ -190,5 +199,16 @@ public class SeatMappingViewController
   {
     viewHandler.openView("transitionPage");
   }
-}
 
+      @Override public void propertyChange(PropertyChangeEvent evt)
+      {
+        Platform.runLater(() ->{
+        if (evt.getPropertyName().equals("reset")){
+          setSeatsFromModel();
+        } else if (evt.getPropertyName().equals("fatalError")){
+          viewHandler.close();
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+          alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
+          alert.showAndWait();}});
+      }
+  }

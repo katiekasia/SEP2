@@ -1,22 +1,41 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import model.Model;
 import model.Screening;
 import model.Seat;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
-public class SeatMappingViewModel {
+public class SeatMappingViewModel
+    implements PropertyChangeListener, UnnamedPropertyChangeSubject
+{
   private Model model;
  private ViewState viewState;
   private ObservableList<String> selectedSeats = FXCollections.observableArrayList();
+  private PropertyChangeSupport property;
   private int nbTickets;
   private int myTickets;
 
 
+  public SeatMappingViewModel(Model model, ViewState viewState) {
+    this.model = model;
+    this.viewState = viewState;
+
+    property = new PropertyChangeSupport(this);
+    this.model.addListener(this);
+    reset();
+
+
+  }
   public ObservableList<String> getSelectedSeats() {
     return selectedSeats;
   }
@@ -63,15 +82,7 @@ return null;
   }
 
   //smth similar to the one in Main Page to load and bind the info
-  public SeatMappingViewModel(Model model, ViewState viewState) {
-    this.model = model;
-    this.viewState = viewState;
 
-
-    reset();
-
-
-  }
   public void reset(){
     myTickets = viewState.getNumberOfStandardTickets() + viewState.getNumberOfVIPTickets();
     nbTickets = myTickets;
@@ -105,6 +116,14 @@ return null;
     }
     return true;
   }
+  @Override public void addListener(PropertyChangeListener listener){
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    property.removePropertyChangeListener(listener);
+  }
 
   public Screening getScreening()
   {
@@ -114,5 +133,18 @@ return null;
          viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom());
    }catch (Exception e){e.printStackTrace();}
    return null;
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("reserveSeat" + getScreening().getTime()) || evt.getPropertyName()
+          .equals("reserveSeats" + getScreening().getTime()))
+      {
+        property.firePropertyChange("reset",null, evt.getNewValue());
+      }else if (evt.getPropertyName().equals("fatalError")){
+        property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
+      }});
+
   }
 }

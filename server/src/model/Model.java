@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public interface Model extends UnnamedPropertyChangeSubject
 {
-  public void updateUser(User user, String previousUsername) throws RemoteException;
+  public void updateUser(User user, String previousUsername) ;
    void cancelOrder(Order order, User user);
   Order getOrderByID(int orderID, User user);
 
@@ -55,11 +55,4 @@ Screening getScreening(Screening screening);
 
   void register(String username, String password, String email, String firstName, String lastName, String phone);
 void deleteAccount(String username);
-
-
-/*
- public Ticket getTicketBySeat(Seat seat);
-  public Seat getSeatByScreening(Screening screening);
-
- */
 }

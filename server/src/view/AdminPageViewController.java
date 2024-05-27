@@ -1,15 +1,21 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import viewmodel.AdminPageViewModel;
+import viewmodel.SimpleScreeningView;
 import viewmodel.ViewState;
 
-public class AdminPageViewController
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class AdminPageViewController implements PropertyChangeListener
 {
 
   private Region root;
@@ -25,20 +31,37 @@ public class AdminPageViewController
   @FXML private TableColumn screeningTime;
   @FXML private TableColumn time;
   @FXML private TableColumn room;
-  @FXML private DatePicker datePicker;
+  private SimpleScreeningView selected;
 
 
   public void init(ViewHandler viewHandler, Region root, AdminPageViewModel viewModel) {
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;
     this.root = root;
+    this.viewState= viewModel.getViewState();
 
+
+    viewModel.setScreenings(screeningsTable.getItems());
+    viewModel.bindScreenings(screeningsTable.getItems());
+    username.textProperty().bind(viewState.nameProperty());
+
+    this.title.setCellValueFactory(new PropertyValueFactory<>("movie"));
+    this.screeningTime.setCellValueFactory(new PropertyValueFactory<>("length"));
+    this.date.setCellValueFactory(new PropertyValueFactory<>("date"));
+    this.time.setCellValueFactory(new PropertyValueFactory<>("time"));
+    this.room.setCellValueFactory(new PropertyValueFactory<>("room"));
+
+    screeningsTable.getSelectionModel().selectedItemProperty().addListener((obs,oldVal, newVal) -> {
+      selected = (SimpleScreeningView) newVal;
+      viewState.setSelectedScreening((SimpleScreeningView) newVal);
+      viewModel.setSelected();
+    });
   }
 
 
   @FXML public void onDeleteScreening()
   {
-    
+
   }
   @FXML public void onEditPrices()
   {
@@ -51,6 +74,16 @@ public class AdminPageViewController
   @FXML public void onAddMovie()
   {
     viewHandler.openView("addMovie");
+  }
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        viewHandler.close();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
+        alert.showAndWait();
+      }});
   }
 
 }

@@ -1,5 +1,6 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -10,12 +11,18 @@ import javafx.scene.control.ButtonType;
 import model.Model;
 import model.Order;
 import model.User;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Optional;
 
-public class OrderConfirmationViewModel
+public class OrderConfirmationViewModel implements PropertyChangeListener,
+    UnnamedPropertyChangeSubject
 {
   private Model model;
+  private PropertyChangeSupport property;
   private ObservableList<SimpleOrderView> orders;
   private ObjectProperty<SimpleOrderView> selectedObject;
   private ViewState viewState;
@@ -26,6 +33,8 @@ public class OrderConfirmationViewModel
     this.orders = FXCollections.observableArrayList();
 
     this.selectedObject = new SimpleObjectProperty<>();
+    this.model.addListener(this);
+    property = new PropertyChangeSupport(this);
 
 
   }
@@ -71,5 +80,25 @@ public class OrderConfirmationViewModel
       viewState.setUser(model.getUserByUsername(viewState.getUser().getUsername()));
       loadFromModel();
     }
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+    if (evt.getPropertyName().equals("addOrder" + viewState.getUser().getUsername()) || evt.getPropertyName().equals("removeOrder" + viewState.getUser().getUsername())){
+      loadFromModel();
+    }else if (evt.getPropertyName().equals("fatalError")){
+      property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
+    }});
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+property.removePropertyChangeListener(listener);
   }
 }

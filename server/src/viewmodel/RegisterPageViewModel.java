@@ -1,13 +1,20 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Model;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
-import java.rmi.RemoteException;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
-public class RegisterPageViewModel {
+public class RegisterPageViewModel implements PropertyChangeListener,
+    UnnamedPropertyChangeSubject
+{
   private Model model;
+  private PropertyChangeSupport property;
   private StringProperty registrationStatus;
   private StringProperty registrationMessage;
 
@@ -15,6 +22,9 @@ public class RegisterPageViewModel {
     this.model = model;
     this.registrationStatus = new SimpleStringProperty();
     this.registrationMessage = new SimpleStringProperty();
+
+    property = new PropertyChangeSupport(this);
+    this.model.addListener(this);
   }
 
   public void register(String username, String password, String email, String firstName, String lastName, String phone) {
@@ -34,5 +44,23 @@ public class RegisterPageViewModel {
 
   public StringProperty registrationMessageProperty() {
     return registrationMessage;
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
+      }});
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    property.removePropertyChangeListener(listener);
   }
 }

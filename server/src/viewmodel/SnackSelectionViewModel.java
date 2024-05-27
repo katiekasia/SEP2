@@ -1,23 +1,24 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Region;
 import model.Model;
 import model.Order;
-import view.ViewHandler;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
-import java.util.ArrayList;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
-public class SnackSelectionViewModel
+public class SnackSelectionViewModel implements PropertyChangeListener,
+    UnnamedPropertyChangeSubject
 {
 private Model model;
 private ViewState viewState;
 private double total;
 private StringProperty totalPrice;
+private PropertyChangeSupport property;
 
 private StringProperty candyPrice;
 private StringProperty nachosPrice;
@@ -52,6 +53,8 @@ private String size;
     totalPrice = new SimpleStringProperty();
     size = "";
 
+    property = new PropertyChangeSupport(this);
+    this.model.addListener(this);
 
     candyPrice = new SimpleStringProperty();
     nachosPrice = new SimpleStringProperty();
@@ -223,18 +226,55 @@ private String size;
     tuborgPrice.set(String.valueOf(model.getPriceForSize("tuborg",size)) + " DKK");
     redbullPrice.set(String.valueOf(model.getPriceForSize("redbull",size)) + " DKK");
   }
+  public void refreshUser(){viewState.setUser(model.getUserByUsername(viewState.getUser().getUsername()));}
+  public int valueOfField(StringProperty property){
+    if (property.get().equals("")){
+      return 0;
+    }else {
+      try
+      {
+        return Integer.parseInt(property.get());
+      }catch (NumberFormatException e){
+        return 0;
+      }
+    }
+  }
 
   public void addPressed(){
+    viewState.setUser(model.getUserByUsername(viewState.getUser().getUsername()));
     Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),viewState.getUser());
-    model.addSnackToOrder("popcorn",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
-    model.addSnackToOrder("nachos",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
-    model.addSnackToOrder("candies",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
-    model.addSnackToOrder("cola",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
-    model.addSnackToOrder("pepsi",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
-    model.addSnackToOrder("peanuts",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
-    model.addSnackToOrder("fanta",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
-    model.addSnackToOrder("tuborg",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
-    model.addSnackToOrder("redbull",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
-    model.addSnackToOrder("oreo",Integer.parseInt(popcornAmount.get()),order,viewState.getUser(),size);
+try
+{
+  model.addSnackToOrder("popcorn",valueOfField(popcornAmount),order,viewState.getUser(),size);
+  model.addSnackToOrder("nachos",valueOfField(nachosAmount),order,viewState.getUser(),size);
+  model.addSnackToOrder("candies",valueOfField(candiesAmount),order,viewState.getUser(),size);
+  model.addSnackToOrder("cola",valueOfField(colaAmount),order,viewState.getUser(),size);
+  model.addSnackToOrder("pepsi",valueOfField(pepsiAmount),order,viewState.getUser(),size);
+  model.addSnackToOrder("peanuts",valueOfField(peanutsAmount),order,viewState.getUser(),size);
+  model.addSnackToOrder("fanta",valueOfField(fantaAmount),order,viewState.getUser(),size);
+  model.addSnackToOrder("tuborg",valueOfField(tuborgAmount),order,viewState.getUser(),size);
+  model.addSnackToOrder("redbull",valueOfField(redbullAmount),order,viewState.getUser(),size);
+  model.addSnackToOrder("oreo",valueOfField(oreoAmount),order,viewState.getUser(),size);
+}catch (Exception e){
+  e.printStackTrace();
+}
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
+      }});
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    property.removePropertyChangeListener(listener);
   }
 }

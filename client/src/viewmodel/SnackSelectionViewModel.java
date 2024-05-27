@@ -1,16 +1,24 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Model;
 import model.Order;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
-public class SnackSelectionViewModel
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
+public class SnackSelectionViewModel implements PropertyChangeListener,
+    UnnamedPropertyChangeSubject
 {
 private Model model;
 private ViewState viewState;
 private double total;
 private StringProperty totalPrice;
+private PropertyChangeSupport property;
 
 private StringProperty candyPrice;
 private StringProperty nachosPrice;
@@ -45,6 +53,8 @@ private String size;
     totalPrice = new SimpleStringProperty();
     size = "";
 
+    property = new PropertyChangeSupport(this);
+    this.model.addListener(this);
 
     candyPrice = new SimpleStringProperty();
     nachosPrice = new SimpleStringProperty();
@@ -248,5 +258,23 @@ try
 }catch (Exception e){
   e.printStackTrace();
 }
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
+      }});
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    property.removePropertyChangeListener(listener);
   }
 }

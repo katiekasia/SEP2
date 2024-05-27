@@ -1,5 +1,6 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -9,12 +10,18 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import model.Model;
 import model.Order;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Optional;
 
-public class OrderConfirmationViewModel
+public class OrderConfirmationViewModel implements PropertyChangeListener,
+    UnnamedPropertyChangeSubject
 {
   private Model model;
+  private PropertyChangeSupport property;
   private ObservableList<SimpleOrderView> orders;
   private ObjectProperty<SimpleOrderView> selectedObject;
   private ViewState viewState;
@@ -25,13 +32,16 @@ public class OrderConfirmationViewModel
     this.orders = FXCollections.observableArrayList();
 
     this.selectedObject = new SimpleObjectProperty<>();
+    this.model.addListener(this);
+    property = new PropertyChangeSupport(this);
 
 
   }
 
   public void loadFromModel(){
     orders.clear();
-    Order[] userOrders = viewState.getUser().getOrders().toArray(new Order[0]);
+    Order[] userOrders = model.getAllOrders(model.getUserByUsername(viewState.getUser().getUsername()));
+    System.out.println(userOrders.length);
     for (Order order : userOrders){
       SimpleOrderView simpleOrderView = new SimpleOrderView(order);
       orders.add(simpleOrderView);
@@ -63,9 +73,31 @@ public class OrderConfirmationViewModel
   public void cancelOrderPressed(){
     if (confirmation())
     {
+
       model.cancelOrder(model.getOrderByID(
-          viewState.getSelectedOrder().orderIDProperty().get(), viewState.getUser()), viewState.getUser());
+          viewState.getSelectedOrder().orderIDProperty().get(), model.getUserByUsername(viewState.getUser().getUsername())), viewState.getUser());
+      viewState.setUser(model.getUserByUsername(viewState.getUser().getUsername()));
       loadFromModel();
     }
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+    if (evt.getPropertyName().equals("addOrder" + viewState.getUser().getUsername()) || evt.getPropertyName().equals("removeOrder" + viewState.getUser().getUsername())){
+      loadFromModel();
+    }else if (evt.getPropertyName().equals("fatalError")){
+      property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
+    }});
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+property.removePropertyChangeListener(listener);
   }
 }

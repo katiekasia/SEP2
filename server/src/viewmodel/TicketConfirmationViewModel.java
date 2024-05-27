@@ -1,25 +1,36 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import model.*;
+import model.Model;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
-import java.rmi.RemoteException;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
-public class TicketConfirmationViewModel
+public class TicketConfirmationViewModel implements PropertyChangeListener,
+    UnnamedPropertyChangeSubject
   {
     private Model model;
     private ViewState viewState;
+    private PropertyChangeSupport property;
     private ObservableList<SimpleScreeningView> screenings;
     private ObjectProperty<SimpleScreeningView> selectedObject;
 
 
     public TicketConfirmationViewModel(Model model, ViewState viewState)
+
     {
       this.model = model;
+
+      this.property = new PropertyChangeSupport(this);
+      this.model.addListener(this);
+
       this.viewState = viewState;
       this.screenings = FXCollections.observableArrayList();
       this.selectedObject = new SimpleObjectProperty<>();
@@ -87,5 +98,23 @@ public class TicketConfirmationViewModel
     {
       selectedObject.set(viewState.getSelectedScreening());
     }
-}
+
+    @Override public void propertyChange(PropertyChangeEvent evt)
+    {
+      Platform.runLater(() ->{
+        if (evt.getPropertyName().equals("fatalError")){
+          property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
+        }});
+    }
+
+    @Override public void addListener(PropertyChangeListener listener)
+    {
+      property.addPropertyChangeListener(listener);
+    }
+
+    @Override public void removeListener(PropertyChangeListener listener)
+    {
+      property.removePropertyChangeListener(listener);
+    }
+  }
 

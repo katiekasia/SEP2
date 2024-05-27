@@ -1,17 +1,23 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import model.Order;
 import viewmodel.SeatMappingViewModel;
 import viewmodel.SimpleScreeningView;
 import viewmodel.TicketConfirmationViewModel;
 import viewmodel.ViewState;
 
-public class TicketConfirmationViewController
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class TicketConfirmationViewController implements PropertyChangeListener
 {
   private Region root;
   private TicketConfirmationViewModel viewModel;
@@ -32,7 +38,7 @@ public class TicketConfirmationViewController
   @FXML private TableColumn ticketType;
 
   @FXML private TableColumn snacks;
-@FXML private Label username;
+
   @FXML private Button cancel;
   @FXML private Button confirmOrder;
   @FXML private Button snackSelection;
@@ -45,7 +51,9 @@ public class TicketConfirmationViewController
     this.viewModel = viewModel;
     this.root = root;
     this.viewState= viewModel.getViewState();
-    username.textProperty().bind(viewState.nameProperty());
+
+    viewModel.addListener(this);
+
 
     viewModel.setScreenings(screeningsTable.getItems());
     viewModel.bindScreenings(screeningsTable.getItems());
@@ -123,5 +131,15 @@ public class TicketConfirmationViewController
   @FXML public void onTicketConfirmation()
   {
 
+  }
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        viewHandler.close();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
+        alert.showAndWait();
+      }});
   }
 }

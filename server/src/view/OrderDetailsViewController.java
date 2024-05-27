@@ -1,5 +1,6 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -9,9 +10,10 @@ import viewmodel.SimpleSnackView;
 import viewmodel.SimpleTicketView;
 import viewmodel.ViewState;
 
-import java.util.Optional;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class OrderDetailsViewController
+public class OrderDetailsViewController implements PropertyChangeListener
 {
   private Region root;
   private ViewHandler viewHandler;
@@ -19,6 +21,11 @@ public class OrderDetailsViewController
   private ViewState viewState;
   private SimpleSnackView selectedSnack;
   private SimpleTicketView selectedTicket;
+
+  @FXML private Label date;
+  @FXML private Label movie;
+  @FXML private Label orderId;
+  @FXML private Label time;
 
   @FXML private TableView ticketsTable;
   @FXML private TableView snacksTable;
@@ -43,6 +50,8 @@ public class OrderDetailsViewController
     this.root = root;
     this.viewState = viewModel.getViewState();
 
+    viewModel.addListener(this);
+
     viewModel.loadFromModel();
     controlButtons();
 
@@ -50,6 +59,12 @@ public class OrderDetailsViewController
     viewModel.setSnacks(snacksTable.getItems());
     viewModel.bindSnacks(snacksTable.getItems());
     viewModel.bindTickets(ticketsTable.getItems());
+
+    time.setText(viewModel.getTime());
+    movie.setText(viewModel.getMovie());
+    date.setText(viewModel.getDate());
+    orderId.setText(viewModel.getOrderID());
+
     seatColumn.setCellValueFactory(new PropertyValueFactory<>("seatID"));
     ticketTypeColumn.setCellValueFactory(new PropertyValueFactory<>("ticketType"));
     ticketPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -132,5 +147,15 @@ public class OrderDetailsViewController
   }
   @FXML public void onBack(){
     viewHandler.openView("orderConfirmation");
+  }
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        viewHandler.close();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
+        alert.showAndWait();
+      }});
   }
 }

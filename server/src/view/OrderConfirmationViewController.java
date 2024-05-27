@@ -1,15 +1,18 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import viewmodel.OrderConfirmationViewModel;
 import viewmodel.SimpleOrderView;
-import viewmodel.SimpleScreeningView;
 import viewmodel.ViewState;
 
-public class OrderConfirmationViewController
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class OrderConfirmationViewController implements PropertyChangeListener
 {
   private Region root;
   private ViewHandler viewHandler;
@@ -78,5 +81,15 @@ public class OrderConfirmationViewController
       alert.setHeaderText("No order selected.");
       alert.showAndWait();
     }
+  }
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        viewHandler.close();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
+        alert.showAndWait();
+      }});
   }
 }

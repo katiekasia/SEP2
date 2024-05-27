@@ -40,7 +40,7 @@ public class ModelManager implements Model
     }
     catch (SQLException e)
     {
-      e.printStackTrace();
+      throw new RuntimeException("Database connection error. "  + e.getMessage());
     }
     ArrayList<Order> orders = DataBaseHandler.getAllOrders(usersList);
     setUpScreenings(orders, screenings);
@@ -68,7 +68,7 @@ public class ModelManager implements Model
     }
     catch (SQLException e)
     {
-      e.printStackTrace();
+      throw new RuntimeException("Database connection error. "  + e.getMessage());
     }
   }
 
@@ -161,14 +161,12 @@ public class ModelManager implements Model
     }
     catch (SQLException e)
     {
-      e.printStackTrace();
+      throw new RuntimeException("Database connection error. "  + e.getMessage());
     }
   }
 
   @Override public Order getOrderByID(int orderID, User user)
   {
-    Order order = user.getOrderByID(orderID);
-    System.out.println(order.toString());
     return getUserByUsername(user.getUsername()).getOrderByID(orderID);
   }
 
@@ -278,7 +276,7 @@ public class ModelManager implements Model
    {
      DataBaseHandler.deleteSnack(snack,order);
    }catch (SQLException e){
-     e.printStackTrace();
+     throw new RuntimeException("Database connection error. "  + e.getMessage());
    }
   }
 
@@ -290,7 +288,7 @@ public class ModelManager implements Model
     {
       DataBaseHandler.changeTicketType(ticket);
     }catch (SQLException e){
-      e.printStackTrace();
+      throw new RuntimeException("Database connection error. "  + e.getMessage());
     }
   }
 
@@ -301,7 +299,7 @@ public class ModelManager implements Model
     {
       DataBaseHandler.addScreeningToDatabase(screening);
     }catch (SQLException e){
-      e.printStackTrace();
+      throw new RuntimeException("Database connection error. "  + e.getMessage());
     }
   }
 
@@ -313,7 +311,7 @@ public class ModelManager implements Model
     {
       DataBaseHandler.deleteScreening(screening);
     }catch (SQLException e){
-      e.printStackTrace();
+      throw new RuntimeException("Database connection error. "  + e.getMessage());
     }
   }
 
@@ -413,7 +411,7 @@ public class ModelManager implements Model
       {
         DataBaseHandler.addSnack(snack,temp);
       }catch (SQLException e){
-        e.printStackTrace();
+        throw new RuntimeException("Database connection error. "  + e.getMessage());
       }
     }
   }
@@ -425,7 +423,7 @@ public class ModelManager implements Model
     {
       DataBaseHandler.changePrices(pricesManager);
     }catch (SQLException e){
-      e.printStackTrace();
+      throw new RuntimeException("Database connection error. "  + e.getMessage());
     }
   }
 
@@ -440,8 +438,7 @@ public class ModelManager implements Model
     }
     catch (SQLException e)
     {
-      e.printStackTrace();
-      throw new RuntimeException("Error registering user", e);
+      throw new RuntimeException("Database connection error. "  + e.getMessage());
     }
   }
 
@@ -454,7 +451,7 @@ public class ModelManager implements Model
     }
     catch (SQLException e)
     {
-      e.printStackTrace();
+      throw new RuntimeException("Database connection error. "  + e.getMessage());
     }
   }
 

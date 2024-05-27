@@ -1,5 +1,6 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -11,13 +12,19 @@ import model.Model;
 import model.Order;
 import model.Snack;
 import model.Ticket;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Optional;
 
-public class OrderDetailsViewModel
+public class OrderDetailsViewModel implements PropertyChangeListener,
+    UnnamedPropertyChangeSubject
 {
   private Model model;
   private ViewState viewState;
+  private PropertyChangeSupport property;
   private ObservableList<SimpleTicketView> tickets;
   private ObservableList<SimpleSnackView> snacks;
   private ObjectProperty<SimpleSnackView> selectedSnack;
@@ -33,6 +40,9 @@ public class OrderDetailsViewModel
     ticketSelected = false;
     snackSelected = false;
 
+    this.model.addListener(this);
+    property = new PropertyChangeSupport(this);
+
     selectedSnack = new SimpleObjectProperty<>();
     selectedTicket = new SimpleObjectProperty<>();
   }
@@ -43,6 +53,7 @@ public class OrderDetailsViewModel
     tickets.clear();
     Ticket[] orderTickets = model.getTicketsFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
         viewState.getUser()));
+    System.out.println(orderTickets.length);
     Snack[] orderSnacks = model.getSnacksFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
         viewState.getUser()));
     for (Ticket ticket : orderTickets){
@@ -167,4 +178,39 @@ ticketSelected = false;
     loadFromModel();
   }
 
+
+  public String getTime()
+  {
+    return viewState.getSelectedScreening().getTime();
+  }
+  public String getMovie()
+  {
+    return viewState.getSelectedScreening().getMovie();
+  }
+  public String getDate()
+  {
+    return viewState.getSelectedScreening().getDate();
+  }
+  public String getOrderID()
+  {
+    return viewState.getSelectedOrder().orderIDProperty().asString().getValue();
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
+      }});
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    property.removePropertyChangeListener(listener);
+  }
 }
