@@ -15,18 +15,31 @@ public class Screening implements Serializable
 	private int id;
 	private ArrayList<Integer> ids = new ArrayList<>();
 
-	public Screening(int hour, int minute, LocalDate date, Movie movie, Room room){
+	public Screening(int hour, int minute, LocalDate date, Movie movie, Room room)
+	{
 		this.date = new SimpleDate(date);
 		setID(generateID());
-	this.hour = hour;
-	this.minute = minute;
-	this.movie = movie;
-	this.room = room;
-
+		this.hour = hour;
+		this.minute = minute;
+		this.movie = movie;
+		this.room = room;
 	}
+
+	public Screening(int id,int hour, int minute, LocalDate date, Movie movie, Room room){
+			this.date = new SimpleDate(date);
+			setID(id);
+			this.hour = hour;
+			this.minute = minute;
+			this.movie = movie;
+			this.room = room;
+		}
+
 	private int generateID(){
 		int id = Integer.parseInt(String.valueOf(ids.size() + Math.floor(Math.random() * 401)));
 		return id;
+	}
+	public void deleteID(){
+		ids.remove(id);
 	}
 	public int getId(){
 		return id;

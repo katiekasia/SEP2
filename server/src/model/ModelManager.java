@@ -308,6 +308,7 @@ public class ModelManager implements Model
   @Override public void removeScreening(Screening screening)
   {
     screenings.removeScreening(screening);
+    getScreening(screening).deleteID();
     try
     {
       DataBaseHandler.deleteScreening(screening);
@@ -359,6 +360,7 @@ public class ModelManager implements Model
       try
       {
         Order temp = new Order(user.generateOrderID());
+        DataBaseHandler.addOrderToDatabase(temp, user.getUsername());
         for (Seat seat : seats)
         {
           if (nbVip > 0)
@@ -380,7 +382,7 @@ public class ModelManager implements Model
           }
         }
         user.addOrder(temp);
-        DataBaseHandler.addOrderToDatabase(temp, user.getUsername());
+
         return user.getOrderByID(temp.getOrderID());
       }
       catch (SQLException e)

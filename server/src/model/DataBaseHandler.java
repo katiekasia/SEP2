@@ -13,7 +13,7 @@ public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "papiezpolak";
+  private static final String PASSWORD = "VIAVIAVIA";
 
   private static Connection connection;
 
@@ -56,12 +56,12 @@ public class DataBaseHandler
       LocalTime.of(ticket.getHour(),ticket.getMinute(),0);
       SimpleDate date = ticket.getDate();
       statement.setString(1, ticket.getTicketID());
-      statement.setBigDecimal(2, BigDecimal.valueOf(ticket.getTicketPrice()));
+      statement.setDouble(2, ticket.getTicketPrice());
       statement.setString(3, ticket.getTicketType());
       statement.setTime(4, Time.valueOf(LocalTime.of(ticket.getHour(),ticket.getMinute(),0)));
       statement.setDate(5, Date.valueOf(date.getDate()));
       statement.setString(6, ticket.getSeatID());
-      statement.setString(7, String.valueOf(order.getOrderID()));
+      statement.setInt(7, order.getOrderID());
       statement.setInt(8,ticket.getScreening().getId());
       statement.executeUpdate();
     }
@@ -108,13 +108,14 @@ public class DataBaseHandler
     }
   }
   public static void addScreeningToDatabase(Screening screening) throws SQLException{
-    String sql = "INSERT INTO Screening (screeningHour, screeningDate, roomID, name) VALUES(?, ?, ?, ?)";
+    String sql = "INSERT INTO Screening (screeningHour, screeningDate, roomID, name, id) VALUES(?, ?, ?, ?, ?)";
     try(Connection conn = getConnection();
         PreparedStatement statement = conn.prepareStatement(sql)){
       statement.setTime(1,Time.valueOf(LocalTime.of(screening.getHour() ,screening.getMinute(), 0)));
       statement.setDate(2, Date.valueOf(screening.getDate().getDate()));
       statement.setInt(3, screening.getRoomID());
       statement.setString(4, screening.getMovieTitle());
+      statement.setInt(5, screening.getId());
       statement.executeUpdate();
     }
   }
@@ -123,8 +124,8 @@ public class DataBaseHandler
     try(Connection conn = getConnection();
         PreparedStatement statement = conn.prepareStatement(sql)){
 
-      statement.setString(1, String.valueOf(order.getOrderID()));
-      statement.setBigDecimal(2, BigDecimal.valueOf(order.getOrderPrice()));
+      statement.setInt(1, order.getOrderID());
+      statement.setDouble(2, order.getOrderPrice());
       statement.setString(3, username);
       statement.executeUpdate();
     }
@@ -144,7 +145,7 @@ public class DataBaseHandler
 //  }
 
   public static void newUser(String username, String name, String surname, String phoneNumber, String email, String password) throws SQLException {
-    String sql = "INSERT INTO Customer (username, name, surname, phone_number, email, password, fidelity_points) VALUES (?, ?, ?, ?, ?, ?, 0)";
+    String sql = "INSERT INTO Customer (username, name, surname, phone_number, email, password) VALUES (?, ?, ?, ?, ?, ?)";
 
     try (Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -211,14 +212,11 @@ public class DataBaseHandler
     }
   }
   public static void deleteScreening(Screening screening) throws SQLException{
-    String sql = "DELETE * FROM Screening WHERE screeningHour = ? AND screeningDate = ? AND roomID = ?";
+    String sql = "DELETE * FROM Screening WHERE id = ?";
     try (Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql))
     {
-      pstmt.setTime(1,Time.valueOf(LocalTime.of(screening.getHour(),
-          screening.getMinute(), 0)));
-      pstmt.setDate(2,Date.valueOf(screening.getDate().getDate()));
-      pstmt.setInt(3,screening.getRoomID());
+      pstmt.setInt(1,screening.getId());
       pstmt.executeUpdate();
     }
   }
@@ -424,18 +422,18 @@ public class DataBaseHandler
     try(Connection conn = getConnection();
         PreparedStatement statement = conn.prepareStatement(sql)){
       wipePrices();
-      statement.setBigDecimal(1,BigDecimal.valueOf(manager.getStandardTicketPrice()));
-      statement.setBigDecimal(2,BigDecimal.valueOf(manager.getVipTicketPrice()));
-      statement.setBigDecimal(3,BigDecimal.valueOf(manager.getNachosPrice()));
-      statement.setBigDecimal(4,BigDecimal.valueOf(manager.getPopcornPrice()));
-      statement.setBigDecimal(5,BigDecimal.valueOf(manager.getCandiesPrice()));
-      statement.setBigDecimal(6,BigDecimal.valueOf(manager.getPeanutsPrice()));
-      statement.setBigDecimal(7,BigDecimal.valueOf(manager.getTuborgPrice()));
-      statement.setBigDecimal(8,BigDecimal.valueOf(manager.getRedbullPrice()));
-      statement.setBigDecimal(9,BigDecimal.valueOf(manager.getColaPrice()));
-      statement.setBigDecimal(10,BigDecimal.valueOf(manager.getPepsiPrice()));
-      statement.setBigDecimal(11,BigDecimal.valueOf(manager.getOreoPrice()));
-      statement.setBigDecimal(12,BigDecimal.valueOf(manager.getFantaPrice()));
+      statement.setDouble(1,manager.getStandardTicketPrice());
+      statement.setDouble(2,manager.getVipTicketPrice());
+      statement.setDouble(3,manager.getNachosPrice());
+      statement.setDouble(4,manager.getPopcornPrice());
+      statement.setDouble(5,manager.getCandiesPrice());
+      statement.setDouble(6,manager.getPeanutsPrice());
+      statement.setDouble(7,manager.getTuborgPrice());
+      statement.setDouble(8,manager.getRedbullPrice());
+      statement.setDouble(9,manager.getColaPrice());
+      statement.setDouble(10,manager.getPepsiPrice());
+      statement.setDouble(11,manager.getOreoPrice());
+      statement.setDouble(12,manager.getFantaPrice());
     }
   }
 
@@ -624,25 +622,15 @@ public class DataBaseHandler
   public static ArrayList<Order> getAllOrders(UsersList usersList)
   {
     ArrayList<Order> orders = new ArrayList<>();
-    //    UsersList usersList = usersList;
-    //
-    //    try
-    //    {
-    //      usersList = new UsersList();
-    //    }
-    //    catch (SQLException e)
-    //    {
-    //      e.printStackTrace(); // Log the exception or handle it accordingly
-    //      return orders; // Return an empty list if UsersList creation fails
-    //    }
+
 
     String query =
         "  SELECT o.orderID, c.username, t.ticketID, t.ticketPrice, t.ticketType, "
-            + "t.seatID, s.screeningHour, s.screeningDate, r.roomID, r.numberOfSeats, m.name, "
+            + "t.seatID, s.screeningHour, s.screeningDate, s.id, r.roomID, r.numberOfSeats, m.name, "
             + " m.length, m.description, m.genre, m.releaseDate, p.snackName, p.size, p.price "
             + " FROM orders o " + "JOIN Customer c ON c.username = o.username "
             + "JOIN ticket t ON o.orderID = t.orderID "
-            + "JOIN Screening s ON s.screeningHour = t.screeningHour AND s.screeningDate = t.screeningDate "
+            + "JOIN Screening s ON s.id = t.id "
             + "JOIN Movie m ON m.name = s.name "
             + "JOIN room r ON s.roomID = r.roomID "
             + "LEFT JOIN SNACK p ON p.orderID = o.orderID;";
@@ -655,9 +643,9 @@ public class DataBaseHandler
 
       while (resultSet.next())
       {
-        String orderID = resultSet.getString("orderID");
+        int orderID = resultSet.getInt("orderID");
         String username = resultSet.getString("username");
-        Order order = new Order(Integer.parseInt(orderID));
+        Order order = new Order(orderID);
         User user = usersList.getByUsername(username);
         user.addOrder(order);
 
@@ -670,6 +658,7 @@ public class DataBaseHandler
           Time screeningHour = resultSet.getTime("screeningHour");
           LocalDate screeningDate = resultSet.getDate("screeningDate")
               .toLocalDate();
+          int screeningId = resultSet.getInt("id");
           String movieName = resultSet.getString("name");
           String movieLength = resultSet.getString("length");
           String movieDescription = resultSet.getString("description");
@@ -686,7 +675,7 @@ public class DataBaseHandler
               movieGenre, movieReleaseDate);
           Room room = new Room(roomID, numberOfSeats);
           Seat seat = new Seat(seatID, false);
-          Screening screening = new Screening(
+          Screening screening = new Screening( screeningId,
               screeningHour.toLocalTime().getHour(),
               screeningHour.toLocalTime().getMinute(), screeningDate, movie,
               room);
@@ -714,8 +703,7 @@ public class DataBaseHandler
           }
           else if ("VIP".equals(type))
           {
-            // Handle VIP ticket creation
-            // ticket = new VIPTicket(ticketID, price, seat, screening, user); // Assuming VIPTicket class exists
+            ticket = new VIPTicket(ticketID, price, seat, screening);
           }
           else
           {
@@ -1032,7 +1020,7 @@ public class DataBaseHandler
   {
     ArrayList<Screening> screenings = new ArrayList<>();
     String query =
-        "SELECT s.screeningHour, s.screeningDate, m.name AS movieName, m.length AS movieLength, "
+        "SELECT s.screeningHour,s.id, s.screeningDate, m.name AS movieName, m.length AS movieLength, "
             + "m.description AS movieDescription, m.genre AS movieGenre, m.releaseDate AS movieReleaseDate, "
             + "r.roomID, r.numberOfSeats " + "FROM SEP2_Cinema.Screening s "
             + "JOIN SEP2_Cinema.Movie m ON s.name = m.name "
@@ -1048,6 +1036,7 @@ public class DataBaseHandler
         Time screeningHour = resultSet.getTime("screeningHour");
         LocalDate screeningDate = resultSet.getDate("screeningDate")
             .toLocalDate();
+        int screeningId = resultSet.getInt("id");
         String movieName = resultSet.getString("movieName");
         String movieLength = resultSet.getString("movieLength");
         String movieDescription = resultSet.getString("movieDescription");
@@ -1060,7 +1049,7 @@ public class DataBaseHandler
         Movie movie = new Movie(movieLength, movieDescription, movieName,
             movieGenre,movieReleaseDate);
         Room room = new Room(roomID, numberOfSeats);
-        Screening screening = new Screening(
+        Screening screening = new Screening(screeningId,
             screeningHour.toLocalTime().getHour(),
             screeningHour.toLocalTime().getMinute(), screeningDate, movie,
             room);
