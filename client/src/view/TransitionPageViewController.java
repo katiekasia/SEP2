@@ -1,14 +1,17 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import viewmodel.TransitionPageViewModel;
 import viewmodel.ViewState;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.function.UnaryOperator;
 
-public class TransitionPageViewController
+public class TransitionPageViewController implements PropertyChangeListener
 {
 
   private Region root;
@@ -38,6 +41,9 @@ public class TransitionPageViewController
     this.viewModel = viewModel;
     this.root = root;
     this.viewState = viewModel.getViewState();
+
+    viewModel.addListener(this);
+
     viewModel.bindStandard(numberOfStandartTickets.textProperty());
     viewModel.bindVIP(numberOfVIPTickets.textProperty());
     viewModel.bindPrice(totalPrice.textProperty());
@@ -112,5 +118,14 @@ public class TransitionPageViewController
       alert.showAndWait();
     }
   }
-
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        viewHandler.close();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
+        alert.showAndWait();
+      }});
+  }
 }

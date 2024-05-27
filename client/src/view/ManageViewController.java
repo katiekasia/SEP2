@@ -1,5 +1,6 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -10,11 +11,13 @@ import model.User;
 import viewmodel.ManageViewModel;
 import viewmodel.ViewState;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class ManageViewController
+public class ManageViewController implements PropertyChangeListener
 { private Region root;
   private ManageViewModel viewModel;
   private ViewHandler viewHandler;
@@ -101,11 +104,10 @@ public class ManageViewController
         viewModel.deleteAccount();
         viewHandler.openView("login");
       }
-      catch (RemoteException | SQLException e)
+      catch (Exception e)
       {
         showAlert("Deletion Failed",
-            "An error occurred while trying to delete your account.");
-        e.printStackTrace();
+            "An error occurred while trying to delete your account. " + e.getMessage());
       }
     }
   }
@@ -123,8 +125,6 @@ public class ManageViewController
 
   @FXML public void onSave()
   {
-    try
-    {
       setFields(true);
       username.setEditable(false);
       password.setEditable(false);
@@ -152,14 +152,19 @@ public class ManageViewController
       System.out.println(user.getUsername());
       System.out.println("User information added to viewModel.");
     }
-    catch (RemoteException e)
-    {
-      throw new RuntimeException(e);
-    }
-  }
+
   private void showAlert(String deletionFailed, String s)
   {
   }
 
-
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        viewHandler.close();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
+        alert.showAndWait();
+      }});
+  }
 }

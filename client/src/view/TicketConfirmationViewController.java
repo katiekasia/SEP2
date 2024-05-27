@@ -1,7 +1,9 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -12,7 +14,10 @@ import viewmodel.SimpleScreeningView;
 import viewmodel.TicketConfirmationViewModel;
 import viewmodel.ViewState;
 
-public class TicketConfirmationViewController
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class TicketConfirmationViewController implements PropertyChangeListener
 {
   private Region root;
   private TicketConfirmationViewModel viewModel;
@@ -47,6 +52,7 @@ public class TicketConfirmationViewController
     this.root = root;
     this.viewState= viewModel.getViewState();
 
+    viewModel.addListener(this);
 
 
     viewModel.setScreenings(screeningsTable.getItems());
@@ -125,5 +131,15 @@ public class TicketConfirmationViewController
   @FXML public void onTicketConfirmation()
   {
 
+  }
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        viewHandler.close();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
+        alert.showAndWait();
+      }});
   }
 }

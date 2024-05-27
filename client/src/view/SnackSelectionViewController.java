@@ -1,15 +1,16 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import viewmodel.SnackSelectionViewModel;
 import viewmodel.ViewState;
 
-public class SnackSelectionViewController
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class SnackSelectionViewController implements PropertyChangeListener
 {
   private Region root;
   private SnackSelectionViewModel viewModel;
@@ -48,6 +49,9 @@ public class SnackSelectionViewController
     this.viewModel = viewModel;
     this.root = root;
     viewState = viewModel.getViewState();
+
+    viewModel.addListener(this);
+
     addButton.setDisable(true);
 
     candyPrice.textProperty().bind(viewModel.candyPriceProperty());
@@ -101,5 +105,15 @@ public class SnackSelectionViewController
   @FXML public void onL(){
     addButton.setDisable(false);
     viewModel.sizeChosen("L");
+  }
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        viewHandler.close();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
+        alert.showAndWait();
+      }});
   }
 }

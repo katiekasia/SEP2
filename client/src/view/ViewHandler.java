@@ -1,10 +1,15 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import viewmodel.ViewModelFactory;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public class ViewHandler
 {
@@ -36,11 +41,10 @@ public class ViewHandler
   public void start(Stage primaryStage)
   {
     this.primaryStage = primaryStage;
-//!!!!!!
-    /*
-    later change to Login page after the correct SPRINT
-     */
     openView("login");
+  }
+  public void close(){
+    primaryStage.close();
   }
   public void openView(String id)
   {
@@ -348,5 +352,6 @@ public class ViewHandler
 
     return root;
   }
+
 
 }

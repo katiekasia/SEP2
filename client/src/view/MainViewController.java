@@ -1,5 +1,6 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -8,7 +9,10 @@ import viewmodel.MainPageViewModel;
 import viewmodel.SimpleScreeningView;
 import viewmodel.ViewState;
 
-public class MainViewController
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class MainViewController implements PropertyChangeListener
 {
   private Region root;
   private MainPageViewModel viewModel;
@@ -106,5 +110,15 @@ viewModel.setSelected();
   @FXML public void onSearchBar()
   {
     viewModel.filterByTitle();
+  }
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        viewHandler.close();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
+        alert.showAndWait();
+      }});
   }
 }

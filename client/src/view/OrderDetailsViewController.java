@@ -1,5 +1,6 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -9,7 +10,10 @@ import viewmodel.SimpleSnackView;
 import viewmodel.SimpleTicketView;
 import viewmodel.ViewState;
 
-public class OrderDetailsViewController
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class OrderDetailsViewController implements PropertyChangeListener
 {
   private Region root;
   private ViewHandler viewHandler;
@@ -45,6 +49,8 @@ public class OrderDetailsViewController
     this.viewModel = viewModel;
     this.root = root;
     this.viewState = viewModel.getViewState();
+
+    viewModel.addListener(this);
 
     viewModel.loadFromModel();
     controlButtons();
@@ -141,5 +147,15 @@ public class OrderDetailsViewController
   }
   @FXML public void onBack(){
     viewHandler.openView("orderConfirmation");
+  }
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        viewHandler.close();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
+        alert.showAndWait();
+      }});
   }
 }
