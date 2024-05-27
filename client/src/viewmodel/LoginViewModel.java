@@ -1,15 +1,23 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Alert;
 import model.Model;
 import model.User;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
-public class LoginViewModel
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
+public class LoginViewModel implements PropertyChangeListener,
+    UnnamedPropertyChangeSubject
 {
   private ViewState viewState;
   private Model model;
+  private PropertyChangeSupport property;
   private StringProperty usernameField;
   private StringProperty passwordField;
   private boolean logged;
@@ -21,8 +29,11 @@ public class LoginViewModel
     this.usernameField = new SimpleStringProperty();
     this.passwordField = new SimpleStringProperty();
     this.viewState = viewState;
+    property = new PropertyChangeSupport(this);
     logged = false;
     admin = false;
+    model.addListener(this);
+
   }
 
   public boolean isAdmin()
@@ -74,5 +85,23 @@ public class LoginViewModel
   {
     usernameField.set("");
     passwordField.set("");
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
+      }});
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+property.removePropertyChangeListener(listener);
   }
 }

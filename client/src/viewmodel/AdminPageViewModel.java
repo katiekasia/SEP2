@@ -94,14 +94,5 @@ public class AdminPageViewModel implements PropertyChangeListener,
   {
 property.removePropertyChangeListener(listener);
   }
-  //  @Override public void propertyChange(PropertyChangeEvent evt)
-//  {
-//    Platform.runLater(() ->{
-//      if (evt.getPropertyName().equals("fatalError")){
-//        primaryStage.close();
-//        Alert alert = new Alert(Alert.AlertType.ERROR);
-//        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
-//        alert.showAndWait();
-//      }});
-//  }
+
 }
