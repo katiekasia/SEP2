@@ -428,6 +428,11 @@ public class ModelManager implements Model
     }
   }
 
+  @Override public double getPriceForTicket(String type)
+  {
+   return pricesManager.getPriceForTicket(type);
+  }
+
   public void register(String username, String password, String email,
       String firstName, String lastName, String phone)
   {

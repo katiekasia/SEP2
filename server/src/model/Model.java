@@ -54,6 +54,7 @@ Screening getScreening(Screening screening);
   Movie getMovieForView(String title);
   void addSnackToOrder(String snackType, int amount, Order order, User user,String size);
   void changePrices(ArrayList<Double> newPrices);
+  double getPriceForTicket(String type);
 
   void register(String username, String password, String email, String firstName, String lastName, String phone);
 void deleteAccount(String username);

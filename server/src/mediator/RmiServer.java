@@ -48,6 +48,9 @@ public class RmiServer implements RemoteModel
   {
     cinema.changePrice(item, newPrice);
   }
+  @Override public double getPriceForTicket(String type){
+   return cinema.getPriceForTicket(type);
+  }
 
   public void stop(){
    try

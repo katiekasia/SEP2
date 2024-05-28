@@ -56,6 +56,11 @@ public class ModelManager implements Model, PropertyChangeListener
     client.changePrices();
   }
 
+  @Override public double getPriceForTicket(String type)
+  {
+    return client.getPriceForTicket(type);
+  }
+
   @Override public void cancelOrder(Order order, User user)
   {
     client.cancelOrder(order, user);

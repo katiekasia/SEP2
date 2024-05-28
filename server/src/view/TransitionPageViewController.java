@@ -35,6 +35,8 @@ public class TransitionPageViewController implements PropertyChangeListener
   @FXML private Button backToMovieSelection;
   @FXML private Button goToSeatSelection;
   @FXML private Label totalPrice;
+  @FXML private Label standardPrice;
+  @FXML private Label vipPrice;
   public void init(ViewHandler viewHandler, TransitionPageViewModel viewModel, Region root)
   {
     this.viewHandler = viewHandler;
@@ -44,6 +46,8 @@ public class TransitionPageViewController implements PropertyChangeListener
 
     viewModel.addListener(this);
 
+    standardPrice.textProperty().bind(viewModel.standardPriceProperty());
+    vipPrice.textProperty().bind(viewModel.vipPriceProperty());
     viewModel.bindStandard(numberOfStandartTickets.textProperty());
     viewModel.bindVIP(numberOfVIPTickets.textProperty());
     viewModel.bindPrice(totalPrice.textProperty());

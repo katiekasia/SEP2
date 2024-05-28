@@ -1,16 +1,12 @@
 package view;
 
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import viewmodel.SeatMappingViewModel;
-import viewmodel.SimpleScreeningView;
+import viewmodel.SimpleSnackView;
+import viewmodel.SimpleTicketView;
 import viewmodel.TicketConfirmationViewModel;
 import viewmodel.ViewState;
 
@@ -23,27 +19,35 @@ public class TicketConfirmationViewController implements PropertyChangeListener
   private TicketConfirmationViewModel viewModel;
   private ViewHandler viewHandler;
   private ViewState viewState;
-  private SimpleScreeningView selected;
+  private SimpleTicketView selectedTicket;
+  private SimpleSnackView selectedSnack;
 
   @FXML private Button manage;
   @FXML private Button signOut;
   @FXML private Button ticketConfirmation;
 
+  @FXML private Label totalPrice;
+  @FXML private Label upgradeCost;
 
-  @FXML private TableView screeningsTable;
+
+  @FXML private TableView ticketsTable;
   @FXML private TableColumn seat;
   @FXML private TableColumn date;
   @FXML private TableColumn movie;
   @FXML private TableColumn time;
   @FXML private TableColumn ticketType;
 
-  @FXML private TableColumn snacks;
+@FXML private TableView snacksTable;
+@FXML private TableColumn snackName;
+@FXML private TableColumn size;
+@FXML private TableColumn snackPrice;
 
   @FXML private Button cancel;
-  @FXML private Button confirmOrder;
+  @FXML private Button deleteSnack;
+@FXML private Button cancelTicket;
+  @FXML private Button Continue;
   @FXML private Button snackSelection;
   @FXML private Button upgradeToVIP;
-  private SeatMappingViewModel seatMappingViewModel;
 
   public void init(ViewHandler viewHandler, TicketConfirmationViewModel viewModel, Region root)
   {
@@ -55,17 +59,15 @@ public class TicketConfirmationViewController implements PropertyChangeListener
     viewModel.addListener(this);
 
 
-    viewModel.setScreenings(screeningsTable.getItems());
-    viewModel.bindScreenings(screeningsTable.getItems());
+    viewModel.setTickets(ticketsTable.getItems());
+    viewModel.binTickets(ticketsTable.getItems());
+    viewModel.setSnacks(snacksTable.getItems());
+    viewModel.bindSnacks(snacksTable.getItems());
+    snackName.setCellValueFactory(new PropertyValueFactory<>("type"));
+    size.setCellValueFactory(new PropertyValueFactory<>("size"));
+    snackPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-    /*
-    movie.setText(viewState.getSelectedScreening().movieProperty().get());
-    seat.setText(String.valueOf(viewState.getSelectedScreening().getSeatID().get()));
-    //ticketType.setText(viewState.getSelectedScreening().);
-    date.setText(viewState.getSelectedScreening().dateProperty().get());
-    time.setText(viewState.getSelectedScreening().timeProperty().get());
-    //roomID.setText(String.valueOf(viewState.getSelectedScreening().roomProperty().get()));
-     */
+
     this.movie.setCellValueFactory(new PropertyValueFactory<>("movie"));
     this.seat.setCellValueFactory(new PropertyValueFactory<>("seatID"));
     this.date.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -73,64 +75,99 @@ public class TicketConfirmationViewController implements PropertyChangeListener
     this.ticketType.setCellValueFactory(new PropertyValueFactory<>("ticketType"));
 
 
-    screeningsTable.getSelectionModel().selectedItemProperty().addListener((obs,oldVal, newVal) -> {
-      selected = (SimpleScreeningView) newVal;
-      viewState.setSelectedScreening((SimpleScreeningView) newVal);
+    ticketsTable.getSelectionModel().selectedItemProperty().addListener((obs,oldVal, newVal) -> {
+      selectedTicket = (SimpleTicketView) newVal;
+      viewState.setSelectedTicket((SimpleTicketView) newVal);
       viewModel.setSelected();
-
-
-      ObservableList<String> selectedSeats = seatMappingViewModel.getSelectedSeats();
-     // viewModel.updateScreeningsWithSelectedSeats(selectedSeats);
-
-      // Bind the updated screenings list to the table view
-      screeningsTable.setItems(screeningsTable.getItems());
+      viewModel.setTicketSelected(true);
+      controlButtons();
     });
+
+    snacksTable.getSelectionModel().selectedItemProperty().addListener((obs,oldVal, newVal) -> {
+      selectedSnack = (SimpleSnackView) newVal;
+      viewState.setSelectedSnack((SimpleSnackView) newVal);
+      viewModel.setSelected();
+      viewModel.setSnackSelected(true);
+      controlButtons();
+    });
+    viewModel.loadFromModel();
+  }
+  private void controlButtons(){
+    if (!viewModel.ticketSelected()){
+      upgradeToVIP.setDisable(true);
+      cancelTicket.setDisable(true);
+    }
+    else if (viewModel.ticketSelected())
+    {
+      upgradeToVIP.setDisable(false);
+      cancelTicket.setDisable(false);
+    }
+    if (!viewModel.snackSelected()){
+      deleteSnack.setDisable(true);
+    }
+    else if (viewModel.snackSelected()){
+      deleteSnack.setDisable(false);
+    }
   }
 
 
   @FXML public void onSignOut()
   {
+    viewState.logOut();
     viewHandler.openView("loginPage");
   }
   @FXML public void onManage()
   {
-    //we need a page with user page
-    viewHandler.openView(" ");
+    viewHandler.openView("managePage");
   }
 
   @FXML public void onConfirmOrder()
   {
-    //we need a information after confirming the order
-    if (selected != null)
-    {
-      viewHandler.openView(" ");
-    }else
-      System.out.println("no selection");
+      viewHandler.openView("orderConfirmation");
+  }
+  @FXML public  void onOrderConfirmation(){
+    viewHandler.openView("orderConfirmation");
   }
   @FXML public void onSnackSelection()
   {
-
+    viewHandler.openView("snackSelection");
   }
-//  @FXML public void onUpgradeToVIP()
-//  {
-//    if (selected != null)
-//    {
-//      selected.ticketTypeProperty().set("VIP ticket");
-//      //should upgrade the info also in database
-//      Order firstOrder = selected.getUser().getOrders().get(0);
-//      double newPrice = firstOrder.getOrderPrice() + 50;
-//      firstOrder.setOrderPrice(newPrice);
-//    }
-//    else
-//      System.out.println("no selection");
-//  }
+  @FXML public void onUpgradeToVIP()
+  {
+    if (selectedTicket != null)
+    {
+      viewModel.upgradePressed();
+    }
+    else
+    {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText("No ticket selected.");
+      alert.showAndWait();
+    }
+  }
+  @FXML public void onDeleteSnack(){
+    if (selectedSnack != null){
+      viewModel.deleteSnackPressed();
+    }else {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText("No snack selected.");
+      alert.showAndWait();
+    }
+  }
   @FXML public void onCancelOrder()
   {
-
+    viewModel.cancelOrderPressed();
+    viewHandler.openView("orderConfirmation");
   }
-  @FXML public void onTicketConfirmation()
+  @FXML public void onCancelTicket()
   {
-
+    if (selectedTicket != null){
+      viewModel.cancelTicketPressed();
+    }else {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText("No ticket selected.");
+      alert.showAndWait();
+    }
   }
   @Override public void propertyChange(PropertyChangeEvent evt)
   {

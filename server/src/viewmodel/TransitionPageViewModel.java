@@ -31,6 +31,8 @@ public class TransitionPageViewModel implements PropertyChangeListener,
   private IntegerProperty roomID;
   private StringProperty totalPrice;
   private StringProperty releaseDate;
+  private StringProperty standardPrice;
+  private StringProperty vipPrice;
 
 
   public TransitionPageViewModel(Model model, ViewState viewState) {
@@ -47,6 +49,8 @@ movieTitle =new SimpleStringProperty();
     roomID = new SimpleIntegerProperty();
 totalPrice = new SimpleStringProperty();
     releaseDate= new SimpleStringProperty();
+    vipPrice = new SimpleStringProperty(this,"vip");
+    standardPrice = new SimpleStringProperty(this, "standard");
     this.model.addListener(this);
 
   }
@@ -59,12 +63,23 @@ totalPrice = new SimpleStringProperty();
     movieTime.set(viewState.getSelectedScreening().timeProperty().get());
     roomID.set(viewState.getSelectedScreening().roomProperty().get());
     releaseDate.set(viewState.getSelectedScreening().getReleaseDate());
+    vipPrice.set("Price per ticket: " +model.getPriceForTicket(vipPrice.getName()) + " DKK");
+    standardPrice.set("Price per ticket: " + model.getPriceForTicket(standardPrice.getName()) + " DKK");
+    totalPrice.set("");
 
     standardTickets.set("");
     VIPTickets.set("");
   }
 
+  public StringProperty vipPriceProperty()
+  {
+    return vipPrice;
+  }
 
+  public StringProperty standardPriceProperty()
+  {
+    return standardPrice;
+  }
 
   public StringProperty getReleaseDate()
   {
@@ -121,6 +136,7 @@ public void bindPrice(StringProperty property){
       return Integer.parseInt(text);
     } catch (NumberFormatException e) {
       return 0;
+
     }
   }
 
@@ -135,8 +151,8 @@ public void bindPrice(StringProperty property){
         if (total <= screening.getRoom().availableSeats()) {
           viewState.setNumberOfStandardTickets(standardTickets);
           viewState.setNumberOfVIPTickets(vipTickets);
-          int totalPriceAmount = standardTickets * 120 + vipTickets * 170;
-          totalPrice.set(String.valueOf(totalPriceAmount) + " DKK");
+          double totalPriceAmount = standardTickets * model.getPriceForTicket(this.standardPrice.getName()) + vipTickets * model.getPriceForTicket(this.vipPrice.getName());
+          totalPrice.set(totalPriceAmount + " DKK");
         } else {
           totalPrice.set("Limit exceeded!");
           Alert alert = new Alert(Alert.AlertType.ERROR);

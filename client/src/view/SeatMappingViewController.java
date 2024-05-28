@@ -193,7 +193,7 @@ public class SeatMappingViewController implements PropertyChangeListener
   @FXML public void onConfirm()
   {
     if (viewModel.proceedPressed()){
-    viewHandler.openView("snackSelection");}
+    viewHandler.openView("ticketConfirmation");}
   }
   @FXML public void onBack()
   {

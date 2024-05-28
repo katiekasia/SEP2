@@ -12,6 +12,7 @@ public interface Model extends UnnamedPropertyChangeSubject
   void deleteAccount(String username);
   void changePrice(String item, double newPrice);
   void changePrices();
+  double getPriceForTicket(String type);
   void removeScreening(Screening screening);
   public void updateUser(User user, String previousUsername);
 

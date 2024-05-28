@@ -74,6 +74,16 @@ public class RmiClient implements Model, RemoteListener<String,String>
       throw new RuntimeException("Server connection error. "  + e.getMessage());}
   }
 
+  @Override public double getPriceForTicket(String type)
+  {
+    try
+    {
+    return server.getPriceForTicket(type);
+    }catch (RemoteException e){
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
+    }
+  }
+
   @Override public void updateUser(User user, String previousUsername)
   {
     try
