@@ -428,34 +428,26 @@ public class ModelManager implements Model
     }
   }
 
-  public void register(String username, String password, String email,
+  @Override public void register(String username, String password, String email,
       String firstName, String lastName, String phone)
   {
-    try
-    {
-      DataBaseHandler.newUser(username, firstName, lastName, phone, email,
-          password);
-      usersList = new UsersList(DataBaseHandler.getAllCustomers());
-    }
-    catch (SQLException e)
-    {
-      throw new RuntimeException(
-          "Database connection error. " + e.getMessage());
+
+  }
+
+  @Override public void deleteAccount(String username)
+  {
+
+  }
+
+  @Override
+  public void addMovie(Movie movie) {
+    try {
+      DataBaseHandler.newMovie(movie);
+      moviesList= new MoviesList(DataBaseHandler.getAllMovies());
+    } catch (SQLException e) {
+      throw new RuntimeException("Database connection error. " + e.getMessage());
     }
   }
 
-  public void deleteAccount(String username)
-  {
-    try
-    {
-      DataBaseHandler.deleteUser(username);
-      usersList = new UsersList(DataBaseHandler.getAllCustomers());
-    }
-    catch (SQLException e)
-    {
-      throw new RuntimeException(
-          "Database connection error. " + e.getMessage());
-    }
-  }
 
 }

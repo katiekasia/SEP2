@@ -11,7 +11,6 @@ public interface Model extends UnnamedPropertyChangeSubject
 {
   void deleteAccount(String username);
   void changePrice(String item, double newPrice);
-  void changePrices();
   void removeScreening(Screening screening);
   public void updateUser(User user, String previousUsername);
 
@@ -52,7 +51,8 @@ ArrayList<Screening> getScreeningsByDateAndTitle(String title, LocalDate date);
 ArrayList<Order> getOrdersForUser(String username);
 Movie getMovieForView(String title);
 void changePrices(ArrayList<Double> newPrices);
-void cancelOrder(Order order, User user);
+  void changePrices();
+  void cancelOrder(Order order, User user);
 void register(String username, String password, String email, String firstName, String lastName, String phone);
-
+void addMovie(Movie movie);
 }

@@ -43,6 +43,7 @@ public interface RemoteModel extends Remote, RemoteSubject<String ,String >
 
    void addOrder(Order order, User user) throws RemoteException;
   void register(String username, String password, String email, String firstName, String lastName, String phone) throws RemoteException;
+  void addMovie(Movie movie) throws RemoteException;
   void addScreening(Screening screening) throws RemoteException;
   void removeScreening(Screening screening) throws RemoteException;
   void removeByDate(SimpleDate date) throws RemoteException;

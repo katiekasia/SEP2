@@ -1,28 +1,75 @@
 package viewmodel;
 
-
+import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import model.Model;
+import model.Movie;
+import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
-import java.time.LocalDate;
-
-public class AddMovieViewModel
+public class AddMovieViewModel implements PropertyChangeListener,UnnamedPropertyChangeSubject
 {
   private Model model;
+  private PropertyChangeSupport property;
   private ViewState viewState;
+  private StringProperty addingStatus;
+  private StringProperty addingMessage;
 
   public AddMovieViewModel(Model model, ViewState viewState)
   {
     this.model = model;
+    this.addingStatus = new SimpleStringProperty();
+    this.addingMessage = new SimpleStringProperty();
+    property = new PropertyChangeSupport(this);
+    this.model.addListener(this);
     this.viewState = viewState;
   }
-//
+
   public ViewState getViewState()
   {
     return viewState;
   }
-//
-//  public void addMovie(String name, String length, String description, String genre, LocalDate releaseDate)
-//  {
-//    model.addMovie(name, length, description, genre, releaseDate);
-//  }
+
+  public void addMovie(Movie movie) {
+    try {
+      model.addMovie(movie);
+      addingStatus.set("SUCCESS");
+      addingMessage.set("Your movie has been added successfully.");
+    } catch (Exception e) {
+      addingStatus.set("ERROR");
+      addingMessage.set("Registration Failed: " + e.getMessage());
+    }
+  }
+
+  public StringProperty addingStatusProperty() {
+    return addingStatus;
+  }
+
+  public StringProperty addingMessageProperty() {
+    return addingMessage;
+  }
+
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
+      }});
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    property.removePropertyChangeListener(listener);
+  }
+
+
 }

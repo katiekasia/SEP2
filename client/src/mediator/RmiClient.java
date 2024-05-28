@@ -299,6 +299,11 @@ public class RmiClient implements Model, RemoteListener<String,String>
     }
   }
 
+  @Override public void addMovie(Movie movie)
+  {
+    server.addMovie(movie);
+  }
+
   @Override public void addScreening(Screening screening)
   {
     try

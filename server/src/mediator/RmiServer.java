@@ -11,7 +11,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -219,6 +218,10 @@ public class RmiServer implements RemoteModel
     cinema.register(username, password, email, firstName, lastName, phone);
   }
 
+  @Override public void addMovie(Movie movie) throws RemoteException
+  {
+    cinema.addMovie(movie);
+  }
   @Override public void addScreening(Screening screening) throws RemoteException
   {
     cinema.addScreening(screening);

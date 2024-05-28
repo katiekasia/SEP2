@@ -5,9 +5,6 @@ import mediator.RmiClient;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.rmi.RemoteException;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -147,6 +144,12 @@ public class ModelManager implements Model, PropertyChangeListener
       String firstName, String lastName, String phone)
   {
       client.register(username, password, email, firstName, lastName, phone);
+  }
+
+  @Override public void addMovie(Movie movie)
+  {
+    client.addMovie(movie);
+    System.out.println("client");
   }
 
   @Override public void addScreening(Screening screening)
