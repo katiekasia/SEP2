@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class PendingOrder extends OrderState implements Serializable
 {
-
   private boolean expired;
   public PendingOrder(Order order){
     expired = false;

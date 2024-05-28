@@ -19,7 +19,7 @@ public class Order implements Serializable
     this.orderPrice = 0;
     this.tickets = new ArrayList<>();
     this.snacks = new ArrayList<>();
-    this.orderState = new PendingOrder(this);
+    setOrderState(new PendingOrder(this));
   }
 
   public void setOrderState(OrderState orderState)

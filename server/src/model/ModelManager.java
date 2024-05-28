@@ -265,7 +265,16 @@ public class ModelManager implements Model
 
   @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
   {
-    order.removeTicket(ticket);
+    try
+    {
+      DataBaseHandler.deleteTicket(ticket.getTicketID());
+      order.removeTicket(ticket);
+    }catch (SQLException e)
+    {
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
+    }
+
   }
 
   @Override public void deleteSnackFromOrder(Snack snack, Order order)
