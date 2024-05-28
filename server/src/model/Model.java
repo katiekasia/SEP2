@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public interface Model extends UnnamedPropertyChangeSubject
 {
-  void deleteMovie(Movie movie) throws  RemoteException;
-  ArrayList<Movie> getAllMovies() throws RemoteException;
+  void deleteMovie(Movie movie);
+  ArrayList<Movie> getAllMovies();
   public void updateUser(User user, String previousUsername);
   void changePrice(String item, double newPrice);
   void addMovie(Movie movie);
