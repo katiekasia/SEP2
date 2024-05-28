@@ -65,6 +65,10 @@ public class AdminPageViewController implements PropertyChangeListener
     {
       viewModel.deleteScreening();
     }
+    if (selected==null) {
+      showAlert("No screening selected", "Select a screening to delete.");
+      return;
+    }
   }
 
   @FXML public void onSignOut()
@@ -92,6 +96,12 @@ public class AdminPageViewController implements PropertyChangeListener
         alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
         alert.showAndWait();
       }});
+  }
+  private void showAlert(String header, String content) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setHeaderText(header);
+    alert.setContentText(content);
+    alert.showAndWait();
   }
 
 }
