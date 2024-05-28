@@ -29,6 +29,9 @@ public class OrderDetailsViewModel implements PropertyChangeListener,
   private ObservableList<SimpleSnackView> snacks;
   private ObjectProperty<SimpleSnackView> selectedSnack;
   private ObjectProperty<SimpleTicketView> selectedTicket;
+  private String time;
+  private String movie;
+  private String date;
   private boolean snackSelected;
   private boolean ticketSelected;
 
@@ -53,7 +56,9 @@ public class OrderDetailsViewModel implements PropertyChangeListener,
     tickets.clear();
     Ticket[] orderTickets = model.getTicketsFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
         viewState.getUser()));
-    System.out.println(orderTickets.length);
+time = orderTickets[0].getScreening().getTime();
+movie=orderTickets[0].getScreening().getMovieTitle();
+date = orderTickets[0].getDate().toString();
     Snack[] orderSnacks = model.getSnacksFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
         viewState.getUser()));
     for (Ticket ticket : orderTickets){
@@ -181,15 +186,15 @@ ticketSelected = false;
 
   public String getTime()
   {
-    return viewState.getSelectedScreening().getTime();
+    return time;
   }
   public String getMovie()
   {
-    return viewState.getSelectedScreening().getMovie();
+    return movie;
   }
   public String getDate()
   {
-    return viewState.getSelectedScreening().getDate();
+    return date;
   }
   public String getOrderID()
   {
