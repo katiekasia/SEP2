@@ -6,8 +6,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-
-import javafx.scene.control.Alert;
 import model.Model;
 import model.Screening;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;

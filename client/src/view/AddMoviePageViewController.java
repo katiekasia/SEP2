@@ -1,109 +1,42 @@
 package view;
 
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import model.Movie;
-import org.w3c.dom.Text;
 import viewmodel.AddMovieViewModel;
 import viewmodel.SimpleScreeningView;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.time.LocalDate;
+import viewmodel.ViewState;
 
-public class AddMoviePageViewController implements PropertyChangeListener {
+public class AddMoviePageViewController
+{
   private Region root;
   private AddMovieViewModel viewModel;
   private ViewHandler viewHandler;
+  private ViewState viewState;
   private SimpleScreeningView selected;
-
-  @FXML private TextField titleField;
-  @FXML private TextField descriptionField;
-  @FXML private TextField lengthField;
-  @FXML private TextField genreField;
-  @FXML private DatePicker releaseDatePicker;
 
   @FXML private Label username;
   @FXML private Button signOut;
   @FXML private Button add;
-  @FXML private Button backAdminPage;
+  @FXML private Button cancel;
 
-  public void init(ViewHandler viewHandler, Region root, AddMovieViewModel viewModel) {
+  public void init(ViewHandler viewHandler, Region root, AddMovieViewModel viewModel)
+  {
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;
     this.root = root;
+    this.viewState = viewModel.getViewState();
 
-    viewModel.addListener(this);
-    titleField.textProperty().bindBidirectional(viewModel.titleProperty());
-    descriptionField.textProperty().bindBidirectional(viewModel.descriptionProperty());
-    lengthField.textProperty().bindBidirectional(viewModel.lengthProperty());
-    genreField.textProperty().bindBidirectional(viewModel.genreProperty());
-
-    viewModel.addingStatusProperty().addListener(new ChangeListener<String>() {
-      @Override
-      public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-        if (newValue.equals("SUCCESS")) {
-          showAlert("adding Successful", viewModel.addingMessageProperty().get());
-          clearFields();
-        } else if (newValue.equals("ERROR")) {
-          showAlert("Registration Failed", viewModel.addingMessageProperty().get());
-        }
-      }
-    });
   }
 
-
-  @FXML public void onAdd() {
-    if (titleField.textProperty().isEmpty().get() || descriptionField.textProperty().isEmpty().get() || lengthField.textProperty().isEmpty().get() || genreField.textProperty().isEmpty().get()) {
-      showAlert("Incomplete Details", "Please fill in all fields.");
-      return;
-    }
-    // Now, validate the release date field
-    LocalDate releaseDate = releaseDatePicker.getValue();
-    if (releaseDate == null) {
-      showAlert("Incomplete Details", "Please select a release date.");
-      return;
-    }
-
-    viewModel.addMovie(new Movie(titleField.getText(),lengthField.getText(),descriptionField.getText(),genreField.getText(),releaseDate));
-    clearFields();
-  }
-
-  @FXML public void backToAdmin() {
+  @FXML public void onCancel()
+  {
     viewHandler.openView("adminPage");
   }
-
-  @FXML public void onSignOut() {
-    viewHandler.openView("login");
-  }
-
-  private void showAlert(String header, String content) {
-    Alert alert = new Alert(Alert.AlertType.ERROR);
-    alert.setHeaderText(header);
-    alert.setContentText(content);
-    alert.showAndWait();
-  }
-
-  private void clearFields() {
-    titleField.setText("");
-    descriptionField.setText("");
-    releaseDatePicker.setValue(null);
-    lengthField.setText("");
-    genreField.setText("");
-  }
-
-  @Override public void propertyChange(PropertyChangeEvent evt)
+  @FXML public void onAdd()
   {
-    Platform.runLater(() ->{
-      if (evt.getPropertyName().equals("fatalError")){
-        viewHandler.close();
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
-        alert.showAndWait();
-      }});
+
   }
 
 }

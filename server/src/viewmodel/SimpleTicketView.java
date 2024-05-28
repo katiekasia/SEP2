@@ -3,7 +3,6 @@ package viewmodel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Ticket;
-import model.User;
 
 public class SimpleTicketView
 {

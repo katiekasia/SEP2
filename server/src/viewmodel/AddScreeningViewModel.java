@@ -1,10 +1,6 @@
 package viewmodel;
 
 import model.Model;
-import model.Movie;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class AddScreeningViewModel
 {

@@ -2,8 +2,6 @@ package model;
 
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
-import java.rmi.RemoteException;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -55,7 +53,7 @@ ArrayList<Screening> getScreeningsByDateAndTitle(String title, LocalDate date);
 ArrayList<Order> getOrdersForUser(String username);
 Movie getMovieForView(String title);
 void changePrices(ArrayList<Double> newPrices);
-  void cancelOrder(Order order, User user);
+void cancelOrder(Order order, User user);
 void register(String username, String password, String email, String firstName, String lastName, String phone);
-void addMovie(Movie movie);
+
 }

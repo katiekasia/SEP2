@@ -229,10 +229,6 @@ public class RmiServer implements RemoteModel
     cinema.register(username, password, email, firstName, lastName, phone);
   }
 
-  @Override public void addMovie(Movie movie) throws RemoteException
-  {
-    cinema.addMovie(movie);
-  }
   @Override public void addScreening(Screening screening) throws RemoteException
   {
     cinema.addScreening(screening);

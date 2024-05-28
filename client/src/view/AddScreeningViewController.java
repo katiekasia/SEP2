@@ -7,7 +7,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import viewmodel.*;
+import viewmodel.AddScreeningViewModel;
+import viewmodel.SimpleMovieView;
+import viewmodel.ViewState;
 
 public class AddScreeningViewController
 {

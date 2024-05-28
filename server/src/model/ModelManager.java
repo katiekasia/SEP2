@@ -2,8 +2,6 @@ package model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.rmi.RemoteException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -442,33 +440,39 @@ public class ModelManager implements Model
     }
   }
 
-
-  @Override public void register(String username, String password, String email,
-
-      @Override public double getPriceForTicket(String type)
+  @Override public double getPriceForTicket(String type)
   {
    return pricesManager.getPriceForTicket(type);
   }
+
   public void register(String username, String password, String email,
       String firstName, String lastName, String phone)
   {
-
-  }
-
-  @Override public void deleteAccount(String username)
-  {
-
-  }
-
-  @Override
-  public void addMovie(Movie movie) {
-    try {
-      DataBaseHandler.newMovie(movie);
-      moviesList= new MoviesList(DataBaseHandler.getAllMovies());
-    } catch (SQLException e) {
-      throw new RuntimeException("Database connection error. " + e.getMessage());
+    try
+    {
+      DataBaseHandler.newUser(username, firstName, lastName, phone, email,
+          password);
+      usersList = new UsersList(DataBaseHandler.getAllCustomers());
+    }
+    catch (SQLException e)
+    {
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
     }
   }
 
+  public void deleteAccount(String username)
+  {
+    try
+    {
+      DataBaseHandler.deleteUser(username);
+      usersList = new UsersList(DataBaseHandler.getAllCustomers());
+    }
+    catch (SQLException e)
+    {
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
+    }
+  }
 
 }

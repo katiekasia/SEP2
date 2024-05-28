@@ -5,7 +5,6 @@ import utility.observer.subject.RemoteSubject;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -18,7 +17,6 @@ public interface RemoteModel extends Remote, RemoteSubject<String ,String >
  void changePrices() throws RemoteException;
  double getPriceForTicket(String type) throws RemoteException;
  void updateUser(User user, String previousUsername) throws RemoteException;
- void addMovie(Movie movie);
  Order reserveSeats(Seat[] seats, User customer,
       Screening screening, int nbVIP ) throws RemoteException;
   Order getOrderByID(int orderID, User user) throws RemoteException;

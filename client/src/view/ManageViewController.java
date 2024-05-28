@@ -13,8 +13,6 @@ import viewmodel.ViewState;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.rmi.RemoteException;
-import java.sql.SQLException;
 import java.util.Optional;
 
 public class ManageViewController implements PropertyChangeListener

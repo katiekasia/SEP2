@@ -160,12 +160,6 @@ public class ModelManager implements Model, PropertyChangeListener
       client.register(username, password, email, firstName, lastName, phone);
   }
 
-  @Override public void addMovie(Movie movie)
-  {
-    client.addMovie(movie);
-    System.out.println("client");
-  }
-
   @Override public void addScreening(Screening screening)
   {
       client.addScreening(screening);

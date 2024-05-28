@@ -21,8 +21,4 @@ public class MoviesList
     }
     throw new IllegalArgumentException("No such movie found.");
   }
-
-  public void addMovie(Movie movie){
-    movies.add(movie);
-  }
 }
