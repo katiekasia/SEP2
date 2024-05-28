@@ -55,7 +55,7 @@
       <TextField layoutX="488.0" layoutY="447.0" />
       <TextField layoutX="488.0" layoutY="401.0" />
       <TextField layoutX="488.0" layoutY="355.0" />
-      <Button fx:id="add" alignment="CENTER" contentDisplay="CENTER" layoutX="546.0" layoutY="505.0" mnemonicParsing="false" onAction="#onAdd" prefHeight="56.0" prefWidth="183.0" text="Add">
+      <Button fx:id="add" alignment="CENTER" contentDisplay="CENTER" layoutX="471.0" layoutY="505.0" mnemonicParsing="false" onAction="#onAdd" prefHeight="56.0" prefWidth="183.0" text="Add">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -79,7 +79,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="cancel" alignment="CENTER" contentDisplay="CENTER" layoutX="339.0" layoutY="505.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="56.0" prefWidth="183.0" text="Cancel">
+      <Button fx:id="cancel" alignment="CENTER" contentDisplay="CENTER" layoutX="274.0" layoutY="505.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="56.0" prefWidth="183.0" text="Cancel">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -88,10 +88,19 @@
             </ImageView>
          </graphic>
       </Button>
-      <TableView layoutX="297.0" layoutY="143.0" prefHeight="200.0" prefWidth="498.0">
+      <TableView fx:id="moviesTable" layoutX="297.0" layoutY="143.0" prefHeight="200.0" prefWidth="498.0">
         <columns>
-          <TableColumn prefWidth="497.6000122070312" text="Title" />
+          <TableColumn fx:id="title" prefWidth="497.6000122070312" text="Title" />
         </columns>
       </TableView>
+      <Button fx:id="deleteMovie" alignment="CENTER" contentDisplay="CENTER" layoutX="668.0" layoutY="505.0" mnemonicParsing="false" onAction="#onDeleteMovie" prefHeight="56.0" prefWidth="183.0" text="Delete Movie">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/settings%20-%20profile.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

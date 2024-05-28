@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public interface Model extends UnnamedPropertyChangeSubject
 {
   void deleteAccount(String username);
+  void deleteMovie (Movie movie);
+  ArrayList<Movie> getAllMovies();
   void changePrice(String item, double newPrice);
   void changePrices();
   double getPriceForTicket(String type);

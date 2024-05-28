@@ -15,7 +15,10 @@ public class SimpleMovieView
   {
     this.title.set(title);
   }
-
+  public String getTitle()
+  {
+    return title.get();
+  }
   public StringProperty titleProperty()
   {
     return title;

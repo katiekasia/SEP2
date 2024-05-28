@@ -13,7 +13,7 @@ public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "VIAVIAVIA";
+  private static final String PASSWORD = "papiezpolak";
 
   private static Connection connection;
 
@@ -480,7 +480,7 @@ public static void deleteScreening(Screening screening) {
           String genre = resultSet.getString("genre");
           LocalDate releaseDate = resultSet.getDate("releasedate")
               .toLocalDate();
-          Movie movie = new Movie(name, length, description, genre,releaseDate);
+          Movie movie = new Movie( length, description,name, genre,releaseDate);
           movies.add(movie);
         }
       }
