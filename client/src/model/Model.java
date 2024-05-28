@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public interface Model extends UnnamedPropertyChangeSubject
 {
   void deleteAccount(String username);
+  void changePrice(String item, double newPrice);
   void removeScreening(Screening screening);
   public void updateUser(User user, String previousUsername);
 

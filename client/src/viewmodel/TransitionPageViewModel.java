@@ -137,7 +137,7 @@ public void bindPrice(StringProperty property){
           viewState.setNumberOfStandardTickets(standardTickets);
           viewState.setNumberOfVIPTickets(vipTickets);
           int totalPriceAmount = standardTickets * 120 + vipTickets * 170;
-          totalPrice.set(String.valueOf(totalPriceAmount) + " DKK");
+          totalPrice.set(totalPriceAmount + " DKK");
         } else {
           totalPrice.set("Limit exceeded!");
           Alert alert = new Alert(Alert.AlertType.ERROR);

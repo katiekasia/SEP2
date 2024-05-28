@@ -46,6 +46,11 @@ public class ModelManager implements Model, PropertyChangeListener
     client.deleteAccount(username);
   }
 
+  @Override public void changePrice(String item, double newPrice)
+  {
+    client.changePrice(item,newPrice);
+  }
+
   @Override public void cancelOrder(Order order, User user)
   {
     client.cancelOrder(order, user);

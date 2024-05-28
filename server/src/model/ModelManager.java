@@ -40,7 +40,8 @@ public class ModelManager implements Model
     }
     catch (SQLException e)
     {
-      throw new RuntimeException("Database connection error. "  + e.getMessage());
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
     }
     ArrayList<Order> orders = DataBaseHandler.getAllOrders(usersList);
     setUpScreenings(orders, screenings);
@@ -68,7 +69,8 @@ public class ModelManager implements Model
     }
     catch (SQLException e)
     {
-      throw new RuntimeException("Database connection error. "  + e.getMessage());
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
     }
   }
 
@@ -93,42 +95,23 @@ public class ModelManager implements Model
     return usersList.logIn(username, password);
   }
 
+  @Override public void changePrice(String item, double newPrice)
+  {
+    try
+    {
+      pricesManager.changePrice(item, newPrice);
+      DataBaseHandler.changePrices(pricesManager);
+    }
+    catch (SQLException e)
+    {
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
+    }
+  }
+
   @Override public double getPriceForSize(String snackType, String size)
   {
-    switch (snackType)
-    {
-      case "popcorn":
-        return pricesManager.getPriceForSize(pricesManager.getPopcornPrice(),
-            size);
-      case "nachos":
-        return pricesManager.getPriceForSize(pricesManager.getNachosPrice(),
-            size);
-      case "candies":
-        return pricesManager.getPriceForSize(pricesManager.getCandiesPrice(),
-            size);
-      case "tuborg":
-        return pricesManager.getPriceForSize(pricesManager.getTuborgPrice(),
-            size);
-      case "oreo":
-        return pricesManager.getPriceForSize(pricesManager.getOreoPrice(),
-            size);
-      case "cola":
-        return pricesManager.getPriceForSize(pricesManager.getColaPrice(),
-            size);
-      case "pepsi":
-        return pricesManager.getPriceForSize(pricesManager.getPepsiPrice(),
-            size);
-      case "fanta":
-        return pricesManager.getPriceForSize(pricesManager.getFantaPrice(),
-            size);
-      case "redbull":
-        return pricesManager.getPriceForSize(pricesManager.getRedbullPrice(),
-            size);
-      case "peanuts":
-        return pricesManager.getPriceForSize(pricesManager.getPeanutsPrice(),
-            size);
-    }
-    return 0;
+    return pricesManager.getPriceForSizeOfSnack(snackType, size);
   }
 
   @Override public boolean logInAdmin(String username, String password)
@@ -161,7 +144,8 @@ public class ModelManager implements Model
     }
     catch (SQLException e)
     {
-      throw new RuntimeException("Database connection error. "  + e.getMessage());
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
     }
   }
 
@@ -272,12 +256,15 @@ public class ModelManager implements Model
   @Override public void deleteSnackFromOrder(Snack snack, Order order)
   {
     order.removeSnack(snack);
-   try
-   {
-     DataBaseHandler.deleteSnack(snack,order);
-   }catch (SQLException e){
-     throw new RuntimeException("Database connection error. "  + e.getMessage());
-   }
+    try
+    {
+      DataBaseHandler.deleteSnack(snack, order);
+    }
+    catch (SQLException e)
+    {
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
+    }
   }
 
   @Override public void downgradeTicket(Ticket ticket, Order order, User user)
@@ -287,8 +274,11 @@ public class ModelManager implements Model
     try
     {
       DataBaseHandler.changeTicketType(ticket);
-    }catch (SQLException e){
-      throw new RuntimeException("Database connection error. "  + e.getMessage());
+    }
+    catch (SQLException e)
+    {
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
     }
   }
 
@@ -298,22 +288,27 @@ public class ModelManager implements Model
     try
     {
       DataBaseHandler.addScreeningToDatabase(screening);
-    }catch (SQLException e){
-      throw new RuntimeException("Database connection error. "  + e.getMessage());
+    }
+    catch (SQLException e)
+    {
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
     }
   }
 
   @Override public void removeScreening(Screening screening)
   {
-   try
-   {
-     DataBaseHandler.deleteScreening(screening);
-     getScreening(screening).deleteID();
-     screenings = new ScreeningsList(DataBaseHandler.getAllScreenings());
+    try
+    {
+      DataBaseHandler.deleteScreening(screening);
+      getScreening(screening).deleteID();
+      screenings = new ScreeningsList(DataBaseHandler.getAllScreenings());
 
-   }catch (SQLException e){
-     e.printStackTrace();
-   }
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public void removeByDate(SimpleDate date)
@@ -410,9 +405,12 @@ public class ModelManager implements Model
       temp.addSnack(snack);
       try
       {
-        DataBaseHandler.addSnack(snack,temp);
-      }catch (SQLException e){
-        throw new RuntimeException("Database connection error. "  + e.getMessage());
+        DataBaseHandler.addSnack(snack, temp);
+      }
+      catch (SQLException e)
+      {
+        throw new RuntimeException(
+            "Database connection error. " + e.getMessage());
       }
     }
   }
@@ -423,8 +421,11 @@ public class ModelManager implements Model
     try
     {
       DataBaseHandler.changePrices(pricesManager);
-    }catch (SQLException e){
-      throw new RuntimeException("Database connection error. "  + e.getMessage());
+    }
+    catch (SQLException e)
+    {
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
     }
   }
 
@@ -439,7 +440,8 @@ public class ModelManager implements Model
     }
     catch (SQLException e)
     {
-      throw new RuntimeException("Database connection error. "  + e.getMessage());
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
     }
   }
 
@@ -452,7 +454,8 @@ public class ModelManager implements Model
     }
     catch (SQLException e)
     {
-      throw new RuntimeException("Database connection error. "  + e.getMessage());
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
     }
   }
 

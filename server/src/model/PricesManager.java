@@ -29,6 +29,84 @@ public class PricesManager
         return price;
     }
   }
+  public void changePrice(String item, double newPrice){
+    switch (item){
+      case "candies":
+        setCandiesPrice(newPrice);
+        break;
+      case "nachos":
+        setNachosPrice(newPrice);
+        break;
+      case "oreo":
+        setOreoPrice(newPrice);
+        break;
+      case "peanuts":
+        setPeanutsPrice(newPrice);
+        break;
+      case "cola":
+        setColaPrice(newPrice);
+        break;
+      case "pepsi":
+        setPepsiPrice(newPrice);
+        break;
+      case "tuborg":
+        setTuborgPrice(newPrice);
+        break;
+      case "redbull":
+        setRedbullPrice(newPrice);
+        break;
+      case "fanta":
+        setFantaPrice(newPrice);
+        break;
+      case "popcorn":
+        setPopcornPrice(newPrice);
+        break;
+      case "standard":
+        setStandardTicketPrice(newPrice);
+        break;
+      case "vip":
+        setVipTicketPrice(newPrice);
+        break;
+    }
+  }
+
+ public double getPriceForSizeOfSnack(String snackType, String size)
+  {
+    switch (snackType)
+    {
+      case "popcorn":
+        return getPriceForSize(getPopcornPrice(),
+            size);
+      case "nachos":
+        return getPriceForSize(getNachosPrice(),
+            size);
+      case "candies":
+        return getPriceForSize(getCandiesPrice(),
+            size);
+      case "tuborg":
+        return getPriceForSize(getTuborgPrice(),
+            size);
+      case "oreo":
+        return getPriceForSize(getOreoPrice(),
+            size);
+      case "cola":
+        return getPriceForSize(getColaPrice(),
+            size);
+      case "pepsi":
+        return getPriceForSize(getPepsiPrice(),
+            size);
+      case "fanta":
+        return getPriceForSize(getFantaPrice(),
+            size);
+      case "redbull":
+        return getPriceForSize(getRedbullPrice(),
+            size);
+      case "peanuts":
+        return getPriceForSize(getPeanutsPrice(),
+            size);
+    }
+    return 0;
+  }
   public double getPriceForSnack(String snack){
     switch (snack){
       case "candies":

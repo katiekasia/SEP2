@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 public interface Model extends UnnamedPropertyChangeSubject
 {
-  public void updateUser(User user, String previousUsername) ;
+  public void updateUser(User user, String previousUsername);
+  void changePrice(String item, double newPrice);
    void cancelOrder(Order order, User user);
   Order getOrderByID(int orderID, User user);
 
