@@ -97,18 +97,17 @@ public class ModelManager implements Model
 
   @Override public void changePrice(String item, double newPrice)
   {
+      pricesManager.changePrice(item, newPrice);
+  }
+@Override public void changePrices(){
     try
     {
-      pricesManager.changePrice(item, newPrice);
       DataBaseHandler.changePrices(pricesManager);
-    }
-    catch (SQLException e)
-    {
+    }catch (SQLException e){
       throw new RuntimeException(
           "Database connection error. " + e.getMessage());
     }
-  }
-
+}
   @Override public double getPriceForSize(String snackType, String size)
   {
     return pricesManager.getPriceForSizeOfSnack(snackType, size);

@@ -11,6 +11,7 @@ public interface Model extends UnnamedPropertyChangeSubject
 {
   public void updateUser(User user, String previousUsername);
   void changePrice(String item, double newPrice);
+  void changePrices();
    void cancelOrder(Order order, User user);
   Order getOrderByID(int orderID, User user);
 

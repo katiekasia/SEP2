@@ -39,19 +39,20 @@ public class EditPricesViewModel implements PropertyChangeListener,
     this.viewState = viewState;
     property = new PropertyChangeSupport(this);
 
-    standard = new SimpleStringProperty();
-    vip = new SimpleStringProperty();
-    candy = new SimpleStringProperty();
-    cola = new SimpleStringProperty();
-    popcorn = new SimpleStringProperty();
-    peanuts = new SimpleStringProperty();
-    nachos = new SimpleStringProperty();
-    oreo = new SimpleStringProperty();
-    tuborg = new SimpleStringProperty();
-    redbull = new SimpleStringProperty();
-    pepsi = new SimpleStringProperty();
-    fanta = new SimpleStringProperty();
+    this.standard = new SimpleStringProperty(this, "standard");
+    this.vip = new SimpleStringProperty(this, "vip");
+    this.candy = new SimpleStringProperty(this, "candies");
+    this.cola = new SimpleStringProperty(this, "cola");
+    this.popcorn = new SimpleStringProperty(this, "popcorn");
+    this.peanuts = new SimpleStringProperty(this, "peanuts");
+    this.nachos = new SimpleStringProperty(this, "nachos");
+    this.oreo = new SimpleStringProperty(this, "oreo");
+    this.tuborg = new SimpleStringProperty(this, "tuborg");
+    this.redbull = new SimpleStringProperty(this, "redbull");
+    this.pepsi = new SimpleStringProperty(this, "pepsi");
+    this.fanta = new SimpleStringProperty(this, "fanta");
 
+    fields = new ArrayList<>();
     fields.add(standard);
     fields.add(vip);
     fields.add(cola);
@@ -124,12 +125,15 @@ public class EditPricesViewModel implements PropertyChangeListener,
     property.bindBidirectional(redbull);
   }
 
+
   public void changePressed(){
     for (StringProperty property : fields){
-      if (!property.isEmpty().get()){
+      if (!property.get().equals("")){
         if (isDouble(property.get())){
           double newPrice = Double.parseDouble(property.get());
+          System.out.println(property);
           model.changePrice(property.getName(), newPrice);
+          System.out.println("called");
         }else {
           Alert alert = new Alert(Alert.AlertType.ERROR);
           alert.setHeaderText("Please input correct price.");
@@ -137,6 +141,7 @@ public class EditPricesViewModel implements PropertyChangeListener,
         }
       }
     }
+    model.changePrices();
   }
   public static boolean isDouble(String input) {
     try {

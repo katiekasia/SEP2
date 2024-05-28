@@ -41,17 +41,17 @@ public class EditPricesViewController implements PropertyChangeListener
     this.viewState = viewModel.getViewState();
 
     viewModel.bindCandy(candy.textProperty());
-    viewModel.bindCandy(redbull.textProperty());
-    viewModel.bindCandy(oreo.textProperty());
-    viewModel.bindCandy(tuborg.textProperty());
-    viewModel.bindCandy(cola.textProperty());
-    viewModel.bindCandy(pepsi.textProperty());
-    viewModel.bindCandy(peanuts.textProperty());
-    viewModel.bindCandy(popcorn.textProperty());
-    viewModel.bindCandy(standardTicket.textProperty());
-    viewModel.bindCandy(VIPTicket.textProperty());
-    viewModel.bindCandy(fanta.textProperty());
-    viewModel.bindCandy(nachos.textProperty());
+    viewModel.bindRedbull(redbull.textProperty());
+    viewModel.bindOreo(oreo.textProperty());
+    viewModel.bindTuborg(tuborg.textProperty());
+    viewModel.bindCola(cola.textProperty());
+    viewModel.bindPepsi(pepsi.textProperty());
+    viewModel.bindPeanuts(peanuts.textProperty());
+    viewModel.bindPopcorn(popcorn.textProperty());
+    viewModel.bindStandard(standardTicket.textProperty());
+    viewModel.bindVip(VIPTicket.textProperty());
+    viewModel.bindFanta(fanta.textProperty());
+    viewModel.bindNachos(nachos.textProperty());
     viewModel.reset();
     viewModel.addListener(this);
 

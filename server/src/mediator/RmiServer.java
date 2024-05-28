@@ -39,6 +39,9 @@ public class RmiServer implements RemoteModel
   {
     cinema.deleteAccount(username);
   }
+  @Override public void changePrices(){
+    cinema.changePrices();
+  }
 
   @Override public void changePrice(String item, double newPrice)
       throws RemoteException

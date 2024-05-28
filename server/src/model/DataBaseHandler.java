@@ -13,7 +13,7 @@ public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "papiezpolak";
+  private static final String PASSWORD = "VIAVIAVIA";
 
   private static Connection connection;
 
@@ -432,19 +432,20 @@ public static void deleteScreening(Screening screening) {
     return pricesManager;
   }
 
-  private static void wipePrices() throws SQLException{
-    String sql = "DELETE * FROM pricesTable";
-    try (Connection conn = getConnection();
-        PreparedStatement pstmt = conn.prepareStatement(sql)) {
-      pstmt.executeUpdate();
-    }
-  }
+//  private static void wipePrices() throws SQLException{
+//    String sql = "DELETE * FROM pricesTable";
+//    try (Connection conn = getConnection();
+//        PreparedStatement pstmt = conn.prepareStatement(sql)) {
+//      pstmt.executeUpdate();
+//    }
+//  }
   public static void changePrices(PricesManager manager) throws SQLException{
-
+    String sql1 = "DELETE FROM pricesTable";
     String sql = "INSERT INTO pricesTable(SticketPrice, VticketPrice, NachosPrice, PopcornPrice, CandiesPrice, PeanutsPrice, TuborgPrice, RedbullPrice, ColaPrice, PepsiPrice, OreoPrice, FantaPrice) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     try(Connection conn = getConnection();
-        PreparedStatement statement = conn.prepareStatement(sql)){
-      wipePrices();
+        PreparedStatement statement = conn.prepareStatement(sql);
+        PreparedStatement statement1 = conn.prepareStatement(sql1)){
+      statement1.executeUpdate();
       statement.setDouble(1,manager.getStandardTicketPrice());
       statement.setDouble(2,manager.getVipTicketPrice());
       statement.setDouble(3,manager.getNachosPrice());
@@ -457,6 +458,7 @@ public static void deleteScreening(Screening screening) {
       statement.setDouble(10,manager.getPepsiPrice());
       statement.setDouble(11,manager.getOreoPrice());
       statement.setDouble(12,manager.getFantaPrice());
+      statement.executeUpdate();
     }
   }
 
