@@ -84,6 +84,17 @@ public class RmiClient implements Model, RemoteListener<String,String>
       throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
+
+  @Override public void addMovie(Movie movie)
+  {
+    try
+    {
+      server.addMovie(movie);
+    }catch (RemoteException e){
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
+    }
+  }
+
   @Override public void changePrices(){
     try
     {

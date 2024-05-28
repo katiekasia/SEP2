@@ -3,6 +3,7 @@ package viewmodel;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.Alert;
 import model.Model;
 import model.Order;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
@@ -215,16 +216,16 @@ private String size;
 
   public void sizeChosen(String size){
     this.size = size;
-    popcornPrice.set(String.valueOf(model.getPriceForSize("popcorn", size)) + " DKK");
-    nachosPrice.set(String.valueOf(model.getPriceForSize("nachos", size)) + " DKK");
-    candyPrice.set(String.valueOf(model.getPriceForSize("candies",size)) + " DKK");
-    oreoPrice.set(String.valueOf(model.getPriceForSize("oreo",size)) + " DKK");
-    peanutsPrice.set(String.valueOf(model.getPriceForSize("peanuts",size)) + " DKK");
-    colaPrice.set(String.valueOf(model.getPriceForSize("cola",size)) + " DKK");
-    pepsiPrice.set(String.valueOf(model.getPriceForSize("pepsi",size)) + " DKK");
-    fantaPrice.set(String.valueOf(model.getPriceForSize("fanta",size)) + " DKK");
-    tuborgPrice.set(String.valueOf(model.getPriceForSize("tuborg",size)) + " DKK");
-    redbullPrice.set(String.valueOf(model.getPriceForSize("redbull",size)) + " DKK");
+    popcornPrice.set(model.getPriceForSize("popcorn", size) + " DKK");
+    nachosPrice.set(model.getPriceForSize("nachos", size) + " DKK");
+    candyPrice.set(model.getPriceForSize("candies",size) + " DKK");
+    oreoPrice.set(model.getPriceForSize("oreo",size) + " DKK");
+    peanutsPrice.set(model.getPriceForSize("peanuts",size) + " DKK");
+    colaPrice.set(model.getPriceForSize("cola",size) + " DKK");
+    pepsiPrice.set(model.getPriceForSize("pepsi",size) + " DKK");
+    fantaPrice.set(model.getPriceForSize("fanta",size) + " DKK");
+    tuborgPrice.set(model.getPriceForSize("tuborg",size) + " DKK");
+    redbullPrice.set(model.getPriceForSize("redbull",size) + " DKK");
   }
   public void refreshUser(){viewState.setUser(model.getUserByUsername(viewState.getUser().getUsername()));}
   public int valueOfField(StringProperty property){
@@ -255,8 +256,11 @@ try
   model.addSnackToOrder("tuborg",valueOfField(tuborgAmount),order,viewState.getUser(),size);
   model.addSnackToOrder("redbull",valueOfField(redbullAmount),order,viewState.getUser(),size);
   model.addSnackToOrder("oreo",valueOfField(oreoAmount),order,viewState.getUser(),size);
-}catch (Exception e){
-  e.printStackTrace();
+}catch (Exception e)
+{
+  Alert alert = new Alert(Alert.AlertType.ERROR);
+  alert.setHeaderText(e.getMessage());
+  alert.showAndWait();
 }
   }
 

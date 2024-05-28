@@ -159,7 +159,12 @@ public void bindPrice(StringProperty property){
           alert.setHeaderText("Please enter correct amount of tickets. Seats available: " + screening.getRoom().availableSeats());
           alert.showAndWait();
         }
-      }catch (Exception e){e.printStackTrace();}
+      }catch (Exception e)
+      {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(e.getMessage());
+        alert.showAndWait();
+      }
   }
   public boolean isValidTicketEntry() {
     try
@@ -171,7 +176,12 @@ public void bindPrice(StringProperty property){
       Screening screening = model.getScreeningForView(viewState.getSelectedScreening().getTime(), viewState.getSelectedScreening().getDate(),
           viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom());
       return totalTickets > 0 && totalTickets <= screening.getRoom().availableSeats();
-    }catch (Exception e){e.printStackTrace();}
+    }catch (Exception e)
+    {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText(e.getMessage());
+      alert.showAndWait();
+    }
     return false;
     }
 

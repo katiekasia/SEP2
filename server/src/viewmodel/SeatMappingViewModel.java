@@ -53,7 +53,12 @@ public class SeatMappingViewModel
     {
       return model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
           viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom()).getRoom().getBookedSeatsIDs();
-    }catch (Exception e){}
+    }catch (Exception e)
+    {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText(e.getMessage());
+      alert.showAndWait();
+    }
     return null;
   }
   public Seat[] selectedSeats(){
@@ -69,8 +74,12 @@ try
     index++;
   }
   return seatsToReserve;
-}catch (Exception e){
-  e.printStackTrace();
+}catch (Exception e)
+{
+  Alert alert = new Alert(Alert.AlertType.ERROR);
+  alert.setHeaderText(e.getMessage());
+  alert.showAndWait();
+
 }
 return null;
   }
@@ -103,9 +112,6 @@ return null;
      viewState.setSelectedOrder(new SimpleOrderView(model.reserveSeats(selectedSeats(),viewState.getUser(),model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
              viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom()),
          viewState.getNumberOfVIPTickets())));
-//      model.reserveSeats(selectedSeats(),viewState.getUser(),model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
-//              viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom()),
-//          viewState.getNumberOfVIPTickets());
       selectedSeats.clear();
     }catch (Exception e){
       Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -113,6 +119,9 @@ return null;
       alert.showAndWait();
       return false;
     }
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setHeaderText("Processing your order. This may take a couple of seconds.");
+    alert.showAndWait();
     return true;
   }
   @Override public void addListener(PropertyChangeListener listener){
@@ -128,22 +137,34 @@ return null;
   {
    try
    {
-     return model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
-         viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom());
-   }catch (Exception e){e.printStackTrace();}
+     if (viewState.getSelectedScreening() != null)
+     {
+       return model.getScreeningForView(
+           viewState.getSelectedScreening().getTime(),
+           viewState.getSelectedScreening().getDate(),
+           viewState.getSelectedScreening().getMovie(),
+           viewState.getSelectedScreening().getRoom());
+     }
+   }catch (Exception e)
+   {
+     Alert alert = new Alert(Alert.AlertType.ERROR);
+     alert.setHeaderText(e.getMessage());
+     alert.showAndWait();
+   }
    return null;
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
+      if (getScreening() != null){
       if (evt.getPropertyName().equals("reserveSeat" + getScreening().getTime()) || evt.getPropertyName()
           .equals("reserveSeats" + getScreening().getTime()))
       {
         property.firePropertyChange("reset",null, evt.getNewValue());
       }else if (evt.getPropertyName().equals("fatalError")){
         property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
-      }});
+      }}});
 
   }
 }

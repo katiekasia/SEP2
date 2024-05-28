@@ -3,6 +3,7 @@ package viewmodel;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.Alert;
 import model.Model;
 import model.User;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
@@ -52,9 +53,11 @@ public class RegisterPageViewModel implements PropertyChangeListener,
 
     }
     catch (Exception e) {
-      System.out.println(e.getMessage());
       registrationStatus=false;
       registrationMessage.set("Registration Failed: " + e.getMessage());
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(e.getMessage());
+        alert.showAndWait();
     }
   }
 

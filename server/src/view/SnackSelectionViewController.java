@@ -86,12 +86,7 @@ public class SnackSelectionViewController implements PropertyChangeListener
     viewHandler.openView("orderConfirmation");
   }
   @FXML public void onAdd(){
-    try
-    {
       viewModel.addPressed();
-    }catch (Exception e){
-      e.printStackTrace();
-    }
     addButton.setDisable(true);
   }
   @FXML public void onS(){

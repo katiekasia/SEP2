@@ -15,7 +15,7 @@ public class ModelManager implements Model
   private UsersList usersList;
   private MoviesList moviesList;
   private PricesManager pricesManager;
-  private Admin admin;
+  private AdminsList admins;
   private RoomsList roomsList;
   //not sure if the user variable is the one connected here
 
@@ -26,10 +26,11 @@ public class ModelManager implements Model
     this.HOST = "localhost";
 
     this.propertyChangeSupport = new PropertyChangeSupport(this);
-    this.admin = new Admin();
+
 
     try
     {
+      admins = new AdminsList(DataBaseHandler.getAdmins());
       usersList = new UsersList(DataBaseHandler.getAllCustomers());
       screenings = new ScreeningsList(DataBaseHandler.getAllScreenings());
       moviesList = new MoviesList(DataBaseHandler.getAllMovies());
@@ -83,7 +84,8 @@ public class ModelManager implements Model
       moviesList = new MoviesList(DataBaseHandler.getAllMovies());
 
     }catch (SQLException e){
-      e.printStackTrace();
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
     }
   }
   @Override public Screening getScreeningForView(String time, String date,
@@ -127,11 +129,13 @@ public class ModelManager implements Model
 
   @Override public boolean logInAdmin(String username, String password)
   {
-    if (username.equals(Admin.USERNAME) && password.equals(Admin.PASSWORD))
+    try
     {
+      admins.logIn(username,password);
       return true;
+    }catch (Exception e){
+      throw e;
     }
-    throw new IllegalArgumentException("No user with such credentials found.");
   }
 
   @Override public void addListener(PropertyChangeListener listener)
@@ -192,7 +196,7 @@ public class ModelManager implements Model
     return screenings.getScreeningsByDateAndTitle(title, date);
   }
 
-  @Override public void reserveSeat(Seat seat, User customer,
+  @Override public synchronized void reserveSeat(Seat seat, User customer,
       Screening screening)
   {
     if (screening.getNbOfAvailableSeats() <= 0)
@@ -293,7 +297,7 @@ public class ModelManager implements Model
     }
   }
 
-  @Override public void addScreening(Screening screening)
+  @Override public synchronized void addScreening(Screening screening)
   {
     screenings.addScreening(screening);
     try
@@ -307,7 +311,7 @@ public class ModelManager implements Model
     }
   }
 
-  @Override public void removeScreening(Screening screening)
+  @Override public synchronized void removeScreening(Screening screening)
   {
     try
     {
@@ -318,7 +322,8 @@ public class ModelManager implements Model
     }
     catch (SQLException e)
     {
-      e.printStackTrace();
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
     }
   }
 
@@ -342,7 +347,7 @@ public class ModelManager implements Model
     return screenings.getScreening(screening);
   }
 
-  @Override public Order reserveSeats(Seat[] seats, User customer,
+  @Override public synchronized Order reserveSeats(Seat[] seats, User customer,
       Screening screening, int nbVip)
   {
     Screening scr = getScreening(screening);
@@ -426,7 +431,7 @@ public class ModelManager implements Model
     }
   }
 
-  @Override public void changePrices(ArrayList<Double> newPrices)
+  @Override public synchronized void changePrices(ArrayList<Double> newPrices)
   {
     pricesManager.setAllPrices(newPrices);
     try
@@ -448,6 +453,16 @@ public class ModelManager implements Model
   public void register(String username, String firstName, String lastName,
        String phone,String email,  String password)
   {
+    for (User admin : admins.getAdmins()){
+      if (admin.getUsername().equals(username)){
+        throw new IllegalArgumentException("This username is unavailable.");
+      }
+    }
+    for (User  customer : usersList.getUsers()){
+      if (customer.getUsername().equals(username)){
+        throw new IllegalArgumentException("This username is unavailable.");
+      }
+    }
     try
     {
       DataBaseHandler.newUser(username, firstName, lastName, phone, email,
@@ -461,7 +476,7 @@ public class ModelManager implements Model
     }
   }
 
-  public void deleteAccount(String username)
+  public synchronized void deleteAccount(String username)
   {
     try
     {
@@ -470,6 +485,16 @@ public class ModelManager implements Model
     }
     catch (SQLException e)
     {
+      throw new RuntimeException(
+          "Database connection error. " + e.getMessage());
+    }
+  }
+  @Override public synchronized void addMovie(Movie movie){
+    try
+    {
+      DataBaseHandler.newMovie(movie);
+      moviesList = new MoviesList(DataBaseHandler.getAllMovies());
+    }catch (SQLException e){
       throw new RuntimeException(
           "Database connection error. " + e.getMessage());
     }

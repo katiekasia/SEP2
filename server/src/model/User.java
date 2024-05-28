@@ -104,9 +104,6 @@ public class User implements Serializable
 
   public void setUsername(String username)
   {
-    if (username.equals(Admin.USERNAME)){
-      throw new IllegalArgumentException("Username not available.");
-    }
     this.username = username;
   }
   public int generateOrderID(){

@@ -15,7 +15,6 @@ import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -30,7 +29,6 @@ public class MainPageViewModel implements PropertyChangeListener,
   private StringProperty input;
 
   public MainPageViewModel(Model model, ViewState viewState)
-      throws RemoteException
   {
     this.model = model;
     this.viewState = viewState;

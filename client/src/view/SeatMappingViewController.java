@@ -10,6 +10,7 @@ import viewmodel.SeatMappingViewModel;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
@@ -18,6 +19,7 @@ public class SeatMappingViewController implements PropertyChangeListener
       private Region root;
       private SeatMappingViewModel viewModel;
       private ViewHandler viewHandler;
+
 
       @FXML private Button back;
       @FXML private Button confirm;
@@ -70,7 +72,7 @@ public class SeatMappingViewController implements PropertyChangeListener
       {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
-
+        this.viewModel.addListener(this);
         this.root = root;
         checkBoxes = new ArrayList<>();
         Field[] fields = this.getClass().getDeclaredFields();
@@ -83,7 +85,9 @@ public class SeatMappingViewController implements PropertyChangeListener
                 checkBoxes.add(checkBox);
               }
             } catch (IllegalAccessException e) {
-              e.printStackTrace();
+              Alert alert = new Alert(Alert.AlertType.ERROR);
+              alert.setHeaderText(e.getMessage());
+              alert.showAndWait();
             }
           }
         }

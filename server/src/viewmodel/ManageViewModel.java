@@ -1,6 +1,7 @@
 package viewmodel;
 
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
 import model.Model;
 import model.User;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
@@ -37,10 +38,17 @@ public class ManageViewModel implements PropertyChangeListener,
   }
 
   public void updateUserInDatabase(User user, String previousUsername)
-
   {
     User newUser =viewState.getUser();
-    model.updateUser(user, previousUsername);
+    try
+    {
+      model.updateUser(user, previousUsername);
+    }catch (Exception e){
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText(e.getMessage());
+      alert.showAndWait();
+    }
+
   }
   public String getPassword()
   {

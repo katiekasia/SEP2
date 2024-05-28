@@ -32,6 +32,38 @@ public class DataBaseHandler
     }
     return connection;
   }
+  public static ArrayList<User> getAdmins() throws SQLException{
+    ArrayList<User> admins = new ArrayList<>();
+    try (Connection connection = getConnection())
+    {
+      String query = "SELECT * FROM Admin";
+      try (Statement statement = connection.createStatement();
+          ResultSet resultSet = statement.executeQuery(query))
+      {
+        while (resultSet.next())
+        {
+          String username = resultSet.getString("adminName");
+          String password = resultSet.getString("password");
+          User user = new User(username, "", "", "", "",
+              password);
+          admins.add(user);
+        }
+      }
+    }
+    return admins;
+  }
+  public static void newMovie(Movie movie)throws SQLException{
+    String sql = "INSERT INTO Movie (name, length, description, genre, releaseDate) VALUES(?, ?, ?, ?, ?)";
+    try(Connection conn = getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql)){
+      statement.setString(1,movie.getName());
+      statement.setString(2, movie.getLenghth());
+      statement.setString(3, movie.getDescription());
+      statement.setString(4, movie.getGenre());
+      statement.setDate(5, Date.valueOf(movie.getReleaseDate()));
+      statement.executeUpdate();
+    }
+  }
   // Method to get the database connection
 
   // Method to close the database connection

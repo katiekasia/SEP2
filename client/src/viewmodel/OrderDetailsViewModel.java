@@ -108,7 +108,6 @@ ticketSelected = false;
     {
       selectedSnack.set(viewState.getSelectedSnack());
     }
-    System.out.println(viewState.getSelectedTicket());
   }
   public boolean ticketSelected(){
     return ticketSelected ;
@@ -125,62 +124,93 @@ ticketSelected = false;
     return (result.isPresent()) && (result.get() == ButtonType.OK);
   }
   public void upgradePressed(){
-    Ticket[] tickets = model.getTicketsFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
-        viewState.getUser()));
-    Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(), viewState.getUser());
-    for (Ticket ticket : tickets){
-      if (ticket.getSeat().getID().equals(selectedTicket.get().getSeatID())){
-        model.upgradeTicket(ticket, order, viewState.getUser());
-        ticketSelected = false;
-        loadFromModel();
-      }
-    }
-  }
-  public void downgradePressed(){
-    Ticket[] tickets = model.getTicketsFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
-        viewState.getUser()));
-    Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(), viewState.getUser());
-    for (Ticket ticket : tickets){
-      if (ticket.getSeat().getID().equals(selectedTicket.get().getSeatID())){
-        model.downgradeTicket(ticket, order, viewState.getUser());
-        ticketSelected = false;
-        loadFromModel();
-      }
-    }
-  }
-  public void cancelTicketPressed(){
-    Ticket[] tickets = model.getTicketsFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
-        viewState.getUser()));
-    Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
-        viewState.getUser());
-    if (confirmation())
+    try
     {
-      for (Ticket ticket : tickets)
-      {
-        if (ticket.getSeat().getID().equals(selectedTicket.get().getSeatID()))
-        {
-          model.cancelTicketFromOrder(ticket, order);
+      Ticket[] tickets = model.getTicketsFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
+          viewState.getUser()));
+      Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(), viewState.getUser());
+      for (Ticket ticket : tickets){
+        if (ticket.getSeat().getID().equals(selectedTicket.get().getSeatID())){
+          model.upgradeTicket(ticket, order, viewState.getUser());
           ticketSelected = false;
+          loadFromModel();
         }
       }
-      loadFromModel();
+    }catch (Exception e){
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText(e.getMessage());
+      alert.showAndWait();
+    }
+
+  }
+  public void downgradePressed(){
+    try
+    {
+      Ticket[] tickets = model.getTicketsFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
+          viewState.getUser()));
+      Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(), viewState.getUser());
+      for (Ticket ticket : tickets){
+        if (ticket.getSeat().getID().equals(selectedTicket.get().getSeatID())){
+          model.downgradeTicket(ticket, order, viewState.getUser());
+          ticketSelected = false;
+          loadFromModel();
+        }
+      }
+    }catch (Exception e){
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText(e.getMessage());
+      alert.showAndWait();
+    }
+
+  }
+  public void cancelTicketPressed(){
+    try
+    {
+      Ticket[] tickets = model.getTicketsFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
+          viewState.getUser()));
+      Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
+          viewState.getUser());
+      if (confirmation())
+      {
+        for (Ticket ticket : tickets)
+        {
+          if (ticket.getSeat().getID().equals(selectedTicket.get().getSeatID()))
+          {
+            model.cancelTicketFromOrder(ticket, order);
+            ticketSelected = false;
+          }
+        }
+        loadFromModel();
+      }
+    }catch (Exception e){
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText(e.getMessage());
+      alert.showAndWait();
     }
   }
   public void deleteSnackPressed(){
-    Snack[] orderSnacks = model.getSnacksFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
-        viewState.getUser()));
-    Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
-        viewState.getUser());
-    for (Snack snack : orderSnacks){
-      if (selectedSnack.get().priceProperty().get().equals(snack.getPrice()) &&
-      selectedSnack.get().sizeProperty().get().equals(snack.getSize())&&
-      selectedSnack.get().typeProperty().get().equals(snack.getType())){
-        model.deleteSnackFromOrder(snack, order);
-        snackSelected = false;
+    try
+    {
+      Snack[] orderSnacks = model.getSnacksFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
+          viewState.getUser()));
+      Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
+          viewState.getUser());
+      for (Snack snack : orderSnacks){
+        if (selectedSnack.get().priceProperty().get().equals(snack.getPrice()) &&
+            selectedSnack.get().sizeProperty().get().equals(snack.getSize())&&
+            selectedSnack.get().typeProperty().get().equals(snack.getType())){
+          model.deleteSnackFromOrder(snack, order);
+          snackSelected = false;
+        }
       }
+
+      loadFromModel();
+    }catch (Exception e){
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText(e.getMessage());
+      alert.showAndWait();
     }
 
-    loadFromModel();
   }
 
 

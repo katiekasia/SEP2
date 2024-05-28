@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import model.Model;
 import model.Screening;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
@@ -20,7 +21,6 @@ public class AdminPageViewModel implements PropertyChangeListener,
   private Model model;
   private ViewState viewState;
   private PropertyChangeSupport property;
-
   private ObservableList<SimpleScreeningView> screenings;
   private ObjectProperty<SimpleScreeningView> selectedObject;
 
@@ -32,12 +32,8 @@ public class AdminPageViewModel implements PropertyChangeListener,
     this.screenings = FXCollections.observableArrayList();
 
     this.selectedObject = new SimpleObjectProperty<>();
-
-    model.addListener(this);
-
     this.model.addListener(this);
     property = new PropertyChangeSupport(this);
-
     loadFromModel();
   }
   private void loadFromModel()
@@ -51,6 +47,25 @@ public class AdminPageViewModel implements PropertyChangeListener,
           screening);
       screenings.add(simpleScreeningView);
     }
+  }
+  public void deleteScreening()
+  {
+    String time = viewState.getSelectedScreening().getTime();
+    String date = viewState.getSelectedScreening().getDate();
+    String movie = viewState.getSelectedScreening().getMovie();
+    int room = viewState.getSelectedScreening().getRoom();
+//    Screening screening = ;
+    try
+    {
+      model.removeScreening(model.getScreeningForView(time, date, movie, room));
+    }catch (Exception e){
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText(e.getMessage());
+      alert.showAndWait();
+    }
+
+    loadFromModel();
+
   }
 
   public ViewState getViewState()
@@ -80,14 +95,15 @@ public class AdminPageViewModel implements PropertyChangeListener,
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
-      if (evt.getPropertyName().equals("addScreening") || evt.getPropertyName()
-          .equals("removeScreening"))
-      {
-        loadFromModel();
-      }else if (evt.getPropertyName().equals("fatalError")){
-        property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
-      }});
+    if (evt.getPropertyName().equals("addScreening") || evt.getPropertyName()
+        .equals("removeScreening"))
+    {
+      loadFromModel();
+    }else if (evt.getPropertyName().equals("fatalError")){
+      property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
+    }});
   }
+
   @Override public void addListener(PropertyChangeListener listener)
   {
     property.addPropertyChangeListener(listener);

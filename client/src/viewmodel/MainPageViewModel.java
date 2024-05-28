@@ -30,7 +30,6 @@ public class MainPageViewModel implements PropertyChangeListener,
   private StringProperty input;
 
   public MainPageViewModel(Model model, ViewState viewState)
-      throws RemoteException
   {
     this.model = model;
     this.viewState = viewState;

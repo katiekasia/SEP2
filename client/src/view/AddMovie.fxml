@@ -13,27 +13,36 @@
                   <Image url="@images/user%20-%20profile.png" />
                </image>
             </ImageView>
-            <Label layoutX="36.0" layoutY="182.0" prefHeight="47.0" prefWidth="142.0" text="Welcome">
+            <Label layoutX="37.0" layoutY="92.0" prefHeight="47.0" prefWidth="142.0" text="Welcome">
                <font>
                   <Font size="32.0" />
                </font>
             </Label>
-            <Label fx:id="username" layoutX="56.0" layoutY="230.0" text="Admin">
+            <Label fx:id="username" layoutX="71.0" layoutY="146.0" text="Admin">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="signOut" layoutX="28.0" layoutY="525.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="55.0" />
+            <Button fx:id="signOut" layoutX="30.0" layoutY="563.0" mnemonicParsing="false" onAction="#onSignOut" prefHeight="47.0" prefWidth="55.0" />
             <ImageView fitHeight="30.0" fitWidth="36.0" layoutX="30.0" layoutY="752.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/logout.png" />
                </image>
             </ImageView>
-            <Label layoutX="100.0" layoutY="533.0" text="Sign out">
+            <Label layoutX="100.0" layoutY="571.0" text="Sign out">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
+            <Button fx:id="backAdminPage" layoutX="8.0" layoutY="294.0" mnemonicParsing="false" onAction="#backToAdmin" prefHeight="56.0" prefWidth="183.0" text="Back to admin page">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/fidelity%20points%20-%20profile.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
       <Label layoutX="260.0" layoutY="66.0" prefHeight="86.0" prefWidth="318.0" text="Add Movie">
@@ -46,11 +55,11 @@
             <Image url="@images/cinema.png" />
          </image>
       </ImageView>
-      <TextField layoutX="488.0" layoutY="237.0" />
-      <TextField layoutX="488.0" layoutY="373.0" />
-      <TextField layoutX="488.0" layoutY="327.0" />
-      <TextField layoutX="488.0" layoutY="281.0" />
-      <Button fx:id="add" alignment="CENTER" contentDisplay="CENTER" layoutX="546.0" layoutY="505.0" mnemonicParsing="false" onAction="#onAdd" prefHeight="56.0" prefWidth="183.0" text="Add">
+      <TextField fx:id="titleField" layoutX="488.0" layoutY="237.0" prefHeight="26.0" prefWidth="162.0" />
+      <TextField fx:id="descriptionField" layoutX="488.0" layoutY="373.0" prefHeight="26.0" prefWidth="162.0" />
+      <TextField fx:id="lengthField" layoutX="488.0" layoutY="327.0" prefHeight="26.0" prefWidth="162.0" promptText="Use format xH:yM (1h:10m)" />
+      <TextField fx:id="genreField" layoutX="488.0" layoutY="281.0" prefHeight="26.0" prefWidth="162.0" />
+      <Button fx:id="add" alignment="CENTER" contentDisplay="CENTER" layoutX="445.0" layoutY="501.0" mnemonicParsing="false" onAction="#onAdd" prefHeight="56.0" prefWidth="183.0" text="Add">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -84,15 +93,6 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="488.0" layoutY="418.0" />
-      <Button fx:id="cancel" alignment="CENTER" contentDisplay="CENTER" layoutX="339.0" layoutY="505.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="56.0" prefWidth="183.0" text="Cancel">
-         <graphic>
-            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/settings%20-%20profile.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
+      <DatePicker fx:id="releaseDatePicker" layoutX="488.0" layoutY="418.0" prefHeight="26.0" prefWidth="162.0" />
    </children>
 </AnchorPane>

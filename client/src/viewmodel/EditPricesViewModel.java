@@ -131,9 +131,14 @@ public class EditPricesViewModel implements PropertyChangeListener,
       if (!property.get().equals("")){
         if (isDouble(property.get())){
           double newPrice = Double.parseDouble(property.get());
-          System.out.println(property);
-          model.changePrice(property.getName(), newPrice);
-          System.out.println("called");
+          try
+          {
+            model.changePrice(property.getName(), newPrice);
+          }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(e.getMessage());
+            alert.showAndWait();
+          }
         }else {
           Alert alert = new Alert(Alert.AlertType.ERROR);
           alert.setHeaderText("Please input correct price.");

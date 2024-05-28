@@ -91,11 +91,11 @@ public class RegisterViewController implements PropertyChangeListener
     }
     viewModel.register();
     if (viewModel.registrationStatusProperty()) {
-      showSuccessAlert("Registration Successful", viewModel.registrationMessageProperty().get());
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setHeaderText("Registration Successful " + viewModel.registrationMessageProperty().get());
+      alert.showAndWait();
       clearFields();
       viewHandler.openView("login");
-    } else if (!viewModel.registrationStatusProperty()) {
-      System.out.println("error");
     }
   }
 
@@ -106,12 +106,6 @@ public class RegisterViewController implements PropertyChangeListener
     alert.showAndWait();
   }
 
-  private void showSuccessAlert(String header, String content) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setHeaderText(header);
-    alert.setContentText(content);
-    alert.showAndWait();
-  }
 
   private void clearFields() {
     usernameField.setText("");

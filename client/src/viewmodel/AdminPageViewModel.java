@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import model.Model;
 import model.Screening;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
@@ -54,7 +55,15 @@ public class AdminPageViewModel implements PropertyChangeListener,
     String movie = viewState.getSelectedScreening().getMovie();
     int room = viewState.getSelectedScreening().getRoom();
 //    Screening screening = ;
-    model.removeScreening(model.getScreeningForView(time, date, movie, room));
+    try
+    {
+      model.removeScreening(model.getScreeningForView(time, date, movie, room));
+    }catch (Exception e){
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText(e.getMessage());
+      alert.showAndWait();
+    }
+
     loadFromModel();
 
   }

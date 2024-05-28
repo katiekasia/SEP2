@@ -38,6 +38,12 @@ public class RmiServer implements RemoteModel
   {
     cinema.deleteAccount(username);
   }
+
+  @Override public void addMovie(Movie movie) throws RemoteException
+  {
+    cinema.addMovie(movie);
+  }
+
   @Override public void deleteMovie(Movie movie) throws RemoteException
   {
     cinema.deleteMovie(movie);

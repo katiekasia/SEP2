@@ -44,7 +44,6 @@ public class LoginViewController implements PropertyChangeListener
     }
     else if (viewModel.isAdmin() && viewModel.isLogged()){
       viewHandler.openView("adminPage");
-      System.out.println("ADMIN LOGGED");
     }
 
   }

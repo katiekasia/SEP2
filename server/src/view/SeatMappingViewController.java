@@ -19,6 +19,7 @@ public class SeatMappingViewController implements PropertyChangeListener
       private SeatMappingViewModel viewModel;
       private ViewHandler viewHandler;
 
+
       @FXML private Button back;
       @FXML private Button confirm;
       @FXML private CheckBox a1;
@@ -70,7 +71,7 @@ public class SeatMappingViewController implements PropertyChangeListener
       {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
-
+        this.viewModel.addListener(this);
         this.root = root;
         checkBoxes = new ArrayList<>();
         Field[] fields = this.getClass().getDeclaredFields();
@@ -83,7 +84,9 @@ public class SeatMappingViewController implements PropertyChangeListener
                 checkBoxes.add(checkBox);
               }
             } catch (IllegalAccessException e) {
-              e.printStackTrace();
+              Alert alert = new Alert(Alert.AlertType.ERROR);
+              alert.setHeaderText(e.getMessage());
+              alert.showAndWait();
             }
           }
         }

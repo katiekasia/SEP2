@@ -5,6 +5,7 @@ import mediator.RmiClient;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -33,197 +34,553 @@ public class ModelManager implements Model, PropertyChangeListener
   {
     propertyChangeSupport.removePropertyChangeListener(listener);
   }
+
   @Override public void removeScreening(Screening screening)
   {
     client.removeScreening(screening);
   }
+
   @Override public void deleteMovie(Movie movie)
   {
-    client.deleteMovie(movie);
+    try
+    {
+      client.deleteMovie(movie);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
 
   }
+
   @Override public ArrayList<Movie> getAllMovies()
   {
-    return client.getAllMovies();
+    try
+    {
+      return client.getAllMovies();
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
   }
 
   @Override public void deleteAccount(String username)
   {
-    client.deleteAccount(username);
+
+    try
+    {
+      client.deleteAccount(username);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
   }
 
   @Override public void changePrice(String item, double newPrice)
   {
-    client.changePrice(item,newPrice);
+    try
+    {
+      client.changePrice(item, newPrice);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
+  }
+
+  @Override public void addMovie(Movie movie)
+  {
+    try
+    {
+      client.addMovie(movie);
+    }catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
   }
 
   @Override public void changePrices()
   {
-    client.changePrices();
+    try
+    {
+      client.changePrices();
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public double getPriceForTicket(String type)
   {
-    return client.getPriceForTicket(type);
+    try
+    {
+      return client.getPriceForTicket(type);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public void cancelOrder(Order order, User user)
   {
-    client.cancelOrder(order, user);
+    try
+    {
+      client.cancelOrder(order, user);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public Order getOrderByID(int orderID, User user)
   {
-    return client.getOrderByID(orderID, user);
+    try
+    {
+      return client.getOrderByID(orderID, user);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public Screening getScreeningForView(String time, String date,
       String title, int room)
   {
+    try
+    {
       return client.getScreeningForView(time, date, title, room);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public User logIn(String username, String password)
   {
+    try
+    {
       User loggedInUser = client.logIn(username, password);
       this.user = loggedInUser;
       return loggedInUser;
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
-  @Override  public void updateUser(User user, String previousUsername)
+
+  @Override public void updateUser(User user, String previousUsername)
   {
+    try
+    {
       client.updateUser(user, previousUsername);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
+
   @Override public Order[] getAllOrders(User user)
   {
-   return client.getAllOrders(user);
+    try
+    {
+      return client.getAllOrders(user);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public Snack[] getSnacksFromOrder(Order order)
 
   {
-   return client.getSnacksFromOrder(order);
+    try
+    {
+      return client.getSnacksFromOrder(order);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public Ticket[] getTicketsFromOrder(Order order)
 
   {
-    return client.getTicketsFromOrder(order);
+    try
+    {
+      return client.getTicketsFromOrder(order);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public void reserveSeat(Seat seat, User customer,
       Screening screening)
   {
+    try
+    {
       client.reserveSeat(seat, customer, screening);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public boolean checkSeatAvailability(int index, Screening screening)
   {
-      return client.checkSeatAvailability(index,screening);
+    try
+    {
+      return client.checkSeatAvailability(index, screening);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public boolean logInAdmin(String username, String password)
   {
-    return client.logInAdmin(username, password);
+    try
+    {
+      return client.logInAdmin(username, password);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public Seat[] getAvailableSeats(Screening screening)
   {
-     return client.getAvailableSeats(screening);
+    try
+    {
+      return client.getAvailableSeats(screening);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public Seat[] getEmptySeats(Screening screening)
   {
-     return client.getEmptySeats(screening);
+    try
+    {
+      return client.getEmptySeats(screening);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public User getUserByUsername(String username)
   {
-    return client.getUserByUsername(username);
+    try
+    {
+      return client.getUserByUsername(username);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
-
-
 
   @Override public void updateSeatToBooked(Seat seat, Ticket ticket)
   {
-  client.updateSeatToBooked(seat,ticket);
+    try
+    {
+      client.updateSeatToBooked(seat, ticket);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public void addOrder(Order order, User user)
   {
-    client.addOrder(order, user);
+    try
+    {
+      client.addOrder(order, user);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
-
-    @Override public void register(String username, String password, String email,
+  @Override public void register(String username, String password, String email,
       String firstName, String lastName, String phone)
   {
+    try
+    {
       client.register(username, password, email, firstName, lastName, phone);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public void addScreening(Screening screening)
   {
+    try
+    {
       client.addScreening(screening);
-  }
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
 
+  }
 
   @Override public void removeByDate(SimpleDate date)
   {
+    try
+    {
       client.removeByDate(date);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public ArrayList<Screening> getAllScreenings()
   {
+    try
+    {
       return client.getAllScreenings();
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public int getNbOfScreenings()
   {
+    try
+    {
       return client.getNbOfScreenings();
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public Screening getScreening(Screening screening)
   {
-     return client.getScreening(screening);
+    try
+    {
+      return client.getScreening(screening);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
 
   }
 
   @Override public ArrayList<Ticket> getAllTickets(User user)
   {
+    try
+    {
       return client.getAllTickets(user);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
-@Override public Ticket getTicketForView(Order order, String ID){
-    return client.getTicketForView(order, ID);
-}
+
+  @Override public Ticket getTicketForView(Order order, String ID)
+  {
+    try
+    {
+      return client.getTicketForView(order, ID);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
+  }
+
   @Override public void downgradeTicket(Ticket ticket, Order order, User user)
   {
-    client.downgradeTicket(ticket,order, user);
+    try
+    {
+      client.downgradeTicket(ticket, order, user);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public void upgradeTicket(Ticket ticket, Order order, User user)
   {
-    client.upgradeTicket(ticket, order, user);
+    try
+    {
+      client.upgradeTicket(ticket, order, user);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
   {
-    client.cancelTicketFromOrder(ticket, order);
+    try
+    {
+      client.cancelTicketFromOrder(ticket, order);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public void deleteSnackFromOrder(Snack snack, Order order)
   {
-    client.deleteSnackFromOrder(snack, order);
-  }
+    try
+    {
+      client.deleteSnackFromOrder(snack, order);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
 
+  }
 
   @Override public ArrayList<Screening> getScreaningsByMovieTitle(String title)
   {
     try
     {
       return client.getScreaningsByMovieTitle(title);
-    }catch (Exception e){
-      e.printStackTrace();
     }
-    return null;
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
   }
 
   @Override public ArrayList<Screening> getScreeningsByDate(LocalDate date)
@@ -231,77 +588,152 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       return client.getScreeningsByDate(date);
-    }catch (Exception e){
-      e.printStackTrace();
     }
-    return null;
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
   }
 
   @Override public ArrayList<Screening> getScreeningsByDateAndTitle(
       String title, LocalDate date)
   {
-    return client.getScreeningsByDateAndTitle(title, date);
+    try
+    {
+      return client.getScreeningsByDateAndTitle(title, date);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
   }
 
   @Override public ArrayList<Order> getOrdersForUser(String username)
   {
-    return client.getOrdersForUser(username);
+    try
+    {
+      return client.getOrdersForUser(username);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public Movie getMovieForView(String title)
   {
-    return client.getMovieForView(title);
+    try
+    {
+      return client.getMovieForView(title);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public void changePrices(ArrayList<Double> newPrices)
   {
-    client.changePrices(newPrices);
+    try
+    {
+      client.changePrices(newPrices);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public Order reserveSeats(Seat[] seats, User customer,
       Screening screening, int nbVIP)
   {
-try
-{
- return client.reserveSeats(seats, customer, screening, nbVIP);
-}catch (Exception e){
-  e.printStackTrace();
-}
-return null;
+    try
+    {
+      return client.reserveSeats(seats, customer, screening, nbVIP);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
   }
 
   @Override public double getPriceForSize(String snackType, String size)
   {
-    return client.getPriceForSize(snackType, size);
+    try
+    {
+      return client.getPriceForSize(snackType, size);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
-  @Override public void addSnackToOrder(String snackType, int amount, Order order, User user,String size){
-    client.addSnackToOrder(snackType, amount, order, user, size);
+
+  @Override public void addSnackToOrder(String snackType, int amount,
+      Order order, User user, String size)
+  {
+    try
+    {
+      client.addSnackToOrder(snackType, amount, order, user, size);
+    }
+    catch (RuntimeException e)
+    {
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
-    switch (evt.getPropertyName()){
+    switch (evt.getPropertyName())
+    {
       case "reserve seats":
-        propertyChangeSupport.firePropertyChange("reserveSeats" + evt.getNewValue(), null, evt.getNewValue());
+        propertyChangeSupport.firePropertyChange(
+            "reserveSeats" + evt.getNewValue(), null, evt.getNewValue());
         break;
       case "reserve seat":
-        propertyChangeSupport.firePropertyChange("reserveSeat" + evt.getNewValue(), null, evt.getNewValue());
+        propertyChangeSupport.firePropertyChange(
+            "reserveSeat" + evt.getNewValue(), null, evt.getNewValue());
         break;
       case "add order":
-        propertyChangeSupport.firePropertyChange("addOrder" + evt.getNewValue(), null, evt.getNewValue());
+        propertyChangeSupport.firePropertyChange("addOrder" + evt.getNewValue(),
+            null, evt.getNewValue());
         break;
       case "remove order":
-        propertyChangeSupport.firePropertyChange("removeOrder" + evt.getNewValue(), null, evt.getNewValue());
+        propertyChangeSupport.firePropertyChange(
+            "removeOrder" + evt.getNewValue(), null, evt.getNewValue());
         break;
       case "add screening":
-        propertyChangeSupport.firePropertyChange("addScreening",null,evt.getNewValue());
+        propertyChangeSupport.firePropertyChange("addScreening", null,
+            evt.getNewValue());
         break;
       case "remove screening":
-        propertyChangeSupport.firePropertyChange("removeScreening", null, evt.getNewValue());
+        propertyChangeSupport.firePropertyChange("removeScreening", null,
+            evt.getNewValue());
         break;
-//      case "remove by date":
-//        propertyChangeSupport.firePropertyChange("removeByDate", null, evt.getNewValue());
-//        break;
+      //      case "remove by date":
+      //        propertyChangeSupport.firePropertyChange("removeByDate", null, evt.getNewValue());
+      //        break;
     }
   }
 

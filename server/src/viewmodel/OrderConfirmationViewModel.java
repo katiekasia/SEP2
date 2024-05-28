@@ -41,7 +41,6 @@ public class OrderConfirmationViewModel implements PropertyChangeListener,
   public void loadFromModel(){
     orders.clear();
     Order[] userOrders = model.getAllOrders(model.getUserByUsername(viewState.getUser().getUsername()));
-    System.out.println(userOrders.length);
     for (Order order : userOrders){
       SimpleOrderView simpleOrderView = new SimpleOrderView(order);
       orders.add(simpleOrderView);
@@ -73,11 +72,17 @@ public class OrderConfirmationViewModel implements PropertyChangeListener,
   public void cancelOrderPressed(){
     if (confirmation())
     {
-
-      model.cancelOrder(model.getOrderByID(
-          viewState.getSelectedOrder().orderIDProperty().get(), model.getUserByUsername(viewState.getUser().getUsername())), viewState.getUser());
-      viewState.setUser(model.getUserByUsername(viewState.getUser().getUsername()));
-      loadFromModel();
+      try
+      {
+        model.cancelOrder(model.getOrderByID(
+            viewState.getSelectedOrder().orderIDProperty().get(), model.getUserByUsername(viewState.getUser().getUsername())), viewState.getUser());
+        viewState.setUser(model.getUserByUsername(viewState.getUser().getUsername()));
+        loadFromModel();
+      }catch (Exception e){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(e.getMessage());
+        alert.showAndWait();
+      }
     }
   }
 

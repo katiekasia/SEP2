@@ -11,6 +11,7 @@ public interface Model extends UnnamedPropertyChangeSubject
   void deleteMovie (Movie movie);
   ArrayList<Movie> getAllMovies();
   void changePrice(String item, double newPrice);
+  void addMovie(Movie movie);
   void changePrices();
   double getPriceForTicket(String type);
   void removeScreening(Screening screening);

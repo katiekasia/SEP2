@@ -66,7 +66,6 @@ public class TicketConfirmationViewModel implements PropertyChangeListener,
       tickets.clear();
       Ticket[] orderTickets = model.getTicketsFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
           viewState.getUser()));
-      System.out.println(orderTickets.length);
       Snack[] orderSnacks = model.getSnacksFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
           viewState.getUser()));
       for (Ticket ticket : orderTickets){

@@ -12,6 +12,7 @@ public interface Model extends UnnamedPropertyChangeSubject
   ArrayList<Movie> getAllMovies() throws RemoteException;
   public void updateUser(User user, String previousUsername);
   void changePrice(String item, double newPrice);
+  void addMovie(Movie movie);
   void changePrices();
    void cancelOrder(Order order, User user);
   Order getOrderByID(int orderID, User user);
