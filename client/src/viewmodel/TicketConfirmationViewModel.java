@@ -3,16 +3,23 @@ package viewmodel;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import model.Model;
+import model.Order;
+import model.Snack;
+import model.Ticket;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.rmi.RemoteException;
+import java.util.Optional;
 
 public class TicketConfirmationViewModel implements PropertyChangeListener,
     UnnamedPropertyChangeSubject
@@ -20,8 +27,13 @@ public class TicketConfirmationViewModel implements PropertyChangeListener,
     private Model model;
     private ViewState viewState;
     private PropertyChangeSupport property;
-    private ObservableList<SimpleScreeningView> screenings;
-    private ObjectProperty<SimpleScreeningView> selectedObject;
+    private ObservableList<SimpleTicketView> tickets;
+    private ObservableList<SimpleSnackView> snacks;
+    private ObjectProperty<SimpleSnackView> selectedSnack;
+    private ObjectProperty<SimpleTicketView> selectedTicket;
+    private StringProperty upgradeCost;
+    private boolean snackSelected;
+    private boolean ticketSelected;
 
 
     public TicketConfirmationViewModel(Model model, ViewState viewState)
@@ -32,72 +44,155 @@ public class TicketConfirmationViewModel implements PropertyChangeListener,
       this.property = new PropertyChangeSupport(this);
       this.model.addListener(this);
 
+      ticketSelected = false;
+      snackSelected = false;
+
       this.viewState = viewState;
-      this.screenings = FXCollections.observableArrayList();
-      this.selectedObject = new SimpleObjectProperty<>();
-
-      //loadFromModel();
+      this.tickets = FXCollections.observableArrayList();
+      snacks = FXCollections.observableArrayList();
+      selectedSnack = new SimpleObjectProperty<>();
+      this.selectedTicket = new SimpleObjectProperty<>();
+      upgradeCost = new SimpleStringProperty();
     }
-//    private void loadFromModel() throws RemoteException
-//    {
-//      Screening[] allScreenings = model.getAllScreenings()
-//          .toArray(new Screening[0]);
-//      for (Screening screening : allScreenings)
-//      {
-//        User user = model.getUser();
-//        SimpleScreeningView simpleScreeningView = new SimpleScreeningView(
-//            screening);
-//        screenings.add(simpleScreeningView);
-//
-//      }
-//    }
-//    public void updateScreeningsWithSelectedSeats(ObservableList<String> selectedSeats) {
-//      ObservableList<SimpleScreeningView> updatedViews = FXCollections.observableArrayList();
-//      selectedSeats.forEach(seatId -> {
-//        Screening screening = null;  // Assuming there's a method to find screenings by seat ID
-//        try
-//        {
-//          screening = model.findScreeningBySeatId(seatId);
-//        }
-//        catch (RemoteException e)
-//        {
-//          throw new RuntimeException(e);
-//        }
-//        User user = null;
-//        try
-//        {
-//          user = model.getUser();
-//        }
-//        catch (RemoteException e)
-//        {
-//          throw new RuntimeException(e);
-//        }
-//        SimpleScreeningView view = new SimpleScreeningView(screening);
-//        view.setSeatID(seatId); // Make sure SimpleScreeningView has this method
-//        updatedViews.add(view);
-//      });
-//      screenings.setAll(updatedViews);
-//    }
 
-
-    public void bindScreenings(ObservableList<SimpleScreeningView> propery)
+    public StringProperty upgradeCostProperty()
     {
-      screenings.addListener(
-          (ListChangeListener<? super SimpleScreeningView>) c -> {
-            propery.setAll(screenings);
+      return upgradeCost;
+    }
+
+    public void loadFromModel(){
+
+      snacks.clear();
+      tickets.clear();
+      Ticket[] orderTickets = model.getTicketsFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
+          viewState.getUser()));
+      System.out.println(orderTickets.length);
+      Snack[] orderSnacks = model.getSnacksFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
+          viewState.getUser()));
+      for (Ticket ticket : orderTickets){
+        SimpleTicketView simpleTicketView = new SimpleTicketView(ticket);
+        tickets.add(simpleTicketView);
+      }
+      for (Snack snack : orderSnacks){
+        SimpleSnackView simpleSnackView = new SimpleSnackView(snack);
+        snacks.add(simpleSnackView);
+      }
+      ticketSelected = false;
+      snackSelected = false;
+      upgradeCost.set("+ " + (model.getPriceForTicket("vip") - model.getPriceForTicket("standard")) + " DKK");
+    }
+
+    public void setSnackSelected(boolean snackSelected)
+    {
+      this.snackSelected = snackSelected;
+    }
+
+    public void setTicketSelected(boolean ticketSelected)
+    {
+      this.ticketSelected = ticketSelected;
+    }
+
+    public void bindSnacks(ObservableList<SimpleSnackView> property){
+      snacks.addListener(
+          (ListChangeListener<? super SimpleSnackView>) c -> {
+            property.setAll(snacks);
           });
     }
-    public void setScreenings(ObservableList<SimpleScreeningView> property)
+    public void binTickets(ObservableList<SimpleTicketView> propery)
     {
-      property.setAll(screenings);
+      tickets.addListener(
+          (ListChangeListener<? super SimpleTicketView>) c -> {
+            propery.setAll(tickets);
+          });
+    }
+    public void setTickets(ObservableList<SimpleTicketView> property)
+    {
+      property.setAll(tickets);
+    }
+    public void setSnacks(ObservableList<SimpleSnackView> property){
+      property.setAll(snacks);
+    }
+    private boolean confirmation(){
+      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+      alert.setTitle("Confirmation");
+      alert.setHeaderText("Are you sure you wish to delete ticket: " + selectedTicket.get().ticketTypeProperty().get() + "?");
+      Optional<ButtonType> result = alert.showAndWait();
+      return (result.isPresent()) && (result.get() == ButtonType.OK);
+    }
+    public void upgradePressed(){
+      Ticket[] tickets = model.getTicketsFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
+          viewState.getUser()));
+      Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(), viewState.getUser());
+      for (Ticket ticket : tickets){
+        if (ticket.getSeat().getID().equals(selectedTicket.get().getSeatID())){
+          model.upgradeTicket(ticket, order, viewState.getUser());
+          ticketSelected = false;
+          loadFromModel();
+        }
+      }
+    }
+    public void cancelOrderPressed(){
+      if (confirmation())
+      {
+        model.cancelOrder(model.getOrderByID(
+            viewState.getSelectedOrder().orderIDProperty().get(), model.getUserByUsername(viewState.getUser().getUsername())), viewState.getUser());
+        viewState.setUser(model.getUserByUsername(viewState.getUser().getUsername()));
+        viewState.setSelectedOrder(null);
+      }
+    }
+    public void cancelTicketPressed(){
+      Ticket[] tickets = model.getTicketsFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
+          viewState.getUser()));
+      Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
+          viewState.getUser());
+      if (confirmation())
+      {
+        for (Ticket ticket : tickets)
+        {
+          if (ticket.getSeat().getID().equals(selectedTicket.get().getSeatID()))
+          {
+            model.cancelTicketFromOrder(ticket, order);
+            ticketSelected = false;
+          }
+        }
+        loadFromModel();
+      }
+    }
+    public void deleteSnackPressed(){
+      Snack[] orderSnacks = model.getSnacksFromOrder(model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
+          viewState.getUser()));
+      Order order = model.getOrderByID(viewState.getSelectedOrder().orderIDProperty().get(),
+          viewState.getUser());
+      for (Snack snack : orderSnacks){
+        if (selectedSnack.get().priceProperty().get().equals(snack.getPrice()) &&
+            selectedSnack.get().sizeProperty().get().equals(snack.getSize())&&
+            selectedSnack.get().typeProperty().get().equals(snack.getType())){
+          model.deleteSnackFromOrder(snack, order);
+          snackSelected = false;
+        }
+      }
+
+      loadFromModel();
+    }
+    public boolean ticketSelected(){
+      return ticketSelected ;
+    }
+    public boolean snackSelected(){
+      return snackSelected ;
     }
     public ViewState getViewState()
     {
       return viewState;
     }
-    public void setSelected()
-    {
-      selectedObject.set(viewState.getSelectedScreening());
+    public void setSelected(){
+      if (viewState.getSelectedTicket() != null)
+      {
+        selectedTicket.set(viewState.getSelectedTicket());
+      }
+      if (viewState.getSelectedSnack() != null)
+      {
+        selectedSnack.set(viewState.getSelectedSnack());
+      }
     }
 
     @Override public void propertyChange(PropertyChangeEvent evt)

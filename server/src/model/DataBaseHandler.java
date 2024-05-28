@@ -388,7 +388,7 @@ public static void deleteScreening(Screening screening) {
           String genre = resultSet.getString("genre");
           LocalDate releaseDate = resultSet.getDate("releasedate")
               .toLocalDate();
-          Movie movie = new Movie(name, length, description, genre,releaseDate);
+          Movie movie = new Movie( length, description,name, genre,releaseDate);
           movies.add(movie);
         }
       }

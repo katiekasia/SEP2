@@ -12,7 +12,7 @@ public class SimpleSnackView
 
   public SimpleSnackView(Snack snack){
 
-    price = new SimpleStringProperty(snack.getPrice() + "$");
+    price = new SimpleStringProperty(snack.getPrice() + "DKK");
     type = new SimpleStringProperty(snack.getType());
     size = new SimpleStringProperty(snack.getSize());
   }

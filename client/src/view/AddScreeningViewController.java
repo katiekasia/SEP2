@@ -3,6 +3,9 @@ package view;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import viewmodel.*;
 
@@ -12,8 +15,13 @@ public class AddScreeningViewController
   private AddScreeningViewModel viewModel;
   private ViewHandler viewHandler;
   private ViewState viewState;
-  private SimpleScreeningView selected;
+  private SimpleMovieView selected;
 
+
+  @FXML private TableView moviesTable;
+  @FXML private TableColumn title;
+
+  @FXML private Button deleteMovie;
   @FXML private Label username;
   @FXML private Button signOut;
   @FXML private Button add;
@@ -26,6 +34,17 @@ public class AddScreeningViewController
     this.root = root;
     this.viewState = viewModel.getViewState();
 
+    viewModel.setMovies(moviesTable.getItems());
+    viewModel.bindScreenings(moviesTable.getItems());
+    username.textProperty().bind(viewState.nameProperty());
+
+    this.title.setCellValueFactory(new PropertyValueFactory<>("title"));
+
+    moviesTable.getSelectionModel().selectedItemProperty().addListener((obs,oldVal, newVal) -> {
+      selected = (SimpleMovieView) newVal;
+      viewState.setSelectedMovie((SimpleMovieView) newVal);
+      viewModel.setSelected();
+    });
   }
 
   @FXML public void onCancel()
@@ -36,5 +55,15 @@ public class AddScreeningViewController
   {
 
   }
-
+  @FXML public void onSignOut()
+  {
+    viewHandler.openView("login");
+  }
+  @FXML public void onDeleteMovie()
+  {
+    if (selected != null)
+    {
+      viewModel.deleteMovie();
+    }
+  }
 }

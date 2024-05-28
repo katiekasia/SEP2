@@ -37,6 +37,15 @@ public class ModelManager implements Model, PropertyChangeListener
   {
     client.removeScreening(screening);
   }
+  @Override public void deleteMovie(Movie movie)
+  {
+    client.deleteMovie(movie);
+
+  }
+  @Override public ArrayList<Movie> getAllMovies()
+  {
+    return client.getAllMovies();
+  }
 
   @Override public void deleteAccount(String username)
   {
@@ -51,6 +60,11 @@ public class ModelManager implements Model, PropertyChangeListener
   @Override public void changePrices()
   {
     client.changePrices();
+  }
+
+  @Override public double getPriceForTicket(String type)
+  {
+    return client.getPriceForTicket(type);
   }
 
   @Override public void cancelOrder(Order order, User user)

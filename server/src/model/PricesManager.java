@@ -1,5 +1,7 @@
 package model;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class PricesManager
@@ -19,15 +21,28 @@ public class PricesManager
 
   public PricesManager(){}
 
-  public double getPriceForSize(double price, String size){
-    switch (size){
+  public double getPriceForSize(double price, String size) {
+    double finalPrice;
+    switch (size) {
       case "M":
-      return   price * 1.3;
+        finalPrice = price * 1.3;
+        break;
       case "L":
-        return price * 1.5;
+        finalPrice = price * 1.5;
+        break;
       default:
-        return price;
+        finalPrice = price;
     }
+    BigDecimal bd = new BigDecimal(finalPrice).setScale(2, RoundingMode.HALF_UP);
+    return bd.doubleValue();
+  }
+  public double getPriceForTicket(String type){
+    if (type.equals("standard")){
+      return getStandardTicketPrice();
+    }else if (type.equals("vip")){
+      return getVipTicketPrice();
+    }
+    throw new IllegalArgumentException("No such ticket type");
   }
   public void changePrice(String item, double newPrice){
     switch (item){

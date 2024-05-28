@@ -117,13 +117,13 @@
                </font>
             </Label>
             <TextField fx:id="numberOfVIPTickets" layoutX="223.0" layoutY="409.0" prefWidth="150.0" />
-            <Label layoutX="28.0" layoutY="369.0" prefHeight="27.0" prefWidth="178.0" text="Price per ticket: DKK 120">
+            <Label layoutX="28.0" layoutY="369.0" prefHeight="27.0" prefWidth="178.0" text="" fx:id="standardPrice">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <Label layoutX="421.0" layoutY="414.0" text="* VIP ticket gets you get a free snack + soda" />
-            <Label layoutX="31.0" layoutY="436.0" prefHeight="27.0" prefWidth="173.0" text="Price per ticket: DKK 170">
+            <Label layoutX="31.0" layoutY="436.0" prefHeight="27.0" prefWidth="173.0" text="" fx:id="vipPrice">
                <font>
                   <Font size="14.0" />
                </font>

@@ -16,7 +16,7 @@ public class SimpleTicketView
 
   public SimpleTicketView(Ticket ticket)
     {
-      price = new SimpleStringProperty(ticket.getTicketPrice() + "$");
+      price = new SimpleStringProperty(ticket.getTicketPrice() + "DKK");
       time = new SimpleStringProperty(ticket.getScreening().getTime());
       date = new SimpleStringProperty(ticket.getScreening().getDate().toString());
       movie = new SimpleStringProperty(ticket.getScreening().getMovie().getName());

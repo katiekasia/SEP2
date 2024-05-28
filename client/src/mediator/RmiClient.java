@@ -45,6 +45,28 @@ public class RmiClient implements Model, RemoteListener<String,String>
     }
   }
 
+  @Override public ArrayList<Movie> getAllMovies()
+  {
+    try
+    {
+      return server.getAllMovies();
+    }catch (RemoteException e){
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
+    }
+  }
+
+  @Override public void deleteMovie(Movie movie)
+  {
+    try
+    {
+      server.deleteMovie(movie);
+    }
+    catch (RemoteException e)
+    {
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
+    }
+  }
+
   @Override public void deleteAccount(String username)
   {
     try
@@ -72,6 +94,16 @@ public class RmiClient implements Model, RemoteListener<String,String>
       server.changePrices();
     }catch (RemoteException e){
       throw new RuntimeException("Server connection error. "  + e.getMessage());}
+  }
+
+  @Override public double getPriceForTicket(String type)
+  {
+    try
+    {
+    return server.getPriceForTicket(type);
+    }catch (RemoteException e){
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
+    }
   }
 
   @Override public void updateUser(User user, String previousUsername)

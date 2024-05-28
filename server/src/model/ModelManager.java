@@ -73,7 +73,21 @@ public class ModelManager implements Model
           "Database connection error. " + e.getMessage());
     }
   }
+  @Override public ArrayList<Movie> getAllMovies()
+  {
+    return moviesList.getMovies();
+  }
+  @Override public void deleteMovie(Movie movie)
+  {
+    try
+    {
+      DataBaseHandler.deleteMovie(movie.getName());
+      moviesList = new MoviesList(DataBaseHandler.getAllMovies());
 
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
+  }
   @Override public Screening getScreeningForView(String time, String date,
       String title, int room)
   {
@@ -428,7 +442,14 @@ public class ModelManager implements Model
     }
   }
 
+
   @Override public void register(String username, String password, String email,
+
+      @Override public double getPriceForTicket(String type)
+  {
+   return pricesManager.getPriceForTicket(type);
+  }
+  public void register(String username, String password, String email,
       String firstName, String lastName, String phone)
   {
 
