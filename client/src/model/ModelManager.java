@@ -40,6 +40,15 @@ public class ModelManager implements Model, PropertyChangeListener
   {
     client.removeScreening(screening);
   }
+  @Override public void deleteMovie(Movie movie)
+  {
+    client.deleteMovie(movie);
+
+  }
+  @Override public ArrayList<Movie> getAllMovies()
+  {
+    return client.getAllMovies();
+  }
 
   @Override public void deleteAccount(String username)
   {
