@@ -56,7 +56,15 @@ public class AdminPageViewController implements PropertyChangeListener
 
   @FXML public void onDeleteScreening()
   {
+    if (selected != null)
+    {
+      viewModel.deleteScreening();
+    }
+  }
 
+  @FXML public void onSignOut()
+  {
+    viewHandler.openView("login");
   }
   @FXML public void onEditPrices()
   {

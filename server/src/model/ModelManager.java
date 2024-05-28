@@ -305,14 +305,15 @@ public class ModelManager implements Model
 
   @Override public void removeScreening(Screening screening)
   {
-    screenings.removeScreening(screening);
-    getScreening(screening).deleteID();
-    try
-    {
-      DataBaseHandler.deleteScreening(screening);
-    }catch (SQLException e){
-      throw new RuntimeException("Database connection error. "  + e.getMessage());
-    }
+   try
+   {
+     DataBaseHandler.deleteScreening(screening);
+     getScreening(screening).deleteID();
+     screenings = new ScreeningsList(DataBaseHandler.getAllScreenings());
+
+   }catch (SQLException e){
+     e.printStackTrace();
+   }
   }
 
   @Override public void removeByDate(SimpleDate date)

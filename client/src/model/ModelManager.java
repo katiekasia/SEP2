@@ -36,6 +36,10 @@ public class ModelManager implements Model, PropertyChangeListener
   {
     propertyChangeSupport.removePropertyChangeListener(listener);
   }
+  @Override public void removeScreening(Screening screening)
+  {
+    client.removeScreening(screening);
+  }
 
   @Override public void deleteAccount(String username)
   {
@@ -140,10 +144,6 @@ public class ModelManager implements Model, PropertyChangeListener
       client.addScreening(screening);
   }
 
-  @Override public void removeScreening(Screening screening)
-  {
-      client.removeScreening(screening);
-  }
 
   @Override public void removeByDate(SimpleDate date)
   {

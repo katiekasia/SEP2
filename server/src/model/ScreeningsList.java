@@ -107,7 +107,7 @@ public Screening getScreeningForView(String time, String date,String title, int 
 }
 public Screening getScreening(Screening screening){
   for (Screening scr : screenings){
-    if (scr.equals(screening)){
+    if (scr.getId() == screening.getId()){
       return scr;
     }
   }

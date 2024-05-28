@@ -13,7 +13,7 @@ public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "VIAVIAVIA";
+  private static final String PASSWORD = "papiezpolak";
 
   private static Connection connection;
 
@@ -211,15 +211,38 @@ public class DataBaseHandler
       pstmt.executeUpdate();
     }
   }
-  public static void deleteScreening(Screening screening) throws SQLException{
-    String sql = "DELETE * FROM Screening WHERE id = ?";
-    try (Connection conn = getConnection();
-        PreparedStatement pstmt = conn.prepareStatement(sql))
-    {
-      pstmt.setInt(1,screening.getId());
-      pstmt.executeUpdate();
-    }
+////////////////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+public static void deleteScreening(Screening screening) {
+  String sql = "DELETE FROM Screening WHERE id = ?";
+  String sql1 = "DELETE FROM Ticket WHERE id =?";
+  try (Connection conn = getConnection();
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+  PreparedStatement statement = conn.prepareStatement(sql1)){
+    statement.setInt(1, screening.getId());
+    pstmt.setInt(1, screening.getId());
+    statement.executeUpdate();
+    int rowsDeleted = pstmt.executeUpdate();
+  } catch (SQLException e) {
+    System.err.println("Error deleting screening: " + e.getMessage());
   }
+}
+
+  ////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+//  public static void deleteScreening(Screening screening) throws SQLException {
+//    String sql = "DELETE FROM Screening WHERE screeningHour = ? AND screeningDate = ? AND roomID = ? AND name = ?";
+//    try (Connection conn = getConnection();
+//        PreparedStatement pstmt = conn.prepareStatement(sql)) {
+//      // Set screeningHour as java.sql.Time
+//      pstmt.setTime(1, Time.valueOf(LocalTime.of(screening.getHour(),screening.getMinute(),0)));
+//      pstmt.setDate(2, java.sql.Date.valueOf(screening.getDate().getDate()));
+//      pstmt.setInt(3, screening.getRoomID());
+//      pstmt.setString(4, screening.getMovieTitle());
+//      pstmt.executeUpdate();
+//    }
+//  }
+
+
   public static void deleteSnack(Snack snack, Order order) throws SQLException{
     String sql =  "DELETE * FROM Snack WHERE snackName = ? AND size = ? AND price = ? AND orderID = ?";
     try (Connection conn = getConnection();

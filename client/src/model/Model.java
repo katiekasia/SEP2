@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public interface Model extends UnnamedPropertyChangeSubject
 {
   void deleteAccount(String username);
+  void removeScreening(Screening screening);
   public void updateUser(User user, String previousUsername);
 
   Ticket getTicketForView(Order order, String ID);
@@ -34,7 +35,6 @@ User getUserByUsername(String username);
 void updateSeatToBooked(Seat seat, Ticket ticket);
 void addOrder(Order order, User user);
 void addScreening(Screening screening);
-void removeScreening(Screening screening);
 void removeByDate(SimpleDate date);
 ArrayList<Screening> getAllScreenings();
 int getNbOfScreenings();

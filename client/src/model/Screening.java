@@ -37,9 +37,13 @@ public class Screening implements Serializable
 		int id = Integer.parseInt(String.valueOf(ids.size() + Math.floor(Math.random() * 401)));
 		return id;
 	}
-	public void deleteID(){
-		ids.remove(id);
-	}
+	public void deleteID(){}
+//		for (int s : ids){
+//			if (s == id){
+//				ids.remove(s);
+//			}
+//		}
+//	}
 	public int getId(){
 		return id;
 	}

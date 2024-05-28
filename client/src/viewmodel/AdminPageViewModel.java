@@ -48,6 +48,17 @@ public class AdminPageViewModel implements PropertyChangeListener,
       screenings.add(simpleScreeningView);
     }
   }
+  public void deleteScreening()
+  {
+    String time = viewState.getSelectedScreening().getTime();
+    String date = viewState.getSelectedScreening().getDate();
+    String movie = viewState.getSelectedScreening().getMovie();
+    int room = viewState.getSelectedScreening().getRoom();
+//    Screening screening = ;
+    model.removeScreening(model.getScreeningForView(time, date, movie, room));
+    loadFromModel();
+
+  }
 
   public ViewState getViewState()
   {

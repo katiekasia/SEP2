@@ -129,8 +129,14 @@ return null;
   {
    try
    {
-     return model.getScreeningForView(viewState.getSelectedScreening().getTime(),viewState.getSelectedScreening().getDate(),
-         viewState.getSelectedScreening().getMovie(), viewState.getSelectedScreening().getRoom());
+     if (viewState.getSelectedScreening() != null)
+     {
+       return model.getScreeningForView(
+           viewState.getSelectedScreening().getTime(),
+           viewState.getSelectedScreening().getDate(),
+           viewState.getSelectedScreening().getMovie(),
+           viewState.getSelectedScreening().getRoom());
+     }
    }catch (Exception e){e.printStackTrace();}
    return null;
   }
@@ -138,13 +144,14 @@ return null;
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
+      if (getScreening() != null){
       if (evt.getPropertyName().equals("reserveSeat" + getScreening().getTime()) || evt.getPropertyName()
           .equals("reserveSeats" + getScreening().getTime()))
       {
         property.firePropertyChange("reset",null, evt.getNewValue());
       }else if (evt.getPropertyName().equals("fatalError")){
         property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
-      }});
+      }}});
 
   }
 }
