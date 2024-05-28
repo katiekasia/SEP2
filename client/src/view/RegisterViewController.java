@@ -32,20 +32,16 @@ public class RegisterViewController implements PropertyChangeListener
     this.viewModel = viewModel;
     this.root = root;
 
+    this.usernameField.textProperty().bindBidirectional(viewModel.getUsernameProperty());
+    this.firstNameField.textProperty().bindBidirectional(viewModel.getFNameProperty());
+    this.lastNameField.textProperty().bindBidirectional(viewModel.getLNameProperty());
+    this.emailField.textProperty().bindBidirectional(viewModel.getEmailProperty());
+    this.phoneField.textProperty().bindBidirectional(viewModel.getPhoneProperty());
+    this.passwordField.textProperty().bindBidirectional(viewModel.getPasswordProperty());
+
     viewModel.addListener(this);
 
 
-    viewModel.registrationStatusProperty().addListener(new ChangeListener<String>() {
-      @Override
-      public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-        if (newValue.equals("SUCCESS")) {
-          showSuccessAlert("Registration Successful", viewModel.registrationMessageProperty().get());
-          clearFields();
-        } else if (newValue.equals("ERROR")) {
-          showAlert("Registration Failed", viewModel.registrationMessageProperty().get());
-        }
-      }
-    });
   }
 
   @FXML public void backLogin() {
@@ -53,55 +49,54 @@ public class RegisterViewController implements PropertyChangeListener
   }
 
   @FXML public void onRegister() {
-    String username = usernameField.getText();
-    String password = passwordField.getText();
-    String email = emailField.getText();
-    String firstName = firstNameField.getText();
-    String lastName = lastNameField.getText();
-    String phone = phoneField.getText();
 
-    if (username.isBlank() || username.contains(" ")) {
+    if (viewModel.getUsername().isBlank() || viewModel.getUsername().contains(" ")) {
       showAlert("Invalid Username", "Username cannot be blank or contain spaces.");
       return;
     }
 
-    if (username.length() > 12) {
+    if (viewModel.getUsername().length() > 12) {
       showAlert("Invalid Username", "Username cannot be longer than 12 characters.");
       return;
     }
 
-    if (password.isBlank() || password.contains(" ")) {
+    if (viewModel.getPassword().isBlank() || viewModel.getPassword().contains(" ")) {
       showAlert("Invalid Password", "Password cannot be blank or contain spaces.");
       return;
     }
 
-    if (email.isBlank() || email.contains(" ")|| !email.contains("@") )  {
+    if (viewModel.getEmail().isBlank() || viewModel.getEmail().contains(" ")|| !viewModel.getEmail().contains("@") )  {
       showAlert("Invalid Email", "Email cannot be blank or contain spaces.");
       return;
     }
 
-    if (firstName.isBlank() || firstName.contains(" ")) {
+    if (viewModel.getFName().isBlank() || viewModel.getFName().contains(" ")) {
       showAlert("Invalid First Name", "First name cannot be blank or contain spaces.");
       return;
     }
 
-    if (lastName.isBlank() || lastName.contains(" ")) {
+    if (viewModel.getLName().isBlank() || viewModel.getLName().contains(" ")) {
       showAlert("Invalid Last Name", "Last name cannot be blank or contain spaces.");
       return;
     }
 
-    if (phone.length() > 8) {
+    if (viewModel.getPhone().length() > 8) {
       showAlert("Invalid Phone Number", "Use a danish phone number");
       return;
     }
 
-    if (phone.isBlank() || phone.contains(" ")) {
+    if (viewModel.getPhone().isBlank() || viewModel.getPhone().contains(" ")) {
       showAlert("Invalid Phone Number", "Phone number cannot be blank or contain spaces.");
       return;
     }
-
-    viewModel.register(username, password, email, firstName, lastName, phone);
-
+    viewModel.register();
+    if (viewModel.registrationStatusProperty()) {
+      showSuccessAlert("Registration Successful", viewModel.registrationMessageProperty().get());
+      clearFields();
+      viewHandler.openView("login");
+    } else if (!viewModel.registrationStatusProperty()) {
+      System.out.println("error");
+    }
   }
 
   private void showAlert(String header, String content) {

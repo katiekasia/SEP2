@@ -447,8 +447,8 @@ public class ModelManager implements Model
    return pricesManager.getPriceForTicket(type);
   }
 
-  public void register(String username, String password, String email,
-      String firstName, String lastName, String phone)
+  public void register(String username, String firstName, String lastName,
+       String phone,String email,  String password)
   {
     try
     {
