@@ -3,8 +3,6 @@ package viewmodel;
 
 import model.Model;
 
-import java.time.LocalDate;
-
 public class AddMovieViewModel
 {
   private Model model;

@@ -8,8 +8,6 @@ import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.rmi.RemoteException;
-import java.sql.SQLException;
 
 public class ManageViewModel implements PropertyChangeListener,
     UnnamedPropertyChangeSubject

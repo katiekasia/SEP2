@@ -16,7 +16,7 @@ public class SimpleOrderView
 
   public SimpleOrderView(Order order){
     orderID = new SimpleIntegerProperty(order.getOrderID());
-    orderPrice = new SimpleStringProperty(order.getOrderPrice() + "$");
+    orderPrice = new SimpleStringProperty(order.getOrderPrice() + "DKK");
     orderDate = new SimpleStringProperty(order.getOrderDate().toString());
     orderStatus = new SimpleStringProperty(order.getOrderState().status());
   }

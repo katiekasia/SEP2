@@ -2,8 +2,6 @@ package model;
 
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
-import java.rmi.RemoteException;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 

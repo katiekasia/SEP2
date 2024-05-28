@@ -2,10 +2,15 @@ package view;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import viewmodel.*;
+import viewmodel.AdminPageViewModel;
+import viewmodel.SimpleScreeningView;
+import viewmodel.ViewState;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

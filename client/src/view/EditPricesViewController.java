@@ -4,9 +4,9 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import viewmodel.*;
+import viewmodel.EditPricesViewModel;
+import viewmodel.ViewState;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

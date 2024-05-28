@@ -2,19 +2,15 @@ package mediator;
 
 import model.*;
 import utility.observer.event.ObserverEvent;
-import utility.observer.listener.GeneralListener;
 import utility.observer.listener.RemoteListener;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.rmi.Naming;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class RmiClient implements Model, RemoteListener<String,String>
 {

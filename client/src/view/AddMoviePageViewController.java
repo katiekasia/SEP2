@@ -1,9 +1,12 @@
 package view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import viewmodel.*;
+import viewmodel.AddMovieViewModel;
+import viewmodel.SimpleScreeningView;
+import viewmodel.ViewState;
 
 public class AddMoviePageViewController
 {

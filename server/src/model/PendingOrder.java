@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 public class PendingOrder extends OrderState implements Serializable
 {
