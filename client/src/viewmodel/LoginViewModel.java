@@ -48,6 +48,7 @@ public class LoginViewModel implements PropertyChangeListener,
       viewState.setUser(model.logIn(usernameField.get(), passwordField.get()));
       logged = true;
 
+
     }
    catch(Exception e)
    {
@@ -57,7 +58,10 @@ public class LoginViewModel implements PropertyChangeListener,
        admin = model.logInAdmin(usernameField.get(), passwordField.get());
        viewState.setUser(new User("Admin","","","","",passwordField.get()));
        logged = true;
+       admin = true;
      }catch (Exception s){
+       logged = false;
+       admin = false;
        reset();
        Alert alert= new Alert(Alert.AlertType.ERROR);
        alert.setHeaderText(s.getMessage());
@@ -85,6 +89,8 @@ public class LoginViewModel implements PropertyChangeListener,
   {
     usernameField.set("");
     passwordField.set("");
+    logged = false;
+    admin = false;
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
