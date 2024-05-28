@@ -1,12 +1,17 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import viewmodel.EditPricesViewModel;
 import viewmodel.ViewState;
 
-public class EditPricesViewController
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class EditPricesViewController implements PropertyChangeListener
 {
   private Region root;
   private EditPricesViewModel viewModel;
@@ -35,11 +40,26 @@ public class EditPricesViewController
     this.root = root;
     this.viewState = viewModel.getViewState();
 
+    viewModel.bindCandy(candy.textProperty());
+    viewModel.bindRedbull(redbull.textProperty());
+    viewModel.bindOreo(oreo.textProperty());
+    viewModel.bindTuborg(tuborg.textProperty());
+    viewModel.bindCola(cola.textProperty());
+    viewModel.bindPepsi(pepsi.textProperty());
+    viewModel.bindPeanuts(peanuts.textProperty());
+    viewModel.bindPopcorn(popcorn.textProperty());
+    viewModel.bindStandard(standardTicket.textProperty());
+    viewModel.bindVip(VIPTicket.textProperty());
+    viewModel.bindFanta(fanta.textProperty());
+    viewModel.bindNachos(nachos.textProperty());
+    viewModel.reset();
+    viewModel.addListener(this);
 
   }
 
     @FXML public void onAdd()
   {
+    viewModel.changePressed();
     viewHandler.openView("adminPage");
   }
 
@@ -52,6 +72,16 @@ public class EditPricesViewController
   {
     viewState.logOut();
     viewHandler.openView("login");
+  }
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() ->{
+      if (evt.getPropertyName().equals("fatalError")){
+        viewHandler.close();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("A fatal error has occured: " + evt.getNewValue());
+        alert.showAndWait();
+      }});
   }
 
 }
