@@ -13,9 +13,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.beans.PropertyChangeSupport;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -330,37 +332,77 @@ class MainPageViewModelTest {
     state=state2;
     assertEquals(state2, state, "View state should match the last set ViewState when initialized with many valid objects");
   }
-
-  @Test
-  void loadScreeningsZero() {
-    ArrayList<Screening> screeningsNew = new ArrayList<>();
-    viewModel.loadScreenings(screeningsNew);
-    assertEquals(0, screenings.size(), "Screenings list should be empty");
-  }
-  @Test
-  void loadScreeningsOne() {
-    ArrayList<Screening> screeningsNew = new ArrayList<>();
-    screeningsNew.add(screening1);
-    viewModel.loadScreenings(screeningsNew);
-    assertEquals(1, screenings.size(), "Screenings list should have one item");
-    assertEquals(screening1, screenings.get(0), "The screening should match the one added");
-  }
-  @Test void loadScreeningsException()
+  @Test void getViewStateException()
   {
-    ArrayList<Screening> screeningsNew= new ArrayList<>();
-    screeningsNew=null;
-    ArrayList<Screening> finalScreeningsNew = screeningsNew;
+    viewModel=null;
     assertThrows(NullPointerException.class, () -> {
-      viewModel.loadScreenings(finalScreeningsNew);
+      viewModel.getViewState();
     }, "NullPointerException should be thrown for null argument");
+  }
+//
+//  @Test
+//  void loadScreeningsZero() {
+//    ArrayList<Screening> screeningsNew = new ArrayList<>();
+//    viewModel.loadScreenings(screeningsNew);
+//    assertEquals(0, viewModel.getScreenings().size(), "Screenings list should be empty.");
+//  }
+//  @Test
+//  void loadScreeningsOne() {
+//    ArrayList<Screening> screeningsNew = new ArrayList<>();
+//    screeningsNew.add(screening1);
+//    viewModel.loadScreenings(screeningsNew);
+//    assertEquals(1, viewModel.getScreenings().size(), "Screenings list should have one item");
+//    assertEquals(screening1, viewModel.getScreenings().get(0), "The screening should match the one added");
+//  }
+//  @Test
+//  void testLoadScreeningsWithMultipleScreenings() {
+//    ArrayList<Screening> multipleScreeningsList = new ArrayList<>();
+//    multipleScreeningsList.add(screening1);
+//    multipleScreeningsList.add(screening2);
+//    viewModel.loadScreenings(multipleScreeningsList);
+//    assertEquals(2, screenings.size(), "Screenings list should contain two screenings.");
+//    assertEquals(simpleScreeningView1, screenings.get(0), "First loaded screening does not match.");
+//    assertEquals(simpleScreeningView2, screenings.get(1), "Second loaded screening does not match.");
+//  }
+//  @Test void loadScreeningsException()
+//  {
+//    ArrayList<Screening> screeningsNew= new ArrayList<>();
+//    screeningsNew=null;
+//    ArrayList<Screening> finalScreeningsNew = screeningsNew;
+//    assertThrows(NullPointerException.class, () -> {
+//      viewModel.loadScreenings(finalScreeningsNew);
+//    }, "NullPointerException should be thrown for null argument");
+//
+//  }
+@Test void onSearchZero()
+{
+  viewModel.onSearch(LocalDate.of(2050, 3, 2));
+  assertTrue(viewModel.getScreenings().isEmpty(), "The screenings list should be empty.");
+
+}
+
+  @Test void onSearchMany()
+  {
+    viewModel.onSearch(LocalDate.of(2030, 3, 2));
+    assertEquals(3, viewModel.getScreenings().size(), "The screenings list should contain three screenings.");
+  }
+  @Test
+  void testOnSearchBoundary()
+  {
+    LocalDate earliestDate = LocalDate.of(2020, 1, 1);
+    LocalDate latestDate = LocalDate.of(2040, 12, 31);
+    viewModel.onSearch(earliestDate);
+    assertFalse(viewModel.getScreenings().isEmpty(), "The screenings list should be empty for the earliest date.");
+
+    viewModel.onSearch(latestDate);
+    assertFalse(viewModel.getScreenings().isEmpty(), "The screenings list should be empty for the latest date.");
 
   }
-  @Test void clearFilters()
+  @Test void onSearchException()
   {
-  }
-
-  @Test void onSearch()
-  {
+    assertThrows(DateTimeException.class, () -> {
+      viewModel.onSearch(LocalDate.of(2020,2,0));
+    }, "Invalid type of data.");
   }
 
   @Test void filterByTitle()

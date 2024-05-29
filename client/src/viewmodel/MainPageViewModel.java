@@ -104,6 +104,10 @@ public class MainPageViewModel implements PropertyChangeListener,
     }
   }
 
+  public ObservableList<SimpleScreeningView> getScreenings()
+  {
+    return screenings;
+  }
   public void clearFilters()
   {
     loadFromModel();

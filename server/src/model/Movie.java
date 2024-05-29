@@ -32,32 +32,7 @@ public class Movie implements Serializable
 	public String getReleaseString(){
 		return releaseDate.toString();
 	}
-	//Checks if the room is already in use on the same day
 
-	// ************************************************Getters and setters**************************************
-
-//
-//private boolean isRoomInUse(client_model.ScreeningDay day){
-//	boolean roomInUse = false;
-//	for (client_model.ScreeningDay days:days){
-//		if (day.getDate().equals(days.getDate()) && day.getRoom().equals(days.getRoom())){
-//			roomInUse = true;
-//		}
-//	}
-//	return roomInUse;
-//}
-//	public client_model.ScreeningDay getScreeningDay(client_model.SimpleDate date) {
-//		for (client_model.ScreeningDay day : days) {
-//			if (day.getDate().equals(date)) {
-//				return day;
-//			}
-//		}
-//		return null;
-//	}
-//	public void setScreeningDays(ArrayList<client_model.ScreeningDay> screeningDays)
-//	{
-//		this.days = screeningDays;
-//	} TODO useful for later
 	public String getLenghth() {
 		return length;
 	}
