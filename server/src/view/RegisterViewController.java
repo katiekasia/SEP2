@@ -37,8 +37,8 @@ public class RegisterViewController implements PropertyChangeListener
     this.phoneField.textProperty().bindBidirectional(viewModel.getPhoneProperty());
     this.passwordField.textProperty().bindBidirectional(viewModel.getPasswordProperty());
 
-    viewModel.setCurrent(true);
-    viewModel.addListener(this);
+    this.viewModel.setCurrent(true);
+    this.viewModel.addListener(this);
 
 
   }

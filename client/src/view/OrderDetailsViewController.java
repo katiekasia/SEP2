@@ -50,15 +50,15 @@ public class OrderDetailsViewController implements PropertyChangeListener
     this.root = root;
     this.viewState = viewModel.getViewState();
 
-    viewModel.addListener(this);
+    this.viewModel.addListener(this);
 
-    viewModel.loadFromModel();
+    this.viewModel.loadFromModel();
     controlButtons();
 
-    viewModel.setTickets(ticketsTable.getItems());
-    viewModel.setSnacks(snacksTable.getItems());
-    viewModel.bindSnacks(snacksTable.getItems());
-    viewModel.bindTickets(ticketsTable.getItems());
+    this.viewModel.setTickets(ticketsTable.getItems());
+    this.viewModel.setSnacks(snacksTable.getItems());
+    this.viewModel.bindSnacks(snacksTable.getItems());
+    this.viewModel.bindTickets(ticketsTable.getItems());
 
     time.setText(viewModel.getTime());
     movie.setText(viewModel.getMovie());

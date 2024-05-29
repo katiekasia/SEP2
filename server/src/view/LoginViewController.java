@@ -26,6 +26,7 @@ public class LoginViewController implements PropertyChangeListener
     this.viewModel = viewModel;
     this.root = root;
 
+    this.viewModel.addListener(this);
     viewModel.reset();
     this.usernameField.textProperty()
         .bindBidirectional(viewModel.getUsernameField());

@@ -56,14 +56,15 @@ public class TicketConfirmationViewController implements PropertyChangeListener
     this.root = root;
     this.viewState= viewModel.getViewState();
 
-    viewModel.setCurrent(true);
-    viewModel.addListener(this);
+
+    this.viewModel.setCurrent(true);
+    this.viewModel.addListener(this);
 
 usernameLabel.setText(viewState.getUser().getUsername());
-    viewModel.setTickets(ticketsTable.getItems());
-    viewModel.binTickets(ticketsTable.getItems());
-    viewModel.setSnacks(snacksTable.getItems());
-    viewModel.bindSnacks(snacksTable.getItems());
+    this.viewModel.setTickets(ticketsTable.getItems());
+    this.viewModel.binTickets(ticketsTable.getItems());
+    this.viewModel.setSnacks(snacksTable.getItems());
+    this.viewModel.bindSnacks(snacksTable.getItems());
     snackName.setCellValueFactory(new PropertyValueFactory<>("type"));
     size.setCellValueFactory(new PropertyValueFactory<>("size"));
     snackPrice.setCellValueFactory(new PropertyValueFactory<>("price"));

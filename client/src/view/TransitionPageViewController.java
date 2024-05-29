@@ -44,13 +44,13 @@ public class TransitionPageViewController implements PropertyChangeListener
     this.root = root;
     this.viewState = viewModel.getViewState();
 
-    viewModel.addListener(this);
-viewModel.setCurrent(true);
+    this.viewModel.addListener(this);
+    this.viewModel.setCurrent(true);
     standardPrice.textProperty().bind(viewModel.standardPriceProperty());
     vipPrice.textProperty().bind(viewModel.vipPriceProperty());
-    viewModel.bindStandard(numberOfStandartTickets.textProperty());
-    viewModel.bindVIP(numberOfVIPTickets.textProperty());
-    viewModel.bindPrice(totalPrice.textProperty());
+    this.viewModel.bindStandard(numberOfStandartTickets.textProperty());
+    this.viewModel.bindVIP(numberOfVIPTickets.textProperty());
+    this.viewModel.bindPrice(totalPrice.textProperty());
 
     movieTitle.textProperty().bind(viewModel.movieTitleProperty());
 

@@ -42,7 +42,7 @@ public class ManageViewController implements PropertyChangeListener
     this.root = root;
     this.save.setDisable(true);
     setFields(true);
-    viewModel.setCurrent(true);
+    this.viewModel.setCurrent(true);
 
     this.viewState= viewModel.getViewState();
 
@@ -53,6 +53,7 @@ public class ManageViewController implements PropertyChangeListener
       this.surname.setText(viewModel.getSurname());
       this.phoneNumber.setText(viewModel.getPhoneNumber());
       this.email.setText(viewModel.getEmail());
+    this.viewModel.addListener(this);
     }
 
 

@@ -7,18 +7,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import model.Movie;
-import model.Room;
-import model.Screening;
 import viewmodel.AddScreeningViewModel;
 import viewmodel.SimpleMovieView;
 import viewmodel.ViewState;
 
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
-public class AddScreeningViewController
+public class AddScreeningViewController implements PropertyChangeListener
 {
   private Region root;
   private AddScreeningViewModel viewModel;
@@ -43,6 +40,7 @@ public class AddScreeningViewController
     this.viewModel = viewModel;
     this.root = root;
     this.viewState = viewModel.getViewState();
+    this.viewModel.addListener(this);
 
     viewModel.setCurrent(true);
     viewModel.setMovies(moviesTable.getItems());

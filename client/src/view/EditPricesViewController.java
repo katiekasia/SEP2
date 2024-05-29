@@ -53,7 +53,7 @@ public class EditPricesViewController implements PropertyChangeListener
     viewModel.bindFanta(fanta.textProperty());
     viewModel.bindNachos(nachos.textProperty());
     viewModel.reset();
-    viewModel.addListener(this);
+    this.viewModel.addListener(this);
     viewModel.setCurrent(true);
 
   }

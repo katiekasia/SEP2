@@ -44,12 +44,13 @@ public class MainViewController implements PropertyChangeListener
     this.root = root;
     this.viewState = viewModel.getViewState();
 
+    this.viewModel.addListener(this);
     this.manage.setVisible(true);
     this.signOut.setVisible(true);
     this.orderConfirmation.setVisible(true);
     this.bookTicket1.setVisible(true);
-    viewModel.setScreenings(screeningsTable.getItems());
-    viewModel.bindScreenings(screeningsTable.getItems());
+    this.viewModel.setScreenings(screeningsTable.getItems());
+    this.viewModel.bindScreenings(screeningsTable.getItems());
     searchBar.textProperty().bindBidirectional(viewModel.inputProperty());
     username.textProperty().bind(viewState.nameProperty());
 
@@ -64,8 +65,8 @@ selected = (SimpleScreeningView) newVal;
 viewState.setSelectedScreening((SimpleScreeningView) newVal);
 viewModel.setSelected();
 });
-viewModel.setCurrent(true);
-viewModel.loadFromModel();
+    this.viewModel.setCurrent(true);
+    this.viewModel.loadFromModel();
    // this.username.textProperty().bind(viewModel.getUsername());
   }
 

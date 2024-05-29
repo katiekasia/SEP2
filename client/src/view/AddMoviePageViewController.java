@@ -6,7 +6,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Region;
-import model.Movie;
 import viewmodel.AddMovieViewModel;
 import viewmodel.SimpleScreeningView;
 
@@ -36,6 +35,7 @@ public class AddMoviePageViewController implements PropertyChangeListener {
     this.viewModel = viewModel;
     this.root = root;
     viewModel.setCurrent(true);
+    this.viewModel.addListener(this);
 
     viewModel.addListener(this);
     titleField.textProperty().bindBidirectional(viewModel.titleProperty());

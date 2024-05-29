@@ -41,9 +41,10 @@ public class OrderConfirmationViewController implements PropertyChangeListener
     this.viewModel = viewModel;
     this.root = root;
     this.viewState = viewModel.getViewState();
+    this.viewModel.addListener(this);
 
-    viewModel.setOrders(ordersTable.getItems());
-    viewModel.bindOrders(ordersTable.getItems());
+    this.viewModel.setOrders(ordersTable.getItems());
+    this.viewModel.bindOrders(ordersTable.getItems());
     username.textProperty().bind(viewState.nameProperty());
     this.orderID.setCellValueFactory(new PropertyValueFactory<>("orderID"));
     this.orderStatus.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
@@ -56,8 +57,8 @@ public class OrderConfirmationViewController implements PropertyChangeListener
       viewModel.setSelected();
     });
 
-    viewModel.setCurrent(true);
-    viewModel.loadFromModel();
+    this.viewModel.setCurrent(true);
+    this.viewModel.loadFromModel();
   }
   @FXML public void onSignOut(){
     viewModel.setCurrent(false);

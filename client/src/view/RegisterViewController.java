@@ -1,8 +1,6 @@
 package view;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Region;
@@ -39,8 +37,8 @@ public class RegisterViewController implements PropertyChangeListener
     this.phoneField.textProperty().bindBidirectional(viewModel.getPhoneProperty());
     this.passwordField.textProperty().bindBidirectional(viewModel.getPasswordProperty());
 
-    viewModel.setCurrent(true);
-    viewModel.addListener(this);
+    this.viewModel.setCurrent(true);
+    this.viewModel.addListener(this);
 
 
   }

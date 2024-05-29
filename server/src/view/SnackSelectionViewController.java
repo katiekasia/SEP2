@@ -49,8 +49,8 @@ public class SnackSelectionViewController implements PropertyChangeListener
     this.viewModel = viewModel;
     this.root = root;
     viewState = viewModel.getViewState();
-viewModel.setCurrent(true);
-    viewModel.addListener(this);
+this.viewModel.setCurrent(true);
+    this.viewModel.addListener(this);
 
     addButton.setDisable(true);
 
@@ -67,18 +67,18 @@ viewModel.setCurrent(true);
 
     totalPrice.textProperty().bind(viewModel.totalPriceProperty());
 
-    viewModel.bindCandy(candiesAmount.textProperty());
-    viewModel.bindNachos(nachosAmount.textProperty());
-    viewModel.bindOreo(oreoAmount.textProperty());
-    viewModel.bindPopcorn(popcornAmount.textProperty());
-    viewModel.bindPeanuts(peanutsAmount.textProperty());
-    viewModel.bindCola(colaAmount.textProperty());
-    viewModel.bindPepsi(pepsiAmount.textProperty());
-    viewModel.bindFanta(fantaAmount.textProperty());
-    viewModel.bindTuborg(tuborgAmount.textProperty());
-    viewModel.bindRedbull(redbullAmount.textProperty());
+    this.viewModel.bindCandy(candiesAmount.textProperty());
+    this.viewModel.bindNachos(nachosAmount.textProperty());
+    this.viewModel.bindOreo(oreoAmount.textProperty());
+    this.viewModel.bindPopcorn(popcornAmount.textProperty());
+    this.viewModel.bindPeanuts(peanutsAmount.textProperty());
+    this.viewModel.bindCola(colaAmount.textProperty());
+    this.viewModel.bindPepsi(pepsiAmount.textProperty());
+    this.viewModel.bindFanta(fantaAmount.textProperty());
+    this. viewModel.bindTuborg(tuborgAmount.textProperty());
+    this. viewModel.bindRedbull(redbullAmount.textProperty());
 
-    viewModel.reset();
+    this. viewModel.reset();
   }
 
   @FXML public void onConfirm(){

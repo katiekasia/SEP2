@@ -40,7 +40,7 @@ public class AdminPageViewController implements PropertyChangeListener
     this.root = root;
     this.viewState= viewModel.getViewState();
     viewModel.setCurrent(true);
-
+    this.viewModel.addListener(this);
 
     viewModel.setScreenings(screeningsTable.getItems());
     viewModel.bindScreenings(screeningsTable.getItems());
