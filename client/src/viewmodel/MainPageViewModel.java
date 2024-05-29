@@ -72,6 +72,11 @@ public class MainPageViewModel implements PropertyChangeListener,
     isCurrent = current;
   }
 
+  public boolean isCurrent()
+  {
+    return isCurrent;
+  }
+
   public void bindScreenings(ObservableList<SimpleScreeningView> propery)
   {
     screenings.addListener(

@@ -34,7 +34,8 @@ public class Screening implements Serializable
 			this.room = room;
 		}
 
-	public int generateID(){
+
+  public int generateID(){
 		Random random = new Random();
 		int randomPart = random.nextInt(401);
 
