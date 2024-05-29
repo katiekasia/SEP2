@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import java.beans.PropertyChangeSupport;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,6 +29,8 @@ class MainPageViewModelTest {
   private ObjectProperty<SimpleScreeningView> selectedObject;
   private SimpleScreeningView simpleScreeningView1;
   private SimpleScreeningView simpleScreeningView2;
+  private Screening screening1;
+  private Screening screening2;
 
   @BeforeEach
   void setUp() {
@@ -43,9 +46,15 @@ class MainPageViewModelTest {
       simpleScreeningView1= new SimpleScreeningView(new Screening(1, 1, LocalDate.of(2030, 3, 2),
           new Movie("1h:20m", "Cos tam", "New film", "crime", LocalDate.of(2025, 2, 28)),
           new Room(10, 44)));
+      screening1= new Screening(1, 1, LocalDate.of(2030, 3, 2),
+          new Movie("1h:20m", "Cos tam", "New film", "crime", LocalDate.of(2025, 2, 28)),
+          new Room(10, 44));
       simpleScreeningView2= new SimpleScreeningView(new Screening(4, 5, LocalDate.of(2030, 3, 2),
           new Movie("1h:20m", "Cos tam", "Idk", "crime", LocalDate.of(2025, 2, 28)),
           new Room(10, 44)));
+      screening2= new Screening(4, 5, LocalDate.of(2030, 3, 2),
+          new Movie("1h:20m", "Cos tam", "Idk", "crime", LocalDate.of(2025, 2, 28)),
+          new Room(10, 44));
     }
     catch (Exception e)
     {
@@ -275,17 +284,77 @@ class MainPageViewModelTest {
   }
 
   @Test
-  void setSelected_One() {
-  }
-
-  @Test void getViewState()
+  void setSelected_One()
   {
+    viewState.setSelectedScreening(simpleScreeningView1);
+    viewModel.setSelected();
+    assertNotNull(viewState.getSelectedScreening(), "Selected screening should not be null after setting");
   }
 
-  @Test void loadScreenings()
+  @Test
+  void setSelected_Many()
   {
+    viewState.setSelectedScreening(simpleScreeningView2);
+    viewState.setSelectedScreening(simpleScreeningView1);
+    viewModel.setSelected();
+
+    assertEquals(simpleScreeningView1, viewState.getSelectedScreening(),
+        "Selected screening should match the one set in the view state");
   }
 
+  @Test
+  void setSelected_Exception()
+  {
+    viewModel = null;
+    assertThrows(NullPointerException.class, () -> {
+      viewModel.setSelected();
+    }, "NullPointerException should be thrown for null argument");
+  }
+
+  @Test void getViewStateZero()
+  {
+    ViewState state= viewModel.getViewState();
+    state=null;
+    assertNull(state, "View state should be null when not initialized");
+  }
+  @Test void getViewStateOne()
+  {
+    ViewState state= viewModel.getViewState();
+    assertNotNull(state, "View state should be null when not initialized");
+  }
+  @Test void getViewStateMany()
+  {
+    ViewState state= viewModel.getViewState();
+    ViewState state2= viewModel.getViewState();
+
+    state=state2;
+    assertEquals(state2, state, "View state should match the last set ViewState when initialized with many valid objects");
+  }
+
+  @Test
+  void loadScreeningsZero() {
+    ArrayList<Screening> screeningsNew = new ArrayList<>();
+    viewModel.loadScreenings(screeningsNew);
+    assertEquals(0, screenings.size(), "Screenings list should be empty");
+  }
+  @Test
+  void loadScreeningsOne() {
+    ArrayList<Screening> screeningsNew = new ArrayList<>();
+    screeningsNew.add(screening1);
+    viewModel.loadScreenings(screeningsNew);
+    assertEquals(1, screenings.size(), "Screenings list should have one item");
+    assertEquals(screening1, screenings.get(0), "The screening should match the one added");
+  }
+  @Test void loadScreeningsException()
+  {
+    ArrayList<Screening> screeningsNew= new ArrayList<>();
+    screeningsNew=null;
+    ArrayList<Screening> finalScreeningsNew = screeningsNew;
+    assertThrows(NullPointerException.class, () -> {
+      viewModel.loadScreenings(finalScreeningsNew);
+    }, "NullPointerException should be thrown for null argument");
+
+  }
   @Test void clearFilters()
   {
   }
