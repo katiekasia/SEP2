@@ -65,6 +65,7 @@ viewState.setSelectedScreening((SimpleScreeningView) newVal);
 viewModel.setSelected();
 });
 viewModel.setCurrent(true);
+viewModel.loadFromModel();
    // this.username.textProperty().bind(viewModel.getUsername());
   }
 
