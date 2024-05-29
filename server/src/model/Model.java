@@ -37,6 +37,7 @@ public interface Model extends UnnamedPropertyChangeSubject
 User getUserByUsername(String username);
    void updateSeatToBooked(Seat seat, Ticket ticket);
    void addOrder(Order order, User user);
+  Room getRoomById(String id);
 void addScreening(Screening screening);
 void removeScreening(Screening screening);
 void removeByDate(SimpleDate date);

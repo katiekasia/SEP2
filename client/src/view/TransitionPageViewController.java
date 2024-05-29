@@ -45,7 +45,7 @@ public class TransitionPageViewController implements PropertyChangeListener
     this.viewState = viewModel.getViewState();
 
     viewModel.addListener(this);
-
+viewModel.setCurrent(true);
     standardPrice.textProperty().bind(viewModel.standardPriceProperty());
     vipPrice.textProperty().bind(viewModel.vipPriceProperty());
     viewModel.bindStandard(numberOfStandartTickets.textProperty());
@@ -90,6 +90,7 @@ public class TransitionPageViewController implements PropertyChangeListener
 
   @FXML public void onManage()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("managePage");
   }
 
@@ -97,16 +98,19 @@ public class TransitionPageViewController implements PropertyChangeListener
 
   @FXML public void onSignOut()
   {
+    viewModel.setCurrent(false);
     viewState.logOut();
     viewHandler.openView("login");
   }
 
   @FXML public void onOrderConfirmation(){
+    viewModel.setCurrent(false);
     viewHandler.openView("orderConfirmation");
   }
 
   @FXML private void onBackToMovieSelection()
   {
+    viewModel.setCurrent(false);
     viewState.setSelectedScreening(null);
     viewHandler.openView("mainPage");
   }
@@ -115,6 +119,7 @@ public class TransitionPageViewController implements PropertyChangeListener
 
   @FXML public void onBackToSeatSelection() {
     if (viewModel.isValidTicketEntry()) {
+      viewModel.setCurrent(false);
       viewHandler.openView("seatMapping");
     } else {
       Alert alert = new Alert(Alert.AlertType.ERROR);

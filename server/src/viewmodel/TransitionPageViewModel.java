@@ -33,6 +33,7 @@ public class TransitionPageViewModel implements PropertyChangeListener,
   private StringProperty releaseDate;
   private StringProperty standardPrice;
   private StringProperty vipPrice;
+  private boolean isCurrent;
 
 
   public TransitionPageViewModel(Model model, ViewState viewState) {
@@ -52,6 +53,7 @@ totalPrice = new SimpleStringProperty();
     vipPrice = new SimpleStringProperty(this,"vip");
     standardPrice = new SimpleStringProperty(this, "standard");
     this.model.addListener(this);
+    isCurrent = false;
 
   }
   public void reset(){
@@ -115,7 +117,10 @@ totalPrice = new SimpleStringProperty();
     return roomID;
   }
 
-
+  public void setCurrent(boolean current)
+  {
+    isCurrent = current;
+  }
 
   public ViewState getViewState()
   {
@@ -188,7 +193,7 @@ public void bindPrice(StringProperty property){
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
-      if (evt.getPropertyName().equals("fatalError")){
+      if (evt.getPropertyName().equals("fatalError") && isCurrent){
         property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
       }});
   }

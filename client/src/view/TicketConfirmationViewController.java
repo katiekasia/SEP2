@@ -28,6 +28,7 @@ public class TicketConfirmationViewController implements PropertyChangeListener
 
   @FXML private Label totalPrice;
   @FXML private Label upgradeCost;
+  @FXML private Label usernameLabel;
 
 
   @FXML private TableView ticketsTable;
@@ -42,7 +43,6 @@ public class TicketConfirmationViewController implements PropertyChangeListener
 @FXML private TableColumn size;
 @FXML private TableColumn snackPrice;
 
-  @FXML private Button cancel;
   @FXML private Button deleteSnack;
 @FXML private Button cancelTicket;
   @FXML private Button Continue;
@@ -56,9 +56,10 @@ public class TicketConfirmationViewController implements PropertyChangeListener
     this.root = root;
     this.viewState= viewModel.getViewState();
 
+    viewModel.setCurrent(true);
     viewModel.addListener(this);
 
-
+usernameLabel.setText(viewState.getUser().getUsername());
     viewModel.setTickets(ticketsTable.getItems());
     viewModel.binTickets(ticketsTable.getItems());
     viewModel.setSnacks(snacksTable.getItems());
@@ -113,23 +114,28 @@ public class TicketConfirmationViewController implements PropertyChangeListener
 
   @FXML public void onSignOut()
   {
+    viewModel.setCurrent(false);
     viewState.logOut();
     viewHandler.openView("loginPage");
   }
   @FXML public void onManage()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("managePage");
   }
 
   @FXML public void onConfirmOrder()
   {
+    viewModel.setCurrent(false);
       viewHandler.openView("orderConfirmation");
   }
   @FXML public  void onOrderConfirmation(){
+    viewModel.setCurrent(false);
     viewHandler.openView("orderConfirmation");
   }
   @FXML public void onSnackSelection()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("snackSelection");
   }
   @FXML public void onUpgradeToVIP()
@@ -154,11 +160,7 @@ public class TicketConfirmationViewController implements PropertyChangeListener
       alert.showAndWait();
     }
   }
-  @FXML public void onCancelOrder()
-  {
-    viewModel.cancelOrderPressed();
-    viewHandler.openView("orderConfirmation");
-  }
+
   @FXML public void onCancelTicket()
   {
     if (selectedTicket != null){

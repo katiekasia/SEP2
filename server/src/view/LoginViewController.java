@@ -32,6 +32,7 @@ public class LoginViewController implements PropertyChangeListener
     this.passwordField.textProperty()
         .bindBidirectional(viewModel.getPasswordField());
     this.loginButton.setVisible(true);
+    viewModel.setCurrent(true);
 
   }
 
@@ -40,15 +41,18 @@ public class LoginViewController implements PropertyChangeListener
     viewModel.login();
     if (viewModel.isLogged() && !viewModel.isAdmin())
     {
+      viewModel.setCurrent(false);
       viewHandler.openView("mainPage");
     }
     else if (viewModel.isAdmin() && viewModel.isLogged()){
+      viewModel.setCurrent(false);
       viewHandler.openView("adminPage");
     }
 
   }
   @FXML public void onNewAccount()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("registerPage");
   }
   public Region getRoot()

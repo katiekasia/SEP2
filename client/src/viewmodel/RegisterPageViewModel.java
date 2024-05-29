@@ -27,6 +27,7 @@ public class RegisterPageViewModel implements PropertyChangeListener,
   private StringProperty phoneProperty;
   private boolean registrationStatus;
   private StringProperty registrationMessage;
+  private boolean isCurrent;
 
   public RegisterPageViewModel(Model model, ViewState viewState) {
     this.model = model;
@@ -39,6 +40,7 @@ public class RegisterPageViewModel implements PropertyChangeListener,
     this.phoneProperty = new SimpleStringProperty();
     this.passwordProperty = new SimpleStringProperty();
 
+    isCurrent = false;
     property = new PropertyChangeSupport(this);
     this.model.addListener(this);
   }
@@ -59,6 +61,11 @@ public class RegisterPageViewModel implements PropertyChangeListener,
         alert.setHeaderText(e.getMessage());
         alert.showAndWait();
     }
+  }
+
+  public void setCurrent(boolean current)
+  {
+    isCurrent = current;
   }
 
   public String getUsername()
@@ -128,7 +135,7 @@ public class RegisterPageViewModel implements PropertyChangeListener,
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
-      if (evt.getPropertyName().equals("fatalError")){
+      if (evt.getPropertyName().equals("fatalError") && isCurrent){
         property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
       }});
   }

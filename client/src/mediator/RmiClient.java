@@ -32,6 +32,14 @@ public class RmiClient implements Model, RemoteListener<String,String>
       throw new RuntimeException("Server connection error. "  + e.getMessage());
     }
   }
+  @Override public Room getRoomById(String id){
+    try
+    {
+     return server.getRoomById(id);
+    }catch (RemoteException e){
+      throw new RuntimeException("Server connection error. "  + e.getMessage());
+    }
+  }
   public void stop(){
     try
     {

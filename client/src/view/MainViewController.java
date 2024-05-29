@@ -64,17 +64,19 @@ selected = (SimpleScreeningView) newVal;
 viewState.setSelectedScreening((SimpleScreeningView) newVal);
 viewModel.setSelected();
 });
-
+viewModel.setCurrent(true);
    // this.username.textProperty().bind(viewModel.getUsername());
   }
 
   @FXML public void onManage()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("managePage");
   }
 
   @FXML public void onSignOut()
   {
+    viewModel.setCurrent(false);
     viewState.logOut();
     viewHandler.openView("login");
   }
@@ -82,12 +84,14 @@ viewModel.setSelected();
 
   @FXML public void onOrderConfirmation()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("orderConfirmation");
   }
   @FXML public void bookTicket1()
   {
     if (selected != null)
     {
+      viewModel.setCurrent(false);
       viewHandler.openView("transitionPage");
     }else
     {

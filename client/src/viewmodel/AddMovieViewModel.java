@@ -10,6 +10,7 @@ import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.time.LocalDate;
 
 public class AddMovieViewModel implements PropertyChangeListener,UnnamedPropertyChangeSubject
 {
@@ -18,6 +19,11 @@ public class AddMovieViewModel implements PropertyChangeListener,UnnamedProperty
   private ViewState viewState;
   private StringProperty addingStatus;
   private StringProperty addingMessage;
+  private StringProperty length;
+  private StringProperty title;
+  private StringProperty description;
+  private StringProperty genre;
+  private boolean isCurrent;
 
   public AddMovieViewModel(Model model, ViewState viewState)
   {
@@ -27,6 +33,27 @@ public class AddMovieViewModel implements PropertyChangeListener,UnnamedProperty
     property = new PropertyChangeSupport(this);
     this.model.addListener(this);
     this.viewState = viewState;
+    isCurrent = false;
+  }
+
+  public StringProperty titleProperty()
+  {
+    return title;
+  }
+
+  public StringProperty lengthProperty()
+  {
+    return length;
+  }
+
+  public StringProperty genreProperty()
+  {
+    return genre;
+  }
+
+  public StringProperty descriptionProperty()
+  {
+    return description;
   }
 
   public ViewState getViewState()
@@ -34,7 +61,8 @@ public class AddMovieViewModel implements PropertyChangeListener,UnnamedProperty
     return viewState;
   }
 
-  public void addMovie(Movie movie) {
+  public void addMovie(LocalDate date) {
+    Movie movie = new Movie(length.get(), description.get(), title.get(),genre.get(), date);
     try {
       model.addMovie(movie);
       addingStatus.set("SUCCESS");
@@ -44,6 +72,11 @@ public class AddMovieViewModel implements PropertyChangeListener,UnnamedProperty
       alert.setHeaderText(e.getMessage());
       alert.showAndWait();
     }
+  }
+
+  public void setCurrent(boolean current)
+  {
+    isCurrent = current;
   }
 
   public StringProperty addingStatusProperty() {
@@ -58,7 +91,7 @@ public class AddMovieViewModel implements PropertyChangeListener,UnnamedProperty
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
-      if (evt.getPropertyName().equals("fatalError")){
+      if (evt.getPropertyName().equals("fatalError") && isCurrent){
         property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
       }});
   }

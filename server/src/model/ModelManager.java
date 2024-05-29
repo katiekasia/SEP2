@@ -319,6 +319,10 @@ public class ModelManager implements Model
           "Database connection error. " + e.getMessage());
     }
   }
+  @Override public Room getRoomById(String id){
+    int ID = Integer.parseInt(id);
+    return roomsList.getRoomById(ID);
+  }
 
   @Override public synchronized void removeScreening(Screening screening)
   {
@@ -364,7 +368,7 @@ public class ModelManager implements Model
     boolean freeSeats = true;
     if (scr.getNbOfAvailableSeats() < seats.length)
     {
-      throw new RuntimeException(
+      throw new IllegalArgumentException(
           "Not enough available seats left for this screening");
     }
     for (Seat seat : seats)
@@ -402,14 +406,16 @@ public class ModelManager implements Model
         }
         user.addOrder(temp);
 
-        return user.getOrderByID(temp.getOrderID());
+        if (!getOrderByID(temp.getOrderID(), user).getTickets().isEmpty())
+        {
+          return getOrderByID(temp.getOrderID(), user);
+        }
       }
       catch (SQLException e)
       {
         throw new RuntimeException(e.getMessage());
       }
     }
-    else
       throw new IllegalStateException("Seats are already reserved.");
   }
 

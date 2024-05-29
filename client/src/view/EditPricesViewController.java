@@ -54,23 +54,27 @@ public class EditPricesViewController implements PropertyChangeListener
     viewModel.bindNachos(nachos.textProperty());
     viewModel.reset();
     viewModel.addListener(this);
+    viewModel.setCurrent(true);
 
   }
 
     @FXML public void onAdd()
   {
     viewModel.changePressed();
+    viewModel.setCurrent(false);
     viewHandler.openView("adminPage");
   }
 
   @FXML public void onCancel()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("adminPage");
   }
 
   @FXML public void onSignOut()
   {
     viewState.logOut();
+    viewModel.setCurrent(false);
     viewHandler.openView("login");
   }
   @Override public void propertyChange(PropertyChangeEvent evt)

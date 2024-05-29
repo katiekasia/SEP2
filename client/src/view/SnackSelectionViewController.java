@@ -49,7 +49,7 @@ public class SnackSelectionViewController implements PropertyChangeListener
     this.viewModel = viewModel;
     this.root = root;
     viewState = viewModel.getViewState();
-
+viewModel.setCurrent(true);
     viewModel.addListener(this);
 
     addButton.setDisable(true);
@@ -82,10 +82,12 @@ public class SnackSelectionViewController implements PropertyChangeListener
   }
 
   @FXML public void onConfirm(){
+    viewModel.setCurrent(false);
     viewModel.refreshUser();
     viewHandler.openView("orderConfirmation");
   }
   @FXML public void onAdd(){
+
       viewModel.addPressed();
     addButton.setDisable(true);
   }

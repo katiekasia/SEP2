@@ -86,6 +86,7 @@ public class OrderDetailsViewController implements PropertyChangeListener
       viewModel.setSelected();
       controlButtons();
     });
+    viewModel.setCurrent(true);
   }
   private void controlButtons(){
     if (!viewModel.ticketSelected()){
@@ -134,6 +135,7 @@ public class OrderDetailsViewController implements PropertyChangeListener
     }
   }
   @FXML public void onAddSnack(){
+    viewModel.setCurrent(false);
     viewHandler.openView("snackSelection");
   }
   @FXML public void onDeleteSnack(){
@@ -146,6 +148,7 @@ public class OrderDetailsViewController implements PropertyChangeListener
     }
   }
   @FXML public void onBack(){
+    viewModel.setCurrent(false);
     viewHandler.openView("orderConfirmation");
   }
   @Override public void propertyChange(PropertyChangeEvent evt)

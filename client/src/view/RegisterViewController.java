@@ -39,12 +39,14 @@ public class RegisterViewController implements PropertyChangeListener
     this.phoneField.textProperty().bindBidirectional(viewModel.getPhoneProperty());
     this.passwordField.textProperty().bindBidirectional(viewModel.getPasswordProperty());
 
+    viewModel.setCurrent(true);
     viewModel.addListener(this);
 
 
   }
 
   @FXML public void backLogin() {
+    viewModel.setCurrent(false);
     viewHandler.openView("login");
   }
 
@@ -95,6 +97,7 @@ public class RegisterViewController implements PropertyChangeListener
       alert.setHeaderText("Registration Successful " + viewModel.registrationMessageProperty().get());
       alert.showAndWait();
       clearFields();
+      viewModel.setCurrent(false);
       viewHandler.openView("login");
     }
   }

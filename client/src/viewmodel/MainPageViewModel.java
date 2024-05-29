@@ -28,6 +28,7 @@ public class MainPageViewModel implements PropertyChangeListener,
   private ObjectProperty<SimpleScreeningView> selectedObject;
   private ViewState viewState;
   private StringProperty input;
+  private boolean isCurrent;
 
   public MainPageViewModel(Model model, ViewState viewState)
   {
@@ -40,6 +41,7 @@ public class MainPageViewModel implements PropertyChangeListener,
     this.model.addListener(this);
     property = new PropertyChangeSupport(this);
     loadFromModel();
+    isCurrent = false;
   }
 
   private void loadFromModel()
@@ -63,6 +65,11 @@ public class MainPageViewModel implements PropertyChangeListener,
   public void setScreenings(ObservableList<SimpleScreeningView> property)
   {
     property.setAll(screenings);
+  }
+
+  public void setCurrent(boolean current)
+  {
+    isCurrent = current;
   }
 
   public void bindScreenings(ObservableList<SimpleScreeningView> propery)
@@ -139,11 +146,11 @@ public class MainPageViewModel implements PropertyChangeListener,
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
-      if (evt.getPropertyName().equals("addScreening") || evt.getPropertyName()
-          .equals("removeScreening"))
+      if (evt.getPropertyName().equals("addScreening") && isCurrent || evt.getPropertyName()
+          .equals("removeScreening") && isCurrent)
       {
         loadFromModel();
-      }else if (evt.getPropertyName().equals("fatalError")){
+      }else if (evt.getPropertyName().equals("fatalError") && isCurrent){
         property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
       }});
   }

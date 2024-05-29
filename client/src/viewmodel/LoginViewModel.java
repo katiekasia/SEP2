@@ -22,6 +22,7 @@ public class LoginViewModel implements PropertyChangeListener,
   private StringProperty passwordField;
   private boolean logged;
   private boolean admin;
+  private boolean isCurrent;
 
   public LoginViewModel(Model model, ViewState viewState)
   {
@@ -33,6 +34,7 @@ public class LoginViewModel implements PropertyChangeListener,
     logged = false;
     admin = false;
     model.addListener(this);
+    isCurrent = false;
 
   }
 
@@ -93,10 +95,15 @@ public class LoginViewModel implements PropertyChangeListener,
     admin = false;
   }
 
+  public void setCurrent(boolean current)
+  {
+    isCurrent = current;
+  }
+
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
-      if (evt.getPropertyName().equals("fatalError")){
+      if (evt.getPropertyName().equals("fatalError") && isCurrent){
         property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
       }});
   }

@@ -39,6 +39,7 @@ public class AdminPageViewController implements PropertyChangeListener
     this.viewModel = viewModel;
     this.root = root;
     this.viewState= viewModel.getViewState();
+    viewModel.setCurrent(true);
 
 
     viewModel.setScreenings(screeningsTable.getItems());
@@ -73,18 +74,22 @@ public class AdminPageViewController implements PropertyChangeListener
 
   @FXML public void onSignOut()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("login");
   }
   @FXML public void onEditPrices()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("editPrices");
   }
   @FXML public void onAddScreening()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("addScreening");
   }
   @FXML public void onAddMovie()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("addMovie");
   }
   @Override public void propertyChange(PropertyChangeEvent evt)

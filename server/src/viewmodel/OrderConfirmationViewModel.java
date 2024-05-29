@@ -25,12 +25,14 @@ public class OrderConfirmationViewModel implements PropertyChangeListener,
   private ObservableList<SimpleOrderView> orders;
   private ObjectProperty<SimpleOrderView> selectedObject;
   private ViewState viewState;
+  private boolean isCurrent;
 
   public OrderConfirmationViewModel(Model model, ViewState viewState){
     this.model = model;
     this.viewState = viewState;
     this.orders = FXCollections.observableArrayList();
 
+    isCurrent = false;
     this.selectedObject = new SimpleObjectProperty<>();
     this.model.addListener(this);
     property = new PropertyChangeSupport(this);
@@ -45,6 +47,11 @@ public class OrderConfirmationViewModel implements PropertyChangeListener,
       SimpleOrderView simpleOrderView = new SimpleOrderView(order);
       orders.add(simpleOrderView);
     }
+  }
+
+  public void setCurrent(boolean current)
+  {
+    isCurrent = current;
   }
 
   public void setOrders(ObservableList<SimpleOrderView> property){
@@ -89,9 +96,9 @@ public class OrderConfirmationViewModel implements PropertyChangeListener,
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
-    if (evt.getPropertyName().equals("addOrder" + viewState.getUser().getUsername()) || evt.getPropertyName().equals("removeOrder" + viewState.getUser().getUsername())){
+    if (evt.getPropertyName().equals("addOrder" + viewState.getUser().getUsername()) || evt.getPropertyName().equals("removeOrder" + viewState.getUser().getUsername()) && isCurrent){
       loadFromModel();
-    }else if (evt.getPropertyName().equals("fatalError")){
+    }else if (evt.getPropertyName().equals("fatalError") && isCurrent){
       property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
     }});
   }

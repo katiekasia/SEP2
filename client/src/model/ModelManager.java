@@ -554,6 +554,18 @@ public class ModelManager implements Model, PropertyChangeListener
 
   }
 
+  @Override public Room getRoomById(String id)
+  {
+    try
+    {
+     return client.getRoomById(id);
+    }catch (RuntimeException e){
+      propertyChangeSupport.firePropertyChange("fatalError", null,
+          e.getMessage());
+      throw e;
+    }
+  }
+
   @Override public void deleteSnackFromOrder(Snack snack, Order order)
   {
     try

@@ -43,6 +43,7 @@ private StringProperty fantaAmount;
 private StringProperty tuborgAmount;
 private StringProperty redbullAmount;
 private String size;
+private boolean isCurrent;
 
 
 
@@ -53,7 +54,7 @@ private String size;
     total= 0;
     totalPrice = new SimpleStringProperty();
     size = "";
-
+isCurrent = false;
     property = new PropertyChangeSupport(this);
     this.model.addListener(this);
 
@@ -107,7 +108,10 @@ private String size;
 
   }
 
-
+  public void setCurrent(boolean current)
+  {
+    isCurrent = current;
+  }
 
   public StringProperty tuborgPriceProperty()
   {
@@ -267,7 +271,7 @@ try
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
-      if (evt.getPropertyName().equals("fatalError")){
+      if (evt.getPropertyName().equals("fatalError") && isCurrent){
         property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
       }});
   }

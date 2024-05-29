@@ -23,18 +23,26 @@ public class SeatMappingViewModel
   private PropertyChangeSupport property;
   private int nbTickets;
   private int myTickets;
+  private boolean isCurrent;
 
 
   public SeatMappingViewModel(Model model, ViewState viewState) {
     this.model = model;
     this.viewState = viewState;
 
+    isCurrent = false;
     property = new PropertyChangeSupport(this);
     this.model.addListener(this);
     reset();
 
 
   }
+
+  public void setCurrent(boolean current)
+  {
+    isCurrent = current;
+  }
+
   public ObservableList<String> getSelectedSeats() {
     return selectedSeats;
   }
@@ -158,11 +166,11 @@ return null;
   {
     Platform.runLater(() ->{
       if (getScreening() != null){
-      if (evt.getPropertyName().equals("reserveSeat" + getScreening().getTime()) || evt.getPropertyName()
-          .equals("reserveSeats" + getScreening().getTime()))
+      if (evt.getPropertyName().equals("reserveSeat" + getScreening().getTime()) && isCurrent || evt.getPropertyName()
+          .equals("reserveSeats" + getScreening().getTime()) && isCurrent)
       {
         property.firePropertyChange("reset",null, evt.getNewValue());
-      }else if (evt.getPropertyName().equals("fatalError")){
+      }else if (evt.getPropertyName().equals("fatalError") && isCurrent){
         property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
       }}});
 

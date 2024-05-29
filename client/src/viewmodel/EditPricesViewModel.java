@@ -32,6 +32,7 @@ public class EditPricesViewModel implements PropertyChangeListener,
   private StringProperty popcorn;
   private StringProperty peanuts;
   private ArrayList<StringProperty> fields;
+  private boolean isCurrent;
 
   public EditPricesViewModel(Model model, ViewState viewState)
   {
@@ -66,7 +67,7 @@ public class EditPricesViewModel implements PropertyChangeListener,
     fields.add(redbull);
     fields.add(candy);
 
-
+    isCurrent = false;
     this.model.addListener(this);
   }
   public ViewState getViewState()
@@ -86,6 +87,11 @@ public class EditPricesViewModel implements PropertyChangeListener,
     oreo.set("");
     candy.set("");
     cola.set("");
+  }
+
+  public void setCurrent(boolean current)
+  {
+    isCurrent = current;
   }
 
   public void bindStandard(StringProperty property){
@@ -162,7 +168,7 @@ public class EditPricesViewModel implements PropertyChangeListener,
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
-      if (evt.getPropertyName().equals("fatalError")){
+      if (evt.getPropertyName().equals("fatalError") && isCurrent){
         property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
       }});
   }

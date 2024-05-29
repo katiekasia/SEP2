@@ -145,6 +145,7 @@ public class SeatMappingViewController implements PropertyChangeListener
     setSeatsFromModel();
         viewModel.reset();
         viewModel.addListener(this);
+        viewModel.setCurrent(true);
 
   }
 
@@ -196,10 +197,12 @@ public class SeatMappingViewController implements PropertyChangeListener
   @FXML public void onConfirm()
   {
     if (viewModel.proceedPressed()){
+      viewModel.setCurrent(false);
     viewHandler.openView("ticketConfirmation");}
   }
   @FXML public void onBack()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("transitionPage");
   }
 

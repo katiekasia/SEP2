@@ -231,7 +231,7 @@ public class DataBaseHandler
     }
   }
   public static void deleteTicket(String ticketID) throws SQLException{
-    String sql = "DELETE * FROM ticket WHERE ticketID = ?";
+    String sql = "DELETE  FROM ticket WHERE ticketID = ?";
     try (Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql))
     {
@@ -272,7 +272,7 @@ public static void deleteScreening(Screening screening) {
 
 
   public static void deleteSnack(Snack snack, Order order) throws SQLException{
-    String sql =  "DELETE * FROM Snack WHERE snackName = ? AND size = ? AND price = ? AND orderID = ?";
+    String sql =  "DELETE  FROM Snack WHERE snackName = ? AND size = ? AND price = ? AND orderID = ?";
     try (Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql))
     {
@@ -285,7 +285,7 @@ public static void deleteScreening(Screening screening) {
   }
 
   public static void deleteMovie(String title) throws SQLException{
-    String sql =  "DELETE * FROM Movie WHERE name = ?";
+    String sql =  "DELETE  FROM Movie WHERE name = ?";
     try (Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql))
     {
@@ -294,7 +294,7 @@ public static void deleteScreening(Screening screening) {
     }
   }
   public static void deleteOrder(int orderID) throws SQLException{
-    String sql = "DELETE * FROM orders WHERE orderID = ?";
+    String sql = "DELETE  FROM orders WHERE orderID = ?";
     try (Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql))
     {
@@ -460,13 +460,6 @@ public static void deleteScreening(Screening screening) {
     return pricesManager;
   }
 
-//  private static void wipePrices() throws SQLException{
-//    String sql = "DELETE * FROM pricesTable";
-//    try (Connection conn = getConnection();
-//        PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//      pstmt.executeUpdate();
-//    }
-//  }
   public static void changePrices(PricesManager manager) throws SQLException{
     String sql1 = "DELETE FROM pricesTable";
     String sql = "INSERT INTO pricesTable(SticketPrice, VticketPrice, NachosPrice, PopcornPrice, CandiesPrice, PeanutsPrice, TuborgPrice, RedbullPrice, ColaPrice, PepsiPrice, OreoPrice, FantaPrice) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

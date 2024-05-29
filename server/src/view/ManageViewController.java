@@ -34,6 +34,7 @@ public class ManageViewController implements PropertyChangeListener
 
 
 
+
   public void init(ViewHandler viewHandler, Region root, ManageViewModel viewModel)
   {
     this.viewHandler = viewHandler;
@@ -41,11 +42,11 @@ public class ManageViewController implements PropertyChangeListener
     this.root = root;
     this.save.setDisable(true);
     setFields(true);
+    viewModel.setCurrent(true);
 
     this.viewState= viewModel.getViewState();
 
-    try
-    {
+
       this.username.setText(viewModel.getUsername());
       this.password.setText(viewModel.getPassword());
       this.name.setText(viewModel.getName());
@@ -53,15 +54,11 @@ public class ManageViewController implements PropertyChangeListener
       this.phoneNumber.setText(viewModel.getPhoneNumber());
       this.email.setText(viewModel.getEmail());
     }
-    catch (Exception e)
-    {
-      System.out.println("ManageViewController username and password error");
-      e.printStackTrace();
-    }
 
 
-    // this.username.textProperty().bind(viewModel.getUsername());
-  }
+
+
+
 
   private void setFields(boolean disable){
     username.setDisable(disable);
@@ -75,16 +72,19 @@ public class ManageViewController implements PropertyChangeListener
 
   @FXML public void onScreening()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("mainPage");
   }
 
   @FXML public void onSignOut()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("login");
   }
 
   @FXML public void onOrderConfirmation()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("orderConfirmation");
   }
   @FXML public void onDelete()
@@ -99,6 +99,7 @@ public class ManageViewController implements PropertyChangeListener
     {
       try
       {
+        viewModel.setCurrent(false);
         viewModel.deleteAccount();
         viewHandler.openView("login");
       }
@@ -146,9 +147,6 @@ public class ManageViewController implements PropertyChangeListener
 
       viewModel.updateUserInDatabase(user, oldUser.getUsername());
 
-      System.out.println("MANAGE VIEW CONTROLLER\nShould not be 1");
-      System.out.println(user.getUsername());
-      System.out.println("User information added to viewModel.");
     }
 
   private void showAlert(String deletionFailed, String s)

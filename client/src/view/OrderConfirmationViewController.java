@@ -56,16 +56,20 @@ public class OrderConfirmationViewController implements PropertyChangeListener
       viewModel.setSelected();
     });
 
+    viewModel.setCurrent(true);
     viewModel.loadFromModel();
   }
   @FXML public void onSignOut(){
+    viewModel.setCurrent(false);
     viewState.logOut();
     viewHandler.openView("login");
   }
   @FXML public void onManage(){
+    viewModel.setCurrent(false);
     viewHandler.openView("managePage");
   }
   @FXML public void onBack(){
+    viewModel.setCurrent(false);
     viewHandler.openView("mainPage");
   }
   @FXML public void onCancelOrder(){
@@ -75,6 +79,7 @@ public class OrderConfirmationViewController implements PropertyChangeListener
   }
   @FXML public  void onOrderDetails(){
     if (selected != null){
+      viewModel.setCurrent(false);
       viewHandler.openView("orderDetails");
     }else {
       Alert alert = new Alert(Alert.AlertType.ERROR);

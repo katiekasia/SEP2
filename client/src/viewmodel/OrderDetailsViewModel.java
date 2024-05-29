@@ -34,6 +34,7 @@ public class OrderDetailsViewModel implements PropertyChangeListener,
   private String date;
   private boolean snackSelected;
   private boolean ticketSelected;
+  private boolean isCurrent;
 
   public OrderDetailsViewModel(Model model, ViewState viewState){
     this.model = model;
@@ -42,6 +43,7 @@ public class OrderDetailsViewModel implements PropertyChangeListener,
     snacks = FXCollections.observableArrayList();
     ticketSelected = false;
     snackSelected = false;
+    isCurrent= false;
 
     this.model.addListener(this);
     property = new PropertyChangeSupport(this);
@@ -213,6 +215,10 @@ ticketSelected = false;
 
   }
 
+  public void setCurrent(boolean current)
+  {
+    isCurrent = current;
+  }
 
   public String getTime()
   {
@@ -234,7 +240,7 @@ ticketSelected = false;
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
-      if (evt.getPropertyName().equals("fatalError")){
+      if (evt.getPropertyName().equals("fatalError") && isCurrent){
         property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
       }});
   }

@@ -17,6 +17,7 @@ public class ManageViewModel implements PropertyChangeListener,
 
   private ViewState viewState;
   private PropertyChangeSupport property;
+  private boolean isCurrent;
 
 
   public ManageViewModel(Model model, ViewState viewState)
@@ -25,10 +26,16 @@ public class ManageViewModel implements PropertyChangeListener,
     this.viewState= viewState;
     property = new PropertyChangeSupport(this);
     this.model.addListener(this);
+    isCurrent = false;
   }
   public String getUsername()
   {
     return viewState.getUser().getUsername();
+  }
+
+  public void setCurrent(boolean current)
+  {
+    isCurrent = current;
   }
 
   public void deleteAccount()
@@ -79,7 +86,7 @@ public class ManageViewModel implements PropertyChangeListener,
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
-      if (evt.getPropertyName().equals("fatalError")){
+      if (evt.getPropertyName().equals("fatalError") && isCurrent){
         property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
       }});
   }

@@ -56,7 +56,6 @@
               </columns>
             </TableView>
             <Button fx:id="upgradeToVIP" layoutX="603.0" layoutY="94.0" mnemonicParsing="false" onAction="#onUpgradeToVIP" text="Upgrade to VIP ticket" />
-            <Button fx:id="cancel" layoutX="14.0" layoutY="526.0" mnemonicParsing="false" onAction="#onCancelOrder" prefHeight="47.0" prefWidth="94.0" text="Cancel order" />
             <Button fx:id="snackSelection" layoutX="618.0" layoutY="298.0" mnemonicParsing="false" onAction="#onSnackSelection" text="Snack selection " />
             <Label fx:id="upgradeCost" layoutX="632.0" layoutY="57.0" prefHeight="27.0" prefWidth="72.0" text="+50 DKK">
                <font>

@@ -4,6 +4,7 @@ import model.*;
 import utility.observer.listener.GeneralListener;
 import utility.observer.subject.PropertyChangeHandler;
 
+import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -28,6 +29,8 @@ public class RmiServer implements RemoteModel
     {
       startRegistry();
       start();
+      String hostAddress = InetAddress.getLocalHost().getHostAddress();
+      System.out.println(hostAddress);
     }
     catch (Exception e)
     {
@@ -92,6 +95,7 @@ public class RmiServer implements RemoteModel
       registry = LocateRegistry.createRegistry(1099);
 
       System.out.println("Registry started...");
+
     }
     catch (ExportException e)
     {
@@ -112,7 +116,7 @@ public class RmiServer implements RemoteModel
     cinema.updateUser(user, previousUsername);
   }
 
-  @Override public Order reserveSeats(Seat[] seats, User customer,
+  @Override public synchronized Order reserveSeats(Seat[] seats, User customer,
       Screening screening, int nbVIP) throws RemoteException
   {
     property.firePropertyChange("RESERVE SEATS", null, screening.getTime());
@@ -184,7 +188,7 @@ public class RmiServer implements RemoteModel
     return cinema.checkSeatAvailability(index, screening);
   }
 
-  @Override public void reserveSeat(Seat seat, User customer,
+  @Override public synchronized void reserveSeat(Seat seat, User customer,
       Screening screening) throws RemoteException
   {
     cinema.reserveSeat(seat, customer, screening);
@@ -196,7 +200,9 @@ public class RmiServer implements RemoteModel
   {
     return cinema.getAvailableSeats(screening);
   }
-
+@Override public Room getRoomById(String id){
+    return cinema.getRoomById(id);
+}
   @Override public Seat[] getEmptySeats(Screening screening)
       throws RemoteException
   {
@@ -211,7 +217,7 @@ public class RmiServer implements RemoteModel
         ticket.toString());
   }
 
-  @Override public void addOrder(Order order, User user) throws RemoteException
+  @Override public synchronized void addOrder(Order order, User user) throws RemoteException
   {
     cinema.addOrder(order, user);
     property.firePropertyChange("ADD ORDER", null, user.getUsername());
@@ -229,7 +235,7 @@ public class RmiServer implements RemoteModel
     return cinema.getTicketForView(order, ID);
   }
 
-  @Override public void register(String username, String password, String email,
+  @Override public synchronized void register(String username, String password, String email,
       String firstName, String lastName, String phone) throws RemoteException
   {
     cinema.register(username, password, email, firstName, lastName, phone);
@@ -277,7 +283,7 @@ public class RmiServer implements RemoteModel
     return cinema.getAllTickets(user);
   }
 
-  @Override public void downgradeTicket(Ticket ticket, Order order, User user)
+  @Override public  void downgradeTicket(Ticket ticket, Order order, User user)
       throws RemoteException
   {
     cinema.downgradeTicket(ticket, order, user);
@@ -289,7 +295,7 @@ public class RmiServer implements RemoteModel
      cinema.upgradeTicket(ticket, order, user);
   }
 
-  @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
+  @Override public  void cancelTicketFromOrder(Ticket ticket, Order order)
       throws RemoteException
   {
     cinema.cancelTicketFromOrder(ticket, order);

@@ -34,6 +34,7 @@ public class TicketConfirmationViewModel implements PropertyChangeListener,
     private StringProperty upgradeCost;
     private boolean snackSelected;
     private boolean ticketSelected;
+    private boolean isCurrent;
 
 
     public TicketConfirmationViewModel(Model model, ViewState viewState)
@@ -43,7 +44,7 @@ public class TicketConfirmationViewModel implements PropertyChangeListener,
 
       this.property = new PropertyChangeSupport(this);
       this.model.addListener(this);
-
+isCurrent = false;
       ticketSelected = false;
       snackSelected = false;
 
@@ -79,6 +80,11 @@ public class TicketConfirmationViewModel implements PropertyChangeListener,
       ticketSelected = false;
       snackSelected = false;
       upgradeCost.set("+ " + (model.getPriceForTicket("vip") - model.getPriceForTicket("standard")) + " DKK");
+    }
+
+    public void setCurrent(boolean current)
+    {
+      isCurrent = current;
     }
 
     public void setSnackSelected(boolean snackSelected)
@@ -128,15 +134,6 @@ public class TicketConfirmationViewModel implements PropertyChangeListener,
           ticketSelected = false;
           loadFromModel();
         }
-      }
-    }
-    public void cancelOrderPressed(){
-      if (confirmation())
-      {
-        model.cancelOrder(model.getOrderByID(
-            viewState.getSelectedOrder().orderIDProperty().get(), model.getUserByUsername(viewState.getUser().getUsername())), viewState.getUser());
-        viewState.setUser(model.getUserByUsername(viewState.getUser().getUsername()));
-        viewState.setSelectedOrder(null);
       }
     }
     public void cancelTicketPressed(){
@@ -197,7 +194,7 @@ public class TicketConfirmationViewModel implements PropertyChangeListener,
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
       Platform.runLater(() ->{
-        if (evt.getPropertyName().equals("fatalError")){
+        if (evt.getPropertyName().equals("fatalError") && isCurrent){
           property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
         }});
     }

@@ -34,6 +34,7 @@ public class ManageViewController implements PropertyChangeListener
 
 
 
+
   public void init(ViewHandler viewHandler, Region root, ManageViewModel viewModel)
   {
     this.viewHandler = viewHandler;
@@ -41,6 +42,7 @@ public class ManageViewController implements PropertyChangeListener
     this.root = root;
     this.save.setDisable(true);
     setFields(true);
+    viewModel.setCurrent(true);
 
     this.viewState= viewModel.getViewState();
 
@@ -70,16 +72,19 @@ public class ManageViewController implements PropertyChangeListener
 
   @FXML public void onScreening()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("mainPage");
   }
 
   @FXML public void onSignOut()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("login");
   }
 
   @FXML public void onOrderConfirmation()
   {
+    viewModel.setCurrent(false);
     viewHandler.openView("orderConfirmation");
   }
   @FXML public void onDelete()
@@ -94,6 +99,7 @@ public class ManageViewController implements PropertyChangeListener
     {
       try
       {
+        viewModel.setCurrent(false);
         viewModel.deleteAccount();
         viewHandler.openView("login");
       }

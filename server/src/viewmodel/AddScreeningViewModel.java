@@ -3,26 +3,34 @@ package viewmodel;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import model.Model;
 import model.Movie;
+import model.Screening;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.time.LocalDate;
 
 public class AddScreeningViewModel implements PropertyChangeListener,
     UnnamedPropertyChangeSubject
 {
   private Model model;
   private ViewState viewState;
-
   private PropertyChangeSupport property;
   private ObservableList<SimpleMovieView> movies;
   private ObjectProperty<SimpleMovieView> selectedObject;
+  private StringProperty addingStatus;
+  private StringProperty addingMessage;
+  private StringProperty time;
+  private StringProperty room;
+  private boolean isCurrent;
 
   public AddScreeningViewModel(Model model, ViewState viewState)
   {
@@ -30,19 +38,59 @@ public class AddScreeningViewModel implements PropertyChangeListener,
     this.viewState = viewState;
     this.movies= FXCollections.observableArrayList();
     this.selectedObject = new SimpleObjectProperty<>();
-
-    model.addListener(this);
-
     this.model.addListener(this);
+isCurrent = false;
     property = new PropertyChangeSupport(this);
-
-
+    this.addingStatus = new SimpleStringProperty();
+    this.addingMessage = new SimpleStringProperty();
+    this.time = new SimpleStringProperty();
+    this.room = new SimpleStringProperty();
     loadFromModel();
   }
+
+  public void setCurrent(boolean current)
+  {
+    isCurrent = current;
+  }
+
+  public StringProperty timeProperty()
+  {
+    return time;
+  }
+  public StringProperty roomProperty()
+  {
+    return room;
+  }
+  public StringProperty addingStatusProperty() {
+    return addingStatus;
+  }
+  public StringProperty addingMessageProperty() {
+    return addingMessage;
+  }
+
+  public void addScreening(LocalDate date) {
+    String[] timeParts = time.get().split(":");
+    int hour = Integer.parseInt(timeParts[0]);
+    int minute = Integer.parseInt(timeParts[1]);
+Screening screening = new Screening(hour, minute, date, model.getMovieForView(selectedObject.get().getTitle()), model.getRoomById(room.get()));
+
+    try {
+      model.addScreening(screening);
+      addingStatus.set("SUCCESS");
+      addingMessage.set("Your screening has been added successfully.");
+    } catch (Exception e) {
+      addingStatus.set("ERROR");
+      addingMessage.set("Registration Failed: " + e.getMessage());
+    }
+  }
+
+
   public ViewState getViewState()
   {
     return viewState;
   }
+
+
 
   public void deleteMovie()
   {
@@ -94,13 +142,12 @@ public class AddScreeningViewModel implements PropertyChangeListener,
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
-      if (evt.getPropertyName().equals("deleteMovie") || evt.getPropertyName()
-          .equals("deleteMovie"))
+      if (evt.getPropertyName().equals("deleteMovie") && isCurrent || evt.getPropertyName()
+          .equals("deleteMovie") && isCurrent)
       {
         loadFromModel();
-      }else if (evt.getPropertyName().equals("fatalError")){
+      }else if (evt.getPropertyName().equals("fatalError") && isCurrent){
         property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
       }});
   }
 }
-

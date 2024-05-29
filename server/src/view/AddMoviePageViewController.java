@@ -6,7 +6,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Region;
-import model.Movie;
 import viewmodel.AddMovieViewModel;
 import viewmodel.SimpleScreeningView;
 
@@ -35,8 +34,13 @@ public class AddMoviePageViewController implements PropertyChangeListener {
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;
     this.root = root;
+    viewModel.setCurrent(true);
 
     viewModel.addListener(this);
+    titleField.textProperty().bindBidirectional(viewModel.titleProperty());
+    descriptionField.textProperty().bindBidirectional(viewModel.descriptionProperty());
+    lengthField.textProperty().bindBidirectional(viewModel.lengthProperty());
+    genreField.textProperty().bindBidirectional(viewModel.genreProperty());
 
     viewModel.addingStatusProperty().addListener(new ChangeListener<String>() {
       @Override
@@ -69,15 +73,15 @@ public class AddMoviePageViewController implements PropertyChangeListener {
       return;
     }
 
-    viewModel.addMovie(new Movie(title,length,description,genre,releaseDate));
+    viewModel.addMovie(releaseDate);
     clearFields();
   }
 
-  @FXML public void backToAdmin() {
+  @FXML public void backToAdmin() {viewModel.setCurrent(false);
     viewHandler.openView("adminPage");
   }
 
-  @FXML public void onSignOut() {
+  @FXML public void onSignOut() {viewModel.setCurrent(false);
     viewHandler.openView("login");
   }
 

@@ -23,6 +23,7 @@ public class AdminPageViewModel implements PropertyChangeListener,
   private PropertyChangeSupport property;
   private ObservableList<SimpleScreeningView> screenings;
   private ObjectProperty<SimpleScreeningView> selectedObject;
+  private boolean isCurrent;
 
 
   public AdminPageViewModel(Model model, ViewState viewState)
@@ -34,6 +35,7 @@ public class AdminPageViewModel implements PropertyChangeListener,
     this.selectedObject = new SimpleObjectProperty<>();
     this.model.addListener(this);
     property = new PropertyChangeSupport(this);
+    isCurrent = false;
     loadFromModel();
   }
   private void loadFromModel()
@@ -48,6 +50,12 @@ public class AdminPageViewModel implements PropertyChangeListener,
       screenings.add(simpleScreeningView);
     }
   }
+
+  public void setCurrent(boolean current)
+  {
+    isCurrent = current;
+  }
+
   public void deleteScreening()
   {
     String time = viewState.getSelectedScreening().getTime();
@@ -95,11 +103,11 @@ public class AdminPageViewModel implements PropertyChangeListener,
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
-    if (evt.getPropertyName().equals("addScreening") || evt.getPropertyName()
-        .equals("removeScreening"))
+    if (evt.getPropertyName().equals("addScreening") && isCurrent || evt.getPropertyName()
+        .equals("removeScreening") && isCurrent)
     {
       loadFromModel();
-    }else if (evt.getPropertyName().equals("fatalError")){
+    }else if (evt.getPropertyName().equals("fatalError") && isCurrent){
       property.firePropertyChange(evt.getPropertyName(),null,evt.getNewValue());
     }});
   }

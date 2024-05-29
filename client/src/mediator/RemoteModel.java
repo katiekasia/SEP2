@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public interface RemoteModel extends Remote, RemoteSubject<String ,String >
 {
  void deleteMovie(Movie movie) throws  RemoteException;
+ Room getRoomById(String id) throws RemoteException;
  ArrayList<Movie> getAllMovies() throws RemoteException;
  void addMovie(Movie movie) throws RemoteException;
  void deleteAccount(String username) throws RemoteException;
