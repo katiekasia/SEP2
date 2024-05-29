@@ -77,10 +77,8 @@ public class Room implements Serializable
     return seats;
   }
   public Seat getSeatByID(String ID){
-    System.out.println(ID);
     for (Seat seat :seats){
       if (seat.getID().equals(ID)){
-        System.out.println(seat.getID());
         return seat;
       }
     }

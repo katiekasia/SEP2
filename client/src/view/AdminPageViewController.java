@@ -57,6 +57,7 @@ public class AdminPageViewController implements PropertyChangeListener
       viewState.setSelectedScreening((SimpleScreeningView) newVal);
       viewModel.setSelected();
     });
+    viewModel.loadFromModel();
   }
 
 

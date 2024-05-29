@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Screening implements Serializable
 {
@@ -33,8 +34,11 @@ public class Screening implements Serializable
 			this.room = room;
 		}
 
-	private int generateID(){
-		int id = Integer.parseInt(String.valueOf(ids.size() + Math.floor(Math.random() * 401)));
+	public int generateID(){
+		Random random = new Random();
+		int randomPart = random.nextInt(401);
+
+		int id = Integer.parseInt(ids.size() + "" + randomPart);
 		return id;
 	}
 	public void deleteID(){}

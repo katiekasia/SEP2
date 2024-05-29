@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="949.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddScreeningViewController">
+        <?import javafx.scene.control.Button?>
+        <?import javafx.scene.control.DatePicker?>
+        <?import javafx.scene.control.Label?>
+        <?import javafx.scene.control.TableColumn?>
+        <?import javafx.scene.control.TableView?>
+        <?import javafx.scene.control.TextField?>
+        <?import javafx.scene.image.Image?>
+        <?import javafx.scene.image.ImageView?>
+        <?import javafx.scene.layout.AnchorPane?>
+        <?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="1002.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddScreeningViewController">
    <children>
       <AnchorPane layoutX="6.0" layoutY="-1.0" prefHeight="794.0" prefWidth="199.0">
          <children>
@@ -13,12 +20,12 @@
                   <Image url="@images/user%20-%20profile.png" />
                </image>
             </ImageView>
-            <Label layoutX="36.0" layoutY="182.0" prefHeight="47.0" prefWidth="142.0" text="Welcome">
+            <Label layoutX="28.0" layoutY="93.0" prefHeight="47.0" prefWidth="142.0" text="Welcome">
                <font>
                   <Font size="32.0" />
                </font>
             </Label>
-            <Label fx:id="username" layoutX="79.0" layoutY="269.0" text="Admin">
+            <Label fx:id="username" layoutX="70.0" layoutY="140.0" text="Admin">
                <font>
                   <Font size="20.0" />
                </font>
@@ -34,6 +41,15 @@
                   <Font size="20.0" />
                </font>
             </Label>
+            <Button fx:id="backAdminPage" layoutX="20.0" layoutY="192.0" mnemonicParsing="false" onAction="#backToAdmin" prefHeight="56.0" prefWidth="183.0" text="Back to admin page">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Desktop/SEP2/client/src/view/images/fidelity%20points%20-%20profile.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
       <Label layoutX="260.0" layoutY="66.0" prefHeight="86.0" prefWidth="396.0" text="Add Screening">
@@ -46,9 +62,8 @@
             <Image url="@images/cinema.png" />
          </image>
       </ImageView>
-      <TextField layoutX="488.0" layoutY="447.0" />
-      <TextField layoutX="488.0" layoutY="401.0" />
-      <TextField layoutX="488.0" layoutY="355.0" />
+      <TextField fx:id="roomField" layoutX="488.0" layoutY="447.0" />
+      <TextField fx:id="timeField" layoutX="488.0" layoutY="401.0" />
       <Button fx:id="add" alignment="CENTER" contentDisplay="CENTER" layoutX="471.0" layoutY="505.0" mnemonicParsing="false" onAction="#onAdd" prefHeight="56.0" prefWidth="183.0" text="Add">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
@@ -73,21 +88,12 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="cancel" alignment="CENTER" contentDisplay="CENTER" layoutX="274.0" layoutY="505.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="56.0" prefWidth="183.0" text="Cancel">
-         <graphic>
-            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/settings%20-%20profile.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
       <TableView fx:id="moviesTable" layoutX="297.0" layoutY="143.0" prefHeight="200.0" prefWidth="498.0">
-        <columns>
-          <TableColumn fx:id="title" prefWidth="497.6000122070312" text="Title" />
-        </columns>
+         <columns>
+            <TableColumn fx:id="title" prefWidth="497.6000122070312" text="Title" />
+         </columns>
       </TableView>
-      <Button fx:id="deleteMovie" alignment="CENTER" contentDisplay="CENTER" layoutX="668.0" layoutY="505.0" mnemonicParsing="false" onAction="#onDeleteMovie" prefHeight="56.0" prefWidth="183.0" text="Delete Movie">
+      <Button fx:id="deleteMovie" alignment="CENTER" contentDisplay="CENTER" layoutX="804.0" layoutY="215.0" mnemonicParsing="false" onAction="#onDeleteMovie" prefHeight="56.0" prefWidth="183.0" text="Delete Movie">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -96,5 +102,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <DatePicker fx:id="datePicker" layoutX="488.0" layoutY="356.0" prefHeight="26.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

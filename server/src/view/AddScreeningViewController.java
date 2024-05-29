@@ -13,7 +13,6 @@ import viewmodel.ViewState;
 
 import java.beans.PropertyChangeEvent;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class AddScreeningViewController
 {
@@ -65,6 +64,7 @@ public class AddScreeningViewController
         }
       }
     });
+    viewModel.loadFromModel();
   }
 
   @FXML public void backToAdmin() {
@@ -96,17 +96,14 @@ public class AddScreeningViewController
         showAlert("Invalid Time Format", "Please use HH:mm format for the time.");
         return;
       }
-      int hour = Integer.parseInt(timeParts[0]);
-      int minute = Integer.parseInt(timeParts[1]);
-      LocalTime time = LocalTime.of(hour, minute);
-      int roomID = Integer.parseInt(roomField.getText());
+
 
 
 
       viewModel.addScreening(date);
       clearFields();
     } catch (NumberFormatException e) {
-      showAlert("Invalid Input", "Please enter valid numbers for time and room.");
+      e.printStackTrace();      showAlert("Invalid Input", "Please enter valid numbers for time and room.");
     } catch (Exception e) {
       showAlert("Error", "An error occurred while adding the screening.");
     }

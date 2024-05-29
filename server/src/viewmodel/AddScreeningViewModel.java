@@ -100,7 +100,7 @@ Screening screening = new Screening(hour, minute, date, model.getMovieForView(se
     loadFromModel();
   }
 
-  private void loadFromModel()
+  public void loadFromModel()
   {
     movies.clear();
     Movie[] allMovies = model.getAllMovies()

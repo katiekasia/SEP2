@@ -38,7 +38,7 @@ public class AdminPageViewModel implements PropertyChangeListener,
     isCurrent = false;
     loadFromModel();
   }
-  private void loadFromModel()
+  public void loadFromModel()
   {
     screenings.clear();
     Screening[] allScreenings = model.getAllScreenings()

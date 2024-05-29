@@ -312,6 +312,7 @@ public class ModelManager implements Model
     try
     {
       DataBaseHandler.addScreeningToDatabase(screening);
+      screenings = new ScreeningsList(DataBaseHandler.getAllScreenings());
     }
     catch (SQLException e)
     {
