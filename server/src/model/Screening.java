@@ -123,8 +123,11 @@ public String getDateString(){
 	public Seat getSeatById(String id){
 		return room.getSeatByID(id);
 	}
+	public boolean getAvailabilityById(String id){
+		return room.getAvailabilityByID(id);
+	}
 	public void bookSeatById(String id, Ticket ticket){
-		getSeatById(id).book(ticket);
+		room.bookSeatById(id,ticket);
 	}
 	public Seat[] getEmptySeats()
 	{

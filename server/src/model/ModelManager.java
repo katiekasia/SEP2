@@ -374,7 +374,7 @@ public class ModelManager implements Model
     }
     for (Seat seat : seats)
     {
-      if (!seat.isAvailable())
+      if (!scr.getAvailabilityById(seat.getID()))
       {
         freeSeats = false;
       }
@@ -387,30 +387,25 @@ public class ModelManager implements Model
         DataBaseHandler.addOrderToDatabase(temp, user.getUsername());
         for (Seat seat : seats)
         {
+          Ticket tempT;
           if (nbVip > 0)
           {
-            Ticket tempT = new VIPTicket(temp.generateTicketID(),
+             tempT = new VIPTicket(temp.generateTicketID(),
                 pricesManager.getVipTicketPrice(), seat, scr);
-            scr.bookSeatById(seat.getID(), tempT);
-            temp.addTicket(tempT);
-            DataBaseHandler.addTicketToDatabase(tempT, temp);
             nbVip--;
           }
           else
           {
-            Ticket tempT = new StandardTicket(temp.generateTicketID(),
+             tempT = new StandardTicket(temp.generateTicketID(),
                 pricesManager.getStandardTicketPrice(), seat, screening);
-            scr.bookSeatById(seat.getID(), tempT);
-            DataBaseHandler.addTicketToDatabase(tempT, temp);
-            temp.addTicket(tempT);
           }
+          scr.bookSeatById(seat.getID(), tempT);
+          DataBaseHandler.addTicketToDatabase(tempT, temp);
+          temp.addTicket(tempT);
         }
         user.addOrder(temp);
-
-        if (!getOrderByID(temp.getOrderID(), user).getTickets().isEmpty())
-        {
-          return getOrderByID(temp.getOrderID(), user);
-        }
+        return getOrderByID(temp.getOrderID(), getUserByUsername(
+            user.getUsername()));
       }
       catch (SQLException e)
       {

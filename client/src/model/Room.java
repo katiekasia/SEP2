@@ -84,6 +84,12 @@ public class Room implements Serializable
     }
     throw new IllegalArgumentException("SEAT NOT FOUND.");
   }
+  public boolean getAvailabilityByID(String id){
+    return getSeatByID(id).isAvailable();
+  }
+  public void bookSeatById(String id, Ticket ticket){
+    getSeatByID(id).book(ticket);
+  }
   public Seat getSeat(int index) {
     return seats[index];
   }
