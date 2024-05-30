@@ -72,6 +72,11 @@ public class MainPageViewModel implements PropertyChangeListener,
     isCurrent = current;
   }
 
+  public boolean isCurrent()
+  {
+    return isCurrent;
+  }
+
   public void bindScreenings(ObservableList<SimpleScreeningView> propery)
   {
     screenings.addListener(
@@ -99,6 +104,10 @@ public class MainPageViewModel implements PropertyChangeListener,
     }
   }
 
+  public ObservableList<SimpleScreeningView> getScreenings()
+  {
+    return screenings;
+  }
   public void clearFilters()
   {
     loadFromModel();
