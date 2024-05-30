@@ -1,5 +1,6 @@
 package model;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.time.DateTimeException;
@@ -9,41 +10,56 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MovieTest
 {
-   /*
-    GET MOVIE RELEASE DATE
- */
+  private static Movie movie;
+
+  @BeforeAll public static void setup()
+  {
+    movie = new Movie("2h", "Action-packed thriller",
+        "The Invisible Man", "Horror", LocalDate.of(2020, 2, 28));
+  }
 
   @Test
   void testZeroMovieReleaseDate() {
-    Movie movie = new Movie("2h", "Action-packed thriller", "The Invisible Man", "Horror", LocalDate.of(2020, 2, 28));
     assertNotNull(movie.getReleaseDate(), "Release date should not be null for a valid movie");
   }
   @Test
   void testOneMovieReleaseDate() {
-    Movie movie = new Movie("1h30m", "ssss", "The Shawshank Redemption", "Drama", LocalDate.of(1994, 9, 23));
-    assertEquals(LocalDate.of(1994, 9, 23), movie.getReleaseDate(), "Movie date should match the set name");
+    assertEquals(LocalDate.of(2020, 2, 28), movie.getReleaseDate(),
+        "Movie date should match the set name");
   }
   @Test
   void testManyMovieReleaseDate() {
-    Movie movie1 = new Movie("2h", "Thrilling adventure", "Pirates of the Caribbean", "Action", LocalDate.of(2003, 7, 9));
-    Movie movie2 = new Movie("1h45m", "Family-friendly animation", "Toy Story", "Animation", LocalDate.of(1995, 11, 22));
-    Movie movie3 = new Movie("2h15m", "Epic fantasy", "The Lord of the Rings: The Fellowship of the Ring", "Fantasy", LocalDate.of(2001, 12, 19));
+    Movie movie1 = new Movie("2h", "Thrilling adventure",
+        "Pirates of the Caribbean",
+        "Action", LocalDate.of(2003, 7, 9));
+    Movie movie2 = new Movie("1h45m", "Family-friendly animation", "Toy Story",
+        "Animation", LocalDate.of(1995, 11, 22));
+    Movie movie3 = new Movie("2h15m", "Epic fantasy",
+        "The Lord of the Rings: The Fellowship of the Ring",
+        "Fantasy", LocalDate.of(2001, 12, 19));
 
     assertAll("releaseDate",
-        () -> assertEquals(LocalDate.of(2003,7,9), movie1.getReleaseDate(), "Movie date should match"),
-        () -> assertEquals(LocalDate.of(1995,11,22), movie2.getReleaseDate(), "Movie date should match"),
-        () -> assertEquals(LocalDate.of(2001,12,19), movie3.getReleaseDate(), "Movie date should match")
+        () -> assertEquals(LocalDate.of(2003,7,9),
+            movie1.getReleaseDate(), "Movie date should match"),
+        () -> assertEquals(LocalDate.of(1995,11,22),
+            movie2.getReleaseDate(), "Movie date should match"),
+        () -> assertEquals(LocalDate.of(2001,12,19),
+            movie3.getReleaseDate(), "Movie date should match")
     );
   }
   @Test
   void testBoundaryMovieReleaseDate() {
-    Movie movie = new Movie("3h:2m", "Emotional drama", "", "Drama", LocalDate.of(1994, 7, 6));
-    assertNotNull(movie.getReleaseDate(), "Movie release date should not be null");
+    Movie movie = new Movie("1h:3m", "Emotional drama", "Forrest Gump",
+        "Drama", LocalDate.of(0000,1,1));
+    assertNotNull(movie.getReleaseDate(), "Movie date should not be null");
+    assertTrue(movie.getReleaseDate().equals(LocalDate.of(0000, 1, 1)),
+        "Movie date should be 0000-01-01 for an unspecified date");
   }
   @Test
   void testExceptionalMovieReleaseDate() {
     assertThrows(DateTimeException.class, () -> {
-      Movie movie = new Movie("1h30m", "Mysterious thriller", "Inception", "Sci-Fi", LocalDate.of(2000, 3, 0));
+      movie = new Movie("2h", "Action-packed thriller", "The Invisible Man",
+          "Horror", LocalDate.of(2020, 2, 0));
       movie.getReleaseDate();
     }, "Exception should be thrown for invalid release date");
   }
