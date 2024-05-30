@@ -10,14 +10,11 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-  // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-  // then press Enter. You can now see whitespace characters in your code.
+
   public class ModelManagerTest implements Model, PropertyChangeListener
   {
     private User user;
     private PropertyChangeSupport propertyChangeSupport;
-    private String HOST;
-    ArrayList<User> adminList;
     ArrayList<User> usersList;
     ArrayList<Screening> screeningsList;
     ArrayList<Room> roomsList;
@@ -30,8 +27,7 @@ import java.util.ArrayList;
       this.propertyChangeSupport = new PropertyChangeSupport(this);
       Dummydata();
 
-    ArrayList<Order> orders = getAllOrders();
-   // setUpScreenings(orders, screeningsList);
+    setUpScreenings(ordersList);
     }
     public void Dummydata()
   {
@@ -40,29 +36,24 @@ import java.util.ArrayList;
     screeningsList = new ArrayList<>();
     roomsList = new ArrayList<>();
     moviesList = new ArrayList<>();
-    User admin =new User("Admin", "Admin", "Admin","22334455", "Admin@gnail.com", "Admin");
-
   }
 
     public void bookSeatByID(Screening screening, String id, Ticket ticket)
     {
       getScreening(screening).bookSeatById(id, ticket);
     }
-    private void setUpScreenings(ArrayList<Order> orders,
-        Screening screening, String id)
+    private void setUpScreenings(ArrayList<Order> orders)
     {
       for (Order order : orders)
       {
         for (Ticket ticket : order.getTickets())
         {
-          getScreening(screening).bookSeatById(id, ticket);
+          bookSeatByID(ticket.getScreening(), ticket.getSeatID(),
+              ticket);
         }
       }
     }
-    public ArrayList<Order> getAllOrders()
-    {
-      return ordersList;
-    }
+
     @Override public void addListener(PropertyChangeListener listener)
     {
       propertyChangeSupport.addPropertyChangeListener(listener);
@@ -107,10 +98,6 @@ import java.util.ArrayList;
       }
     }
 
-    @Override public void changePrice(String item, double newPrice)
-    {
-
-    }
 
     @Override public void deleteAccount(String username)
     {
@@ -569,38 +556,7 @@ import java.util.ArrayList;
       }
 
     }
-///////////////////////
-    @Override public void downgradeTicket(Ticket ticket, Order order, User user)
-    {
-      try
-      {
-//        getOrderByID(order.getOrderID(), user).downgrade(ticket,
-//            pricesManager.getStandardTicketPrice());
-      }
-      catch (RuntimeException e)
-      {
-        propertyChangeSupport.firePropertyChange("fatalError", null,
-            e.getMessage());
-        throw e;
-      }
 
-    }
-
-    @Override public void upgradeTicket(Ticket ticket, Order order, User user)
-    {
-      try
-      {
-//        getOrderByID(order.getOrderID(), user).upgrade(ticket,
-//            pricesManager.getVipTicketPrice());
-      }
-      catch (RuntimeException e)
-      {
-        propertyChangeSupport.firePropertyChange("fatalError", null,
-            e.getMessage());
-        throw e;
-      }
-
-    }
 
     @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
     {
@@ -762,124 +718,6 @@ import java.util.ArrayList;
       }
       return null;
     }
-////////////////
-    @Override public void changePrices(ArrayList<Double> newPrices)
-    {
-      try
-      {
-//        client.changePrices(newPrices);
-      }
-      catch (RuntimeException e)
-      {
-        propertyChangeSupport.firePropertyChange("fatalError", null,
-            e.getMessage());
-        throw e;
-      }
-
-    }
-//////////////////
-    @Override public Order reserveSeats(Seat[] seats, User customer,
-        Screening screening, int nbVIP)
-    {
-//      Screening scr = getScreening(screening);
-//      User user = getUserByUsername(customer.getUsername());
-//      boolean freeSeats = true;
-//      if (scr.getNbOfAvailableSeats() < seats.length)
-//      {
-//        throw new IllegalArgumentException(
-//            "Not enough available seats left for this screening");
-//      }
-//      for (Seat seat : seats)
-//      {
-//        if (!scr.getAvailabilityById(seat.getID()))
-//        {
-//          freeSeats = false;
-//        }
-//      }
-//      if (freeSeats)
-//      {
-//        try
-//        {
-//          Order temp = new Order(user.generateOrderID());
-//          DataBaseHandler.addOrderToDatabase(temp, user.getUsername());
-//          for (Seat seat : seats)
-//          {
-//            Ticket tempT;
-//            if (nbVip > 0)
-//            {
-//              tempT = new VIPTicket(temp.generateTicketID(),
-//                  pricesManager.getVipTicketPrice(), seat, scr);
-//              nbVip--;
-//            }
-//            else
-//            {
-//              tempT = new StandardTicket(temp.generateTicketID(),
-//                  pricesManager.getStandardTicketPrice(), seat, screening);
-//            }
-//            scr.bookSeatById(seat.getID(), tempT);
-//            DataBaseHandler.addTicketToDatabase(tempT, temp);
-//            temp.addTicket(tempT);
-//          }
-//          user.addOrder(temp);
-//          return getOrderByID(temp.getOrderID(), getUserByUsername(user.getUsername()));
-//        }
-//        catch (SQLException e)
-//        {
-//          throw new RuntimeException(e.getMessage());
-//        }
-//      }
-//      throw new IllegalStateException("Seats are already reserved.");
-          return null;
-    }
-
-    //////////////////
-    @Override public double getPriceForSize(String snackType, String size)
-    {
-//      try
-//      {
-////        return client.getPriceForSize(snackType, size);
-//      }
-//      catch (RuntimeException e)
-//      {
-//        propertyChangeSupport.firePropertyChange("fatalError", null,
-//            e.getMessage());
-//        throw e;
-//      }
-    return 0;
-    }
-/////////////////////////
-    @Override public void addSnackToOrder(String snackType, int amount,
-        Order order, User user, String size)
-    {
-//      try
-//      {
-//        User customer = getUserByUsername(user.getUsername());
-//        Order temp = getOrderByID(order.getOrderID(), customer);
-//        for (int i = 0; i < amount; i++)
-//        {
-//          Snack snack = new Snack(pricesManager.getPriceForSize(
-//              pricesManager.getPriceForSnack(snackType), size), snackType, size);
-//          temp.addSnack(snack);
-//          try
-//          {
-//            DataBaseHandler.addSnack(snack, temp);
-//          }
-//          catch (SQLException e)
-//          {
-//            throw new RuntimeException(
-//                "Database connection error. " + e.getMessage());
-//          }
-//        }
-//      }
-//      catch (RuntimeException e)
-//      {
-//        propertyChangeSupport.firePropertyChange("fatalError", null,
-//            e.getMessage());
-//        throw e;
-//      }
-
-    }
-
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
       switch (evt.getPropertyName())
@@ -911,7 +749,44 @@ import java.util.ArrayList;
 
       }
     }
+    @Override public void changePrices(ArrayList<Double> newPrices)
+    {
+    }
+
+    @Override public Order reserveSeats(Seat[] seats, User customer,
+        Screening screening, int nbVIP)
+    {
+
+          return null;
+    }
+
+    @Override public double getPriceForSize(String snackType, String size)
+    {
+    return 0;
+    }
+
+
+    @Override public void addSnackToOrder(String snackType, int amount,
+        Order order, User user, String size)
+    {
+
+    }
+    @Override public void changePrice(String item, double newPrice)
+    {
+
+    }
+    @Override public void upgradeTicket(Ticket ticket, Order order, User user)
+    {
+
+    }
+    @Override public void downgradeTicket(Ticket ticket, Order order, User user)
+    {
+    }
+
 
   }
+
+
+
 
 
