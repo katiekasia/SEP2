@@ -56,6 +56,6 @@ ArrayList<Order> getOrdersForUser(String username);
 Movie getMovieForView(String title);
 void changePrices(ArrayList<Double> newPrices);
 void cancelOrder(Order order, User user);
-void register(String username, String password, String email, String firstName, String lastName, String phone);
+void register(User user);
 
 }

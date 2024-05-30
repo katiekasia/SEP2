@@ -9,7 +9,7 @@ public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "papiezpolak";
+  private static final String PASSWORD = "VIAVIAVIA";
 
   private static Connection connection;
 
@@ -172,17 +172,17 @@ public class DataBaseHandler
 //}catch (Exception e){e.printStackTrace();}
 //  }
 
-  public static void newUser(String username, String name, String surname, String phoneNumber, String email, String password) throws SQLException {
+  public static void newUser(User user) throws SQLException {
     String sql = "INSERT INTO Customer (username, name, surname, phone_number, email, password) VALUES (?, ?, ?, ?, ?, ?)";
 
     try (Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-      pstmt.setString(1, username);
-      pstmt.setString(2, name);
-      pstmt.setString(3, surname);
-      pstmt.setString(4, phoneNumber);
-      pstmt.setString(5, email);
-      pstmt.setString(6, password);
+      pstmt.setString(1, user.getUsername());
+      pstmt.setString(2, user.getFstName());
+      pstmt.setString(3, user.getLstName());
+      pstmt.setString(4, user.getPhoneNumber());
+      pstmt.setString(5, user.getEmail());
+      pstmt.setString(6, user.getPassword());
       pstmt.executeUpdate();
     }
   }

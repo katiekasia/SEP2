@@ -27,6 +27,7 @@ public class OrderConfirmationViewController implements PropertyChangeListener
   @FXML private Button CancelOrderButton;
   @FXML private Button orderDetailsButton;
 
+
   @FXML private TableView ordersTable;
 
   @FXML private TableColumn orderID;

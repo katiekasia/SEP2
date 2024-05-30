@@ -32,6 +32,7 @@ public class OrderDetailsViewModel implements PropertyChangeListener,
   private String time;
   private String movie;
   private String date;
+  private String total;
   private boolean snackSelected;
   private boolean ticketSelected;
   private boolean isCurrent;
@@ -71,9 +72,16 @@ date = orderTickets[0].getDate().toString();
       SimpleSnackView simpleSnackView = new SimpleSnackView(snack);
       snacks.add(simpleSnackView);
     }
+    total ="Total: " + viewState.getSelectedOrder().orderPriceProperty().get() + " DKK";
 ticketSelected = false;
     snackSelected = false;
   }
+
+  public String getTotal()
+  {
+    return total;
+  }
+
   public void setTickets(ObservableList<SimpleTicketView> property){
     property.setAll(tickets);
   }

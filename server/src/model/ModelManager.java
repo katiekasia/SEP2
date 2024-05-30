@@ -129,13 +129,8 @@ public class ModelManager implements Model
 
   @Override public boolean logInAdmin(String username, String password)
   {
-    try
-    {
       admins.logIn(username,password);
       return true;
-    }catch (Exception e){
-      throw e;
-    }
   }
 
   @Override public void addListener(PropertyChangeListener listener)
@@ -151,8 +146,8 @@ public class ModelManager implements Model
 
   @Override public void cancelOrder(Order order, User user)
   {
-    getOrderByID(order.getOrderID(),
-        getUserByUsername(user.getUsername())).cancelOrder();
+      getOrderByID(order.getOrderID(),
+          getUserByUsername(user.getUsername())).cancelOrder();
     try
     {
       DataBaseHandler.deleteOrder(order.getOrderID());
@@ -461,23 +456,22 @@ public class ModelManager implements Model
    return pricesManager.getPriceForTicket(type);
   }
 
-  public void register(String username, String firstName, String lastName,
-       String phone,String email,  String password)
+  public void register(User user)
   {
     for (User admin : admins.getAdmins()){
-      if (admin.getUsername().equals(username)){
+      if (admin.getUsername().equals(user.getUsername())){
+        System.out.println("admin");
         throw new IllegalArgumentException("This username is unavailable.");
       }
     }
-    for (User  customer : usersList.getUsers()){
-      if (customer.getUsername().equals(username)){
+
+      if (usersList.isRegistered(user)){
         throw new IllegalArgumentException("This username is unavailable.");
       }
-    }
+
     try
     {
-      DataBaseHandler.newUser(username, firstName, lastName, phone, email,
-          password);
+      DataBaseHandler.newUser(user);
       usersList = new UsersList(DataBaseHandler.getAllCustomers());
     }
     catch (SQLException e)
@@ -491,6 +485,11 @@ public class ModelManager implements Model
   {
     try
     {
+      for (Order order:getUserByUsername(username).getOrders()){
+        if (!order.isExpired()){
+          cancelOrder(order,getUserByUsername(username));
+        }
+    }
       DataBaseHandler.deleteUser(username);
       usersList = new UsersList(DataBaseHandler.getAllCustomers());
     }

@@ -63,13 +63,13 @@ public class AdminPageViewController implements PropertyChangeListener
 
   @FXML public void onDeleteScreening()
   {
-    if (selected != null)
-    {
-      viewModel.deleteScreening();
-    }
     if (selected==null) {
       showAlert("No screening selected", "Select a screening to delete.");
       return;
+    }
+    if (selected != null)
+    {
+      viewModel.deleteScreening();
     }
   }
 

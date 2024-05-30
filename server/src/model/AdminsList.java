@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class AdminsList
 {
   private ArrayList<User> admins;
-  public AdminsList() throws SQLException
+  public AdminsList()
   {
     admins = new ArrayList<>();
   }
@@ -24,7 +24,6 @@ public class AdminsList
   public User logIn(String username, String password){
     for (User admin : admins)
     {
-
       if (admin.getUsername().equals(username) && admin.getPassword()
           .equals(password))
       {

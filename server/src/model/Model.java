@@ -59,6 +59,6 @@ Screening getScreening(Screening screening);
   void changePrices(ArrayList<Double> newPrices);
   double getPriceForTicket(String type);
 
-  void register(String username,String firstName, String lastName,String phone, String email,   String password);
+  void register(User user);
 void deleteAccount(String username);
 }

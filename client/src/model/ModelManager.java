@@ -46,6 +46,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       client.deleteMovie(movie);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -60,6 +65,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       return client.getAllMovies();
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -76,6 +86,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       client.deleteAccount(username);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -89,6 +104,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       client.changePrice(item, newPrice);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -104,7 +124,13 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       client.addMovie(movie);
-    }catch (RuntimeException e)
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
+    catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
           e.getMessage());
@@ -117,6 +143,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       client.changePrices();
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -133,6 +164,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       return client.getPriceForTicket(type);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -147,6 +183,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       client.cancelOrder(order, user);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -163,6 +204,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       return client.getOrderByID(orderID, user);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -178,6 +224,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       return client.getScreeningForView(time, date, title, room);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -196,13 +247,17 @@ public class ModelManager implements Model, PropertyChangeListener
       this.user = loggedInUser;
       return loggedInUser;
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
           e.getMessage());
-      throw e;
+     throw e;
     }
-
   }
 
   @Override public void updateUser(User user, String previousUsername)
@@ -210,6 +265,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       client.updateUser(user, previousUsername);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -225,6 +285,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       return client.getAllOrders(user);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -242,6 +307,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       return client.getSnacksFromOrder(order);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -257,6 +327,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       return client.getTicketsFromOrder(order);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -274,6 +349,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       client.reserveSeat(seat, customer, screening);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -288,6 +368,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       return client.checkSeatAvailability(index, screening);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -304,6 +389,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       return client.logInAdmin(username, password);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -318,6 +408,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       return client.getAvailableSeats(screening);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -334,6 +429,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       return client.getEmptySeats(screening);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -348,6 +448,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       return client.getUserByUsername(username);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -364,6 +469,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       client.updateSeatToBooked(seat, ticket);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -379,6 +489,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       client.addOrder(order, user);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -388,12 +503,16 @@ public class ModelManager implements Model, PropertyChangeListener
 
   }
 
-  @Override public void register(String username, String password, String email,
-      String firstName, String lastName, String phone)
+  @Override public void register(User user)
   {
     try
     {
-      client.register(username, password, email, firstName, lastName, phone);
+      client.register(user);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -410,6 +529,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       client.addScreening(screening);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -424,6 +548,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       client.removeByDate(date);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -440,6 +569,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       return client.getAllScreenings();
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -454,6 +588,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       return client.getNbOfScreenings();
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -470,6 +609,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       return client.getScreening(screening);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -484,6 +628,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       return client.getAllTickets(user);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -500,6 +649,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       return client.getTicketForView(order, ID);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -514,6 +668,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       client.downgradeTicket(ticket, order, user);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -530,6 +689,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       client.upgradeTicket(ticket, order, user);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -545,6 +709,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       client.cancelTicketFromOrder(ticket, order);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -559,7 +728,13 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
      return client.getRoomById(id);
-    }catch (RuntimeException e){
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
+    catch (RuntimeException e){
       propertyChangeSupport.firePropertyChange("fatalError", null,
           e.getMessage());
       throw e;
@@ -571,6 +746,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       client.deleteSnackFromOrder(snack, order);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -587,6 +767,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       return client.getScreaningsByMovieTitle(title);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -600,6 +785,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       return client.getScreeningsByDate(date);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -616,6 +806,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       return client.getScreeningsByDateAndTitle(title, date);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -629,6 +824,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       return client.getOrdersForUser(username);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -645,6 +845,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       return client.getMovieForView(title);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -659,6 +864,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       client.changePrices(newPrices);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -676,6 +886,11 @@ public class ModelManager implements Model, PropertyChangeListener
     {
       return client.reserveSeats(seats, customer, screening, nbVIP);
     }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
+    }
     catch (RuntimeException e)
     {
       propertyChangeSupport.firePropertyChange("fatalError", null,
@@ -689,6 +904,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       return client.getPriceForSize(snackType, size);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {
@@ -705,6 +925,11 @@ public class ModelManager implements Model, PropertyChangeListener
     try
     {
       client.addSnackToOrder(snackType, amount, order, user, size);
+    }
+    catch (IllegalArgumentException e){
+      throw e;
+    }    catch (IllegalStateException e){
+      throw e;
     }
     catch (RuntimeException e)
     {

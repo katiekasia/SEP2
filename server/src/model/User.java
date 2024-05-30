@@ -38,7 +38,6 @@ public class User implements Serializable
     }
     throw new IllegalArgumentException("No order with that id found.");
   }
-
   public ArrayList<Ticket> getAllTickets(){
     ArrayList<Ticket> tickets = new ArrayList<>();
     for (int i = 0; i < getOrders().size(); i++)

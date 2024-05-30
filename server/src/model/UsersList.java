@@ -20,6 +20,14 @@ public class UsersList
     }
     return null;
   }
+  public boolean isRegistered(User user){
+    for (User customer : users){
+      if (user.getUsername().equals(customer.getUsername())){
+        return true;
+      }
+    }
+    return false;
+  }
   public User logIn(String username, String password){
     for (User user : users)
     {

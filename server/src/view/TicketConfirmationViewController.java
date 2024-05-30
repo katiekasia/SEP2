@@ -26,7 +26,7 @@ public class TicketConfirmationViewController implements PropertyChangeListener
   @FXML private Button signOut;
   @FXML private Button ticketConfirmation;
 
-  @FXML private Label totalPrice;
+
   @FXML private Label upgradeCost;
   @FXML private Label usernameLabel;
 
@@ -60,7 +60,7 @@ public class TicketConfirmationViewController implements PropertyChangeListener
     this.viewModel.setCurrent(true);
     this.viewModel.addListener(this);
 
-usernameLabel.setText(viewState.getUser().getUsername());
+usernameLabel.setText(viewState.getUser().getFstName());
     this.viewModel.setTickets(ticketsTable.getItems());
     this.viewModel.binTickets(ticketsTable.getItems());
     this.viewModel.setSnacks(snacksTable.getItems());

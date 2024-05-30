@@ -26,6 +26,7 @@ public class OrderDetailsViewController implements PropertyChangeListener
   @FXML private Label movie;
   @FXML private Label orderId;
   @FXML private Label time;
+  @FXML private  Label total;
 
   @FXML private TableView ticketsTable;
   @FXML private TableView snacksTable;
@@ -64,6 +65,7 @@ public class OrderDetailsViewController implements PropertyChangeListener
     movie.setText(viewModel.getMovie());
     date.setText(viewModel.getDate());
     orderId.setText(viewModel.getOrderID());
+    total.setText(viewModel.getTotal());
 
     seatColumn.setCellValueFactory(new PropertyValueFactory<>("seatID"));
     ticketTypeColumn.setCellValueFactory(new PropertyValueFactory<>("ticketType"));

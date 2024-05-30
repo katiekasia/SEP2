@@ -34,6 +34,10 @@ public class AddMovieViewModel implements PropertyChangeListener,UnnamedProperty
     this.model.addListener(this);
     this.viewState = viewState;
     isCurrent = false;
+    genre = new SimpleStringProperty();
+    title = new SimpleStringProperty();
+    description = new SimpleStringProperty();
+    length = new SimpleStringProperty();
   }
 
   public StringProperty titleProperty()

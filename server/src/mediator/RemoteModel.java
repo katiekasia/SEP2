@@ -46,7 +46,7 @@ public interface RemoteModel extends Remote, RemoteSubject<String ,String >
    void updateSeatToBooked(Seat seat, Ticket ticket) throws RemoteException;
 
    void addOrder(Order order, User user) throws RemoteException;
-  void register(String username, String password, String email, String firstName, String lastName, String phone) throws RemoteException;
+  void register(User user) throws RemoteException;
   void addScreening(Screening screening) throws RemoteException;
   void removeScreening(Screening screening) throws RemoteException;
   void removeByDate(SimpleDate date) throws RemoteException;

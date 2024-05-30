@@ -13,7 +13,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.time.LocalDate;
 
-public class AddMovieViewModel implements PropertyChangeListener,UnnamedPropertyChangeSubject
+public class AddMovieViewModel
+    implements PropertyChangeListener,UnnamedPropertyChangeSubject
 {
   private Model model;
   private PropertyChangeSupport property;
@@ -35,6 +36,10 @@ public class AddMovieViewModel implements PropertyChangeListener,UnnamedProperty
     this.model.addListener(this);
     this.viewState = viewState;
     isCurrent = false;
+    genre = new SimpleStringProperty();
+    title = new SimpleStringProperty();
+    description = new SimpleStringProperty();
+    length = new SimpleStringProperty();
   }
 
   public StringProperty titleProperty()

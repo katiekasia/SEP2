@@ -49,7 +49,7 @@ public class RegisterPageViewModel implements PropertyChangeListener,
     try {
       User user = new User(usernameProperty.get(),fNameProperty.get(),lNameProperty.get(),phoneProperty.get(),emailProperty.get(),passwordProperty.get());
 
-      model.register(user.getUsername(),user.getPassword(),user.getEmail(),user.getFstName(),user.getLstName(),user.getPhoneNumber());
+      model.register(user);
       registrationStatus=true;
       registrationMessage.set("Your account has been created successfully.");
 

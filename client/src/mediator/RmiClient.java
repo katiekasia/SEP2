@@ -335,12 +335,11 @@ public class RmiClient implements Model, RemoteListener<String,String>
     }
   }
 
-  @Override public void register(String username, String password, String email,
-      String firstName, String lastName, String phone)
+  @Override public void register(User user)
   {
     try
     {
-      server.register(username, password, email, firstName, lastName, phone);
+      server.register(user);
     }catch (RemoteException e){
       throw new RuntimeException("Server connection error. "  + e.getMessage());
     }

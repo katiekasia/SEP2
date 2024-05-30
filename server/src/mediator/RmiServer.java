@@ -116,7 +116,7 @@ public class RmiServer implements RemoteModel
     cinema.updateUser(user, previousUsername);
   }
 
-  @Override public synchronized Order reserveSeats(Seat[] seats, User customer,
+  @Override public  Order reserveSeats(Seat[] seats, User customer,
       Screening screening, int nbVIP) throws RemoteException
   {
     property.firePropertyChange("RESERVE SEATS", null, screening.getTime());
@@ -188,7 +188,7 @@ public class RmiServer implements RemoteModel
     return cinema.checkSeatAvailability(index, screening);
   }
 
-  @Override public synchronized void reserveSeat(Seat seat, User customer,
+  @Override public  void reserveSeat(Seat seat, User customer,
       Screening screening) throws RemoteException
   {
     cinema.reserveSeat(seat, customer, screening);
@@ -217,7 +217,7 @@ public class RmiServer implements RemoteModel
         ticket.toString());
   }
 
-  @Override public synchronized void addOrder(Order order, User user) throws RemoteException
+  @Override public  void addOrder(Order order, User user) throws RemoteException
   {
     cinema.addOrder(order, user);
     property.firePropertyChange("ADD ORDER", null, user.getUsername());
@@ -235,10 +235,9 @@ public class RmiServer implements RemoteModel
     return cinema.getTicketForView(order, ID);
   }
 
-  @Override public synchronized void register(String username, String password, String email,
-      String firstName, String lastName, String phone) throws RemoteException
+  @Override public void register(User user) throws RemoteException
   {
-    cinema.register(username, password, email, firstName, lastName, phone);
+    cinema.register(user);
   }
 
   @Override public void addScreening(Screening screening) throws RemoteException
