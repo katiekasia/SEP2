@@ -25,32 +25,27 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="132.0" layoutY="26.0" text="1">
+      <Label fx:id="orderId" layoutX="132.0" layoutY="26.0" text="1">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="138.0" layoutY="72.0" text="Bullet Train">
+      <Label fx:id="movie" layoutX="138.0" layoutY="72.0" text="Bullet Train">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="479.0" layoutY="26.0" text="26/4/2024">
+      <Label fx:id="date" layoutX="479.0" layoutY="26.0" text="26/4/2024">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="477.0" layoutY="72.0" text="18:00">
+      <Label fx:id="time" layoutX="477.0" layoutY="72.0" text="18:00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="224.0" layoutY="132.0" text="Total price:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="333.0" layoutY="132.0" text="420 DKK">
+      <Label layoutX="224.0" layoutY="132.0" text="Total price:" fx:id="total">
          <font>
             <Font size="20.0" />
          </font>

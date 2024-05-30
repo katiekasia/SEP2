@@ -61,17 +61,8 @@
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Button fx:id="Continue" layoutX="621.0" layoutY="526.0" mnemonicParsing="false" onAction="#onConfirmOrder" prefHeight="47.0" prefWidth="94.0" text="Confirm order" />
-            <Label layoutX="639.0" layoutY="446.0" text="Total:" textFill="#ff4d00">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="totalPrice" layoutX="635.0" layoutY="481.0" text="0 DKK" textFill="#ff4d00">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
+            <Button fx:id="Continue" layoutX="621.0" layoutY="526.0" mnemonicParsing="false" onAction="#onConfirmOrder" prefHeight="47.0" prefWidth="94.0" text="Continue" />
+
             <TableView fx:id="snacksTable" layoutX="3.0" layoutY="266.0" prefHeight="198.0" prefWidth="584.0">
                <columns>
                   <TableColumn fx:id="snackName" prefWidth="163.199951171875" text="Snack name" />

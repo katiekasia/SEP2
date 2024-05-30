@@ -45,12 +45,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="224.0" layoutY="132.0" text="Total price:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="333.0" layoutY="132.0" text="420 DKK">
+      <Label layoutX="224.0" layoutY="132.0" text="Total price:" fx:id="total">
          <font>
             <Font size="20.0" />
          </font>
