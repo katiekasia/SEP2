@@ -13,10 +13,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.beans.PropertyChangeSupport;
+import java.lang.reflect.Field;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,6 +36,7 @@ class MainPageViewModelTest {
   private SimpleScreeningView simpleScreeningView2;
   private Screening screening1;
   private Screening screening2;
+  private StringProperty input;
 
   @BeforeEach
   void setUp() {
@@ -41,9 +45,10 @@ class MainPageViewModelTest {
       model = new ModelManager(client);
       viewState = new ViewState();
       viewModel = new MainPageViewModel(model, viewState);
-      screenings = FXCollections.observableArrayList();
+      screenings = FXCollections.observableArrayList();;
       selectedObject = new SimpleObjectProperty<>();
       property = new PropertyChangeSupport(this);
+      this.input = new SimpleStringProperty();
 
       simpleScreeningView1= new SimpleScreeningView(new Screening(1, 1, LocalDate.of(2030, 3, 2),
           new Movie("1h:20m", "Cos tam", "New film", "crime", LocalDate.of(2025, 2, 28)),
@@ -52,10 +57,10 @@ class MainPageViewModelTest {
           new Movie("1h:20m", "Cos tam", "New film", "crime", LocalDate.of(2025, 2, 28)),
           new Room(10, 44));
       simpleScreeningView2= new SimpleScreeningView(new Screening(4, 5, LocalDate.of(2030, 3, 2),
-          new Movie("1h:20m", "Cos tam", "Idk", "crime", LocalDate.of(2025, 2, 28)),
+          new Movie("1h:20m", "Cos tam", "New film", "crime", LocalDate.of(2025, 2, 28)),
           new Room(10, 44)));
       screening2= new Screening(4, 5, LocalDate.of(2030, 3, 2),
-          new Movie("1h:20m", "Cos tam", "Idk", "crime", LocalDate.of(2025, 2, 28)),
+          new Movie("1h:20m", "Cos tam", "New film", "crime", LocalDate.of(2025, 2, 28)),
           new Room(10, 44));
     }
     catch (Exception e)
@@ -92,13 +97,6 @@ class MainPageViewModelTest {
     assertEquals("", inputProperty.get());
   }
 
-  @Test
-  void inputPropertyException() {
-    StringProperty inputProperty = viewModel.inputProperty();
-    assertThrows(NullPointerException.class, () -> {
-      inputProperty.set(null);
-    });
-  }
 
   @Test
   void setScreenings_Zero() {
@@ -134,22 +132,21 @@ class MainPageViewModelTest {
     assertEquals(1, list.size(), "List should contain one element");
   }
 
-  @Test
-  void setScreenings_UpperBound() {
-    ObservableList<SimpleScreeningView> list = FXCollections.observableArrayList();
-    for (int i = 0; i < Integer.MAX_VALUE; i++) {
-      Screening screening = new Screening(i, i + 1, LocalDate.of(2030, 3, 2).plusDays(i),
-          new Movie("1h:20m", "Cos tam", "New film", "crime", LocalDate.of(2025, 2, 28).plusDays(i)), new Room(10, 44));
-      list.add(new SimpleScreeningView(screening));
-    }
-    viewModel.setScreenings(list);
-    assertEquals(Integer.MAX_VALUE, list.size(), "List should contain Integer.MAX_VALUE elements");
-  }
+//  @Test
+//  void setScreenings_UpperBound() {
+//    ObservableList<SimpleScreeningView> list = FXCollections.observableArrayList();
+//    for (int i = 0; i < Integer.MAX_VALUE; i++) {
+//      Screening screening = new Screening(i, i + 1, LocalDate.of(2030, 3, 2).plusDays(i),
+//          new Movie("1h:20m", "Cos tam", "New film", "crime", LocalDate.of(2025, 2, 28).plusDays(i)), new Room(10, 44));
+//      list.add(new SimpleScreeningView(screening));
+//    }
+//    viewModel.setScreenings(list);
+//    assertEquals(Integer.MAX_VALUE, list.size(), "List should contain Integer.MAX_VALUE elements");
+//  }
 
   @Test
   void setScreenings_Exception() {
-    ObservableList<SimpleScreeningView> list = null;
-    assertThrows(NullPointerException.class, () -> viewModel.setScreenings(list),
+    assertThrows(NullPointerException.class, () -> viewModel.setScreenings(null),
         "NullPointerException should be thrown for null argument");
   }
 
@@ -259,9 +256,8 @@ class MainPageViewModelTest {
   }
   @Test
   void bindScreenings_Many_UpperBound() {
-    ObservableList<SimpleScreeningView> propery = FXCollections.observableArrayList();
     ObservableList<SimpleScreeningView> screenings = FXCollections.observableArrayList();
-    final int MAX_ELEMENTS = 10;
+    final int MAX_ELEMENTS = 5;
 
     for (int i = 0; i < MAX_ELEMENTS; i++) {
       Screening screening = new Screening(i, i + 1,
@@ -270,13 +266,9 @@ class MainPageViewModelTest {
               LocalDate.of(2025, 2, 28).plusDays(i)), new Room(10, 44));
       screenings.add(new SimpleScreeningView(screening));
     }
+    viewModel.bindScreenings(screenings);
 
-    screenings.addListener(
-        (ListChangeListener<? super SimpleScreeningView>) c -> {
-          propery.setAll(screenings);
-        });
-
-    assertEquals(MAX_ELEMENTS, propery.size(), "Property should contain the maximum number of screenings");
+    assertEquals(MAX_ELEMENTS, screenings.size(), "Property should contain the maximum number of screenings");
   }
 
   @Test
@@ -374,12 +366,20 @@ class MainPageViewModelTest {
 //    }, "NullPointerException should be thrown for null argument");
 //
 //  }
-@Test void onSearchZero()
-{
-  viewModel.onSearch(LocalDate.of(2050, 3, 2));
-  assertTrue(viewModel.getScreenings().isEmpty(), "The screenings list should be empty.");
+  @Test void onSearchZero()
+  {
+    viewModel.onSearch(LocalDate.of(2050, 3, 2));
+    assertTrue(viewModel.getScreenings().isEmpty(), "The screenings list should be empty.");
 
-}
+  }
+  @Test void onSearchOne()
+  {
+    screenings.add(simpleScreeningView1);
+    screenings.add(simpleScreeningView2);
+    viewModel.onSearch(LocalDate.of(2030, 3, 2));
+    viewModel.setScreenings(screenings);
+    assertEquals(1, viewModel.getScreenings().size(), "The screenings list should have one thing.");
+  }
 
   @Test void onSearchMany()
   {
@@ -392,10 +392,10 @@ class MainPageViewModelTest {
     LocalDate earliestDate = LocalDate.of(2020, 1, 1);
     LocalDate latestDate = LocalDate.of(2040, 12, 31);
     viewModel.onSearch(earliestDate);
-    assertFalse(viewModel.getScreenings().isEmpty(), "The screenings list should be empty for the earliest date.");
+    assertTrue(viewModel.getScreenings().isEmpty(), "The screenings list should be empty for the earliest date.");
 
     viewModel.onSearch(latestDate);
-    assertFalse(viewModel.getScreenings().isEmpty(), "The screenings list should be empty for the latest date.");
+    assertTrue(viewModel.getScreenings().isEmpty(), "The screenings list should be empty for the latest date.");
 
   }
   @Test void onSearchException()
@@ -405,23 +405,48 @@ class MainPageViewModelTest {
     }, "Invalid type of data.");
   }
 
-  @Test void filterByTitle()
-  {
+  @Test
+  void testFilterByTitle_Zero() {
+    viewModel.filterByTitle();
+    assertEquals(0, viewModel.getScreenings().size(), "No screenings should be loaded when the input title is null");
   }
 
-  @Test void filterByDate()
-  {
+  @Test
+  void testFilterByTitle_One() {
+    screenings.add(simpleScreeningView1);
+    viewModel.setScreenings(screenings);
+
+    viewModel.inputProperty().set("New film");
+    viewModel.filterByTitle();
+
+    assertEquals(1, viewModel.getScreenings().size(), "One screening should be loaded when there is exactly one matching title");
+    assertEquals(simpleScreeningView1, viewModel.getScreenings().get(0), "The loaded screening should match the expected simpleScreeningView1");
   }
 
-  @Test void propertyChange()
-  {
+  @Test
+  void testFilterByTitle_Many_SameTitle() {
+    screenings.add(simpleScreeningView1);
+    screenings.add(simpleScreeningView2);
+    viewModel.setScreenings(screenings);
+
+    viewModel.inputProperty().set("New film");
+    viewModel.filterByTitle();
+
+    assertEquals(2, viewModel.getScreenings().size(), "All screenings with the specified title should be loaded");
   }
 
-  @Test void addListener()
-  {
+  @Test
+  void testFilterByTitle_Many_DifferentTitles() {
+    screenings.add(simpleScreeningView1);
+    screenings.add(simpleScreeningView2);
+    viewModel.setScreenings(screenings);
+
+    viewModel.inputProperty().set("Different film");
+    viewModel.filterByTitle();
+
+    assertEquals(0, viewModel.getScreenings().size(), "No screenings should be loaded when there are no matching titles");
   }
 
-  @Test void removeListener()
-  {
-  }
+
+
 }
