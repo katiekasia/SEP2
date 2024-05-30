@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MainPageViewModelTest {
   private MainPageViewModel viewModel;
-  private RmiClient client;
   private ViewState viewState;
   private Model model;
   private PropertyChangeSupport property;
@@ -41,8 +40,7 @@ class MainPageViewModelTest {
   @BeforeEach
   void setUp() {
     try {
-      client = new RmiClient("localhost");
-      model = new ModelManager(client);
+      model = new ModelManagerTest();
       viewState = new ViewState();
       viewModel = new MainPageViewModel(model, viewState);
       screenings = FXCollections.observableArrayList();;

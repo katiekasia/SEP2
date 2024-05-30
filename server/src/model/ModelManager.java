@@ -464,7 +464,6 @@ public class ModelManager implements Model
         throw new IllegalArgumentException("This username is unavailable.");
       }
     }
-
       if (usersList.isRegistered(user)){
         throw new IllegalArgumentException("This username is unavailable.");
       }
