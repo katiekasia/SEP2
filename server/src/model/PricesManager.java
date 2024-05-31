@@ -3,7 +3,11 @@ package model;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-
+/**
+ *Class for storing the list of prices
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public class PricesManager
 {
   private double standardTicketPrice;

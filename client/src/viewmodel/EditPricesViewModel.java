@@ -11,7 +11,14 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+/**
+ * *Manages the view state for editing prices of tickets and snacks
+ *  Handles operations related to changing prices,
+ *  communicates with the model to update price data, and listens for property changes to update the view.
 
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public class EditPricesViewModel implements PropertyChangeListener,
     UnnamedPropertyChangeSubject
 {
@@ -33,13 +40,20 @@ public class EditPricesViewModel implements PropertyChangeListener,
   private StringProperty peanuts;
   private ArrayList<StringProperty> fields;
   private boolean isCurrent;
-
+  /**
+   * Constructs an EditPricesViewModel with the specified model and view state.
+   * Initializes string properties for prices and sets up listeners.
+   *
+   * @param model     The model to communicate with.
+   * @param viewState The view state to manage.
+   */
   public EditPricesViewModel(Model model, ViewState viewState)
   {
     this.model = model;
     this.viewState = viewState;
     property = new PropertyChangeSupport(this);
 
+    // Initialize string properties for prices
     this.standard = new SimpleStringProperty(this, "standard");
     this.vip = new SimpleStringProperty(this, "vip");
     this.candy = new SimpleStringProperty(this, "candies");
@@ -70,10 +84,18 @@ public class EditPricesViewModel implements PropertyChangeListener,
     isCurrent = false;
     this.model.addListener(this);
   }
+  /**
+   * Gets the view state.
+   *
+   * @return The view state.
+   */
   public ViewState getViewState()
   {
     return viewState;
   }
+  /**
+   * Resets all price fields to empty strings.
+   */
   public void reset(){
     standard.set("");
     vip.set("");
@@ -93,7 +115,11 @@ public class EditPricesViewModel implements PropertyChangeListener,
   {
     isCurrent = current;
   }
-
+  /**
+   * Binds the standard price property to the specified property.
+   *
+   * @param property The property to bind.
+   */
   public void bindStandard(StringProperty property){
     property.bindBidirectional(standard);
   }
@@ -131,7 +157,11 @@ public class EditPricesViewModel implements PropertyChangeListener,
     property.bindBidirectional(redbull);
   }
 
-
+  /**
+   * Handles the button press to change prices.
+   * Parses the entered prices and updates the model
+   * Displays an error message if the input is not valid.
+   */
   public void changePressed(){
     for (StringProperty property : fields){
       if (!property.get().equals("")){
@@ -154,6 +184,12 @@ public class EditPricesViewModel implements PropertyChangeListener,
     }
     model.changePrices();
   }
+  /**
+   * Checks if the given string can be parsed as a double.
+   *
+   * @param input The string to check.
+   * @return True if the string can be parsed as a double, false otherwise.
+   */
   public static boolean isDouble(String input) {
     try {
 

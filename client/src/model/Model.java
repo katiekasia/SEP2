@@ -4,7 +4,12 @@ import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/**
+ * interface for ModelManager
+ *
+ * @version 3.0
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public interface Model extends UnnamedPropertyChangeSubject
 {
   void deleteAccount(String username);

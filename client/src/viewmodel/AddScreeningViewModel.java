@@ -17,7 +17,15 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.time.LocalDate;
-
+/**
+ *Class responsible for managing the view state ,
+ * handling operations related to adding a new screening.
+ * communicates with the model to add screening data,
+ * listens for property changes, and updates the view
+ *
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public class AddScreeningViewModel implements PropertyChangeListener,
     UnnamedPropertyChangeSubject
 {
@@ -31,7 +39,12 @@ public class AddScreeningViewModel implements PropertyChangeListener,
   private StringProperty time;
   private StringProperty room;
   private boolean isCurrent;
-
+  /**
+   * Initialisses  an AddScreeningViewModel object
+   *
+   * @param model The Model object.
+   * @param viewState The ViewState object.
+   */
   public AddScreeningViewModel(Model model, ViewState viewState)
   {
     this.model = model;
@@ -67,7 +80,11 @@ isCurrent = false;
   public StringProperty addingMessageProperty() {
     return addingMessage;
   }
-
+  /**
+   * Adds a screening for the specified date.
+   *
+   * @param date The date of the screening.
+   */
   public void addScreening(LocalDate date) {
     String[] timeParts = time.get().split(":");
     int hour = Integer.parseInt(timeParts[0]);

@@ -1,7 +1,11 @@
 package model;
 
 import java.util.ArrayList;
-
+/**
+ *Class for storing the list of rooms
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public class RoomsList
 {
   private Room[] rooms;

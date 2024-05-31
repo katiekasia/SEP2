@@ -4,7 +4,16 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.User;
+/**
+ * Class for storing UI states
+ *
+ * holds references to selected objects(screenings,tickets,orders,snacks,movies and user)
+ * Tracks ticket counting
+ * Manages states
 
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public class ViewState
 {
   private SimpleScreeningView selectedScreening;
@@ -18,11 +27,18 @@ public class ViewState
   private SimpleIntegerProperty numberOfVIPTickets = new SimpleIntegerProperty(
       0);
 
-
+  /**
+   * Initialises an instance of the class
+   */
   public ViewState()
   {
 
   }
+
+  /**
+   * clears data
+   * resets ticket counting
+   */
   public void logOut(){
     user = null;
     selectedScreening = null;
@@ -33,27 +49,55 @@ public class ViewState
     numberOfVIPTickets.set(0);
   }
 
+  /**
+//These setters update the state of the ViewState object,
+// allowing the view to react to changes,
+// such as updating the UI to reflect the current selection or user
+
+   Sets the selected order for the current session.
+   *
+   * @param selectedOrder The SimpleOrderView object representing the selected order.
+   *                      It contains information about the order to be set.
+   */
   public void setSelectedOrder(SimpleOrderView selectedOrder)
   {
     this.selectedOrder = selectedOrder;
   }
-
+  /**
+   * Retrieves the selected snack
+   *
+   * @return The SimpleSnackView object representing the selected snack.
+   *         It contains information about the snack that was previously set.
+   */
   public SimpleSnackView getSelectedSnack()
   {
     return selectedSnack;
   }
-
+  /**
+   Sets the selected snack
+   *
+   * @param selectedSnack The SimpleSnackView object representing the selected order.
+   *                      It contains information about the order to be set.
+   */
   public void setSelectedSnack(SimpleSnackView selectedSnack)
   {
     this.selectedSnack = selectedSnack;
   }
-
-
+  /**
+   * Retrieves the selected order
+   *
+   * @return The SimpleOrderView object representing the selected order.
+   *         It contains information about the snack that was previously set.
+   */
   public SimpleOrderView getSelectedOrder()
   {
     return selectedOrder;
   }
 
+  /**
+   * same logic applies to other setters and getters
+   * @return
+   */
   public SimpleScreeningView getSelectedScreening()
   {
     return selectedScreening;
@@ -81,7 +125,12 @@ public class ViewState
   public StringProperty usernameProperty(){
     return new SimpleStringProperty(user.getUsername());
   }
-
+  /**
+   * Generates a StringProperty representing the first name of the user.
+   *
+   * @return The StringProperty object representing the first name of the user.
+   *         It allows observing and binding to the first name property.
+   */
   public StringProperty nameProperty()
   {
     return new SimpleStringProperty(user.getFstName());

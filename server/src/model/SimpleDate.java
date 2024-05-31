@@ -5,8 +5,7 @@ import java.time.LocalDate;
 
 /**
  * A class representing a date.
- * @author Florina Mitigus
- * @author Michael Barczuk
+ * @author Michael Barczuk, Sandut, Kasia, Catalina
  */
 
 public class SimpleDate implements Comparable<SimpleDate>, Serializable

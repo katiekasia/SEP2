@@ -7,10 +7,23 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/**
+ * Remote interface for  RMIclient
+ *   and RemoteSubject for observer pattern implementation to notify changes to
+ *  clients.
+ * @version 3.0
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public interface RemoteModel extends Remote, RemoteSubject<String ,String >
 {
+ /**
+  * Deletes a specified movie from the system.
+  *
+  * @param movie the movie to be deleted
+  * @throws RemoteException if there is an issue during remote method invocation
+  */
  void deleteMovie(Movie movie) throws  RemoteException;
+
  Room getRoomById(String id) throws RemoteException;
  ArrayList<Movie> getAllMovies() throws RemoteException;
  void addMovie(Movie movie) throws RemoteException;

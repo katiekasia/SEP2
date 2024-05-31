@@ -11,7 +11,15 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.time.LocalDate;
-
+/**
+ *Class responsible for managing the view state ,
+ * handling operations related to adding a new movie.
+ * communicates with the model to add movie data,
+ * listens for property changes, and updates the view
+ *
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public class AddMovieViewModel implements PropertyChangeListener,UnnamedPropertyChangeSubject
 {
   private Model model;
@@ -24,7 +32,12 @@ public class AddMovieViewModel implements PropertyChangeListener,UnnamedProperty
   private StringProperty description;
   private StringProperty genre;
   private boolean isCurrent;
-
+  /**
+   * Constructor for the AddMovieViewModel class.
+   *
+   * @param model     The Model object responsible for managing data.
+   * @param viewState The ViewState object responsible for managing the view state.
+   */
   public AddMovieViewModel(Model model, ViewState viewState)
   {
     this.model = model;
@@ -39,7 +52,11 @@ public class AddMovieViewModel implements PropertyChangeListener,UnnamedProperty
     description = new SimpleStringProperty();
     length = new SimpleStringProperty();
   }
-
+  /**
+   * Retrieves the title property.
+   *
+   * @return The StringProperty representing the title.
+   */
   public StringProperty titleProperty()
   {
     return title;
@@ -65,6 +82,11 @@ public class AddMovieViewModel implements PropertyChangeListener,UnnamedProperty
     return viewState;
   }
 
+  /**
+   * Adds a new movie.
+   *
+   * @param date The release date of the movie.
+   */
   public void addMovie(LocalDate date) {
     Movie movie = new Movie(length.get(), description.get(), title.get(),genre.get(), date);
     try {
@@ -77,7 +99,11 @@ public class AddMovieViewModel implements PropertyChangeListener,UnnamedProperty
       alert.showAndWait();
     }
   }
-
+  /**
+   * Sets whether the view is currently active.
+   *
+   * @param current True if the view is current, false otherwise.
+   */
   public void setCurrent(boolean current)
   {
     isCurrent = current;
@@ -91,7 +117,11 @@ public class AddMovieViewModel implements PropertyChangeListener,UnnamedProperty
     return addingMessage;
   }
 
-
+  /**
+   * Responds to property change events.
+   *
+   * @param evt The property change event to be handled.
+   */
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{

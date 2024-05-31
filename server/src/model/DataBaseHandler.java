@@ -4,19 +4,28 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-
+/**
+ *Classs handling database operations
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "papiezpolak";
+  private static final String PASSWORD = "sukablyat";
 
   private static Connection connection;
-
+/*
+initialises a databasehandler object
+ */
   private DataBaseHandler()
   {
   }
-
+/*
+emethod to get connection to the database
+@return connection
+ */
   // Method to get the database connection
   public static Connection getConnection() throws SQLException
   {
@@ -302,7 +311,12 @@ public static void deleteScreening(Screening screening) {
       pstmt.executeUpdate();
     }
   }
-
+  /**
+   * Retrieves all customers from the database and populates them into an ArrayList.
+   *
+   * @return An ArrayList containing all the customers retrieved from the database.
+   * @throws SQLException
+   */
   // METHOD TO GET ALL THE CUSTOMERS ( USERS ) FROM DATABASE
   public static ArrayList<User> getAllCustomers() throws SQLException
   {
@@ -409,7 +423,12 @@ public static void deleteScreening(Screening screening) {
   //    }
   //  }
   // TEST CLASS TO RETRIEVE CUSTOMERS //
-
+  /**
+   * Retrieves all ROOMS from the database and populates them into an ArrayList.
+   *
+   * @return An ArrayList containing all the ROOMS retrieved from the database.
+   * @throws SQLException
+   */
   // METHOD TO GET ALL THE ROOMS FROM DATABASE
   public static ArrayList<Room> getAllRooms() throws SQLException
   {
@@ -459,7 +478,12 @@ public static void deleteScreening(Screening screening) {
     }
     return pricesManager;
   }
-
+  /**
+   * Updates the prices in the database with the new prices provided by the PricesManager object.
+   *
+   * @param manager The PricesManager object containing the new prices to be updated.
+   * @throws SQLException If a database access error occurs or this method is called on a closed connection.
+   */
   public static void changePrices(PricesManager manager) throws SQLException{
     String sql1 = "DELETE FROM pricesTable";
     String sql = "INSERT INTO pricesTable(SticketPrice, VticketPrice, NachosPrice, PopcornPrice, CandiesPrice, PeanutsPrice, TuborgPrice, RedbullPrice, ColaPrice, PepsiPrice, OreoPrice, FantaPrice) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -482,7 +506,12 @@ public static void deleteScreening(Screening screening) {
       statement.executeUpdate();
     }
   }
-
+  /**
+   * Retrieves all movies from the database and populates them into an ArrayList.
+   *
+   * @return An ArrayList containing all the movies retrieved from the database.
+   * @throws SQLException
+   */
   // method to get all the movies //
   public static ArrayList<Movie> getAllMovies() throws SQLException
   {
@@ -664,7 +693,12 @@ public static void deleteScreening(Screening screening) {
   //    }
   //    return orders;
   //  }
-
+  /**
+   * Retrieves all orders from the database and populates them into an ArrayList.
+   *
+   * @param usersList The list of users to associate orders with.
+   * @return An ArrayList containing all the orders retrieved from the database.
+   */
   public static ArrayList<Order> getAllOrders(UsersList usersList)
   {
     ArrayList<Order> orders = new ArrayList<>();
@@ -1051,7 +1085,11 @@ public static void deleteScreening(Screening screening) {
 //      e.printStackTrace();
 //    }
 //  }
-
+/*
+method to get all the screenings from database
+@return list with screenings
+@throws SQLException
+ */
   // METHOD TO GET ALL THE SCREENINGS FROM DATABASE
   public static ArrayList<Screening> getAllScreenings() throws SQLException
   {

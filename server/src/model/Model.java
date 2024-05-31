@@ -5,7 +5,11 @@ import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/**
+ *Interface for Model Manager class
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public interface Model extends UnnamedPropertyChangeSubject
 {
   void deleteMovie(Movie movie);

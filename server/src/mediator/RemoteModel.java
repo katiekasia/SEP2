@@ -7,7 +7,11 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/**
+ * interface for TMIserver class
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public interface RemoteModel extends Remote, RemoteSubject<String ,String >
 {
   void deleteMovie(Movie movie) throws  RemoteException;
