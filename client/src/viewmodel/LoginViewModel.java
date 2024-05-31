@@ -14,7 +14,15 @@ import java.beans.PropertyChangeSupport;
 
 public class LoginViewModel implements PropertyChangeListener,
     UnnamedPropertyChangeSubject
-{
+{/**
+ *Class responsible for managing the view  of logging in clients.
+ *
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ * @param boolean isLogged - representing the status of logging in.
+ * @param boolean isCurrent - representing if the site is curently viewed
+ * @param @ boolean admin representing the status of logging in as an admin.
+ */
   private ViewState viewState;
   private Model model;
   private PropertyChangeSupport property;

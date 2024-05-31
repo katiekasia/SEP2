@@ -102,12 +102,19 @@ public class AdminPageViewModel implements PropertyChangeListener,
     loadFromModel();
 
   }
-
+  /**
+   * A method returning the ViewState.
+   * @return ViewState
+   */
   public ViewState getViewState()
   {
     return viewState;
   }
 
+  /**
+   * method responsible for setting the table of objects of type screening
+   * @param property
+   */
   public void setScreenings(ObservableList<SimpleScreeningView> property)
   {
     property.setAll(screenings);
@@ -128,12 +135,19 @@ public class AdminPageViewModel implements PropertyChangeListener,
         });
   }
 
-
+  /**
+   * method responsible for setting the selected object of type screening
+   */
   public void setSelected()
   {
     selectedObject.set(viewState.getSelectedScreening());
   }
 
+  /**
+   * Responds to property change events.
+   *
+   * @param evt The property change event to be handled.
+   */
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
@@ -146,11 +160,19 @@ public class AdminPageViewModel implements PropertyChangeListener,
     }});
   }
 
+  /**
+   * Assigns listener to the property.
+   * @param listener the listener to be added
+   */
   @Override public void addListener(PropertyChangeListener listener)
   {
     property.addPropertyChangeListener(listener);
   }
 
+  /**
+   * Removes listener from the property.
+   * @param listener the listener to be added
+   */
   @Override public void removeListener(PropertyChangeListener listener)
   {
 property.removePropertyChangeListener(listener);

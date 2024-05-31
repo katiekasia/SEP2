@@ -1069,11 +1069,11 @@ public class ModelManager implements Model, PropertyChangeListener
    * @throws IllegalStateException    If the operation cannot be performed in the current state.
    * @throws RuntimeException        If an unexpected error occurs while canceling the ticket from the order.
    */
-  @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
+  @Override public void cancelTicketFromOrder(Ticket ticket, Order order, User user)
   {
     try
     {
-      client.cancelTicketFromOrder(ticket, order);
+      client.cancelTicketFromOrder(ticket, order, user);
     }
     catch (IllegalArgumentException e){
       throw e;

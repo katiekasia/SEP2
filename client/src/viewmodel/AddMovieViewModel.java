@@ -62,21 +62,36 @@ public class AddMovieViewModel implements PropertyChangeListener,UnnamedProperty
     return title;
   }
 
+  /**
+   * A method returning StringProperty representing the title.
+   * @return StringProperty representing the title.
+   */
   public StringProperty lengthProperty()
   {
     return length;
   }
 
+  /**
+   * A method returning StringProperty representing the genre.
+   * @return StringProperty representing the genre.
+   */
   public StringProperty genreProperty()
   {
     return genre;
   }
 
+  /**
+   * A method returning StringProperty representing the description.
+   * @return StringProperty representing the genre.
+   */
   public StringProperty descriptionProperty()
   {
     return description;
   }
-
+  /**
+   * A method returning ViewState
+   * @return ViewState.
+   */
   public ViewState getViewState()
   {
     return viewState;
@@ -109,10 +124,17 @@ public class AddMovieViewModel implements PropertyChangeListener,UnnamedProperty
     isCurrent = current;
   }
 
+  /**
+   * A method returning StringProperty representing the adding status.
+   * @return  StringProperty representing the adding status.
+   */
   public StringProperty addingStatusProperty() {
     return addingStatus;
   }
-
+  /**
+   * A method returning StringProperty representing the adding message.
+   * @return  StringProperty representing the adding message.
+   */
   public StringProperty addingMessageProperty() {
     return addingMessage;
   }
@@ -130,11 +152,18 @@ public class AddMovieViewModel implements PropertyChangeListener,UnnamedProperty
       }});
   }
 
+  /**
+   * Assigns listener to the property.
+   * @param listener the listener to be added
+   */
   @Override public void addListener(PropertyChangeListener listener)
   {
     property.addPropertyChangeListener(listener);
   }
-
+  /**
+   * Removes listener from the property.
+   * @param listener the listener to be added
+   */
   @Override public void removeListener(PropertyChangeListener listener)
   {
     property.removePropertyChangeListener(listener);

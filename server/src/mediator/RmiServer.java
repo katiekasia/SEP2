@@ -389,10 +389,10 @@ public class RmiServer implements RemoteModel
      cinema.upgradeTicket(ticket, order, user);
   }
 
-  @Override public  void cancelTicketFromOrder(Ticket ticket, Order order)
+  @Override public  void cancelTicketFromOrder(Ticket ticket, Order order, User user)
       throws RemoteException
   {
-    cinema.cancelTicketFromOrder(ticket, order);
+    cinema.cancelTicketFromOrder(ticket, order,  user);
   }
 
   @Override public void deleteSnackFromOrder(Snack snack, Order order)

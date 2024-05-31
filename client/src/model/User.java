@@ -2,7 +2,9 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
+
 /**
  * Represents a user in the  system.
  * @version 3.0   may 2024
@@ -49,7 +51,15 @@ public class User implements Serializable
    * Adds an order to the list of orders associated with the user.
    * @param order The order to add.
    */
-  public void addOrder(Order order){
+  public void addOrder(Order order) {
+    Iterator<Order> iterator = orders.iterator();
+    while (iterator.hasNext()) {
+      Order existingOrder = iterator.next();
+      if (existingOrder.getOrderID() == order.getOrderID()) {
+        iterator.remove();
+        break;
+      }
+    }
     orders.add(order);
   }
 

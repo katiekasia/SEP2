@@ -140,7 +140,7 @@ public class Order implements Serializable
    *
    * @param ID The ID of the ticket to retrieve
    * @return The ticket with the specified ID
-   * @throws RuntimeException if no ticket with the specified ID is found
+   * @throws IllegalArgumentException if no ticket with the specified ID is found
    */
   public Ticket getTicketForView(String ID){
     for (Ticket ticket : tickets){
@@ -148,7 +148,7 @@ public class Order implements Serializable
         return ticket;
       }
     }
-    throw new RuntimeException("No such ticket found");
+    throw new IllegalArgumentException("No such ticket found");
   }
   /**
    * Retrieves an array of snacks associated with the order.

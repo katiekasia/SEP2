@@ -147,7 +147,7 @@ isCurrent = false;
         {
           if (ticket.getSeat().getID().equals(selectedTicket.get().getSeatID()))
           {
-            model.cancelTicketFromOrder(ticket, order);
+            model.cancelTicketFromOrder(ticket, order, viewState.getUser());
             ticketSelected = false;
           }
         }

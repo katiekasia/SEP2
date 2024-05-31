@@ -558,7 +558,7 @@ import java.util.ArrayList;
     }
 
 
-    @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
+    @Override public void cancelTicketFromOrder(Ticket ticket, Order order, User user)
     {
       try
       {

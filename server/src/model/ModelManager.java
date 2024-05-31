@@ -445,24 +445,31 @@ remove listener
     return order.getTicketsFromOrder();
 
   }
+
   /**
-   * Cancels a ticket from an order and updates the database accordingly.
-   *
-   * @param ticket the ticket to be canceled
-   * @param order the order from which the ticket is to be canceled
+   * Upgrades a ticket to the VIP type.
+   * @param ticket
+   * @param order
+   * @param user
    */
   @Override public void upgradeTicket(Ticket ticket, Order order, User user)
   {
     getOrderByID(order.getOrderID(), user).upgrade(ticket,
         pricesManager.getVipTicketPrice());
   }
-
-  @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
+  /**
+   * Cancels a ticket from an order and updates the database accordingly.
+   *
+   * @param ticket the ticket to be canceled
+   * @param order the order from which the ticket is to be canceled
+   */
+  @Override public void cancelTicketFromOrder(Ticket ticket, Order order, User user)
   {
     try
     {
       DataBaseHandler.deleteTicket(ticket.getTicketID());
       order.removeTicket(ticket);
+      getUserByUsername(user.getUsername()).addOrder(order);
     }catch (SQLException e)
     {
       throw new RuntimeException(

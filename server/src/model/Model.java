@@ -51,7 +51,7 @@ Screening getScreening(Screening screening);
    ArrayList<Ticket> getAllTickets(User user);
   void downgradeTicket(Ticket ticket, Order order, User user);
   void upgradeTicket(Ticket ticket, Order order, User user);
-   void cancelTicketFromOrder(Ticket ticket, Order order);
+   void cancelTicketFromOrder(Ticket ticket, Order order, User user);
    void deleteSnackFromOrder(Snack snack, Order order);
   ArrayList<Screening> getScreaningsByMovieTitle(String title);
   ArrayList<Screening> getScreeningsByDate(LocalDate date);

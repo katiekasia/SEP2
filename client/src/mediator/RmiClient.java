@@ -744,11 +744,11 @@ public class RmiClient implements Model, RemoteListener<String,String>
    * @param order The order from which the ticket is to be canceled.
    * @throws RuntimeException If there is an error in connecting to the server.
    */
-  @Override public void cancelTicketFromOrder(Ticket ticket, Order order)
+  @Override public void cancelTicketFromOrder(Ticket ticket, Order order, User user)
   {
     try
     {
-      server.cancelTicketFromOrder(ticket, order);
+      server.cancelTicketFromOrder(ticket, order, user);
     }catch (RemoteException e){
       throw new RuntimeException("Server connection error. "  + e.getMessage());
     }

@@ -111,6 +111,10 @@ public class EditPricesViewModel implements PropertyChangeListener,
     cola.set("");
   }
 
+  /**
+   * A method setting the boolean isCurrent.
+   * @param current
+   */
   public void setCurrent(boolean current)
   {
     isCurrent = current;
@@ -123,36 +127,90 @@ public class EditPricesViewModel implements PropertyChangeListener,
   public void bindStandard(StringProperty property){
     property.bindBidirectional(standard);
   }
+  /**
+   * Binds the vip price property to the specified property.
+   *
+   * @param property The property to bind.
+   */
   public void bindVip(StringProperty property){
   property.bindBidirectional(vip);
 }
+  /**
+   * Binds the vip candy property to the specified property.
+   *
+   * @param property The property to bind.
+   */
   public void bindCandy(StringProperty property){
     property.bindBidirectional(candy);
   }
+  /**
+   * Binds the cola price property to the specified property.
+   *
+   * @param property The property to bind.
+   */
   public void bindCola(StringProperty property){
     property.bindBidirectional(cola);
   }
+  /**
+   * Binds the pepsi price property to the specified property.
+   *
+   * @param property The property to bind.
+   */
   public void bindPepsi(StringProperty property){
     property.bindBidirectional(pepsi);
   }
+  /**
+   * Binds the popcorn price property to the specified property.
+   *
+   * @param property The property to bind.
+   */
   public void bindPopcorn(StringProperty property){
     property.bindBidirectional(popcorn);
   }
+  /**
+   * Binds the peanuts price property to the specified property.
+   *
+   * @param property The property to bind.
+   */
   public void bindPeanuts(StringProperty property){
     property.bindBidirectional(peanuts);
   }
+  /**
+   * Binds the fanta price property to the specified property.
+   *
+   * @param property The property to bind.
+   */
   public void bindFanta(StringProperty property){
     property.bindBidirectional(fanta);
   }
+  /**
+   * Binds the nachos price property to the specified property.
+   *
+   * @param property The property to bind.
+   */
   public void bindNachos(StringProperty property){
     property.bindBidirectional(nachos);
   }
+  /**
+   * Binds the tuborg price property to the specified property.
+   *
+   * @param property The property to bind.
+   */
   public void bindTuborg(StringProperty property){
     property.bindBidirectional(tuborg);
-  }
+  }  /**
+ * Binds the vip price property to the specified property.
+ *
+ * @param property The property to bind.
+ */
   public void bindOreo(StringProperty property){
     property.bindBidirectional(oreo);
   }
+  /**
+   * Binds the redbull price property to the specified property.
+   *
+   * @param property The property to bind.
+   */
   public void bindRedbull(StringProperty property){
     property.bindBidirectional(redbull);
   }
@@ -200,7 +258,11 @@ public class EditPricesViewModel implements PropertyChangeListener,
       return false;
     }
   }
-
+  /**
+   * Responds to property change events.
+   *
+   * @param evt The property change event to be handled.
+   */
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
@@ -209,11 +271,18 @@ public class EditPricesViewModel implements PropertyChangeListener,
       }});
   }
 
+  /**
+   * Assigns listener to the property.
+   * @param listener the listener to be added
+   */
   @Override public void addListener(PropertyChangeListener listener)
   {
     property.addPropertyChangeListener(listener);
   }
-
+  /**
+   * Removes listener from the property.
+   * @param listener the listener to be added
+   */
   @Override public void removeListener(PropertyChangeListener listener)
   {
     property.removePropertyChangeListener(listener);
