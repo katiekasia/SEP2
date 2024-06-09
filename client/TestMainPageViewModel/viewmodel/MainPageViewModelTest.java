@@ -66,6 +66,11 @@ class MainPageViewModelTest {
       fail("Setup failed: " + e.getMessage());
     }
   }
+  @Test
+  void filterIntegration() {
+    viewModel.filterByTitle();
+  }
+
 
   @Test
   void inputPropertyZero() {

@@ -97,11 +97,13 @@ public class MainPageViewModel implements PropertyChangeListener,
 
   public void loadScreenings(ArrayList<Screening> screenings)
   {
+    System.out.println("Load screenings is executed");
     for (Screening screening : screenings)
     {
       SimpleScreeningView screeningView = new SimpleScreeningView(screening);
       this.screenings.add(screeningView);
     }
+    System.out.println("screeningView is added to screenings.");
   }
 
   public ObservableList<SimpleScreeningView> getScreenings()
@@ -138,11 +140,14 @@ public class MainPageViewModel implements PropertyChangeListener,
     if (input != null)
     {
       screenings.clear();
+      System.out.println("Clear function called");
       loadScreenings(model.getScreaningsByMovieTitle(input.get()));
+      System.out.println("Load screenings called with arguments taken from model");
     }
     else
     {
       loadFromModel();
+      System.out.println("Input was null");
     }
   }
 

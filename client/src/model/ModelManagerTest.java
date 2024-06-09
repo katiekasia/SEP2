@@ -613,6 +613,7 @@ import java.util.ArrayList;
     {
       try
       {
+        System.out.println("Screening by movie title function executed");
         ArrayList<Screening> result = new ArrayList<>();
         for (int i = 0; i < screeningsList.size(); i++)
         {

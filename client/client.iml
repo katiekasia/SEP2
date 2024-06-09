@@ -20,7 +20,7 @@
     <orderEntry type="library" exported="" name="gson-2.8.5" level="application" />
     <orderEntry type="library" exported="" name="javafx-swt" level="application" />
     <orderEntry type="library" exported="" name="MyObserver-1.4" level="application" />
-    <orderEntry type="module-library" scope="TEST">
+    <orderEntry type="module-library" exported="" scope="TEST">
       <library name="JUnit5.8.1">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter/5.8.1/junit-jupiter-5.8.1.jar!/" />

@@ -177,6 +177,7 @@ public class ModelManager implements Model
 
   @Override public ArrayList<Screening> getScreaningsByMovieTitle(String title)
   {
+    System.out.println("Screening by movie title function executed");
     return screenings.getScreaningsByMovieTitle(title);
   }
 

@@ -17,10 +17,11 @@ class MovieTest
     movie = new Movie("2h", "Action-packed thriller",
         "The Invisible Man", "Horror", LocalDate.of(2020, 2, 28));
   }
-
   @Test
   void testZeroMovieReleaseDate() {
-    assertNotNull(movie.getReleaseDate(), "Release date should not be null for a valid movie");
+    Movie movietest = new Movie("2h", "Action-packed thriller",
+        "The Invisible Man", "Horror",null);
+    assertNull(movietest.getReleaseDate(), "Release date should not be null for a valid movie");
   }
   @Test
   void testOneMovieReleaseDate() {
@@ -37,7 +38,6 @@ class MovieTest
     Movie movie3 = new Movie("2h15m", "Epic fantasy",
         "The Lord of the Rings: The Fellowship of the Ring",
         "Fantasy", LocalDate.of(2001, 12, 19));
-
     assertAll("releaseDate",
         () -> assertEquals(LocalDate.of(2003,7,9),
             movie1.getReleaseDate(), "Movie date should match"),
