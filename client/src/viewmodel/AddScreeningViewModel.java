@@ -17,7 +17,15 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.time.LocalDate;
-
+/**
+ *Class responsible for managing the view state ,
+ * handling operations related to adding a new screening.
+ * communicates with the model to add screening data,
+ * listens for property changes, and updates the view
+ *
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public class AddScreeningViewModel implements PropertyChangeListener,
     UnnamedPropertyChangeSubject
 {
@@ -31,7 +39,12 @@ public class AddScreeningViewModel implements PropertyChangeListener,
   private StringProperty time;
   private StringProperty room;
   private boolean isCurrent;
-
+  /**
+   * Initialisses  an AddScreeningViewModel object
+   *
+   * @param model The Model object.
+   * @param viewState The ViewState object.
+   */
   public AddScreeningViewModel(Model model, ViewState viewState)
   {
     this.model = model;
@@ -48,26 +61,49 @@ isCurrent = false;
     loadFromModel();
   }
 
+  /**
+   * A method setting the isCurrent boolean
+   * @param current
+   */
   public void setCurrent(boolean current)
   {
     isCurrent = current;
   }
-
+  /**
+   * A method returning StringProperty representing the time.
+   * @return  StringProperty representing the time.
+   */
   public StringProperty timeProperty()
   {
     return time;
   }
+  /**
+   * A method returning StringProperty representing the room.
+   * @return  StringProperty representing the room.
+   */
   public StringProperty roomProperty()
   {
     return room;
   }
+  /**
+   * A method returning StringProperty representing the adding status.
+   * @return  StringProperty representing the adding.
+   */
   public StringProperty addingStatusProperty() {
     return addingStatus;
   }
+  /**
+   * A method returning StringProperty representing the adding message.
+   * @return  StringProperty representing the adding message.
+   */
   public StringProperty addingMessageProperty() {
     return addingMessage;
   }
-
+  /**
+   * Adds a screening for the specified date.
+   *
+   * @param date The date of the screening.
+   */
   public void addScreening(LocalDate date) {
     String[] timeParts = time.get().split(":");
     int hour = Integer.parseInt(timeParts[0]);
@@ -84,14 +120,18 @@ Screening screening = new Screening(hour, minute, date, model.getMovieForView(se
     }
   }
 
-
+  /**
+   * A method returning the ViewState.
+   * @return ViewState
+   */
   public ViewState getViewState()
   {
     return viewState;
   }
 
-
-
+  /**
+   * A method responsible for deleting a movie.
+   */
   public void deleteMovie()
   {
     String title= viewState.getSelectedMovie().getTitle();
@@ -100,6 +140,9 @@ Screening screening = new Screening(hour, minute, date, model.getMovieForView(se
     loadFromModel();
   }
 
+  /**
+   * A method responsible for loading data from model.
+   */
   public void loadFromModel()
   {
     movies.clear();
@@ -113,10 +156,19 @@ Screening screening = new Screening(hour, minute, date, model.getMovieForView(se
     }
   }
 
+  /**
+   * A method responsible for setting the movies in the table
+   * @param property
+   */
   public void setMovies(ObservableList<SimpleMovieView> property)
   {
     property.setAll(movies);
   }
+
+  /**
+   * A method responsible for binding the Observable object of SimpleMovieView
+   * @param propery
+   */
   public void bindScreenings(ObservableList<SimpleMovieView> propery)
   {
     movies.addListener(
@@ -124,21 +176,36 @@ Screening screening = new Screening(hour, minute, date, model.getMovieForView(se
           propery.setAll(movies);
         });
   }
+
+  /**
+   * A method responsible for settning the selected object
+   */
   public void setSelected()
   {
     selectedObject.set(viewState.getSelectedMovie());
   }
-
+  /**
+   * Assigns listener to the property.
+   * @param listener the listener to be added
+   */
   @Override public void addListener(PropertyChangeListener listener)
   {
     property.addPropertyChangeListener(listener);
   }
-
+  /**
+   * Removes listener from the property.
+   * @param listener the listener to be added
+   */
   @Override public void removeListener(PropertyChangeListener listener)
   {
     property.removePropertyChangeListener(listener);
   }
 
+  /**
+   * Responds to property change events.
+   *
+   * @param evt The property change event to be handled.
+   */
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{

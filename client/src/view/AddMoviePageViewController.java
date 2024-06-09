@@ -12,7 +12,13 @@ import viewmodel.SimpleScreeningView;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
-
+/**
+ * Controller class for the Add Movie Page view.
+ * used to add movie to the system
+ *
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public class AddMoviePageViewController implements PropertyChangeListener {
   private Region root;
   private AddMovieViewModel viewModel;
@@ -29,7 +35,13 @@ public class AddMoviePageViewController implements PropertyChangeListener {
   @FXML private Button signOut;
   @FXML private Button add;
   @FXML private Button backAdminPage;
-
+  /**
+   * Initializes the controller with the necessary dependencies.
+   *
+   * @param viewHandler The ViewHandler instance.
+   * @param root The root Region of the view.
+   * @param viewModel The AddMovieViewModel instance.
+   */
   public void init(ViewHandler viewHandler, Region root, AddMovieViewModel viewModel) {
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;
@@ -57,7 +69,10 @@ public class AddMoviePageViewController implements PropertyChangeListener {
 
   }
 
-
+  /**
+   * Handles the "Add" button click event.
+   * Validates the input fields and adds a new movie.
+   */
   @FXML public void onAdd() {
     String title = titleField.getText();
     String description = descriptionField.getText();
@@ -78,15 +93,26 @@ public class AddMoviePageViewController implements PropertyChangeListener {
     viewModel.addMovie(releaseDate);
     clearFields();
   }
-
+  /**
+   * Handles the "Back to Admin" button click event.
+   * Navigates back to the admin page.
+   */
   @FXML public void backToAdmin() {viewModel.setCurrent(false);
     viewHandler.openView("adminPage");
   }
-
+  /**
+   * Handles the "Sign Out" button click event.
+   * Signs out the current user and navigates to the login page.
+   */
   @FXML public void onSignOut() {viewModel.setCurrent(false);
     viewHandler.openView("login");
   }
-
+  /**
+   * Displays an alert with the specified header and content.
+   *
+   * @param header The header text of the alert.
+   * @param content The content text of the alert.
+   */
   private void showAlert(String header, String content) {
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setHeaderText(header);
@@ -102,6 +128,11 @@ public class AddMoviePageViewController implements PropertyChangeListener {
     genreField.setText("");
   }
 
+  /**
+   * Listens for property changes and handles fatal errors.
+   *
+   * @param evt The property change event.
+   */
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{

@@ -14,13 +14,21 @@ import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/**
+ *This class represents the RMIserver for the system
+ * It implements the RemoteModel interface, providing remote access to the system's functionality
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public class RmiServer implements RemoteModel
 {
   private Model cinema;
   private PropertyChangeHandler<String, String> property;
   private Registry registry;
-
+  /**
+   * Constructor for RmiServer class.
+   * Initializes the cinema model, property change handler, and starts the RMI server.
+   */
   public RmiServer()
   {
     cinema = new ModelManager();
@@ -37,37 +45,71 @@ public class RmiServer implements RemoteModel
       e.printStackTrace();
     }
   }
+  /**
+   * Method to delete an account for the customer
+   * @param username The username of the account to be deleted.
+   * @throws RemoteException If an RMI-related communication error occurs.
+   */
   public void deleteAccount(String username) throws RemoteException
   {
     cinema.deleteAccount(username);
   }
-
+  /**
+   * Adds a movie to the system.
+   * @param movie The movie object to be added.
+   * @throws RemoteException If an RMI-related communication error occurs.
+   */
   @Override public void addMovie(Movie movie) throws RemoteException
   {
     cinema.addMovie(movie);
   }
-
+  /**
+   * Deletes a movie from the system.
+   * @param movie The movie object to be deleted.
+   * @throws RemoteException If an RMI-related communication error occurs.
+   */
   @Override public void deleteMovie(Movie movie) throws RemoteException
   {
     cinema.deleteMovie(movie);
   }
+  /**
+   * Retrieves all movies from the system.
+   * @return ArrayList of Movie objects representing all movies in the system.
+   * @throws RemoteException If an RMI-related communication error occurs.
+   */
   @Override public ArrayList<Movie> getAllMovies() throws RemoteException
   {
     return cinema.getAllMovies();
   }
+
+  /**
+   * Changes the prices of items in the system.
+   */
   @Override public void changePrices(){
     cinema.changePrices();
   }
-
+  /**
+   * Changes the price of a specific item in the system.
+   * @param item The name of the item whose price is to be changed.
+   * @param newPrice The new price for the item.
+   * @throws RemoteException If an RMI-related communication error occurs.
+   */
   @Override public void changePrice(String item, double newPrice)
       throws RemoteException
   {
     cinema.changePrice(item, newPrice);
   }
+  /**
+   * Retrieves the price for a specific type of ticket.
+   * @param type The type of ticket.
+   * @return The price of the ticket.
+   */
   @Override public double getPriceForTicket(String type){
    return cinema.getPriceForTicket(type);
   }
-
+  /**
+   * Stops the RMI server by unexporting the object and stopping the registry.
+   */
   public void stop(){
    try
    {
@@ -77,7 +119,10 @@ public class RmiServer implements RemoteModel
      e.printStackTrace();
    }
   }
-
+  /**
+   * Stops the RMI registry
+   * @throws RemoteException If an RMI-related communication error occurs.
+   */
   private void stopRegistry(){
     try {
       if (registry != null) {
@@ -88,6 +133,10 @@ public class RmiServer implements RemoteModel
       System.out.println("Error while stopping registry: " + e.getMessage());
     }
   }
+  /**
+   * Starts the RMI registry on port 1099.
+   * @throws RemoteException If an RMI-related communication error occurs.
+   */
   private void startRegistry() throws RemoteException
   {
     try
@@ -102,7 +151,11 @@ public class RmiServer implements RemoteModel
       System.out.println("Registry already started? " + e.getMessage());
     }
   }
-
+  /**
+   * Starts the RMI server by exporting the RmiServer object and binding it to a name.
+   * @throws RemoteException If an RMI-related communication error occurs.
+   * @throws MalformedURLException If the provided URL is malformed.
+   */
   private void start() throws RemoteException, MalformedURLException
   {
 
@@ -110,19 +163,36 @@ public class RmiServer implements RemoteModel
     Naming.rebind("Case", this);
   }
 
-  @Override public void updateUser(User user, String previousUsername)
-      throws RemoteException
-  {
+  /**
+   * Updates the information of a user in the system.
+   *
+   * @param user             The updated user object.
+   * @param previousUsername The previous username of the user.
+   * @throws RemoteException If an RMI-related exception occurs.
+   */
+  @Override
+  public void updateUser(User user, String previousUsername) throws RemoteException {
     cinema.updateUser(user, previousUsername);
   }
 
-  @Override public  Order reserveSeats(Seat[] seats, User customer,
-      Screening screening, int nbVIP) throws RemoteException
-  {
+  /**
+   * Reserves seats for a screening for a customer.
+   *
+   * @param seats     An array of seats to be reserved.
+   * @param customer  The user/customer reserving the seats.
+   * @param screening The screening for which the seats are being reserved.
+   * @param nbVIP     The number of VIP seats to be reserved.
+   * @return The order containing the reserved seats.
+   * @throws RemoteException If an RMI-related exception occurs.
+   */
+  @Override
+  public Order reserveSeats(Seat[] seats, User customer, Screening screening, int nbVIP)
+      throws RemoteException {
+    // Notifies property listeners about the reservation process
     property.firePropertyChange("RESERVE SEATS", null, screening.getTime());
     return cinema.reserveSeats(seats, customer, screening, nbVIP);
-
   }
+
   @Override public double getPriceForSize(String snackType, String size){
     return cinema.getPriceForSize(snackType, size);
   }
@@ -137,17 +207,42 @@ public class RmiServer implements RemoteModel
     cinema.addSnackToOrder(snackType, amount, order, user, size);
   }
 
-  @Override public Order getOrderByID(int orderID, User user)
-  {
+  /**
+   * Retrieves an order by its ID associated with a specific user.
+   *
+   * @param orderID The ID of the order to retrieve.
+   * @param user    The user associated with the order.
+   * @return The order object matching the provided ID.
+   * @throws RemoteException If an RMI-related exception occurs.
+   */
+  @Override
+  public Order getOrderByID(int orderID, User user) throws RemoteException {
     return cinema.getOrderByID(orderID, user);
   }
 
-  @Override public Screening getScreeningForView(String time, String date,
-      String title, int room) throws RemoteException
-  {
+  /**
+   * Retrieves a screening for viewing based on the provided time, date, title, and room.
+   *
+   * @param time  The time of the screening.
+   * @param date  The date of the screening.
+   * @param title The title of the movie being screened.
+   * @param room  The room number where the screening is taking place.
+   * @return The screening object matching the provided parameters.
+   * @throws RemoteException If an RMI-related exception occurs.
+   */
+  @Override
+  public Screening getScreeningForView(String time, String date, String title, int room)
+      throws RemoteException {
     return cinema.getScreeningForView(time, date, title, room);
   }
 
+  /**
+   * Retrieves all orders associated with a specific user.
+   *
+   * @param user The user for whom to retrieve orders.
+   * @return An array of orders belonging to the specified user.
+   * @throws RemoteException If an RMI-related exception occurs.
+   */
   @Override public Order[] getAllOrders(User user) throws RemoteException
   {
     return cinema.getAllOrders(user);
@@ -294,10 +389,10 @@ public class RmiServer implements RemoteModel
      cinema.upgradeTicket(ticket, order, user);
   }
 
-  @Override public  void cancelTicketFromOrder(Ticket ticket, Order order)
+  @Override public  void cancelTicketFromOrder(Ticket ticket, Order order, User user)
       throws RemoteException
   {
-    cinema.cancelTicketFromOrder(ticket, order);
+    cinema.cancelTicketFromOrder(ticket, order,  user);
   }
 
   @Override public void deleteSnackFromOrder(Snack snack, Order order)

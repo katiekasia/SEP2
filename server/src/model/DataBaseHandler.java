@@ -4,19 +4,31 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ *Classs handling database operations
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public class DataBaseHandler
 {
   private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
   private static final String USERNAME = "postgres";
-  private static final String PASSWORD = "papiezpolak";
+  private static final String PASSWORD = "VIAVIAVIA";
 
   private static Connection connection;
-
+/*
+initialises a databasehandler object
+ */
   private DataBaseHandler()
   {
   }
-
+/*
+emethod to get connection to the database
+@return connection
+ */
   // Method to get the database connection
   public static Connection getConnection() throws SQLException
   {
@@ -302,7 +314,12 @@ public static void deleteScreening(Screening screening) {
       pstmt.executeUpdate();
     }
   }
-
+  /**
+   * Retrieves all customers from the database and populates them into an ArrayList.
+   *
+   * @return An ArrayList containing all the customers retrieved from the database.
+   * @throws SQLException
+   */
   // METHOD TO GET ALL THE CUSTOMERS ( USERS ) FROM DATABASE
   public static ArrayList<User> getAllCustomers() throws SQLException
   {
@@ -409,7 +426,12 @@ public static void deleteScreening(Screening screening) {
   //    }
   //  }
   // TEST CLASS TO RETRIEVE CUSTOMERS //
-
+  /**
+   * Retrieves all ROOMS from the database and populates them into an ArrayList.
+   *
+   * @return An ArrayList containing all the ROOMS retrieved from the database.
+   * @throws SQLException
+   */
   // METHOD TO GET ALL THE ROOMS FROM DATABASE
   public static ArrayList<Room> getAllRooms() throws SQLException
   {
@@ -459,7 +481,12 @@ public static void deleteScreening(Screening screening) {
     }
     return pricesManager;
   }
-
+  /**
+   * Updates the prices in the database with the new prices provided by the PricesManager object.
+   *
+   * @param manager The PricesManager object containing the new prices to be updated.
+   * @throws SQLException If a database access error occurs or this method is called on a closed connection.
+   */
   public static void changePrices(PricesManager manager) throws SQLException{
     String sql1 = "DELETE FROM pricesTable";
     String sql = "INSERT INTO pricesTable(SticketPrice, VticketPrice, NachosPrice, PopcornPrice, CandiesPrice, PeanutsPrice, TuborgPrice, RedbullPrice, ColaPrice, PepsiPrice, OreoPrice, FantaPrice) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -482,7 +509,12 @@ public static void deleteScreening(Screening screening) {
       statement.executeUpdate();
     }
   }
-
+  /**
+   * Retrieves all movies from the database and populates them into an ArrayList.
+   *
+   * @return An ArrayList containing all the movies retrieved from the database.
+   * @throws SQLException
+   */
   // method to get all the movies //
   public static ArrayList<Movie> getAllMovies() throws SQLException
   {
@@ -664,100 +696,99 @@ public static void deleteScreening(Screening screening) {
   //    }
   //    return orders;
   //  }
-
-  public static ArrayList<Order> getAllOrders(UsersList usersList)
-  {
+  /**
+   * Retrieves all orders from the database and populates them into an ArrayList.
+   *
+   * @param usersList The list of users to associate orders with.
+   * @return An ArrayList containing all the orders retrieved from the database.
+   */
+  public static ArrayList<Order> getAllOrders(UsersList usersList) {
     ArrayList<Order> orders = new ArrayList<>();
-
+    Map<Integer, Order> orderMap = new HashMap<>();
 
     String query =
-        "  SELECT o.orderID, c.username, t.ticketID, t.ticketPrice, t.ticketType, "
-            + "t.seatID, s.screeningHour, s.screeningDate, s.id, r.roomID, r.numberOfSeats, m.name, "
-            + " m.length, m.description, m.genre, m.releaseDate, p.snackName, p.size, p.price "
-            + " FROM orders o " + "JOIN Customer c ON c.username = o.username "
-            + "JOIN ticket t ON o.orderID = t.orderID "
-            + "JOIN Screening s ON s.id = t.id "
-            + "JOIN Movie m ON m.name = s.name "
-            + "JOIN room r ON s.roomID = r.roomID "
-            + "LEFT JOIN SNACK p ON p.orderID = o.orderID;";
+        "SELECT o.orderID, c.username, t.ticketID, t.ticketPrice, t.ticketType, " +
+            "t.seatID, s.screeningHour, s.screeningDate, s.id AS screeningID, " +
+            "r.roomID, r.numberOfSeats, m.name AS movieName, m.length AS movieLength, " +
+            "m.description AS movieDescription, m.genre AS movieGenre, m.releaseDate AS movieReleaseDate, " +
+            "p.snackName, p.size AS snackSize, p.price AS snackPrice " +
+            "FROM orders o " +
+            "JOIN Customer c ON c.username = o.username " +
+            "JOIN ticket t ON o.orderID = t.orderID " +
+            "JOIN Screening s ON s.id = t.id " +
+            "JOIN Movie m ON m.name = s.name " +
+            "JOIN room r ON s.roomID = r.roomID " +
+            "LEFT JOIN Snack p ON p.orderID = o.orderID";
 
     try (Connection connection = getConnection();
-        Statement statement = connection.createStatement(
-            ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        ResultSet resultSet = statement.executeQuery(query))
-    {
+        Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ResultSet resultSet = statement.executeQuery(query)) {
 
-      while (resultSet.next())
-      {
+      while (resultSet.next()) {
         int orderID = resultSet.getInt("orderID");
         String username = resultSet.getString("username");
-        Order order = new Order(orderID);
-        User user = usersList.getByUsername(username);
-        user.addOrder(order);
 
-        do
-        {
-          String ticketID = resultSet.getString("ticketID");
-          double price = resultSet.getDouble("ticketPrice");
-          String type = resultSet.getString("ticketType");
-          String seatID = resultSet.getString("seatID");
-          Time screeningHour = resultSet.getTime("screeningHour");
-          LocalDate screeningDate = resultSet.getDate("screeningDate")
-              .toLocalDate();
-          int screeningId = resultSet.getInt("id");
-          String movieName = resultSet.getString("name");
-          String movieLength = resultSet.getString("length");
-          String movieDescription = resultSet.getString("description");
-          String movieGenre = resultSet.getString("genre");
-          LocalDate movieReleaseDate = resultSet.getDate("releaseDate")
-              .toLocalDate();
-          int roomID = resultSet.getInt("roomID");
-          int numberOfSeats = resultSet.getInt("numberOfSeats");
-          String snackName = resultSet.getString("snackName");
-          int snackPrice = resultSet.getInt("price");
-          String snackSize = resultSet.getString("size");
+        Order order = orderMap.get(orderID);
+        if (order == null) {
+          order = new Order(orderID);
+          User user = usersList.getByUsername(username);
+          user.addOrder(order);
+          orderMap.put(orderID, order);
+        }
 
-          Movie movie = new Movie(movieLength, movieDescription, movieName,
-              movieGenre, movieReleaseDate);
-          Room room = new Room(roomID, numberOfSeats);
-          Seat seat = new Seat(seatID, false);
-          Screening screening = new Screening( screeningId,
-              screeningHour.toLocalTime().getHour(),
-              screeningHour.toLocalTime().getMinute(), screeningDate, movie,
-              room);
+        // Ticket details
+        String ticketID = resultSet.getString("ticketID");
+        double ticketPrice = resultSet.getDouble("ticketPrice");
+        String ticketType = resultSet.getString("ticketType");
+        String seatID = resultSet.getString("seatID");
+        Time screeningHour = resultSet.getTime("screeningHour");
+        LocalDate screeningDate = resultSet.getDate("screeningDate").toLocalDate();
+        int screeningID = resultSet.getInt("screeningID");
 
-          Snack snack;
-          if (snackName != null)
-          {
-            snack = new Snack(snackPrice, snackName,snackSize);
-            order.addSnack(snack);
-          }
+        // Movie details
+        String movieName = resultSet.getString("movieName");
+        String movieLength = resultSet.getString("movieLength");
+        String movieDescription = resultSet.getString("movieDescription");
+        String movieGenre = resultSet.getString("movieGenre");
+        LocalDate movieReleaseDate = resultSet.getDate("movieReleaseDate").toLocalDate();
 
-          Ticket ticket = null;
-          if ("Standard".equals(type))
-          {
-            ticket = new StandardTicket(ticketID, price, seat, screening);
-          }
-          else if ("VIP".equals(type))
-          {
-            ticket = new VIPTicket(ticketID, price, seat, screening);
-          }
-          else
-          {
-            continue; // Skip unknown ticket types
-          }
+        // Room details
+        int roomID = resultSet.getInt("roomID");
+        int numberOfSeats = resultSet.getInt("numberOfSeats");
+
+        // Snack details
+        String snackName = resultSet.getString("snackName");
+        String snackSize = resultSet.getString("snackSize");
+        int snackPrice = resultSet.getInt("snackPrice");
+
+        Movie movie = new Movie(movieLength, movieDescription, movieName, movieGenre, movieReleaseDate);
+        Room room = new Room(roomID, numberOfSeats);
+        Seat seat = new Seat(seatID, false);
+        Screening screening = new Screening(screeningID, screeningHour.toLocalTime().getHour(),
+            screeningHour.toLocalTime().getMinute(), screeningDate, movie, room);
+
+        // Create Ticket
+        Ticket ticket = null;
+        if ("Standard".equals(ticketType)) {
+          ticket = new StandardTicket(ticketID, ticketPrice, seat, screening);
+        } else if ("VIP".equals(ticketType)) {
+          ticket = new VIPTicket(ticketID, ticketPrice, seat, screening);
+        }
+        if (ticket != null) {
           order.addTicket(ticket);
         }
-        while (resultSet.next() && resultSet.getString("orderID")
-            .equals(orderID));
 
-        orders.add(order);
-        resultSet.previous(); // Move back one step for the outer while loop to function correctly
+        // Create Snack
+        if (snackName != null) {
+          Snack snack = new Snack(snackPrice, snackName, snackSize);
+          order.addSnack(snack);
+        }
       }
-    }
-    catch (SQLException e)
-    {
-      e.printStackTrace(); // Log the exception or handle it accordingly
+
+      orders.addAll(orderMap.values());
+
+    } catch (SQLException e) {
+      e.printStackTrace(); // Use proper logging in a real-world application
     }
 
     return orders;
@@ -1051,7 +1082,11 @@ public static void deleteScreening(Screening screening) {
 //      e.printStackTrace();
 //    }
 //  }
-
+/*
+method to get all the screenings from database
+@return list with screenings
+@throws SQLException
+ */
   // METHOD TO GET ALL THE SCREENINGS FROM DATABASE
   public static ArrayList<Screening> getAllScreenings() throws SQLException
   {

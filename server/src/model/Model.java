@@ -5,7 +5,11 @@ import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/**
+ *Interface for Model Manager class
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public interface Model extends UnnamedPropertyChangeSubject
 {
   void deleteMovie(Movie movie);
@@ -47,7 +51,7 @@ Screening getScreening(Screening screening);
    ArrayList<Ticket> getAllTickets(User user);
   void downgradeTicket(Ticket ticket, Order order, User user);
   void upgradeTicket(Ticket ticket, Order order, User user);
-   void cancelTicketFromOrder(Ticket ticket, Order order);
+   void cancelTicketFromOrder(Ticket ticket, Order order, User user);
    void deleteSnackFromOrder(Snack snack, Order order);
   ArrayList<Screening> getScreaningsByMovieTitle(String title);
   ArrayList<Screening> getScreeningsByDate(LocalDate date);

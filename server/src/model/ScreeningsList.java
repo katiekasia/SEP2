@@ -3,7 +3,11 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/**
+ *Class for storing the list of screenings
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public class ScreeningsList
 {
   private ArrayList<Screening> screenings;

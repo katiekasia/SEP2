@@ -4,7 +4,12 @@ import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/**
+ * interface for ModelManager
+ *
+ * @version 3.0
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public interface Model extends UnnamedPropertyChangeSubject
 {
   void deleteAccount(String username);
@@ -47,7 +52,7 @@ Screening getScreening(Screening screening);
 ArrayList<Ticket> getAllTickets(User user);
 void downgradeTicket(Ticket ticket, Order order, User user);
 void upgradeTicket(Ticket ticket, Order order, User user);
-void cancelTicketFromOrder(Ticket ticket, Order order);
+void cancelTicketFromOrder(Ticket ticket, Order order, User user);
 void deleteSnackFromOrder(Snack snack, Order order);
 ArrayList<Screening> getScreaningsByMovieTitle(String title);
 ArrayList<Screening> getScreeningsByDate(LocalDate date);

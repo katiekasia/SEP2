@@ -3,7 +3,13 @@ package viewmodel;
 import model.Model;
 
 import java.rmi.RemoteException;
+/**
+ * Factory class responsible for creating  ViewModel objects used in the  system.
+ *   Each ViewModel is associated with their corresponding view in the application.
 
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public class ViewModelFactory
 {
 
@@ -22,7 +28,13 @@ public class ViewModelFactory
   private AddScreeningViewModel addScreeningViewModel;
   private EditPricesViewModel editPricesViewModel;
   private ViewState viewState;
-
+  /**
+   * Constructor for ViewModelFactory class.
+   * Initializes all ViewModel objects with the provided Model instance and ViewState.
+   *
+   * @param model The Model instance used by ViewModel objects.
+   * @throws RemoteException If there is an issue with remote method invocation.
+   */
   public ViewModelFactory(Model model) throws RemoteException
   {
     this.viewState = new ViewState();
@@ -44,11 +56,24 @@ public class ViewModelFactory
 
 
   }
+  /**
+   * Retrieves the OrderDetailsViewModel object.
+   *
+   * @return The OrderDetailsViewModel object associated with the order details view.
+   */
   public OrderDetailsViewModel getOrderDetailsViewModel()
   {
     return orderDetailsViewModel;
   }
-
+  /**
+   * Retrieves the MainPageViewModel object.
+   *
+   * @return The MainpageViewModel object associated with themain page details view.
+   */
+  /**
+   * follow the exact same logic as the first 2 commented
+   * @return
+   */
   public MainPageViewModel getPageViewModel()
   {
     return pageViewModel;

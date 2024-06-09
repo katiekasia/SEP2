@@ -7,7 +7,11 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/**
+ * interface for TMIserver class
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public interface RemoteModel extends Remote, RemoteSubject<String ,String >
 {
   void deleteMovie(Movie movie) throws  RemoteException;
@@ -56,7 +60,7 @@ public interface RemoteModel extends Remote, RemoteSubject<String ,String >
    ArrayList<Ticket> getAllTickets(User user) throws RemoteException;
   void downgradeTicket(Ticket ticket, Order order, User user) throws RemoteException;
    void upgradeTicket(Ticket ticket, Order order, User user) throws RemoteException;
-  void cancelTicketFromOrder(Ticket ticket, Order order) throws RemoteException;
+  void cancelTicketFromOrder(Ticket ticket, Order order, User user) throws RemoteException;
   void deleteSnackFromOrder(Snack snack, Order order) throws RemoteException;
   ArrayList<Screening> getScreeningsByDateAndTitle(
       String title, LocalDate date) throws RemoteException;

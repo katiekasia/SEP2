@@ -2,7 +2,11 @@ package model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+/**
+ *Class for storing the list of users
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public class UsersList
 {
   private ArrayList<User> users;

@@ -14,7 +14,15 @@ import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
+/**
+ *Class responsible for managing the view state for admin,
+ * handling operations related to managing screenings.
+ * communicates with the model to add screening data,
+ * listens for property changes, and updates the view
+ *
+ * @version 3.0   may 2024
+ * @author Michal Barczuk, Kasia, Sandut, Catalina
+ */
 public class AdminPageViewModel implements PropertyChangeListener,
     UnnamedPropertyChangeSubject
 {
@@ -25,7 +33,12 @@ public class AdminPageViewModel implements PropertyChangeListener,
   private ObjectProperty<SimpleScreeningView> selectedObject;
   private boolean isCurrent;
 
-
+  /**
+   * Initialises an AdminPageViewModel object
+   *
+   * @param model The Model object.
+   * @param viewState The ViewState object.
+   */
   public AdminPageViewModel(Model model, ViewState viewState)
   {
     this.model = model;
@@ -38,6 +51,10 @@ public class AdminPageViewModel implements PropertyChangeListener,
     isCurrent = false;
     loadFromModel();
   }
+
+  /**
+   * Loads screenings data from the model.
+   */
   public void loadFromModel()
   {
     screenings.clear();
@@ -50,12 +67,22 @@ public class AdminPageViewModel implements PropertyChangeListener,
       screenings.add(simpleScreeningView);
     }
   }
-
+  /**
+   * Sets the current activity  status.
+   *
+   * @param current Boolean indicating if the view is currently active.
+   */
   public void setCurrent(boolean current)
   {
     isCurrent = current;
   }
-
+  /**
+   * Deletes the selected screening from the model and updates the view.
+   * It retrieves the details of the selected screening from the view state,
+   * then attempts to remove the corresponding screening from the model.
+   * If successful, it reloads the screenings data from the model to update the view.
+   * If an exception occurs during the removal process, it displays an error message.
+   */
   public void deleteScreening()
   {
     String time = viewState.getSelectedScreening().getTime();
@@ -75,17 +102,31 @@ public class AdminPageViewModel implements PropertyChangeListener,
     loadFromModel();
 
   }
-
+  /**
+   * A method returning the ViewState.
+   * @return ViewState
+   */
   public ViewState getViewState()
   {
     return viewState;
   }
 
+  /**
+   * method responsible for setting the table of objects of type screening
+   * @param property
+   */
   public void setScreenings(ObservableList<SimpleScreeningView> property)
   {
     property.setAll(screenings);
   }
-
+  /**
+   * Binds the screenings list to the provided property.
+   * It adds a listener to the screenings list, which updates the provided property
+   * with the content of the screenings list whenever a change occurs.
+   * This ensures that the property always reflects the latest state of the screenings list.
+   *
+   * @param propery The property to bind the screenings list to.
+   */
   public void bindScreenings(ObservableList<SimpleScreeningView> propery)
   {
     screenings.addListener(
@@ -94,12 +135,19 @@ public class AdminPageViewModel implements PropertyChangeListener,
         });
   }
 
-
+  /**
+   * method responsible for setting the selected object of type screening
+   */
   public void setSelected()
   {
     selectedObject.set(viewState.getSelectedScreening());
   }
 
+  /**
+   * Responds to property change events.
+   *
+   * @param evt The property change event to be handled.
+   */
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() ->{
@@ -112,11 +160,19 @@ public class AdminPageViewModel implements PropertyChangeListener,
     }});
   }
 
+  /**
+   * Assigns listener to the property.
+   * @param listener the listener to be added
+   */
   @Override public void addListener(PropertyChangeListener listener)
   {
     property.addPropertyChangeListener(listener);
   }
 
+  /**
+   * Removes listener from the property.
+   * @param listener the listener to be added
+   */
   @Override public void removeListener(PropertyChangeListener listener)
   {
 property.removePropertyChangeListener(listener);
