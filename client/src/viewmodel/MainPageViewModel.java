@@ -119,6 +119,10 @@ public class MainPageViewModel implements PropertyChangeListener,
           propery.setAll(screenings);
         });
   }
+  public ObservableList<SimpleScreeningView> getScreenings()
+  {
+    return screenings;
+  }
   /**
    * method responsible for setting the selected object of type screening
    */
